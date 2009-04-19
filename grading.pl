@@ -5,7 +5,7 @@ use strict;
 use File::Temp qw(tempfile tempdir);
 use Gtk2 -init;
 use utf8;
-
+use Thread qw(async);
 
 
 my $bin_latex;
@@ -13,7 +13,7 @@ my $bin_pdfviewer;
 
 if ($^O eq "linux") {
 	$bin_latex = "/usr/bin/latex";
-	$bin_pdfviewer = "/usr/bin/epdfview";
+	$bin_pdfviewer = "/usr/bin/evince";
 } else {
 	$bin_latex = "latex";
 	$bin_pdfviewer = '"C:\Programme\Adobe\Acrobat 7.0\Reader\AcroRd32.exe"';
@@ -291,7 +291,6 @@ $window->show();
 
 Gtk2->main;
 
-
 exit(0);
 
 
@@ -306,8 +305,6 @@ sub stack()
 
 sub build()
 {
-	my $dir = tempdir(CLEANUP => 1);
-	my ($tmp_fh, $tmp_name) = tempfile(DIR => $dir, SUFFIX => ".tex");
 
 	my $text = $buffer->get_text($buffer->get_start_iter(), $buffer->get_end_iter(), $false);
 
@@ -322,22 +319,36 @@ sub build()
 	my $top_pos = $default_top_pos + $v_offset_button->get_value_as_int();
 
 
-	my $latex = $latex_frame;
-	$latex =~ s/VAR_LEFT_POS/$left_pos/;
-	$latex =~ s/VAR_TOP_POS/$top_pos/;
-	$latex =~ s/VAR_CHECK_SPACE/$check_space/ ;
-	$latex =~ s/VAR_CHECK/$check/ ;
-	$latex =~ s/VAR_TEXT_SPACE/$text_space/ ;
-	$latex =~ s/VAR_TEXT/$text/ ;
-	
-	print $tmp_fh $latex; 
-	close $tmp_fh;
+	my $latex;
 
+	{
+		lock $latex;
+		$latex= $latex_frame;
+		$latex =~ s/VAR_LEFT_POS/$left_pos/;
+		$latex =~ s/VAR_TOP_POS/$top_pos/;
+		$latex =~ s/VAR_CHECK_SPACE/$check_space/ ;
+		$latex =~ s/VAR_CHECK/$check/ ;
+		$latex =~ s/VAR_TEXT_SPACE/$text_space/ ;
+		$latex =~ s/VAR_TEXT/$text/ ;
+	}
+	
+	my $thread;
+	$thread = async {
+		my $dir = tempdir(CLEANUP => 1);
+		my ($tmp_fh, $tmp_name) = tempfile(DIR => $dir, SUFFIX => ".tex");
+
+		{
+			lock $latex;
+			print $tmp_fh $latex;
+			close $tmp_fh;
+		
+		}
 #	print `cat $tmp_name`;
 
-	print `$bin_latex -output-format=pdf -output-directory=$dir $tmp_name`;
+		system "$bin_latex", "-output-format=pdf", "-output-directory=$dir", "$tmp_name";
+		(my $pdf_name = $tmp_name) =~ s/tex$/pdf/;
+		system "$bin_pdfviewer", "$pdf_name" ; 
+	};
+	$thread->detach();
 
-	(my $pdf_name = $tmp_name) =~ s/tex$/pdf/;
-
-	print `$bin_pdfviewer $pdf_name`; 
 }
