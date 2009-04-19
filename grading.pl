@@ -27,7 +27,6 @@ my $default_left_pos = "15";
 my $check_space = "64";
 my $text_space = "7";
 
-my @kids;
 
 # Abstände Zwischen den "X" Zeilen
 my %check_pos = (
@@ -292,13 +291,6 @@ $window->show();
 
 
 Gtk2->main();
-
-# Beende und Warte auf alle Kindprozesse
-foreach my $kid (@kids) {
-	kill 9, $kid;
-	waitpid $kid, 0;
-}
-
 exit(0);
 
 
@@ -345,11 +337,7 @@ sub build()
 	system "$bin_latex", "-output-format=pdf", "-output-directory=$dir", "$tmp_name";
 	(my $pdf_name = $tmp_name) =~ s/tex$/pdf/;
 	
-	my $pid;
-	if ($pid = fork) {
-		push @kids, $pid;
-		print "Neuer Kindprozess $pid\n";
-	} elsif ($pid == 0) {
+	if (fork == 0) {
 		exec "$bin_pdfviewer", "$pdf_name" ; 
 	}
 
