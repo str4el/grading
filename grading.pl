@@ -19,21 +19,21 @@ if ($^O eq "linux") {
 	$bin_pdfviewer = '"C:\Programme\Adobe\Acrobat 7.0\Reader\AcroRd32.exe"';
 }
 
-my @grades = ('++', '+', '0', '-', '--');
+my @grades = ('++', '+', '0', '-', '--', 'Ohne');
 my @check_class = ( 'Fachkenntnisse', 'Fertigkeiten', 'Arbeitssicheres Verhalten', 'Zuverlässigkeit', 'Lern- und Arbeitsbereitschaft', 'Umgang mit Einrichtungen / Arbeitsmitteln', 'Teamfähigkeit', 'Verantwortungsbewustsein' );
 
 my $default_top_pos = "15";
 my $default_left_pos = "15";
 
 my $check_space = "64";
-my $text_space = "8";
+my $text_space = "7";
 
 # Abstände Zwischen den "X" Zeilen
 my %check_pos = (
 	'Fachkenntnisse'				=> "0",
 	'Fertigkeiten'					=> "0",
 	'Arbeitssicheres Verhalten'			=> "0",
-	'Zuverlässigkeit'				=> "12",
+	'Zuverlässigkeit'				=> "14",
 	'Lern- und Arbeitsbereitschaft'			=> "0",
 	'Umgang mit Einrichtungen / Arbeitsmitteln'	=> "0",
 	'Teamfähigkeit'					=> "6",
@@ -57,70 +57,80 @@ my %text = (
 		"+"	=> "Verfügt über einen hohen Fertigkeitsgrad. Arbeitet sicher und geschickt. ", 
 		"0"	=> "Die Fertigkeiten ermöglichen eine zufriedenstellende Arbeitsausführung. Ist selten unsicher. ", 
 		"-"	=> "Der erforderliche Fertigkeitsgrad wird nicht immer erreicht. Die Arbeitsausführung wird dadurch erschwert. ", 
-		"--"	=> "Kann die Anforderungen an Fertigkeiten kaum erfüllen. Ist bei vielen Tätigkeiten unsicher und ungeschickt. "
+		"--"	=> "Kann die Anforderungen an Fertigkeiten kaum erfüllen. Ist bei vielen Tätigkeiten unsicher und ungeschickt. ",
+		"Ohne"	=> ""
 	},
 	"Kenntnisse" => {
 		"++"	=> "Verfügt über besonders umfangreiche Fachkenntnisse und erkennt sicher Zusammenhänge. ", 
 		"+"	=> "Verfügt über umfangreiche Fachkenntnisse. Kann Zusammenhänge herstellen. ", 
 		"0"	=> "Besitzt die erforderlichen Fachkenntnisse, um die übertragenen Aufgaben zufriedenstellend ausführen zu können. ", 
 		"-"	=> "Die erforderlichen Fachkenntnisse sind nicht immer vorhanden. Fehlendes Wissen erschwert den Arbeits- und damit auch den Ausbildungsablauf. ", 
-		"--"	=> "Verfügt kaum über die erforderlichen Fachkenntnisse, ist häufig auf Erklärungen, Hilfen und Ratschläge angewiesen. "
+		"--"	=> "Verfügt kaum über die erforderlichen Fachkenntnisse, ist häufig auf Erklärungen, Hilfen und Ratschläge angewiesen. ",
+		"Ohne"	=> ""
 	},
 	"Zusammenarbeit" => {
 		"++"	=> "Zeigt besonderes Einfühlungsvermögen im Umgang mit anderen. Gute Zusammenarbeit und Hilfsbereitschaft. Aufgeschlossen und fair. ", 
 		"+"	=> "Hat gutes Einfühlungsvermögen im Umgang mit anderen. Ist hilfsbereit und fähig zu guter Zusammenarbeit. ", 
 		"0"	=> "Zeigt in der Regel Einfühlungsvermögen im Umgang mit anderen. Hat den Willen zu Hilfsbereitschaft und Zusammenarbeit. ", 
 		"-"	=> "Zeigt Unsicherheiten im Umgang mit anderen, wodurch eine problemlose Zusammenarbeit erschwert wird. Arbeitet, von Ausnahmefällen abgesehen, in der Gruppe mit. ", 
-		"--"	=> "Zeigt ungenügendes Einfühlungsvermögen im Umgang mit anderen. Kein ausgeprägtes Gefühl für Zusammenarbeit. Arbeitet lieber allein. "
+		"--"	=> "Zeigt ungenügendes Einfühlungsvermögen im Umgang mit anderen. Kein ausgeprägtes Gefühl für Zusammenarbeit. Arbeitet lieber allein. ",
+		"Ohne"	=> ""
 	},
 	"Auffassungsgabe" => {
 		"++"	=> "Auch schwierige Sachverhalte werden schnell begriffen, Zusammenhänge klar erkannt, Einzeldaten gewichtet und zugeordnet. ",
 		"+"	=> "Schnelle Auffassung. Der Kern einer Sache wird rasch begriffen. Ist in der Lage, Wesentliches vom Unwesentlichen zu unterscheiden. ", 
 		"0"	=> "Inhalt und Bedeutung eines Sachverhalts werden erfaßt. Das Begriffene wird sachlich richtig eingeordnet. ", 
 		"-"	=> "Anleitungen bzw. wiederholte Erklärungen sind notwendig, damit Lerninhalte und -situationen verstanden werden. ", 
-		"--"	=> "Lerninhalte und -situationen werden selbst nach eingehender, wiederholter Erklärung nur unvollkommen verstanden. "
+		"--"	=> "Lerninhalte und -situationen werden selbst nach eingehender, wiederholter Erklärung nur unvollkommen verstanden. ",
+		"Ohne"	=> ""
 	},
 	"Transfervermögen" => {
 		"++"	=> "Sichere und richtige Übertragung gewonnener Erkenntnisse. ", 
 		"+"	=> "Gewonnene Erkenntnisse werden übertragen. ", 
 		"0"	=> "Gewonnene Erkenntnisse werden meist übertragen. ", 
 		"-"	=> "Kann gewonnene Erkenntnisse nur vereinzelt übertragen. ", 
-		"--"	=> "Gewonnene Erkenntnisse werden nicht übertragen "
+		"--"	=> "Gewonnene Erkenntnisse werden nicht übertragen ",
+		"Ohne"	=> ""
 	},
 	"Sorgfalt" => {
 		"++"	=> "Arbeitet stets planvoll und mit großer Sorgfalt. Arbeitsergebnisse liegen immer im Bereich der Qualitätsanforderungen. ",
 		"+"	=> "Arbeitet planvoll. Ist sorgfältig in der Arbeitsausführung. Arbeitsergebnisse liegen nur selten außerhalb der gestellten Qualitätsanforderungen. ", 
 		"0"	=> "Es wird im allgemeinen planvoll und sorgfältig gearbeitet. Arbeitsergebnisse liegen zum größten Teil im Bereich der Qualitätsanforderungen. ", 
 		"-"	=> "Planmäßigkeit und Sorgfalt bei der Arbeitsausführung lassen zu wünschen übrig. Arbeitsergebnisse entsprechen häufig nicht den gestellten Qualitätsanforderungen. ", 
-		"--"	=> "Übertragene Aufgaben werden nicht planvoll und sorgfältig durchgeführt. Erreicht kein ausreichendes Arbeitsergebnis. "
+		"--"	=> "Übertragene Aufgaben werden nicht planvoll und sorgfältig durchgeführt. Erreicht kein ausreichendes Arbeitsergebnis. ",
+		"Ohne"	=> ""
 	},
 	"Lerntempo" => {
 		"++"	=> "Fertigkeiten werden besonders rasch beherrscht. Das Lerntempo ist außerordentlich hoch. Gestellte Aufgaben werden immer schneller erledigt, als der Ausbildungsstand erwarten läßt. ", 
 		"+"	=> "Fertigkeiten werden rasch beherrscht. Das Lerntempo ist hoch. Gestellte Aufgaben werden häufig schneller erledigt, als der Ausbildungsstand erwarten läßt. ", 
 		"0"	=> "Fertigkeiten werden nach Übung beherrscht. Das Lerntempo ist ausreichend. Gestellte Aufgaben werden in einer dem Ausbildungsstand angemessenen Zeit bewältigt. ", 
 		"-"	=> "Fertigkeiten werden meist erst nach längerer Übung beherrscht. Das Lerntempo ist nicht immer ausreichend. Benötigt für die gestellten Aufgaben meist mehr Zeit als vorgesehen. ", 
-		"--"	=> "Fertigkeiten werden auch nach längerer Übung kaum beherrscht. Das Lerntempo ist gering. Kommt bei der Ausführung der gestellten Aufgaben mit der vorgesehenen Zeit nicht aus. "
+		"--"	=> "Fertigkeiten werden auch nach längerer Übung kaum beherrscht. Das Lerntempo ist gering. Kommt bei der Ausführung der gestellten Aufgaben mit der vorgesehenen Zeit nicht aus. ",
+		"Ohne"	=> ""
 	},
 	"Interesse" => {
 		"++"	=> "Zeigt außergewöhnliches Interesse. Besonders ausgeprägte Initiative. Scheut auch vor schwierigen Aufgaben nicht zurück. Sehr zielstrebig. ", 
 		"+"	=> "Zeigt Interesse und Initiative. Beteiligt sich an der Lösung auch schwieriger Aufgaben. ", 
 		"0"	=> "Ist Interessiert und aufgeschlossen. Setzt seine Fähigkeiten effektiv ein. Braucht nur selten Anregungen bei schwierigen Aufgaben. ", 
 		"-"	=> "Zeigt nicht immer Interesse und Initiative. Bedarf der Anregungen. ", 
-		"--"	=> "Zeigt kaum Interesse und  Initiative. Meidet schwierige Aufgaben. Bedarf ständiger Anregungen. "
+		"--"	=> "Zeigt kaum Interesse und  Initiative. Meidet schwierige Aufgaben. Bedarf ständiger Anregungen. ",
+		"Ohne"	=> ""
 	},
 	"Zuverlässigkeit" => {
 		"++"	=> "Ist sehr zuverlässig und verantwortungsbewußt in der Erledigung der gestellten Aufgaben und insbesondere bei der Einhaltung von Vorschriften, Anweisungen und Terminen. ", 
 		"+"	=> "Ist zuverlässig und verantwortungsbewußt in der Erledigung gestellter Aufgaben. Vorschriften, Anweisungen und Termine werden eingehalten. ", 
 		"0"	=> "Übertragene Aufgaben werden im allgemeinen zuverlässig durchgeführt. In der Regel werden Vorschriften, Anweisungen und Termine eingehalten. ", 
 		"-"	=> "Zuverlässigkeit läßt zu wünschen übrig. Vorschriften und Anweisungen werden oft nicht ausreichend beachtet. Es gibt Schwierigkeiten bei der Einhaltung von Terminen. ", 
-		"--"	=> "Vorschriften und Anweisungen werden nur ungenügend beachtet ist nicht zuverlässig bei der Einhaltung von Terminen "
+		"--"	=> "Vorschriften und Anweisungen werden nur ungenügend beachtet ist nicht zuverlässig bei der Einhaltung von Terminen ",
+		"Ohne"	=> ""
 	},
 	"Ausdauer" => {
 		"++"	=> "Ist außerordentlich ausdauernd auch unter erschwerten Bedingungen. ", 
 		"+"	=> "Ist ausdauernd. Gelegentliche Schwierigkeiten werden überwunden. ", 
 		"0"	=> "Ist im allgemeinen beharrlich und beständig. ", 
 		"-"	=> "Ist unterschiedlich ausdauernd. Schwierigkeiten werden nur mühsam überwunden. ", 
-		"--"	=> "Weniger beharrlich und beständig. Gibt bei Schwierigkeiten schnell auf. "
+		"--"	=> "Weniger beharrlich und beständig. Gibt bei Schwierigkeiten schnell auf. ",
+		"Ohne"	=> ""
 	}
 );
 
@@ -323,7 +333,7 @@ sub build()
 	print $tmp_fh $latex; 
 	close $tmp_fh;
 
-	print `cat $tmp_name`;
+#	print `cat $tmp_name`;
 
 	print `$bin_latex -output-format=pdf -output-directory=$dir $tmp_name`;
 
