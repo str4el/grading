@@ -5,7 +5,6 @@ use strict;
 use File::Temp qw(tempfile tempdir);
 use Gtk2 -init;
 use utf8;
-use Thread qw(async);
 
 
 my $bin_latex;
@@ -27,6 +26,8 @@ my $default_left_pos = "15";
 
 my $check_space = "64";
 my $text_space = "7";
+
+my @kids;
 
 # Abstände Zwischen den "X" Zeilen
 my %check_pos = (
@@ -283,13 +284,20 @@ $window_layout->show();
 
 # Fenster festlegen
 my $window = Gtk2::Window->new( "toplevel" );
-$window->signal_connect( "delete_event", sub { Gtk2->main_quit(); } );
+$window->signal_connect( "delete_event", sub { quit(); } );
 $window->set_position('center');
 $window->set_title('Beurteilung');
 $window->add($window_layout);
 $window->show();
 
-Gtk2->main;
+
+Gtk2->main();
+
+# Beende und Warte auf alle Kindprozesse
+foreach my $kid (@kids) {
+	kill 9, $kid;
+	waitpid $kid, 0;
+}
 
 exit(0);
 
@@ -319,36 +327,36 @@ sub build()
 	my $top_pos = $default_top_pos + $v_offset_button->get_value_as_int();
 
 
-	my $latex;
 
-	{
-		lock $latex;
-		$latex= $latex_frame;
-		$latex =~ s/VAR_LEFT_POS/$left_pos/;
-		$latex =~ s/VAR_TOP_POS/$top_pos/;
-		$latex =~ s/VAR_CHECK_SPACE/$check_space/ ;
-		$latex =~ s/VAR_CHECK/$check/ ;
-		$latex =~ s/VAR_TEXT_SPACE/$text_space/ ;
-		$latex =~ s/VAR_TEXT/$text/ ;
-	}
+	my$latex= $latex_frame;
+	$latex =~ s/VAR_LEFT_POS/$left_pos/;
+	$latex =~ s/VAR_TOP_POS/$top_pos/;
+	$latex =~ s/VAR_CHECK_SPACE/$check_space/ ;
+	$latex =~ s/VAR_CHECK/$check/ ;
+	$latex =~ s/VAR_TEXT_SPACE/$text_space/ ;
+	$latex =~ s/VAR_TEXT/$text/ ;
 	
-	my $thread;
-	$thread = async {
-		my $dir = tempdir(CLEANUP => 1);
-		my ($tmp_fh, $tmp_name) = tempfile(DIR => $dir, SUFFIX => ".tex");
+	my $dir = tempdir(CLEANUP => 1);
+	my ($tmp_fh, $tmp_name) = tempfile(DIR => $dir, SUFFIX => ".tex");
 
-		{
-			lock $latex;
-			print $tmp_fh $latex;
-			close $tmp_fh;
+	print $tmp_fh $latex;
+	close $tmp_fh;
 		
-		}
-#	print `cat $tmp_name`;
+	system "$bin_latex", "-output-format=pdf", "-output-directory=$dir", "$tmp_name";
+	(my $pdf_name = $tmp_name) =~ s/tex$/pdf/;
+	
+	my $pid;
+	if ($pid = fork) {
+		push @kids, $pid;
+		print "Neuer Kindprozess $pid\n";
+	} elsif ($pid == 0) {
+		exec "$bin_pdfviewer", "$pdf_name" ; 
+	}
 
-		system "$bin_latex", "-output-format=pdf", "-output-directory=$dir", "$tmp_name";
-		(my $pdf_name = $tmp_name) =~ s/tex$/pdf/;
-		system "$bin_pdfviewer", "$pdf_name" ; 
-	};
-	$thread->detach();
+}
 
+
+sub quit()
+{
+	Gtk2->main_quit();
 }
