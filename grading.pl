@@ -18,14 +18,16 @@ if ($^O eq "linux") {
 	$bin_pdfviewer = '"C:\Programme\Adobe\Acrobat 7.0\Reader\AcroRd32.exe"';
 }
 
-my @grades = ('++', '+', '0', '-', '--', 'Ohne');
-my @check_class = ( 'Fachkenntnisse', 'Fertigkeiten', 'Arbeitssicheres Verhalten', 'Zuverlässigkeit', 'Lern- und Arbeitsbereitschaft', 'Umgang mit Einrichtungen / Arbeitsmitteln', 'Teamfähigkeit', 'Verantwortungsbewustsein' );
 
 my $default_top_pos = "15";
 my $default_left_pos = "15";
 
 my $check_space = "64";
 my $text_space = "7";
+
+
+my @check_grades = ('++', '+', '0', '-', '--');
+my @check_class = ( 'Fachkenntnisse', 'Fertigkeiten', 'Arbeitssicheres Verhalten', 'Zuverlässigkeit', 'Lern- und Arbeitsbereitschaft', 'Umgang mit Einrichtungen / Arbeitsmitteln', 'Teamfähigkeit', 'Verantwortungsbewustsein' );
 
 
 # Abstände Zwischen den "X" Zeilen
@@ -49,8 +51,9 @@ my %check_grades_pos = (
 	'--'	=> "178",
 );
 
+my @text_grades = ('++', '+', '0', '-', '--', 'Ohne');
 my @text_class = qw( Fertigkeiten Kenntnisse Zusammenarbeit Auffassungsgabe Transfervermögen Sorgfalt Lerntempo Interesse Zuverlässigkeit Ausdauer );
-# my @text_class = qw( Kenntnisse Fertigkeiten Zuverlässigkeit Interesse Sorgfalt Zusammenarbeit );
+
 my %text = (
 	"Fertigkeiten" => {
 		"++"	=> "Verfügt über einen sehr hohen Fertigkeitsgrad. Führt die übertragenen Tätigkeiten mit großer Geschicklichkeit durch. ",
@@ -171,11 +174,11 @@ my $false = 0;
 my %combobox;
 my %checkbutton;
 
-my $check_class_table = Gtk2::Table->new(@check_class + 1, @grades + 1, $false);
+my $check_class_table = Gtk2::Table->new(@check_class + 1, @check_grades + 1, $false);
 $check_class_table->show();
 
-for (my $i = 0; $i < @grades; $i++) {
-	my $label = Gtk2::Label->new($grades[$i]);
+for (my $i = 0; $i < @check_grades; $i++) {
+	my $label = Gtk2::Label->new($check_grades[$i]);
 	$label->show();
 	$check_class_table->attach_defaults($label, $i + 1, $i + 2, 0, 1);
 }
@@ -189,7 +192,7 @@ foreach my $check_class (@check_class) {
 
 	my $i = 1;
 	my $group = undef;
-	foreach (@grades) {
+	foreach (@check_grades) {
 		$checkbutton{$check_class}{$_} = Gtk2::RadioButton->new($group);
 		$group = $checkbutton{$check_class}{$_}->get_group();
 		$checkbutton{$check_class}{$_}->show();
@@ -213,7 +216,7 @@ foreach my $text_class (@text_class) {
 
 	$combobox {$text_class} = Gtk2::ComboBox->new_text();
 	$text_class_table->attach_defaults( $combobox{$text_class}, $n % 2 * 2 + 1, $n % 2 * 2 + 2, $n / 2, $n / 2 + 1 );
-	foreach (@grades) { $combobox{$text_class}->append_text($_); }
+	foreach (@text_grades) { $combobox{$text_class}->append_text($_); }
 	$combobox{$text_class}->set_active(0);
 	$combobox{$text_class}->show();
 
@@ -310,7 +313,7 @@ sub build()
 
 	my $check;
 	foreach my $check_class (@check_class) {
-		foreach (@grades) {
+		foreach (@check_grades) {
 			$check .= "\\\\[$check_pos{$check_class}mm]\\hspace*{$check_grades_pos{$_}mm}X\n" if $checkbutton{$check_class}{$_}->get_active();
 		}
 	}
