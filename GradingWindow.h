@@ -56,6 +56,7 @@ private:
 // Funktionen
 
 private slots:
+	void stack_text();
 
 };
 

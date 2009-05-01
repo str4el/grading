@@ -23,6 +23,7 @@
 
 #include <QtGui>
 #include "GradingWindow.h"
+#include "Option.h"
 
 
 GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
@@ -89,16 +90,55 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 	g8->addButton(check_d8);
 	g8->addButton(check_e8);
 
+	connect(stack, SIGNAL(clicked()), this, SLOT(stack_text()));
+
+	browser->setSource(QUrl(QString("help.htm")));
+
 	show();
 
 
 }
 
 
+
+
 GradingWindow::~GradingWindow()
 {
 
 }
+
+
+
+
+/* Die Funktion stack_text stellt den Beurteilungstext aus Vorgefertigten Sätzen zusammen.
+ * Je nachdem welche bewertung in den ComboBoxen festgelegt wurde.
+ */
+void GradingWindow::stack_text()
+{
+	Option config("config", this);
+	QString text;
+
+	if (combo_a->currentIndex() > 0) text += config.getOption(QString("text_a%1").arg(combo_a->currentIndex()));
+	if (combo_b->currentIndex() > 0) text += config.getOption(QString("text_b%1").arg(combo_b->currentIndex()));
+	if (combo_c->currentIndex() > 0) text += config.getOption(QString("text_c%1").arg(combo_c->currentIndex()));
+	if (combo_d->currentIndex() > 0) text += config.getOption(QString("text_d%1").arg(combo_d->currentIndex()));
+	if (combo_e->currentIndex() > 0) text += config.getOption(QString("text_e%1").arg(combo_e->currentIndex()));
+	if (combo_f->currentIndex() > 0) text += config.getOption(QString("text_f%1").arg(combo_f->currentIndex()));
+	if (combo_g->currentIndex() > 0) text += config.getOption(QString("text_g%1").arg(combo_g->currentIndex()));
+	if (combo_h->currentIndex() > 0) text += config.getOption(QString("text_h%1").arg(combo_h->currentIndex()));
+	if (combo_i->currentIndex() > 0) text += config.getOption(QString("text_i%1").arg(combo_i->currentIndex()));
+	if (combo_j->currentIndex() > 0) text += config.getOption(QString("text_j%1").arg(combo_j->currentIndex()));
+
+	if (text.isEmpty()) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Es konnte kein Text zusammengestellt werden. Möglicherweise ist die config Datei fehlerhaft.", QMessageBox::Close, this).exec();
+		return;
+	}
+
+	edit->setPlainText(text);
+	tab->setCurrentWidget(tab3);
+}
+
+
 
 
 void GradingWindow::closeEvent(QCloseEvent *event)

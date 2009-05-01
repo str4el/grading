@@ -8,6 +8,6 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += GradingWindow.h
+HEADERS += GradingWindow.h Option.h
 FORMS += GradingWindow.ui
-SOURCES += GradingWindow.cpp main.cpp
+SOURCES += GradingWindow.cpp Option.cpp main.cpp
