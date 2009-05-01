@@ -98,7 +98,7 @@
          </widget>
         </item>
         <item row="1" column="2" >
-         <widget class="QRadioButton" name="check_b1" >
+         <widget class="QRadioButton" name="check_a2" >
           <property name="text" >
            <string/>
           </property>
@@ -108,7 +108,7 @@
          </widget>
         </item>
         <item row="1" column="3" >
-         <widget class="QRadioButton" name="check_c1" >
+         <widget class="QRadioButton" name="check_a3" >
           <property name="text" >
            <string/>
           </property>
@@ -118,7 +118,7 @@
          </widget>
         </item>
         <item row="1" column="4" >
-         <widget class="QRadioButton" name="check_d1" >
+         <widget class="QRadioButton" name="check_a4" >
           <property name="text" >
            <string/>
           </property>
@@ -128,7 +128,7 @@
          </widget>
         </item>
         <item row="1" column="5" >
-         <widget class="QRadioButton" name="check_e1" >
+         <widget class="QRadioButton" name="check_a5" >
           <property name="text" >
            <string/>
           </property>
@@ -143,12 +143,12 @@
            <string>Fertigkeiten</string>
           </property>
           <property name="buddy" >
-           <cstring>check_a2</cstring>
+           <cstring>check_b1</cstring>
           </property>
          </widget>
         </item>
         <item row="2" column="1" >
-         <widget class="QRadioButton" name="check_a2" >
+         <widget class="QRadioButton" name="check_b1" >
           <property name="text" >
            <string/>
           </property>
@@ -171,7 +171,7 @@
          </widget>
         </item>
         <item row="2" column="3" >
-         <widget class="QRadioButton" name="check_c2" >
+         <widget class="QRadioButton" name="check_b3" >
           <property name="text" >
            <string/>
           </property>
@@ -181,7 +181,7 @@
          </widget>
         </item>
         <item row="2" column="4" >
-         <widget class="QRadioButton" name="check_d2" >
+         <widget class="QRadioButton" name="check_b4" >
           <property name="text" >
            <string/>
           </property>
@@ -191,7 +191,7 @@
          </widget>
         </item>
         <item row="2" column="5" >
-         <widget class="QRadioButton" name="check_e2" >
+         <widget class="QRadioButton" name="check_b5" >
           <property name="text" >
            <string/>
           </property>
@@ -206,12 +206,12 @@
            <string>Arbeitssicheres Verhalten</string>
           </property>
           <property name="buddy" >
-           <cstring>check_a3</cstring>
+           <cstring>check_c1</cstring>
           </property>
          </widget>
         </item>
         <item row="3" column="1" >
-         <widget class="QRadioButton" name="check_a3" >
+         <widget class="QRadioButton" name="check_c1" >
           <property name="text" >
            <string/>
           </property>
@@ -224,7 +224,7 @@
          </widget>
         </item>
         <item row="3" column="2" >
-         <widget class="QRadioButton" name="check_b3" >
+         <widget class="QRadioButton" name="check_c2" >
           <property name="text" >
            <string/>
           </property>
@@ -244,7 +244,7 @@
          </widget>
         </item>
         <item row="3" column="4" >
-         <widget class="QRadioButton" name="check_d3" >
+         <widget class="QRadioButton" name="check_c4" >
           <property name="text" >
            <string/>
           </property>
@@ -254,7 +254,7 @@
          </widget>
         </item>
         <item row="3" column="5" >
-         <widget class="QRadioButton" name="check_e3" >
+         <widget class="QRadioButton" name="check_c5" >
           <property name="text" >
            <string/>
           </property>
@@ -269,12 +269,12 @@
            <string>Zuverlässigkeit</string>
           </property>
           <property name="buddy" >
-           <cstring>check_a4</cstring>
+           <cstring>check_d1</cstring>
           </property>
          </widget>
         </item>
         <item row="4" column="1" >
-         <widget class="QRadioButton" name="check_a4" >
+         <widget class="QRadioButton" name="check_d1" >
           <property name="text" >
            <string/>
           </property>
@@ -287,7 +287,7 @@
          </widget>
         </item>
         <item row="4" column="2" >
-         <widget class="QRadioButton" name="check_b4" >
+         <widget class="QRadioButton" name="check_d2" >
           <property name="text" >
            <string/>
           </property>
@@ -297,7 +297,7 @@
          </widget>
         </item>
         <item row="4" column="3" >
-         <widget class="QRadioButton" name="check_c4" >
+         <widget class="QRadioButton" name="check_d3" >
           <property name="text" >
            <string/>
           </property>
@@ -317,7 +317,7 @@
          </widget>
         </item>
         <item row="4" column="5" >
-         <widget class="QRadioButton" name="check_e4" >
+         <widget class="QRadioButton" name="check_d5" >
           <property name="text" >
            <string/>
           </property>
@@ -332,12 +332,12 @@
            <string>Lern- und Arbeitsbereitschaft</string>
           </property>
           <property name="buddy" >
-           <cstring>check_a5</cstring>
+           <cstring>check_e1</cstring>
           </property>
          </widget>
         </item>
         <item row="5" column="1" >
-         <widget class="QRadioButton" name="check_a5" >
+         <widget class="QRadioButton" name="check_e1" >
           <property name="text" >
            <string/>
           </property>
@@ -350,7 +350,7 @@
          </widget>
         </item>
         <item row="5" column="2" >
-         <widget class="QRadioButton" name="check_b5" >
+         <widget class="QRadioButton" name="check_e2" >
           <property name="text" >
            <string/>
           </property>
@@ -360,7 +360,7 @@
          </widget>
         </item>
         <item row="5" column="3" >
-         <widget class="QRadioButton" name="check_c5" >
+         <widget class="QRadioButton" name="check_e3" >
           <property name="text" >
            <string/>
           </property>
@@ -370,7 +370,7 @@
          </widget>
         </item>
         <item row="5" column="4" >
-         <widget class="QRadioButton" name="check_d5" >
+         <widget class="QRadioButton" name="check_e4" >
           <property name="text" >
            <string/>
           </property>
@@ -395,12 +395,12 @@
            <string>Umgang mit Einrichtungen / Arbeitsmitteln</string>
           </property>
           <property name="buddy" >
-           <cstring>check_a6</cstring>
+           <cstring>check_f1</cstring>
           </property>
          </widget>
         </item>
         <item row="6" column="1" >
-         <widget class="QRadioButton" name="check_a6" >
+         <widget class="QRadioButton" name="check_f1" >
           <property name="text" >
            <string/>
           </property>
@@ -413,7 +413,7 @@
          </widget>
         </item>
         <item row="6" column="2" >
-         <widget class="QRadioButton" name="check_b6" >
+         <widget class="QRadioButton" name="check_f2" >
           <property name="text" >
            <string/>
           </property>
@@ -423,7 +423,7 @@
          </widget>
         </item>
         <item row="6" column="3" >
-         <widget class="QRadioButton" name="check_c6" >
+         <widget class="QRadioButton" name="check_f3" >
           <property name="text" >
            <string/>
           </property>
@@ -433,7 +433,7 @@
          </widget>
         </item>
         <item row="6" column="4" >
-         <widget class="QRadioButton" name="check_d6" >
+         <widget class="QRadioButton" name="check_f4" >
           <property name="text" >
            <string/>
           </property>
@@ -443,7 +443,7 @@
          </widget>
         </item>
         <item row="6" column="5" >
-         <widget class="QRadioButton" name="check_e6" >
+         <widget class="QRadioButton" name="check_f5" >
           <property name="text" >
            <string/>
           </property>
@@ -458,12 +458,12 @@
            <string>Teamfähigkeit</string>
           </property>
           <property name="buddy" >
-           <cstring>check_a7</cstring>
+           <cstring>check_g1</cstring>
           </property>
          </widget>
         </item>
         <item row="7" column="1" >
-         <widget class="QRadioButton" name="check_a7" >
+         <widget class="QRadioButton" name="check_g1" >
           <property name="text" >
            <string/>
           </property>
@@ -476,7 +476,7 @@
          </widget>
         </item>
         <item row="7" column="2" >
-         <widget class="QRadioButton" name="check_b7" >
+         <widget class="QRadioButton" name="check_g2" >
           <property name="text" >
            <string/>
           </property>
@@ -486,7 +486,7 @@
          </widget>
         </item>
         <item row="7" column="3" >
-         <widget class="QRadioButton" name="check_c7" >
+         <widget class="QRadioButton" name="check_g3" >
           <property name="text" >
            <string/>
           </property>
@@ -496,7 +496,7 @@
          </widget>
         </item>
         <item row="7" column="4" >
-         <widget class="QRadioButton" name="check_d7" >
+         <widget class="QRadioButton" name="check_g4" >
           <property name="text" >
            <string/>
           </property>
@@ -506,7 +506,7 @@
          </widget>
         </item>
         <item row="7" column="5" >
-         <widget class="QRadioButton" name="check_e7" >
+         <widget class="QRadioButton" name="check_g5" >
           <property name="text" >
            <string/>
           </property>
@@ -521,12 +521,12 @@
            <string>Verantwortungsbewustsein</string>
           </property>
           <property name="buddy" >
-           <cstring>check_a8</cstring>
+           <cstring>check_h1</cstring>
           </property>
          </widget>
         </item>
         <item row="8" column="1" >
-         <widget class="QRadioButton" name="check_a8" >
+         <widget class="QRadioButton" name="check_h1" >
           <property name="text" >
            <string/>
           </property>
@@ -539,7 +539,7 @@
          </widget>
         </item>
         <item row="8" column="2" >
-         <widget class="QRadioButton" name="check_b8" >
+         <widget class="QRadioButton" name="check_h2" >
           <property name="text" >
            <string/>
           </property>
@@ -549,7 +549,7 @@
          </widget>
         </item>
         <item row="8" column="3" >
-         <widget class="QRadioButton" name="check_c8" >
+         <widget class="QRadioButton" name="check_h3" >
           <property name="text" >
            <string/>
           </property>
@@ -559,7 +559,7 @@
          </widget>
         </item>
         <item row="8" column="4" >
-         <widget class="QRadioButton" name="check_d8" >
+         <widget class="QRadioButton" name="check_h4" >
           <property name="text" >
            <string/>
           </property>
@@ -569,7 +569,7 @@
          </widget>
         </item>
         <item row="8" column="5" >
-         <widget class="QRadioButton" name="check_e8" >
+         <widget class="QRadioButton" name="check_h5" >
           <property name="text" >
            <string/>
           </property>
@@ -671,16 +671,6 @@
             <string>--</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="label_22" >
-          <property name="text" >
-           <string>Kentnisse</string>
-          </property>
-          <property name="buddy" >
-           <cstring>combo_b</cstring>
-          </property>
          </widget>
         </item>
         <item row="1" column="1" >
@@ -1028,31 +1018,63 @@
         <item row="5" column="0" >
          <widget class="QLabel" name="label_24" >
           <property name="text" >
-           <string>Vertikaler Offset</string>
+           <string>Abstand oben</string>
           </property>
           <property name="buddy" >
-           <cstring>spinBox</cstring>
+           <cstring>offset_top</cstring>
           </property>
          </widget>
         </item>
         <item row="5" column="1" >
-         <widget class="QSpinBox" name="spinBox" />
+         <widget class="QSpinBox" name="offset_top" />
         </item>
         <item row="5" column="2" >
          <widget class="QLabel" name="label_25" >
           <property name="text" >
-           <string>Horizontaler Offset</string>
+           <string>Abstand links</string>
           </property>
           <property name="buddy" >
-           <cstring>spinBox_2</cstring>
+           <cstring>offset_left</cstring>
           </property>
          </widget>
         </item>
         <item row="5" column="3" >
-         <widget class="QSpinBox" name="spinBox_2" />
+         <widget class="QSpinBox" name="offset_left" />
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="label_22" >
+          <property name="text" >
+           <string>Kentnisse</string>
+          </property>
+          <property name="buddy" >
+           <cstring>combo_b</cstring>
+          </property>
+         </widget>
         </item>
        </layout>
-       <zorder></zorder>
+       <zorder>label_14</zorder>
+       <zorder>combo_a</zorder>
+       <zorder>label_21</zorder>
+       <zorder>combo_f</zorder>
+       <zorder>combo_b</zorder>
+       <zorder>label_17</zorder>
+       <zorder>combo_g</zorder>
+       <zorder>label_15</zorder>
+       <zorder>combo_c</zorder>
+       <zorder>label_20</zorder>
+       <zorder>combo_h</zorder>
+       <zorder>label_19</zorder>
+       <zorder>combo_d</zorder>
+       <zorder>label_18</zorder>
+       <zorder>combo_i</zorder>
+       <zorder>label_16</zorder>
+       <zorder>combo_e</zorder>
+       <zorder>label_23</zorder>
+       <zorder>combo_j</zorder>
+       <zorder>label_24</zorder>
+       <zorder>offset_top</zorder>
+       <zorder>label_25</zorder>
+       <zorder>offset_left</zorder>
        <zorder>label_22</zorder>
       </widget>
       <widget class="QWidget" name="tab3" >
@@ -1135,45 +1157,45 @@
  <tabstops>
   <tabstop>tab</tabstop>
   <tabstop>check_a1</tabstop>
-  <tabstop>check_b1</tabstop>
-  <tabstop>check_c1</tabstop>
-  <tabstop>check_d1</tabstop>
-  <tabstop>check_e1</tabstop>
   <tabstop>check_a2</tabstop>
-  <tabstop>check_b2</tabstop>
-  <tabstop>check_c2</tabstop>
-  <tabstop>check_d2</tabstop>
-  <tabstop>check_e2</tabstop>
   <tabstop>check_a3</tabstop>
-  <tabstop>check_b3</tabstop>
-  <tabstop>check_c3</tabstop>
-  <tabstop>check_d3</tabstop>
-  <tabstop>check_e3</tabstop>
   <tabstop>check_a4</tabstop>
-  <tabstop>check_b4</tabstop>
-  <tabstop>check_c4</tabstop>
-  <tabstop>check_d4</tabstop>
-  <tabstop>check_e4</tabstop>
   <tabstop>check_a5</tabstop>
+  <tabstop>check_b1</tabstop>
+  <tabstop>check_b2</tabstop>
+  <tabstop>check_b3</tabstop>
+  <tabstop>check_b4</tabstop>
   <tabstop>check_b5</tabstop>
+  <tabstop>check_c1</tabstop>
+  <tabstop>check_c2</tabstop>
+  <tabstop>check_c3</tabstop>
+  <tabstop>check_c4</tabstop>
   <tabstop>check_c5</tabstop>
+  <tabstop>check_d1</tabstop>
+  <tabstop>check_d2</tabstop>
+  <tabstop>check_d3</tabstop>
+  <tabstop>check_d4</tabstop>
   <tabstop>check_d5</tabstop>
+  <tabstop>check_e1</tabstop>
+  <tabstop>check_e2</tabstop>
+  <tabstop>check_e3</tabstop>
+  <tabstop>check_e4</tabstop>
   <tabstop>check_e5</tabstop>
-  <tabstop>check_a6</tabstop>
-  <tabstop>check_b6</tabstop>
-  <tabstop>check_c6</tabstop>
-  <tabstop>check_d6</tabstop>
-  <tabstop>check_e6</tabstop>
-  <tabstop>check_a7</tabstop>
-  <tabstop>check_b7</tabstop>
-  <tabstop>check_c7</tabstop>
-  <tabstop>check_d7</tabstop>
-  <tabstop>check_e7</tabstop>
-  <tabstop>check_a8</tabstop>
-  <tabstop>check_b8</tabstop>
-  <tabstop>check_c8</tabstop>
-  <tabstop>check_d8</tabstop>
-  <tabstop>check_e8</tabstop>
+  <tabstop>check_f1</tabstop>
+  <tabstop>check_f2</tabstop>
+  <tabstop>check_f3</tabstop>
+  <tabstop>check_f4</tabstop>
+  <tabstop>check_f5</tabstop>
+  <tabstop>check_g1</tabstop>
+  <tabstop>check_g2</tabstop>
+  <tabstop>check_g3</tabstop>
+  <tabstop>check_g4</tabstop>
+  <tabstop>check_g5</tabstop>
+  <tabstop>check_h1</tabstop>
+  <tabstop>check_h2</tabstop>
+  <tabstop>check_h3</tabstop>
+  <tabstop>check_h4</tabstop>
+  <tabstop>check_h5</tabstop>
   <tabstop>combo_a</tabstop>
   <tabstop>combo_b</tabstop>
   <tabstop>combo_c</tabstop>
@@ -1184,8 +1206,8 @@
   <tabstop>combo_h</tabstop>
   <tabstop>combo_i</tabstop>
   <tabstop>combo_j</tabstop>
-  <tabstop>spinBox</tabstop>
-  <tabstop>spinBox_2</tabstop>
+  <tabstop>offset_top</tabstop>
+  <tabstop>offset_left</tabstop>
   <tabstop>edit</tabstop>
   <tabstop>stack</tabstop>
   <tabstop>build</tabstop>

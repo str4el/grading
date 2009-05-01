@@ -60,11 +60,13 @@ QString Option::getOption(const QString name)
 	in.seek(0);
 	do {
 		line = in.readLine();
-		int refer = line.indexOf(QChar('='));
-		if (line.left(refer).contains(name)) {
-			int begin = line.indexOf(QChar('"'), refer);
-			int end = line.lastIndexOf(QChar('"'));
-			return line.mid(begin + 1, end - begin - 1);
+		if (!line.isEmpty() && (line[0] != QChar('#'))) {
+			int refer = line.indexOf(QChar('='));
+			if (line.left(refer).contains(name)) {
+				int begin = line.indexOf(QChar('"'), refer);
+				int end = line.lastIndexOf(QChar('"'));
+				return line.mid(begin + 1, end - begin - 1);
+			}
 		}
 
 	} while (!line.isNull());

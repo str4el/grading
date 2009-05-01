@@ -34,63 +34,64 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
 /* Die checks Grupieren
  */
-	QButtonGroup *g1 = new QButtonGroup;
-	g1->addButton(check_a1);
-	g1->addButton(check_b1);
-	g1->addButton(check_c1);
-	g1->addButton(check_d1);
-	g1->addButton(check_e1);
+	ga = new QButtonGroup;
+	ga->addButton(check_a1, 0);
+	ga->addButton(check_a2, 1);
+	ga->addButton(check_a3, 2);
+	ga->addButton(check_a4, 3);
+	ga->addButton(check_a5, 4);
 
-	QButtonGroup *g2 = new QButtonGroup;
-	g2->addButton(check_a2);
-	g2->addButton(check_b2);
-	g2->addButton(check_c2);
-	g2->addButton(check_d2);
-	g2->addButton(check_e2);
+	gb = new QButtonGroup;
+	gb->addButton(check_b1, 0);
+	gb->addButton(check_b2, 1);
+	gb->addButton(check_b3, 2);
+	gb->addButton(check_b4, 3);
+	gb->addButton(check_b5, 4);
 
-	QButtonGroup *g3 = new QButtonGroup;
-	g3->addButton(check_a3);
-	g3->addButton(check_b3);
-	g3->addButton(check_c3);
-	g3->addButton(check_d3);
-	g3->addButton(check_e3);
+	gc = new QButtonGroup;
+	gc->addButton(check_c1, 0);
+	gc->addButton(check_c2, 1);
+	gc->addButton(check_c3, 2);
+	gc->addButton(check_c4, 3);
+	gc->addButton(check_c5, 4);
 
-	QButtonGroup *g4 = new QButtonGroup;
-	g4->addButton(check_a4);
-	g4->addButton(check_b4);
-	g4->addButton(check_c4);
-	g4->addButton(check_d4);
-	g4->addButton(check_e4);
+	gd = new QButtonGroup;
+	gd->addButton(check_d1, 0);
+	gd->addButton(check_d2, 1);
+	gd->addButton(check_d3, 2);
+	gd->addButton(check_d4, 3);
+	gd->addButton(check_d5, 4);
 
-	QButtonGroup *g5 = new QButtonGroup;
-	g5->addButton(check_a5);
-	g5->addButton(check_b5);
-	g5->addButton(check_c5);
-	g5->addButton(check_d5);
-	g5->addButton(check_e5);
+	ge = new QButtonGroup;
+	ge->addButton(check_e1, 0);
+	ge->addButton(check_e2, 1);
+	ge->addButton(check_e3, 2);
+	ge->addButton(check_e4, 3);
+	ge->addButton(check_e5, 4);
 
-	QButtonGroup *g6 = new QButtonGroup;
-	g6->addButton(check_a6);
-	g6->addButton(check_b6);
-	g6->addButton(check_c6);
-	g6->addButton(check_d6);
-	g6->addButton(check_e6);
+	gf = new QButtonGroup;
+	gf->addButton(check_f1, 0);
+	gf->addButton(check_f2, 1);
+	gf->addButton(check_f3, 2);
+	gf->addButton(check_f4, 3);
+	gf->addButton(check_f5, 4);
 
-	QButtonGroup *g7 = new QButtonGroup;
-	g7->addButton(check_a7);
-	g7->addButton(check_b7);
-	g7->addButton(check_c7);
-	g7->addButton(check_d7);
-	g7->addButton(check_e7);
+	gg = new QButtonGroup;
+	gg->addButton(check_g1, 0);
+	gg->addButton(check_g2, 1);
+	gg->addButton(check_g3, 2);
+	gg->addButton(check_g4, 3);
+	gg->addButton(check_g5, 4);
 
-	QButtonGroup *g8 = new QButtonGroup;
-	g8->addButton(check_a8);
-	g8->addButton(check_b8);
-	g8->addButton(check_c8);
-	g8->addButton(check_d8);
-	g8->addButton(check_e8);
+	gh = new QButtonGroup;
+	gh->addButton(check_h1, 0);
+	gh->addButton(check_h2, 1);
+	gh->addButton(check_h3, 2);
+	gh->addButton(check_h4, 3);
+	gh->addButton(check_h5, 4);
 
 	connect(stack, SIGNAL(clicked()), this, SLOT(stack_text()));
+	connect(build, SIGNAL(clicked()), this, SLOT(build_pdf()));
 
 	browser->setSource(QUrl(QString("help.htm")));
 
@@ -139,6 +140,87 @@ void GradingWindow::stack_text()
 }
 
 
+
+/* Die Funktion build_pdf liest den inhalt aus frame.tex modifiziert die Variablen und schreib es in out.tex.
+ * out.tex wird an LaTeX übergeben und die resultierende pdf Datei angezeigt.
+ */
+void GradingWindow::build_pdf()
+{
+	Option config("config", this);
+	bool ok;
+
+	int top_pos = config.getOption("top_pos").toInt(&ok);
+	if (!ok) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Postion oben.", QMessageBox::Close, this).exec();
+		return;
+	}
+	int left_pos = config.getOption("left_pos").toInt(&ok);
+	if (!ok) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Postion links.", QMessageBox::Close, this).exec();
+		return;
+	}
+
+	QString tick_pos_string = config.getOption("tick_pos");
+	if (tick_pos_string.isEmpty()) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Hackenpositionen! Option nicht Lesbar.", QMessageBox::Close, this).exec();
+		return;
+	}
+	QStringList tick_pos_list = tick_pos_string.split(QChar(';'));
+	if (tick_pos_list.size() != 5) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Hackenpositionen! Ungültige Anzahl.", QMessageBox::Close, this).exec();
+		return;
+	}
+	int tick_pos[5];
+	for (int i = 0; i < 5; i++) {
+		tick_pos[i] = tick_pos_list[i].toInt(&ok);
+		if (!ok) {
+			QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Hackenpositionen! Optionen sind keine Zahlen.", QMessageBox::Close, this).exec();
+			return;
+		}
+	}
+
+
+
+	QFile in("frame.tex");
+	if (!in.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Ramendatei konnte nicht geöffnet werden!", QMessageBox::Close, this).exec();
+		return;
+	}
+
+	QString source = QTextStream(&in).readAll();
+	in.close();
+
+	if (source.isEmpty()) {	
+		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Ramendatei ist leer oder defekt!", QMessageBox::Close, this).exec();
+		return;
+	}
+
+	source.replace("VAR_TOP_POS", QString::number(top_pos + offset_top->value()));
+	source.replace("VAR_LEFT_POS", QString::number(left_pos + offset_left->value()));
+	source.replace("VAR_TICK_A", QString::number(tick_pos[ga->checkedId()]));
+	source.replace("VAR_TICK_B", QString::number(tick_pos[gb->checkedId()]));
+	source.replace("VAR_TICK_C", QString::number(tick_pos[gc->checkedId()]));
+	source.replace("VAR_TICK_D", QString::number(tick_pos[gd->checkedId()]));
+	source.replace("VAR_TICK_E", QString::number(tick_pos[ge->checkedId()]));
+	source.replace("VAR_TICK_F", QString::number(tick_pos[gf->checkedId()]));
+	source.replace("VAR_TICK_G", QString::number(tick_pos[gg->checkedId()]));
+	source.replace("VAR_TICK_H", QString::number(tick_pos[gh->checkedId()]));
+	source.replace("VAR_TEXT", edit->toPlainText());
+
+	QFile out("out.tex");
+	if (!out.open(QIODevice::WriteOnly | QIODevice::Text)) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Quelldatei konnte nicht erstellt werden!", QMessageBox::Close, this).exec();
+		return;
+	}
+
+	QTextStream(&out) << source;
+
+	out.close();
+
+	system("pdflatex out.tex");
+	system("evince out.pdf");
+
+}
 
 
 void GradingWindow::closeEvent(QCloseEvent *event)

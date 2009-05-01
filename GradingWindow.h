@@ -36,27 +36,27 @@ public:
 	GradingWindow(QWidget *parrent = 0);
 	~GradingWindow();
 
-// Klassen
 
 public slots:
 
 protected:
-// Variablen
-
-// Klassen
-
 // Funktionen
 	void closeEvent(QCloseEvent *event);
 
 private:
 // Variablen
-
-// Klassen
-
-// Funktionen
+	QButtonGroup *ga;
+	QButtonGroup *gb;
+	QButtonGroup *gc;
+	QButtonGroup *gd;
+	QButtonGroup *ge;
+	QButtonGroup *gf;
+	QButtonGroup *gg;
+	QButtonGroup *gh;
 
 private slots:
 	void stack_text();
+	void build_pdf();
 
 };
 

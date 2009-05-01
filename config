@@ -1,3 +1,10 @@
+# Positionen
+top_pos="15"
+left_pos="15"
+#line_space="64; 0; 0; 0; 14; 0; 0; 6; 0; 7"
+tick_pos="126; 139; 152; 165; 178"
+
+# Texte
 text_a1="Verfügt über einen sehr hohen Fertigkeitsgrad. Führt die übertragenen Tätigkeiten mit großer Geschicklichkeit durch. "
 text_a2="Verfügt über einen hohen Fertigkeitsgrad. Arbeitet sicher und geschickt. "
 text_a3="Die Fertigkeiten ermöglichen eine zufriedenstellende Arbeitsausführung. Ist selten unsicher. "
