@@ -1,0 +1,35 @@
+\batchmode
+
+\documentclass[11pt]{article}
+
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+
+\usepackage{vmargin}
+\setpapersize{A4}
+\setmargins{VAR_LEFT_POSmm}{VAR_TOP_POSmm}% % linker & oberer Rand
+           {184mm}{250mm}%   % Textbreite und -hoehe
+           {12pt}{25pt}%   % Kopfzeilenhoehe und -abstand
+           {0pt}{30pt}%    % \footheight (egal) und Fusszeilenabstand
+
+\parindent0pt
+\pagestyle{empty}
+
+
+\begin{document}
+\vspace*{64mm} % Abstand zwischen Seitenanfang und Kästchen
+
+\hspace*{VAR_TICK_Amm}X\\
+\hspace*{VAR_TICK_Bmm}X\\
+\hspace*{VAR_TICK_Cmm}X\\
+\vspace*{14mm}
+\hspace*{VAR_TICK_Dmm}X\\
+\hspace*{VAR_TICK_Emm}X\\
+\vspace*{6mm}
+\hspace*{VAR_TICK_Fmm}X\\
+\hspace*{VAR_TICK_Gmm}X\\
+\hspace*{VAR_TICK_Hmm}X\\
+
+\vspace*{7mm} % Abstand zwischen Kästechen und Beurteilungstext
+VAR_TEXT
+\end{document}
