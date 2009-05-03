@@ -1,1140 +1,1131 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>GradingWindow</class>
- <widget class="QMainWindow" name="GradingWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="GradingWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>435</width>
-    <height>288</height>
+    <width>402</width>
+    <height>277</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Beurteilung</string>
   </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QVBoxLayout" name="verticalLayout" >
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTabWidget" name="tab" >
-      <property name="currentIndex" >
+     <widget class="QTabWidget" name="tab">
+      <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tab1" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tab1">
+       <attribute name="title">
         <string>Kreuze</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout" >
-        <item row="0" column="1" >
-         <widget class="QLabel" name="label" >
-          <property name="text" >
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="1">
+         <widget class="QLabel" name="label">
+          <property name="text">
            <string>++</string>
           </property>
-          <property name="alignment" >
+          <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="0" column="2" >
-         <widget class="QLabel" name="label_2" >
-          <property name="text" >
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
            <string>+</string>
           </property>
-          <property name="alignment" >
+          <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="0" column="3" >
-         <widget class="QLabel" name="label_3" >
-          <property name="text" >
+        <item row="0" column="3">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
            <string>0</string>
           </property>
-          <property name="alignment" >
+          <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="0" column="4" >
-         <widget class="QLabel" name="label_4" >
-          <property name="text" >
+        <item row="0" column="4">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
            <string>-</string>
           </property>
-          <property name="alignment" >
+          <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="0" column="5" >
-         <widget class="QLabel" name="label_5" >
-          <property name="text" >
+        <item row="0" column="5">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
            <string>--</string>
           </property>
-          <property name="alignment" >
+          <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="label_6" >
-          <property name="text" >
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
            <string>Fachkenntnisse</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>check_a1</cstring>
           </property>
          </widget>
         </item>
-        <item row="1" column="1" >
-         <widget class="QRadioButton" name="check_a1" >
-          <property name="text" >
+        <item row="1" column="1">
+         <widget class="QRadioButton" name="check_a1">
+          <property name="text">
            <string/>
           </property>
-          <property name="checked" >
+          <property name="checked">
            <bool>true</bool>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="1" column="2" >
-         <widget class="QRadioButton" name="check_a2" >
-          <property name="text" >
+        <item row="1" column="2">
+         <widget class="QRadioButton" name="check_a2">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="1" column="3" >
-         <widget class="QRadioButton" name="check_a3" >
-          <property name="text" >
+        <item row="1" column="3">
+         <widget class="QRadioButton" name="check_a3">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="1" column="4" >
-         <widget class="QRadioButton" name="check_a4" >
-          <property name="text" >
+        <item row="1" column="4">
+         <widget class="QRadioButton" name="check_a4">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="1" column="5" >
-         <widget class="QRadioButton" name="check_a5" >
-          <property name="text" >
+        <item row="1" column="5">
+         <widget class="QRadioButton" name="check_a5">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="2" column="0" >
-         <widget class="QLabel" name="label_7" >
-          <property name="text" >
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
            <string>Fertigkeiten</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>check_b1</cstring>
           </property>
          </widget>
         </item>
-        <item row="2" column="1" >
-         <widget class="QRadioButton" name="check_b1" >
-          <property name="text" >
+        <item row="2" column="1">
+         <widget class="QRadioButton" name="check_b1">
+          <property name="text">
            <string/>
           </property>
-          <property name="checked" >
+          <property name="checked">
            <bool>true</bool>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="2" column="2" >
-         <widget class="QRadioButton" name="check_b2" >
-          <property name="text" >
+        <item row="2" column="2">
+         <widget class="QRadioButton" name="check_b2">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="2" column="3" >
-         <widget class="QRadioButton" name="check_b3" >
-          <property name="text" >
+        <item row="2" column="3">
+         <widget class="QRadioButton" name="check_b3">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="2" column="4" >
-         <widget class="QRadioButton" name="check_b4" >
-          <property name="text" >
+        <item row="2" column="4">
+         <widget class="QRadioButton" name="check_b4">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="2" column="5" >
-         <widget class="QRadioButton" name="check_b5" >
-          <property name="text" >
+        <item row="2" column="5">
+         <widget class="QRadioButton" name="check_b5">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="3" column="0" >
-         <widget class="QLabel" name="label_8" >
-          <property name="text" >
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
            <string>Arbeitssicheres Verhalten</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>check_c1</cstring>
           </property>
          </widget>
         </item>
-        <item row="3" column="1" >
-         <widget class="QRadioButton" name="check_c1" >
-          <property name="text" >
+        <item row="3" column="1">
+         <widget class="QRadioButton" name="check_c1">
+          <property name="text">
            <string/>
           </property>
-          <property name="checked" >
+          <property name="checked">
            <bool>true</bool>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="3" column="2" >
-         <widget class="QRadioButton" name="check_c2" >
-          <property name="text" >
+        <item row="3" column="2">
+         <widget class="QRadioButton" name="check_c2">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="3" column="3" >
-         <widget class="QRadioButton" name="check_c3" >
-          <property name="text" >
+        <item row="3" column="3">
+         <widget class="QRadioButton" name="check_c3">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="3" column="4" >
-         <widget class="QRadioButton" name="check_c4" >
-          <property name="text" >
+        <item row="3" column="4">
+         <widget class="QRadioButton" name="check_c4">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="3" column="5" >
-         <widget class="QRadioButton" name="check_c5" >
-          <property name="text" >
+        <item row="3" column="5">
+         <widget class="QRadioButton" name="check_c5">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="4" column="0" >
-         <widget class="QLabel" name="label_9" >
-          <property name="text" >
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
            <string>Zuverlässigkeit</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>check_d1</cstring>
           </property>
          </widget>
         </item>
-        <item row="4" column="1" >
-         <widget class="QRadioButton" name="check_d1" >
-          <property name="text" >
+        <item row="4" column="1">
+         <widget class="QRadioButton" name="check_d1">
+          <property name="text">
            <string/>
           </property>
-          <property name="checked" >
+          <property name="checked">
            <bool>true</bool>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="4" column="2" >
-         <widget class="QRadioButton" name="check_d2" >
-          <property name="text" >
+        <item row="4" column="2">
+         <widget class="QRadioButton" name="check_d2">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="4" column="3" >
-         <widget class="QRadioButton" name="check_d3" >
-          <property name="text" >
+        <item row="4" column="3">
+         <widget class="QRadioButton" name="check_d3">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="4" column="4" >
-         <widget class="QRadioButton" name="check_d4" >
-          <property name="text" >
+        <item row="4" column="4">
+         <widget class="QRadioButton" name="check_d4">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="4" column="5" >
-         <widget class="QRadioButton" name="check_d5" >
-          <property name="text" >
+        <item row="4" column="5">
+         <widget class="QRadioButton" name="check_d5">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="5" column="0" >
-         <widget class="QLabel" name="label_10" >
-          <property name="text" >
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
            <string>Lern- und Arbeitsbereitschaft</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>check_e1</cstring>
           </property>
          </widget>
         </item>
-        <item row="5" column="1" >
-         <widget class="QRadioButton" name="check_e1" >
-          <property name="text" >
+        <item row="5" column="1">
+         <widget class="QRadioButton" name="check_e1">
+          <property name="text">
            <string/>
           </property>
-          <property name="checked" >
+          <property name="checked">
            <bool>true</bool>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="5" column="2" >
-         <widget class="QRadioButton" name="check_e2" >
-          <property name="text" >
+        <item row="5" column="2">
+         <widget class="QRadioButton" name="check_e2">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="5" column="3" >
-         <widget class="QRadioButton" name="check_e3" >
-          <property name="text" >
+        <item row="5" column="3">
+         <widget class="QRadioButton" name="check_e3">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="5" column="4" >
-         <widget class="QRadioButton" name="check_e4" >
-          <property name="text" >
+        <item row="5" column="4">
+         <widget class="QRadioButton" name="check_e4">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="5" column="5" >
-         <widget class="QRadioButton" name="check_e5" >
-          <property name="text" >
+        <item row="5" column="5">
+         <widget class="QRadioButton" name="check_e5">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="6" column="0" >
-         <widget class="QLabel" name="label_11" >
-          <property name="text" >
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
            <string>Umgang mit Einrichtungen / Arbeitsmitteln</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>check_f1</cstring>
           </property>
          </widget>
         </item>
-        <item row="6" column="1" >
-         <widget class="QRadioButton" name="check_f1" >
-          <property name="text" >
+        <item row="6" column="1">
+         <widget class="QRadioButton" name="check_f1">
+          <property name="text">
            <string/>
           </property>
-          <property name="checked" >
+          <property name="checked">
            <bool>true</bool>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="6" column="2" >
-         <widget class="QRadioButton" name="check_f2" >
-          <property name="text" >
+        <item row="6" column="2">
+         <widget class="QRadioButton" name="check_f2">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="6" column="3" >
-         <widget class="QRadioButton" name="check_f3" >
-          <property name="text" >
+        <item row="6" column="3">
+         <widget class="QRadioButton" name="check_f3">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="6" column="4" >
-         <widget class="QRadioButton" name="check_f4" >
-          <property name="text" >
+        <item row="6" column="4">
+         <widget class="QRadioButton" name="check_f4">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="6" column="5" >
-         <widget class="QRadioButton" name="check_f5" >
-          <property name="text" >
+        <item row="6" column="5">
+         <widget class="QRadioButton" name="check_f5">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="7" column="0" >
-         <widget class="QLabel" name="label_12" >
-          <property name="text" >
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
            <string>Teamfähigkeit</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>check_g1</cstring>
           </property>
          </widget>
         </item>
-        <item row="7" column="1" >
-         <widget class="QRadioButton" name="check_g1" >
-          <property name="text" >
+        <item row="7" column="1">
+         <widget class="QRadioButton" name="check_g1">
+          <property name="text">
            <string/>
           </property>
-          <property name="checked" >
+          <property name="checked">
            <bool>true</bool>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="7" column="2" >
-         <widget class="QRadioButton" name="check_g2" >
-          <property name="text" >
+        <item row="7" column="2">
+         <widget class="QRadioButton" name="check_g2">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="7" column="3" >
-         <widget class="QRadioButton" name="check_g3" >
-          <property name="text" >
+        <item row="7" column="3">
+         <widget class="QRadioButton" name="check_g3">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="7" column="4" >
-         <widget class="QRadioButton" name="check_g4" >
-          <property name="text" >
+        <item row="7" column="4">
+         <widget class="QRadioButton" name="check_g4">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="7" column="5" >
-         <widget class="QRadioButton" name="check_g5" >
-          <property name="text" >
+        <item row="7" column="5">
+         <widget class="QRadioButton" name="check_g5">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="8" column="0" >
-         <widget class="QLabel" name="label_13" >
-          <property name="text" >
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
            <string>Verantwortungsbewustsein</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>check_h1</cstring>
           </property>
          </widget>
         </item>
-        <item row="8" column="1" >
-         <widget class="QRadioButton" name="check_h1" >
-          <property name="text" >
+        <item row="8" column="1">
+         <widget class="QRadioButton" name="check_h1">
+          <property name="text">
            <string/>
           </property>
-          <property name="checked" >
+          <property name="checked">
            <bool>true</bool>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="8" column="2" >
-         <widget class="QRadioButton" name="check_h2" >
-          <property name="text" >
+        <item row="8" column="2">
+         <widget class="QRadioButton" name="check_h2">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="8" column="3" >
-         <widget class="QRadioButton" name="check_h3" >
-          <property name="text" >
+        <item row="8" column="3">
+         <widget class="QRadioButton" name="check_h3">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="8" column="4" >
-         <widget class="QRadioButton" name="check_h4" >
-          <property name="text" >
+        <item row="8" column="4">
+         <widget class="QRadioButton" name="check_h4">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="8" column="5" >
-         <widget class="QRadioButton" name="check_h5" >
-          <property name="text" >
+        <item row="8" column="5">
+         <widget class="QRadioButton" name="check_h5">
+          <property name="text">
            <string/>
           </property>
-          <property name="autoExclusive" >
+          <property name="autoExclusive">
            <bool>false</bool>
           </property>
          </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab2" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tab2">
+       <attribute name="title">
         <string>Textvorlagen</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_2" >
-        <item row="0" column="0" >
-         <widget class="QLabel" name="label_14" >
-          <property name="text" >
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
            <string>Fertigkeiten</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_a</cstring>
           </property>
          </widget>
         </item>
-        <item row="0" column="1" >
-         <widget class="QComboBox" name="combo_a" >
+        <item row="0" column="1">
+         <widget class="QComboBox" name="combo_a">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="0" column="2" >
-         <widget class="QLabel" name="label_21" >
-          <property name="text" >
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
            <string>Sorgfalt</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_f</cstring>
           </property>
          </widget>
         </item>
-        <item row="0" column="3" >
-         <widget class="QComboBox" name="combo_f" >
+        <item row="0" column="3">
+         <widget class="QComboBox" name="combo_f">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="1" column="1" >
-         <widget class="QComboBox" name="combo_b" >
+        <item row="1" column="1">
+         <widget class="QComboBox" name="combo_b">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="1" column="2" >
-         <widget class="QLabel" name="label_17" >
-          <property name="text" >
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
            <string>Lerntempo</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_g</cstring>
           </property>
          </widget>
         </item>
-        <item row="1" column="3" >
-         <widget class="QComboBox" name="combo_g" >
+        <item row="1" column="3">
+         <widget class="QComboBox" name="combo_g">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="2" column="0" >
-         <widget class="QLabel" name="label_15" >
-          <property name="text" >
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
            <string>Zusammenarbeit</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_c</cstring>
           </property>
          </widget>
         </item>
-        <item row="2" column="1" >
-         <widget class="QComboBox" name="combo_c" >
+        <item row="2" column="1">
+         <widget class="QComboBox" name="combo_c">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="2" column="2" >
-         <widget class="QLabel" name="label_20" >
-          <property name="text" >
+        <item row="2" column="2">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
            <string>Interresse</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_h</cstring>
           </property>
          </widget>
         </item>
-        <item row="2" column="3" >
-         <widget class="QComboBox" name="combo_h" >
+        <item row="2" column="3">
+         <widget class="QComboBox" name="combo_h">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="3" column="0" >
-         <widget class="QLabel" name="label_19" >
-          <property name="text" >
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
            <string>Auffassungsgabe</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_d</cstring>
           </property>
          </widget>
         </item>
-        <item row="3" column="1" >
-         <widget class="QComboBox" name="combo_d" >
+        <item row="3" column="1">
+         <widget class="QComboBox" name="combo_d">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="3" column="2" >
-         <widget class="QLabel" name="label_18" >
-          <property name="text" >
+        <item row="3" column="2">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
            <string>Zuverlässigkeit</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_i</cstring>
           </property>
          </widget>
         </item>
-        <item row="3" column="3" >
-         <widget class="QComboBox" name="combo_i" >
+        <item row="3" column="3">
+         <widget class="QComboBox" name="combo_i">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="4" column="0" >
-         <widget class="QLabel" name="label_16" >
-          <property name="text" >
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
            <string>Transfervermögen</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_e</cstring>
           </property>
          </widget>
         </item>
-        <item row="4" column="1" >
-         <widget class="QComboBox" name="combo_e" >
+        <item row="4" column="1">
+         <widget class="QComboBox" name="combo_e">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="4" column="2" >
-         <widget class="QLabel" name="label_23" >
-          <property name="text" >
+        <item row="4" column="2">
+         <widget class="QLabel" name="label_23">
+          <property name="text">
            <string>Ausdauer</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_j</cstring>
           </property>
          </widget>
         </item>
-        <item row="4" column="3" >
-         <widget class="QComboBox" name="combo_j" >
+        <item row="4" column="3">
+         <widget class="QComboBox" name="combo_j">
           <item>
-           <property name="text" >
+           <property name="text">
             <string>Ohne</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>++</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>+</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>0</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>-</string>
            </property>
           </item>
           <item>
-           <property name="text" >
+           <property name="text">
             <string>--</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="5" column="0" >
-         <widget class="QLabel" name="label_24" >
-          <property name="text" >
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_24">
+          <property name="text">
            <string>Abstand oben</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>offset_top</cstring>
           </property>
          </widget>
         </item>
-        <item row="5" column="1" >
-         <widget class="QSpinBox" name="offset_top" />
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="offset_top">
+          <property name="minimum">
+           <number>-10</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
+          </property>
+         </widget>
         </item>
-        <item row="5" column="2" >
-         <widget class="QLabel" name="label_25" >
-          <property name="text" >
+        <item row="5" column="2">
+         <widget class="QLabel" name="label_25">
+          <property name="text">
            <string>Abstand links</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>offset_left</cstring>
           </property>
          </widget>
         </item>
-        <item row="5" column="3" >
-         <widget class="QSpinBox" name="offset_left" />
+        <item row="5" column="3">
+         <widget class="QSpinBox" name="offset_left">
+          <property name="minimum">
+           <number>-10</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
+          </property>
+         </widget>
         </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="label_22" >
-          <property name="text" >
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
            <string>Kentnisse</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>combo_b</cstring>
           </property>
          </widget>
         </item>
        </layout>
-       <zorder>label_14</zorder>
-       <zorder>combo_a</zorder>
-       <zorder>label_21</zorder>
-       <zorder>combo_f</zorder>
-       <zorder>combo_b</zorder>
-       <zorder>label_17</zorder>
-       <zorder>combo_g</zorder>
-       <zorder>label_15</zorder>
-       <zorder>combo_c</zorder>
-       <zorder>label_20</zorder>
-       <zorder>combo_h</zorder>
-       <zorder>label_19</zorder>
-       <zorder>combo_d</zorder>
-       <zorder>label_18</zorder>
-       <zorder>combo_i</zorder>
-       <zorder>label_16</zorder>
-       <zorder>combo_e</zorder>
-       <zorder>label_23</zorder>
-       <zorder>combo_j</zorder>
-       <zorder>label_24</zorder>
-       <zorder>offset_top</zorder>
-       <zorder>label_25</zorder>
-       <zorder>offset_left</zorder>
-       <zorder>label_22</zorder>
       </widget>
-      <widget class="QWidget" name="tab3" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tab3">
+       <attribute name="title">
         <string>Texteditor</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2" >
+       <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLabel" name="label_26" >
-          <property name="text" >
+         <widget class="QLabel" name="label_26">
+          <property name="text">
            <string>Beurteilungstext</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>edit</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="edit" >
-          <property name="tabChangesFocus" >
+         <widget class="QPlainTextEdit" name="edit">
+          <property name="tabChangesFocus">
            <bool>true</bool>
           </property>
          </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab4" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tab4">
+       <attribute name="title">
         <string>Hilfe</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3" >
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QTextBrowser" name="browser" />
+         <widget class="QTextBrowser" name="browser"/>
         </item>
        </layout>
       </widget>
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout" >
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="stack" >
-        <property name="text" >
+       <widget class="QPushButton" name="stack">
+        <property name="text">
          <string>Text Zusammenstellen</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="build" >
-        <property name="text" >
+       <widget class="QPushButton" name="build">
+        <property name="text">
          <string>Erstellen</string>
         </property>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer" >
-        <property name="orientation" >
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" stdset="0" >
+        <property name="sizeHint" stdset="0">
          <size>
           <width>40</width>
           <height>20</height>
@@ -1143,8 +1134,8 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="close" >
-        <property name="text" >
+       <widget class="QPushButton" name="close">
+        <property name="text">
          <string>Schliessen</string>
         </property>
        </widget>
@@ -1221,11 +1212,11 @@
    <receiver>GradingWindow</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>373</x>
      <y>255</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>296</x>
      <y>287</y>
     </hint>

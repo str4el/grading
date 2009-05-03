@@ -31,6 +31,8 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
 	setupUi(this);
 
+        latex = new QProcess(this);
+        viewer = new QProcess(this);
 
 /* Die checks Grupieren
  */
@@ -92,10 +94,11 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
 	connect(stack, SIGNAL(clicked()), this, SLOT(stack_text()));
 	connect(build, SIGNAL(clicked()), this, SLOT(build_pdf()));
+        connect(latex, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(view(int,QProcess::ExitStatus)));
 
-	browser->setSource(QUrl(QString("help.htm")));
+        browser->setSource(QUrl("help.htm"));
 
-	show();
+        show();
 
 
 }
@@ -186,8 +189,10 @@ void GradingWindow::build_pdf()
 		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Ramendatei konnte nicht geöffnet werden!", QMessageBox::Close, this).exec();
 		return;
 	}
+        QTextStream in_stream(&in);
+        in_stream.setCodec("UTF-8");
 
-	QString source = QTextStream(&in).readAll();
+        QString source = in_stream.readAll();
 	in.close();
 
 	if (source.isEmpty()) {	
@@ -213,12 +218,34 @@ void GradingWindow::build_pdf()
 		return;
 	}
 
-	QTextStream(&out) << source;
+        QTextStream out_stream(&out);
+        out_stream.setCodec("UTF-8");
 
+        out_stream << source;
 	out.close();
 
-	system("pdflatex out.tex");
-	system("evince out.pdf");
+        latex->start("pdflatex.exe", QStringList("out.tex"));
+}
+
+
+
+
+
+void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
+{
+        if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
+
+            if (viewer->state() == QProcess::Running) viewer->close();
+
+            viewer->start("SumatraPDF.exe", QStringList("out.pdf"));
+            if (!viewer->waitForStarted(3000)) {
+                QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
+                viewer->close();
+                return;
+            }
+        } else {
+            QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht Ordnugsgemäß beendet", QMessageBox::Close, this).exec();
+        }
 
 }
 
