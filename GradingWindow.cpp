@@ -233,11 +233,16 @@ void GradingWindow::build_pdf()
 
 void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 {
-        if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
+	if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
 
             if (viewer->state() == QProcess::Running) viewer->close();
 
+#ifdef Q_WS_X11
             viewer->start("evince", QStringList("out.pdf"));
+#endif
+#ifdef Q_WS_WIN
+            viewer->start("SumatraPDF.exe", QStringList("out.pdf"));
+#endif
             if (!viewer->waitForStarted(3000)) {
                 QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
                 viewer->close();
@@ -252,6 +257,6 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 
 void GradingWindow::closeEvent(QCloseEvent *event)
 {
-  event->accept();
+	event->accept();
 }
 
