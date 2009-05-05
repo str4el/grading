@@ -1,5 +1,33 @@
-<HTML>
-<BODY>
-	<H1>Das soll mal ein Hifletext werden</H1>
-</BODY>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+	<HEAD>
+		<TITLE></TITLE>
+	</HEAD>
+
+	<BODY>
+		<H3> Beurteilungsprogramm f&uuml;r SKF Auszubildende </H3>
+
+		<OL>
+			<LI>
+				<H4> Lizenz </H4>
+				<P> Copyright (C) 2009 Stephan Reinhard - <A href="mailto:Stephan-Reinhard@gmx.de">Stephan-Reinhard@gmx.de</A></P>
+				<P> This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version. </P>
+				<P> This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. </P>
+				<P> You should have received a copy of the GNU General Public License along with this program. If not, see <A href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</A>.</P>
+			</LI>
+			<LI>
+				<H4> Einf&uuml;hrung </H4>
+				<P>Keine Sorge, ab hier gehts wider in Deutsch weiter!<BR /> Grading, wie das Programm intern hei&szlig;t, habe ich entworfen um mir beim beurteilen von AZUBIS die Arbeit zu erleichtern. Mein erster Entwurf war ein Perlscript das unter Windows zwar eher schlecht als recht l&auml;uft, f&uuml;r mich Pers&ouml;nlich aber ausreichend war. Da aber mittlerweile das Interesse an dem Programm zuzunehmen scheint, habe ich mich entschlossen das Programm in C++ mit Hilfe der Qt Bibliothek neu zu schreiben. Da Qt in der Opensource Variante unter der GPL steht, muss ich diese Lizenz auch f&uuml;r Grading nutzen. Das empfinde ich nicht negativ, es soll nur den sch&ouml;nen englischen Absatz am Anfang rechtfertigen. Allerdings bringt das auch Verpflichtungen mit sich. Der Einfachheit halber bringe ich die mingw und Qt DLLs in bin&auml;rer Form gleich mit. Der Quellcode dieser Programme ist Problemlos im Internet zu bekommen und sollte jemand weder der Erwartung, meinen Code haben wollen, meine E-Mail steht oben.</P>
+			</LI>
+			<LI>
+				<H4>Voraussetzung</H4>
+				<P>Ich habe versucht die Abh&auml;nigkeiten des Programms, so weit wie m&ouml;glich, zu reduzieren. Die Bibliotheken sowie einen einfachen PDF Viewer bringe ich gleich mit. Das Programm ist portabel und muss nicht Installiert werden.<BR /> Das einzige Problem ist, zum Erstellen der Ausgabe PDF Datei wird das Textsatzprogramm LaTeX inklusive der Pakete vmargin und unicode ben&ouml;tigt. Ich habe bis jetzt keine vern&uuml;nftige L&ouml;sung gefunden, es portabel zu machen. LaTeX kann allerdings kostenlos und Legal aus dem Internet heruntergeladen werden. Ich pers&ouml;nlich benutze auf Windowsrechnern TexLive 2008.</P>
+			</LI>
+			<LI>
+				<H4>Bedienung</H4>
+				<P>Im Tab Kreuze ausw&auml;hlen welche Felder angekreuzt werden sollen. Im Tab Textvorlagen nach belieben ausw&auml;hlen und auf den Button Text Zusammenstellen klicken. Ein vorgefertigter Text wird erstellt und das Programm springt automatisch in den Tab Texteditor. Ein klick auf den Button Erstellen produziert ein PDF Dokument und zeigt es mit einem PDF Viewer an. Das Dokument ausdrucken und &uuml;berpr&uuml;fen ob es in den Vordruck passt. Im Tab Format k&ouml;nnen kleinere Korrekturen gemacht werden. Wenn alles Passt, nur nicht den Bewertungsbogen falsch in den Drucker legen!</P>
+			</LI>
+		</OL>
+	</BODY>
 </HTML>
