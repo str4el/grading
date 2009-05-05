@@ -31,8 +31,8 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
 	setupUi(this);
 
-        latex = new QProcess(this);
-        viewer = new QProcess(this);
+	latex = new QProcess(this);
+	viewer = new QProcess(this);
 
 /* Die checks Grupieren
  */
@@ -94,11 +94,11 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
 	connect(stack, SIGNAL(clicked()), this, SLOT(stack_text()));
 	connect(build, SIGNAL(clicked()), this, SLOT(build_pdf()));
-        connect(latex, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(view(int,QProcess::ExitStatus)));
+	connect(latex, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(view(int,QProcess::ExitStatus)));
 
-        browser->setSource(QUrl("help.htm"));
+	browser->setSource(QUrl("help.htm"));
 
-        show();
+	show();
 
 
 }
@@ -189,10 +189,10 @@ void GradingWindow::build_pdf()
 		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Ramendatei konnte nicht geöffnet werden!", QMessageBox::Close, this).exec();
 		return;
 	}
-        QTextStream in_stream(&in);
-        in_stream.setCodec("UTF-8");
+	QTextStream in_stream(&in);
+	in_stream.setCodec("UTF-8");
 
-        QString source = in_stream.readAll();
+	QString source = in_stream.readAll();
 	in.close();
 
 	if (source.isEmpty()) {	
@@ -218,13 +218,13 @@ void GradingWindow::build_pdf()
 		return;
 	}
 
-        QTextStream out_stream(&out);
-        out_stream.setCodec("UTF-8");
+	QTextStream out_stream(&out);
+	out_stream.setCodec("UTF-8");
 
-        out_stream << source;
+	out_stream << source;
 	out.close();
 
-        latex->start("pdflatex", QStringList("out.tex"));
+	latex->start("pdflatex", QStringList("out.tex"));
 }
 
 
@@ -235,23 +235,22 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 {
 	if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
 
-            if (viewer->state() == QProcess::Running) viewer->close();
+		if (viewer->state() == QProcess::Running) viewer->close();
 
 #ifdef Q_WS_X11
-            viewer->start("evince", QStringList("out.pdf"));
+		viewer->start("evince", QStringList("out.pdf"));
 #endif
 #ifdef Q_WS_WIN
-            viewer->start("SumatraPDF.exe", QStringList("out.pdf"));
+		viewer->start("SumatraPDF.exe", QStringList("out.pdf"));
 #endif
-            if (!viewer->waitForStarted(3000)) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
-                viewer->close();
-                return;
-            }
-        } else {
-            QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht Ordnugsgemäß beendet", QMessageBox::Close, this).exec();
-        }
-
+		if (!viewer->waitForStarted(3000)) {
+			QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
+			viewer->close();
+			return;
+		}
+	} else {
+	QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht Ordnugsgemäß beendet", QMessageBox::Close, this).exec();
+	}
 }
 
 

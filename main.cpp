@@ -3,10 +3,8 @@
 
 int main(int argc, char *argv[])
 {
-
-  QApplication app(argc, argv);
-  GradingWindow *window = new GradingWindow;
-  return app.exec();
-
+	QApplication app(argc, argv);
+	GradingWindow *window = new GradingWindow;
+	return app.exec();
 }
 

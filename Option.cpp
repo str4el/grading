@@ -40,7 +40,7 @@ Option::Option(const QString filename, QWidget *parrent) : QObject(parrent)
 		return;
 	}
 	in.setDevice(&file);
-        in.setCodec("UTF-8");
+	in.setCodec("UTF-8");
 
 }
 

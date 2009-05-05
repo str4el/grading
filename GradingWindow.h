@@ -54,13 +54,13 @@ private:
 	QButtonGroup *gg;
 	QButtonGroup *gh;
 
-        QProcess *latex;
-        QProcess *viewer;
+	QProcess *latex;
+	QProcess *viewer;
 
 private slots:
 	void stack_text();
 	void build_pdf();
-        void view(int exitCode, QProcess::ExitStatus exitStatus );
+	void view(int exitCode, QProcess::ExitStatus exitStatus );
 
 };
 
