@@ -254,7 +254,7 @@ void GradingWindow::build_pdf()
 	out_stream << source;
 	out.close();
 
-	latex->start("pdflatex", QStringList("out.tex"));
+	latex->start(config.getOption("bin_pdflatex"), QStringList("out.tex"));
 	if (!latex->waitForStarted(3000)) {
 		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
 		viewer->close();
@@ -268,16 +268,13 @@ void GradingWindow::build_pdf()
 
 void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 {
+	Option config("config", this);
+
 	if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
 
 		if (viewer->state() == QProcess::Running) viewer->close();
 
-#ifdef Q_WS_X11
-		viewer->start("evince", QStringList("out.pdf"));
-#endif
-#ifdef Q_WS_WIN
-		viewer->start("SumatraPDF.exe", QStringList("out.pdf"));
-#endif
+		viewer->start(config.getOption("bin_pdfview"), QStringList("out.pdf"));
 		if (!viewer->waitForStarted(3000)) {
 			QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
 			viewer->close();

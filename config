@@ -1,3 +1,7 @@
+# Programme
+bin_pdflatex="pdflatex"
+bin_pdfview="evince"
+
 # Positionen
 top_pos="15"
 left_pos="15"
