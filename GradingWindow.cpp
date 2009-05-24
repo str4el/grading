@@ -162,6 +162,26 @@ void GradingWindow::build_pdf()
 		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Postion links.", QMessageBox::Close, this).exec();
 		return;
 	}
+	int top_to_tick = config.getOption("top_to_tick").toInt(&ok);
+	if (!ok) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration des oberen Abstands.", QMessageBox::Close, this).exec();
+		return;
+	}
+	int tick_to_text = config.getOption("tick_to_text").toInt(&ok);
+	if (!ok) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration des Abstands zum Text.", QMessageBox::Close, this).exec();
+		return;
+	}
+	int tick_to_tick_1 = config.getOption("tick_to_tick_1").toInt(&ok);
+	if (!ok) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration des ersten Abstand zwischen den Haken.", QMessageBox::Close, this).exec();
+		return;
+	}
+	int tick_to_tick_2 = config.getOption("tick_to_tick_2").toInt(&ok);
+	if (!ok) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration des zweiten Abstand zwischen den Haken.", QMessageBox::Close, this).exec();
+		return;
+	}
 
 	QString tick_pos_string = config.getOption("tick_pos");
 	if (tick_pos_string.isEmpty()) {
@@ -181,7 +201,13 @@ void GradingWindow::build_pdf()
 			return;
 		}
 	}
-
+	
+	tick_pos[0] += offset_tick_1->value();
+	tick_pos[1] += offset_tick_2->value();
+	tick_pos[2] += offset_tick_3->value();
+	tick_pos[3] += offset_tick_4->value();
+	tick_pos[4] += offset_tick_5->value();
+	
 
 
 	QFile in("frame.tex");
@@ -202,6 +228,10 @@ void GradingWindow::build_pdf()
 
 	source.replace("VAR_TOP_POS", QString::number(top_pos + offset_top->value()));
 	source.replace("VAR_LEFT_POS", QString::number(left_pos + offset_left->value()));
+	source.replace("VAR_TOP_TO_TICK", QString::number(top_to_tick + offset_top_to_tick->value()));
+	source.replace("VAR_TICK_TO_TEXT", QString::number(tick_to_text + offset_tick_to_text->value()));
+	source.replace("VAR_TICK_TO_TICK_1", QString::number(tick_to_tick_1 + offset_tick_to_tick_1->value()));
+	source.replace("VAR_TICK_TO_TICK_2", QString::number(tick_to_tick_2 + offset_tick_to_tick_2->value()));
 	source.replace("VAR_TICK_A", QString::number(tick_pos[ga->checkedId()]));
 	source.replace("VAR_TICK_B", QString::number(tick_pos[gb->checkedId()]));
 	source.replace("VAR_TICK_C", QString::number(tick_pos[gc->checkedId()]));
@@ -225,6 +255,11 @@ void GradingWindow::build_pdf()
 	out.close();
 
 	latex->start("pdflatex", QStringList("out.tex"));
+	if (!latex->waitForStarted(3000)) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
+		viewer->close();
+		return;
+	}
 }
 
 

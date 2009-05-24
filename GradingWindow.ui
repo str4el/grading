@@ -673,6 +673,16 @@
           </item>
          </widget>
         </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="label_22" >
+          <property name="text" >
+           <string>Kentnisse</string>
+          </property>
+          <property name="buddy" >
+           <cstring>combo_b</cstring>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="1" >
          <widget class="QComboBox" name="combo_b" >
           <item>
@@ -1015,16 +1025,6 @@
           </item>
          </widget>
         </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="label_22" >
-          <property name="text" >
-           <string>Kentnisse</string>
-          </property>
-          <property name="buddy" >
-           <cstring>combo_b</cstring>
-          </property>
-         </widget>
-        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab3" >
@@ -1057,8 +1057,8 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_4" >
         <item>
-         <layout class="QGridLayout" name="gridLayout_3" >
-          <item row="0" column="0" >
+         <layout class="QHBoxLayout" name="horizontalLayout_2" >
+          <item>
            <widget class="QLabel" name="label_24" >
             <property name="text" >
              <string>Abstand oben</string>
@@ -1068,7 +1068,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
+          <item>
            <widget class="QSpinBox" name="offset_top" >
             <property name="minimum" >
              <number>-10</number>
@@ -1078,7 +1078,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
+          <item>
            <widget class="QLabel" name="label_25" >
             <property name="text" >
              <string>Abstand links</string>
@@ -1088,8 +1088,147 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
+          <item>
            <widget class="QSpinBox" name="offset_left" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2" >
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>69</width>
+            <height>2</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_32" >
+          <property name="text" >
+           <string>Hackenpossitionen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_27" >
+            <property name="text" >
+             <string>++</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_tick_1</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QLabel" name="label_28" >
+            <property name="text" >
+             <string>+</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_tick_2</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" >
+           <widget class="QLabel" name="label_29" >
+            <property name="text" >
+             <string>0</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_tick_3</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3" >
+           <widget class="QLabel" name="label_30" >
+            <property name="text" >
+             <string>-</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_tick_4</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4" >
+           <widget class="QLabel" name="label_31" >
+            <property name="text" >
+             <string>--</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_tick_5</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QSpinBox" name="offset_tick_1" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QSpinBox" name="offset_tick_2" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2" >
+           <widget class="QSpinBox" name="offset_tick_3" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3" >
+           <widget class="QSpinBox" name="offset_tick_4" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4" >
+           <widget class="QSpinBox" name="offset_tick_5" >
             <property name="minimum" >
              <number>-10</number>
             </property>
@@ -1108,10 +1247,101 @@
           <property name="sizeHint" stdset="0" >
            <size>
             <width>20</width>
-            <height>127</height>
+            <height>3</height>
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_4" >
+          <item row="0" column="0" colspan="4" >
+           <widget class="QLabel" name="label_37" >
+            <property name="text" >
+             <string>Abstand</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QLabel" name="label_36" >
+            <property name="text" >
+             <string>zu den Hacken</string>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_top_to_tick</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QSpinBox" name="offset_top_to_tick" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2" >
+           <widget class="QLabel" name="label_35" >
+            <property name="text" >
+             <string>zwischen Hacken 1</string>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_tick_to_tick_1</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3" >
+           <widget class="QSpinBox" name="offset_tick_to_tick_1" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="QLabel" name="label_34" >
+            <property name="text" >
+             <string>zum Text</string>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_tick_to_text</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" >
+           <widget class="QSpinBox" name="offset_tick_to_text" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" >
+           <widget class="QLabel" name="label_33" >
+            <property name="text" >
+             <string>zwischen Hacken 2</string>
+            </property>
+            <property name="buddy" >
+             <cstring>offset_tick_to_tick_2</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3" >
+           <widget class="QSpinBox" name="offset_tick_to_tick_2" >
+            <property name="minimum" >
+             <number>-10</number>
+            </property>
+            <property name="maximum" >
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -1225,6 +1455,18 @@
   <tabstop>combo_i</tabstop>
   <tabstop>combo_j</tabstop>
   <tabstop>edit</tabstop>
+  <tabstop>offset_top</tabstop>
+  <tabstop>offset_left</tabstop>
+  <tabstop>offset_tick_1</tabstop>
+  <tabstop>offset_tick_2</tabstop>
+  <tabstop>offset_tick_3</tabstop>
+  <tabstop>offset_tick_4</tabstop>
+  <tabstop>offset_tick_5</tabstop>
+  <tabstop>offset_top_to_tick</tabstop>
+  <tabstop>offset_tick_to_text</tabstop>
+  <tabstop>offset_tick_to_tick_1</tabstop>
+  <tabstop>offset_tick_to_tick_2</tabstop>
+  <tabstop>browser</tabstop>
   <tabstop>stack</tabstop>
   <tabstop>build</tabstop>
   <tabstop>close</tabstop>

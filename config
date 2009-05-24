@@ -1,8 +1,14 @@
 # Positionen
 top_pos="15"
 left_pos="15"
-#line_space="64; 0; 0; 0; 14; 0; 0; 6; 0; 7"
+
 tick_pos="126; 139; 152; 165; 178"
+
+top_to_tick="64"
+tick_to_tick_1="14"
+tick_to_tick_2="6"
+tick_to_text="7"
+
 
 # Texte
 text_a1="Verfügt über einen sehr hohen Fertigkeitsgrad. Führt die übertragenen Tätigkeiten mit großer Geschicklichkeit durch. "
