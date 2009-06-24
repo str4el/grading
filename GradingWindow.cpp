@@ -127,16 +127,16 @@ void GradingWindow::stack_text()
 	if (combo_c->currentIndex() > 0) text += config.getOption(QString("text_c%1").arg(combo_c->currentIndex()));
 	if (combo_d->currentIndex() > 0) text += config.getOption(QString("text_d%1").arg(combo_d->currentIndex()));
 	if (combo_e->currentIndex() > 0) text += config.getOption(QString("text_e%1").arg(combo_e->currentIndex()));
-	if (combo_f->currentIndex() > 0) text += config.getOption(QString("text_f%1").arg(combo_f->currentIndex()));
-	if (combo_g->currentIndex() > 0) text += config.getOption(QString("text_g%1").arg(combo_g->currentIndex()));
-	if (combo_h->currentIndex() > 0) text += config.getOption(QString("text_h%1").arg(combo_h->currentIndex()));
-	if (combo_i->currentIndex() > 0) text += config.getOption(QString("text_i%1").arg(combo_i->currentIndex()));
-	if (combo_j->currentIndex() > 0) text += config.getOption(QString("text_j%1").arg(combo_j->currentIndex()));
 
 	if (text.isEmpty()) {
 		QMessageBox(QMessageBox::Warning, "Fehler", "Es konnte kein Text zusammengestellt werden. Mˆglicherweise ist die config Datei fehlerhaft.", QMessageBox::Close, this).exec();
 		return;
 	}
+	
+	if (combo_mw->currentIndex() == 0) 
+		text.remove(QRegExp("/[\\w\\s]*\\]")).remove('[');
+	else 
+		text.remove(QRegExp("\\[[\\w\\s]*/")).remove(']');
 
 	edit->setPlainText(text);
 	tab->setCurrentWidget(tab3);
@@ -281,7 +281,7 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 			return;
 		}
 	} else {
-	QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht Ordnugsgem‰ﬂ beendet", QMessageBox::Close, this).exec();
+	QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht ordnugsgem‰ﬂ beendet", QMessageBox::Close, this).exec();
 	}
 }
 
