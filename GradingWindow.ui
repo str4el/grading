@@ -23,7 +23,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tab1">
+      <widget class="QWidget" name="tab_grades">
        <attribute name="title">
         <string>Wertung</string>
        </attribute>
@@ -603,7 +603,7 @@
               <string>Geschlecht</string>
              </property>
              <property name="buddy">
-              <cstring>combo_a</cstring>
+              <cstring>combo_mw</cstring>
              </property>
             </widget>
            </item>
@@ -821,7 +821,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab3">
+      <widget class="QWidget" name="tab_edit">
        <attribute name="title">
         <string>Texteditor</string>
        </attribute>
@@ -845,7 +845,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab4">
+      <widget class="QWidget" name="tab_layout">
        <attribute name="title">
         <string>Format</string>
        </attribute>
@@ -1155,7 +1155,161 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab5">
+      <widget class="QWidget" name="tab_save">
+       <attribute name="title">
+        <string>Speichern</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QGroupBox" name="groupBox_6">
+          <property name="toolTip">
+           <string>Für den normalen gebrauch nicht notwendig.</string>
+          </property>
+          <property name="title">
+           <string>Zusätzliche Informationen</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="0" column="0" colspan="2">
+              <widget class="QLabel" name="label_18">
+               <property name="text">
+                <string>Name Auszubildender</string>
+               </property>
+               <property name="buddy">
+                <cstring>save_name_apprentice</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2" colspan="2">
+              <widget class="QLineEdit" name="save_name_apprentice"/>
+             </item>
+             <item row="1" column="0" colspan="2">
+              <widget class="QLabel" name="label_23">
+               <property name="text">
+                <string>Name Auszubilder</string>
+               </property>
+               <property name="buddy">
+                <cstring>save_name_instructor</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2" colspan="2">
+              <widget class="QLineEdit" name="save_name_instructor">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_20">
+               <property name="text">
+                <string>Lehrjahr</string>
+               </property>
+               <property name="buddy">
+                <cstring>save_year</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="save_year">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>4</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLabel" name="label_21">
+               <property name="text">
+                <string>Wochen</string>
+               </property>
+               <property name="buddy">
+                <cstring>save_weeks</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QSpinBox" name="save_weeks">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>20</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_32">
+             <property name="text">
+              <string>Kommentar</string>
+             </property>
+             <property name="buddy">
+              <cstring>save_comment</cstring>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPlainTextEdit" name="save_comment">
+             <property name="tabChangesFocus">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="save">
+            <property name="text">
+             <string>Speichern</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="load">
+            <property name="text">
+             <string>Laden</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>58</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_help">
        <attribute name="title">
         <string>Info</string>
        </attribute>
@@ -1220,6 +1374,52 @@
  </widget>
  <tabstops>
   <tabstop>tab</tabstop>
+  <tabstop>check_a1</tabstop>
+  <tabstop>check_a2</tabstop>
+  <tabstop>check_a3</tabstop>
+  <tabstop>check_a4</tabstop>
+  <tabstop>check_a5</tabstop>
+  <tabstop>check_b1</tabstop>
+  <tabstop>check_b2</tabstop>
+  <tabstop>check_b3</tabstop>
+  <tabstop>check_b4</tabstop>
+  <tabstop>check_b5</tabstop>
+  <tabstop>check_c1</tabstop>
+  <tabstop>check_c2</tabstop>
+  <tabstop>check_c3</tabstop>
+  <tabstop>check_c4</tabstop>
+  <tabstop>check_c5</tabstop>
+  <tabstop>check_d1</tabstop>
+  <tabstop>check_d2</tabstop>
+  <tabstop>check_d3</tabstop>
+  <tabstop>check_d4</tabstop>
+  <tabstop>check_d5</tabstop>
+  <tabstop>check_e1</tabstop>
+  <tabstop>check_e2</tabstop>
+  <tabstop>check_e3</tabstop>
+  <tabstop>check_e4</tabstop>
+  <tabstop>check_e5</tabstop>
+  <tabstop>check_f1</tabstop>
+  <tabstop>check_f2</tabstop>
+  <tabstop>check_f3</tabstop>
+  <tabstop>check_f4</tabstop>
+  <tabstop>check_f5</tabstop>
+  <tabstop>check_g1</tabstop>
+  <tabstop>check_g2</tabstop>
+  <tabstop>check_g3</tabstop>
+  <tabstop>check_g4</tabstop>
+  <tabstop>check_g5</tabstop>
+  <tabstop>check_h1</tabstop>
+  <tabstop>check_h2</tabstop>
+  <tabstop>check_h3</tabstop>
+  <tabstop>check_h4</tabstop>
+  <tabstop>check_h5</tabstop>
+  <tabstop>combo_mw</tabstop>
+  <tabstop>combo_a</tabstop>
+  <tabstop>combo_b</tabstop>
+  <tabstop>combo_c</tabstop>
+  <tabstop>combo_d</tabstop>
+  <tabstop>combo_e</tabstop>
   <tabstop>edit</tabstop>
   <tabstop>offset_top</tabstop>
   <tabstop>offset_left</tabstop>
@@ -1229,9 +1429,16 @@
   <tabstop>offset_tick_4</tabstop>
   <tabstop>offset_tick_5</tabstop>
   <tabstop>offset_top_to_tick</tabstop>
-  <tabstop>offset_tick_to_text</tabstop>
   <tabstop>offset_tick_to_tick_1</tabstop>
+  <tabstop>offset_tick_to_text</tabstop>
   <tabstop>offset_tick_to_tick_2</tabstop>
+  <tabstop>save_name_apprentice</tabstop>
+  <tabstop>save_name_instructor</tabstop>
+  <tabstop>save_year</tabstop>
+  <tabstop>save_weeks</tabstop>
+  <tabstop>save_comment</tabstop>
+  <tabstop>save</tabstop>
+  <tabstop>load</tabstop>
   <tabstop>browser</tabstop>
   <tabstop>stack</tabstop>
   <tabstop>build</tabstop>
@@ -1246,8 +1453,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>426</x>
-     <y>314</y>
+     <x>446</x>
+     <y>506</y>
     </hint>
     <hint type="destinationlabel">
      <x>296</x>

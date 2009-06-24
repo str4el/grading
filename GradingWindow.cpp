@@ -96,6 +96,9 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 	connect(build, SIGNAL(clicked()), this, SLOT(build_pdf()));
 	connect(latex, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(view(int,QProcess::ExitStatus)));
 
+	connect(save, SIGNAL(clicked()), this, SLOT(save_data()));
+	connect(load, SIGNAL(clicked()), this, SLOT(load_data()));
+
 	browser->setSource(QUrl("help.htm"));
 
 	show();
@@ -139,7 +142,7 @@ void GradingWindow::stack_text()
 		text.remove(QRegExp("\\[[\\w\\s]*/")).remove(']');
 
 	edit->setPlainText(text);
-	tab->setCurrentWidget(tab3);
+	tab->setCurrentWidget(tab_edit);
 }
 
 
@@ -281,7 +284,7 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 			return;
 		}
 	} else {
-	QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht ordnugsgemäß beendet", QMessageBox::Close, this).exec();
+	QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht ordnugsgemäß beendet!", QMessageBox::Close, this).exec();
 	}
 }
 
@@ -290,4 +293,240 @@ void GradingWindow::closeEvent(QCloseEvent *event)
 {
 	event->accept();
 }
+
+
+void GradingWindow::save_data()
+{
+	QString filename = QFileDialog::getSaveFileName(this, "Speichern", ".", "Beurteilung (*.grd)");
+	if (filename.isEmpty()) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Kein Dateiname angegeben!", QMessageBox::Close, this).exec();
+		return;
+	}
+
+	if (QFileInfo(filename).suffix().isEmpty()) 
+		filename.append(".grd");
+	
+	QFile file(filename);
+	if (!file.open(QIODevice::WriteOnly)) {
+		return;
+	}
+
+	QDataStream out(&file);
+	out.setVersion(QDataStream::Qt_4_5);
+
+	out << save_name_apprentice->text();
+	out << save_name_instructor->text();
+	out << save_year->value();
+	out << save_weeks->value();
+	out << save_comment->toPlainText();
+	
+	out << check_a1->isChecked();
+	out << check_a2->isChecked();
+	out << check_a3->isChecked();
+	out << check_a4->isChecked();
+	out << check_a5->isChecked();
+	
+	out << check_b1->isChecked();
+	out << check_b2->isChecked();
+	out << check_b3->isChecked();
+	out << check_b4->isChecked();
+	out << check_b5->isChecked();
+	
+	out << check_c1->isChecked();
+	out << check_c2->isChecked();
+	out << check_c3->isChecked();
+	out << check_c4->isChecked();
+	out << check_c5->isChecked();
+	
+	out << check_d1->isChecked();
+	out << check_d2->isChecked();
+	out << check_d3->isChecked();
+	out << check_d4->isChecked();
+	out << check_d5->isChecked();
+	
+	out << check_e1->isChecked();
+	out << check_e2->isChecked();
+	out << check_e3->isChecked();
+	out << check_e4->isChecked();
+	out << check_e5->isChecked();
+	
+	out << check_f1->isChecked();
+	out << check_f2->isChecked();
+	out << check_f3->isChecked();
+	out << check_f4->isChecked();
+	out << check_f5->isChecked();
+	
+	out << check_g1->isChecked();
+	out << check_g2->isChecked();
+	out << check_g3->isChecked();
+	out << check_g4->isChecked();
+	out << check_g5->isChecked();
+	
+	out << check_h1->isChecked();
+	out << check_h2->isChecked();
+	out << check_h3->isChecked();
+	out << check_h4->isChecked();
+	out << check_h5->isChecked();
+	
+
+	out << combo_mw->currentIndex();
+
+	out << combo_a->currentIndex();
+	out << combo_b->currentIndex();
+	out << combo_c->currentIndex();
+	out << combo_d->currentIndex();
+	out << combo_e->currentIndex();
+	
+	out << edit->toPlainText();
+
+	file.close();
+}
+
+
+
+void GradingWindow::load_data()
+{
+	QString filename = QFileDialog::getOpenFileName(this, "Speichern", ".", "Beurteilung (*.grd)");
+	if (filename.isEmpty()) {
+		return;
+	}
+	
+	
+	QFile file(filename);
+	if (!file.open(QIODevice::ReadOnly)) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Datei konnte nicht geöffnet werden!", QMessageBox::Close, this).exec();
+		return;
+	}
+	
+	QDataStream in(&file);
+	in.setVersion(QDataStream::Qt_4_5);
+
+	QString text;
+	int value;
+	bool flag;
+
+	in >> text;
+	save_name_apprentice->setText(text);
+	in >> text;
+	save_name_instructor->setText(text);
+	in >> value;
+	save_year->setValue(value);
+	in >> value;
+	save_weeks->setValue(value);
+	in >> text;
+	save_comment->setPlainText(text);
+
+
+	in >> flag;
+	check_a1->setChecked(flag);
+	in >> flag;
+	check_a2->setChecked(flag);
+	in >> flag;
+	check_a3->setChecked(flag);
+	in >> flag;
+	check_a4->setChecked(flag);
+	in >> flag;
+	check_a5->setChecked(flag);
+
+	in >> flag;
+	check_b1->setChecked(flag);
+	in >> flag;
+	check_b2->setChecked(flag);
+	in >> flag;
+	check_b3->setChecked(flag);
+	in >> flag;
+	check_b4->setChecked(flag);
+	in >> flag;
+	check_b5->setChecked(flag);
+
+	in >> flag;
+	check_c1->setChecked(flag);
+	in >> flag;
+	check_c2->setChecked(flag);
+	in >> flag;
+	check_c3->setChecked(flag);
+	in >> flag;
+	check_c4->setChecked(flag);
+	in >> flag;
+	check_c5->setChecked(flag);
+
+	in >> flag;
+	check_d1->setChecked(flag);
+	in >> flag;
+	check_d2->setChecked(flag);
+	in >> flag;
+	check_d3->setChecked(flag);
+	in >> flag;
+	check_d4->setChecked(flag);
+	in >> flag;
+	check_d5->setChecked(flag);
+
+	in >> flag;
+	check_e1->setChecked(flag);
+	in >> flag;
+	check_e2->setChecked(flag);
+	in >> flag;
+	check_e3->setChecked(flag);
+	in >> flag;
+	check_e4->setChecked(flag);
+	in >> flag;
+	check_e5->setChecked(flag);
+
+	in >> flag;
+	check_f1->setChecked(flag);
+	in >> flag;
+	check_f2->setChecked(flag);
+	in >> flag;
+	check_f3->setChecked(flag);
+	in >> flag;
+	check_f4->setChecked(flag);
+	in >> flag;
+	check_f5->setChecked(flag);
+
+	in >> flag;
+	check_g1->setChecked(flag);
+	in >> flag;
+	check_g2->setChecked(flag);
+	in >> flag;
+	check_g3->setChecked(flag);
+	in >> flag;
+	check_g4->setChecked(flag);
+	in >> flag;
+	check_g5->setChecked(flag);
+
+	in >> flag;
+	check_h1->setChecked(flag);
+	in >> flag;
+	check_h2->setChecked(flag);
+	in >> flag;
+	check_h3->setChecked(flag);
+	in >> flag;
+	check_h4->setChecked(flag);
+	in >> flag;
+	check_h5->setChecked(flag);
+
+	
+	in >> value;
+	combo_mw->setCurrentIndex(value);
+
+	in >> value;
+	combo_a->setCurrentIndex(value);
+	in >> value;
+	combo_b->setCurrentIndex(value);
+	in >> value;
+	combo_c->setCurrentIndex(value);
+	in >> value;
+	combo_d->setCurrentIndex(value);
+	in >> value;
+	combo_e->setCurrentIndex(value);
+
+	in >> text;
+	edit->setPlainText(text);
+
+	
+	file.close();
+}
+
+
+
 

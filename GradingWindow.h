@@ -60,6 +60,8 @@ private:
 private slots:
 	void stack_text();
 	void build_pdf();
+	void save_data();
+	void load_data();
 	void view(int exitCode, QProcess::ExitStatus exitStatus );
 
 };
