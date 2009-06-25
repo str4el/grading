@@ -299,7 +299,6 @@ void GradingWindow::save_data()
 {
 	QString filename = QFileDialog::getSaveFileName(this, "Speichern", ".", "Beurteilung (*.grd)");
 	if (filename.isEmpty()) {
-		QMessageBox(QMessageBox::Warning, "Fehler", "Kein Dateiname angegeben!", QMessageBox::Close, this).exec();
 		return;
 	}
 
@@ -308,16 +307,20 @@ void GradingWindow::save_data()
 	
 	QFile file(filename);
 	if (!file.open(QIODevice::WriteOnly)) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Datei konnte nicht geöffnet werden!", QMessageBox::Close, this).exec();
 		return;
 	}
 
 	QDataStream out(&file);
 	out.setVersion(QDataStream::Qt_4_5);
 
+	out << 0xEFAA << 1;
+	
 	out << save_name_apprentice->text();
 	out << save_name_instructor->text();
 	out << save_year->value();
-	out << save_weeks->value();
+	out << save_date1->date();
+	out << save_date2->date();
 	out << save_comment->toPlainText();
 	
 	out << check_a1->isChecked();
@@ -402,17 +405,33 @@ void GradingWindow::load_data()
 	in.setVersion(QDataStream::Qt_4_5);
 
 	QString text;
+	QDate date;
 	int value;
 	bool flag;
 
+	in >> value;
+	if (value != 0xEFAA) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Unbekanntes Dateiformat!", QMessageBox::Close, this).exec();
+		return;
+	}
+
+	int version;
+	in >> version;
+	if (version > 1) {
+		QMessageBox(QMessageBox::Warning, "Fehler", "Die Datei wurde von einer neueren Version des Programms gespeichert!", QMessageBox::Close, this).exec();
+		return;
+	}
+	
 	in >> text;
 	save_name_apprentice->setText(text);
 	in >> text;
 	save_name_instructor->setText(text);
 	in >> value;
 	save_year->setValue(value);
-	in >> value;
-	save_weeks->setValue(value);
+	in >> date;
+	save_date1->setDate(date);
+	in >> date;
+	save_date2->setDate(date);
 	in >> text;
 	save_comment->setPlainText(text);
 

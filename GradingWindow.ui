@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>457</width>
-    <height>517</height>
+    <width>473</width>
+    <height>436</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,6 +86,12 @@
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_6">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Fachkenntnisse</string>
              </property>
@@ -149,6 +155,12 @@
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label_7">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Fertigkeiten</string>
              </property>
@@ -212,6 +224,12 @@
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label_8">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Arbeitssicheres Verhalten</string>
              </property>
@@ -275,6 +293,12 @@
            </item>
            <item row="4" column="0">
             <widget class="QLabel" name="label_9">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Zuverlässigkeit</string>
              </property>
@@ -338,6 +362,12 @@
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="label_10">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Lern- und Arbeitsbereitschaft</string>
              </property>
@@ -401,6 +431,12 @@
            </item>
            <item row="6" column="0">
             <widget class="QLabel" name="label_11">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Umgang mit Einrichtungen / Arbeitsmitteln</string>
              </property>
@@ -464,6 +500,12 @@
            </item>
            <item row="7" column="0">
             <widget class="QLabel" name="label_12">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Teamfähigkeit</string>
              </property>
@@ -527,6 +569,12 @@
            </item>
            <item row="8" column="0">
             <widget class="QLabel" name="label_13">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Verantwortungsbewustsein</string>
              </property>
@@ -621,6 +669,45 @@
              </item>
             </widget>
            </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>Interesse</string>
+             </property>
+             <property name="buddy">
+              <cstring>combo_c</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QComboBox" name="combo_c">
+             <item>
+              <property name="text">
+               <string>Nicht erwähnen</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Sehr Gut</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Gut</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Befriedigend</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mangelhaft</string>
+              </property>
+             </item>
+            </widget>
+           </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_14">
              <property name="text">
@@ -633,6 +720,45 @@
            </item>
            <item row="1" column="1">
             <widget class="QComboBox" name="combo_a">
+             <item>
+              <property name="text">
+               <string>Nicht erwähnen</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Sehr Gut</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Gut</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Befriedigend</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mangelhaft</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>Zusammenarbeit</string>
+             </property>
+             <property name="buddy">
+              <cstring>combo_d</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QComboBox" name="combo_d">
              <item>
               <property name="text">
                <string>Nicht erwähnen</string>
@@ -699,85 +825,7 @@
              </item>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_19">
-             <property name="text">
-              <string>Interesse</string>
-             </property>
-             <property name="buddy">
-              <cstring>combo_c</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QComboBox" name="combo_c">
-             <item>
-              <property name="text">
-               <string>Nicht erwähnen</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Sehr Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Befriedigend</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Mangelhaft</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_15">
-             <property name="text">
-              <string>Zusammenarbeit</string>
-             </property>
-             <property name="buddy">
-              <cstring>combo_d</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QComboBox" name="combo_d">
-             <item>
-              <property name="text">
-               <string>Nicht erwähnen</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Sehr Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Befriedigend</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Mangelhaft</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="5" column="0">
+           <item row="2" column="2">
             <widget class="QLabel" name="label_16">
              <property name="text">
               <string>Gesammtnote</string>
@@ -787,7 +835,7 @@
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="2" column="3">
             <widget class="QComboBox" name="combo_e">
              <item>
               <property name="text">
@@ -1143,15 +1191,20 @@
             </widget>
            </item>
           </layout>
-          <zorder>offset_top_to_tick</zorder>
-          <zorder>label_35</zorder>
-          <zorder>offset_tick_to_tick_1</zorder>
-          <zorder>label_34</zorder>
-          <zorder>offset_tick_to_text</zorder>
-          <zorder>label_33</zorder>
-          <zorder>offset_tick_to_tick_2</zorder>
-          <zorder>label_36</zorder>
          </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>99</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -1171,7 +1224,7 @@
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
             <layout class="QGridLayout" name="gridLayout_3">
-             <item row="0" column="0" colspan="2">
+             <item row="0" column="0">
               <widget class="QLabel" name="label_18">
                <property name="text">
                 <string>Name Auszubildender</string>
@@ -1181,10 +1234,10 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="2" colspan="2">
+             <item row="0" column="1">
               <widget class="QLineEdit" name="save_name_apprentice"/>
              </item>
-             <item row="1" column="0" colspan="2">
+             <item row="1" column="0">
               <widget class="QLabel" name="label_23">
                <property name="text">
                 <string>Name Auszubilder</string>
@@ -1194,14 +1247,18 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="2" colspan="2">
+             <item row="1" column="1">
               <widget class="QLineEdit" name="save_name_instructor">
                <property name="text">
                 <string/>
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
               <widget class="QLabel" name="label_20">
                <property name="text">
                 <string>Lehrjahr</string>
@@ -1211,7 +1268,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
+             <item>
               <widget class="QSpinBox" name="save_year">
                <property name="minimum">
                 <number>1</number>
@@ -1221,23 +1278,49 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="2">
+             <item>
               <widget class="QLabel" name="label_21">
                <property name="text">
-                <string>Wochen</string>
+                <string>von</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
                <property name="buddy">
-                <cstring>save_weeks</cstring>
+                <cstring>save_date1</cstring>
                </property>
               </widget>
              </item>
-             <item row="2" column="3">
-              <widget class="QSpinBox" name="save_weeks">
-               <property name="minimum">
-                <number>1</number>
+             <item>
+              <widget class="QDateEdit" name="save_date1">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="maximum">
-                <number>20</number>
+               <property name="displayFormat">
+                <string>dd.MM.yyyy</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_37">
+               <property name="text">
+                <string>bis</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="buddy">
+                <cstring>save_date2</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="save_date2">
+               <property name="displayFormat">
+                <string>dd.MM.yyyy</string>
                </property>
               </widget>
              </item>
@@ -1293,19 +1376,6 @@
            </widget>
           </item>
          </layout>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>58</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </widget>
@@ -1435,7 +1505,8 @@
   <tabstop>save_name_apprentice</tabstop>
   <tabstop>save_name_instructor</tabstop>
   <tabstop>save_year</tabstop>
-  <tabstop>save_weeks</tabstop>
+  <tabstop>save_date1</tabstop>
+  <tabstop>save_date2</tabstop>
   <tabstop>save_comment</tabstop>
   <tabstop>save</tabstop>
   <tabstop>load</tabstop>
