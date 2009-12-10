@@ -297,7 +297,19 @@ void GradingWindow::closeEvent(QCloseEvent *event)
 
 void GradingWindow::save_data()
 {
-	QString filename = QFileDialog::getSaveFileName(this, "Speichern", ".", "Beurteilung (*.grd)");
+        if (save_dir.isEmpty()) {
+                Option config("config", this);
+                save_dir = config.getOption("save_dir");
+                if (save_dir.isEmpty())
+                        save_dir = ".";
+                save_dir += "/";
+        }
+
+        if (save_name.isEmpty()) {
+                save_name = save_name_apprentice->text() + " " + QString::number(save_year->value());
+        }
+
+	QString filename = QFileDialog::getSaveFileName(this, "Speichern", save_dir + save_name, "Beurteilung (*.grd)");
 	if (filename.isEmpty()) {
 		return;
 	}
@@ -389,7 +401,16 @@ void GradingWindow::save_data()
 
 void GradingWindow::load_data()
 {
-	QString filename = QFileDialog::getOpenFileName(this, "Speichern", ".", "Beurteilung (*.grd)");
+
+        if (save_dir.isEmpty()) {
+                Option config("config", this);
+                save_dir = config.getOption("save_dir");
+                if (save_dir.isEmpty())
+                        save_dir = ".";
+                save_dir += "/";
+        }
+
+	QString filename = QFileDialog::getOpenFileName(this, "Speichern", save_dir, "Beurteilung (*.grd)");
 	if (filename.isEmpty()) {
 		return;
 	}
@@ -400,7 +421,10 @@ void GradingWindow::load_data()
 		QMessageBox(QMessageBox::Warning, "Fehler", "Datei konnte nicht geöffnet werden!", QMessageBox::Close, this).exec();
 		return;
 	}
-	
+
+	save_dir = QFileInfo(file).path() + "/";
+	save_name = QFileInfo(file).fileName();
+
 	QDataStream in(&file);
 	in.setVersion(QDataStream::Qt_4_5);
 

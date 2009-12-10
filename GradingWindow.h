@@ -57,6 +57,9 @@ private:
 	QProcess *latex;
 	QProcess *viewer;
 
+	QString save_name;
+	QString save_dir;
+
 private slots:
 	void stack_text();
 	void build_pdf();
