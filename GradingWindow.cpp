@@ -25,10 +25,8 @@
 #include "GradingWindow.h"
 #include "Option.h"
 
-
 GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 {
-
 	setupUi(this);
 
 	latex = new QProcess(this);
@@ -96,14 +94,32 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 	connect(build, SIGNAL(clicked()), this, SLOT(build_pdf()));
 	connect(latex, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(view(int,QProcess::ExitStatus)));
 
-	connect(save, SIGNAL(clicked()), this, SLOT(save_data()));
-	connect(load, SIGNAL(clicked()), this, SLOT(load_data()));
-
-	browser->setSource(QUrl("help.htm"));
-
-	show();
+        connect(save, SIGNAL(clicked()), this, SLOT(save_data()));
+        connect(load, SIGNAL(clicked()), this, SLOT(load_data()));
 
 
+        browser->setSource(QUrl("help.htm"));
+
+
+        Option config("config", this);
+        save_dir = config.getOption("save_dir");
+
+        if (save_dir.isEmpty()) {
+#ifdef Q_OS_LINUX
+                save_dir = QProcessEnvironment::systemEnvironment().value("HOME");
+#endif
+
+#ifdef Q_OS_WIN32
+                QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders", QSettings::NativeFormat);
+                save_dir = settings.value("Personal").toString();
+#endif
+                if (save_dir.isEmpty()) {
+                        save_dir = ".";
+                }
+        }
+        save_dir += "/";
+
+        show();
 }
 
 
@@ -147,8 +163,8 @@ void GradingWindow::stack_text()
 
 
 
-/* Die Funktion build_pdf liest den inhalt aus frame.tex modifiziert die Variablen und schreib es in out.tex.
- * out.tex wird an LaTeX übergeben und die resultierende pdf Datei angezeigt.
+/* Die Funktion build_pdf liest den inhalt aus frame.tex modifiziert die Variablen und schreib es in grading.tex.
+ * grading.tex wird an LaTeX übergeben und die resultierende pdf Datei angezeigt.
  */
 void GradingWindow::build_pdf()
 {
@@ -245,7 +261,7 @@ void GradingWindow::build_pdf()
 	source.replace("VAR_TICK_H", QString::number(tick_pos[gh->checkedId()]));
 	source.replace("VAR_TEXT", edit->toPlainText());
 
-	QFile out("out.tex");
+        QFile out(QDir::tempPath() + "/grading.tex");
 	if (!out.open(QIODevice::WriteOnly | QIODevice::Text)) {
 		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Quelldatei konnte nicht erstellt werden!", QMessageBox::Close, this).exec();
 		return;
@@ -257,7 +273,8 @@ void GradingWindow::build_pdf()
 	out_stream << source;
 	out.close();
 
-	latex->start(config.getOption("bin_pdflatex"), QStringList("out.tex"));
+        latex->setWorkingDirectory(QDir::tempPath());
+        latex->start(config.getOption("bin_pdflatex"), QStringList("grading.tex"));
 	if (!latex->waitForStarted(3000)) {
 		QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
 		viewer->close();
@@ -277,7 +294,7 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 
 		if (viewer->state() == QProcess::Running) viewer->close();
 
-		viewer->start(config.getOption("bin_pdfview"), QStringList("out.pdf"));
+                viewer->start(config.getOption("bin_pdfview"), QStringList(QDir::tempPath() + "/grading.pdf"));
 		if (!viewer->waitForStarted(3000)) {
 			QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
 			viewer->close();
@@ -289,22 +306,20 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 }
 
 
+
+
+
 void GradingWindow::closeEvent(QCloseEvent *event)
 {
 	event->accept();
 }
 
 
+
+
+
 void GradingWindow::save_data()
 {
-        if (save_dir.isEmpty()) {
-                Option config("config", this);
-                save_dir = config.getOption("save_dir");
-                if (save_dir.isEmpty())
-                        save_dir = ".";
-                save_dir += "/";
-        }
-
         if (save_name.isEmpty()) {
                 save_name = save_name_apprentice->text() + " " + QString::number(save_year->value());
         }
@@ -401,15 +416,6 @@ void GradingWindow::save_data()
 
 void GradingWindow::load_data()
 {
-
-        if (save_dir.isEmpty()) {
-                Option config("config", this);
-                save_dir = config.getOption("save_dir");
-                if (save_dir.isEmpty())
-                        save_dir = ".";
-                save_dir += "/";
-        }
-
 	QString filename = QFileDialog::getOpenFileName(this, "Speichern", save_dir, "Beurteilung (*.grd)");
 	if (filename.isEmpty()) {
 		return;
