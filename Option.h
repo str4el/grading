@@ -1,6 +1,6 @@
 /*
  *
- *  Copyright (C) 2009 Stephan Reinhard <Stephan-Reinhard@gmx.de>
+ *  Copyright (C) 2009, 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
  *
  *  This file is part of grading
  *
