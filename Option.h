@@ -25,6 +25,12 @@
 
 #include <QtGui>
 
+/*!
+* \class Option
+* \brief Class for administrating options.
+*
+* \author Stephan Reinhard
+*/
 class Option : public QObject
 {
 

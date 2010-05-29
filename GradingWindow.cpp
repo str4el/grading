@@ -1,6 +1,7 @@
 /*
  *
  *  Copyright (C) 2009, 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
+ *                           Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
  *
  *  This file is part of grading
  *
@@ -19,76 +20,20 @@
  *
  */
 
-
-
 #include <QtGui>
 #include "GradingWindow.h"
 #include "Option.h"
+
 
 GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 {
 	setupUi(this);
 
-	latex = new QProcess(this);
-	viewer = new QProcess(this);
+        latex = new QProcess(this);
+        viewer = new QProcess(this);
 
-/* Die checks Grupieren
- */
-	ga = new QButtonGroup;
-	ga->addButton(check_a1, 0);
-	ga->addButton(check_a2, 1);
-	ga->addButton(check_a3, 2);
-	ga->addButton(check_a4, 3);
-	ga->addButton(check_a5, 4);
-
-	gb = new QButtonGroup;
-	gb->addButton(check_b1, 0);
-	gb->addButton(check_b2, 1);
-	gb->addButton(check_b3, 2);
-	gb->addButton(check_b4, 3);
-	gb->addButton(check_b5, 4);
-
-	gc = new QButtonGroup;
-	gc->addButton(check_c1, 0);
-	gc->addButton(check_c2, 1);
-	gc->addButton(check_c3, 2);
-	gc->addButton(check_c4, 3);
-	gc->addButton(check_c5, 4);
-
-	gd = new QButtonGroup;
-	gd->addButton(check_d1, 0);
-	gd->addButton(check_d2, 1);
-	gd->addButton(check_d3, 2);
-	gd->addButton(check_d4, 3);
-	gd->addButton(check_d5, 4);
-
-	ge = new QButtonGroup;
-	ge->addButton(check_e1, 0);
-	ge->addButton(check_e2, 1);
-	ge->addButton(check_e3, 2);
-	ge->addButton(check_e4, 3);
-	ge->addButton(check_e5, 4);
-
-	gf = new QButtonGroup;
-	gf->addButton(check_f1, 0);
-	gf->addButton(check_f2, 1);
-	gf->addButton(check_f3, 2);
-	gf->addButton(check_f4, 3);
-	gf->addButton(check_f5, 4);
-
-	gg = new QButtonGroup;
-	gg->addButton(check_g1, 0);
-	gg->addButton(check_g2, 1);
-	gg->addButton(check_g3, 2);
-	gg->addButton(check_g4, 3);
-	gg->addButton(check_g5, 4);
-
-	gh = new QButtonGroup;
-	gh->addButton(check_h1, 0);
-	gh->addButton(check_h2, 1);
-	gh->addButton(check_h3, 2);
-	gh->addButton(check_h4, 3);
-	gh->addButton(check_h5, 4);
+        // Group radio buttons.
+        this->groupRadioButtions();
 
 	connect(stack, SIGNAL(clicked()), this, SLOT(stack_text()));
 	connect(build, SIGNAL(clicked()), this, SLOT(build_pdf()));
@@ -97,9 +42,7 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
         connect(save, SIGNAL(clicked()), this, SLOT(save_data()));
         connect(load, SIGNAL(clicked()), this, SLOT(load_data()));
 
-
-        browser->setSource(QUrl("help.htm"));
-
+        browser->setSource(QUrl("./help.htm"));
 
         Option config("config", this);
         save_dir = config.getOption("save_dir");
@@ -121,16 +64,6 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
         show();
 }
-
-
-
-
-GradingWindow::~GradingWindow()
-{
-
-}
-
-
 
 
 /* Die Funktion stack_text stellt den Beurteilungstext aus Vorgefertigten Sätzen zusammen.
@@ -160,7 +93,6 @@ void GradingWindow::stack_text()
 	edit->setPlainText(text);
 	tab->setCurrentWidget(tab_edit);
 }
-
 
 
 /* Die Funktion build_pdf liest den inhalt aus frame.tex modifiziert die Variablen und schreib es in grading.tex.
@@ -251,14 +183,14 @@ void GradingWindow::build_pdf()
 	source.replace("VAR_TICK_TO_TEXT", QString::number(tick_to_text + offset_tick_to_text->value()));
 	source.replace("VAR_TICK_TO_TICK_1", QString::number(tick_to_tick_1 + offset_tick_to_tick_1->value()));
 	source.replace("VAR_TICK_TO_TICK_2", QString::number(tick_to_tick_2 + offset_tick_to_tick_2->value()));
-	source.replace("VAR_TICK_A", QString::number(tick_pos[ga->checkedId()]));
-	source.replace("VAR_TICK_B", QString::number(tick_pos[gb->checkedId()]));
-	source.replace("VAR_TICK_C", QString::number(tick_pos[gc->checkedId()]));
-	source.replace("VAR_TICK_D", QString::number(tick_pos[gd->checkedId()]));
-	source.replace("VAR_TICK_E", QString::number(tick_pos[ge->checkedId()]));
-	source.replace("VAR_TICK_F", QString::number(tick_pos[gf->checkedId()]));
-	source.replace("VAR_TICK_G", QString::number(tick_pos[gg->checkedId()]));
-	source.replace("VAR_TICK_H", QString::number(tick_pos[gh->checkedId()]));
+	source.replace("VAR_TICK_A", QString::number(tick_pos[radioGroupA->checkedId()]));
+	source.replace("VAR_TICK_B", QString::number(tick_pos[radioGroupB->checkedId()]));
+	source.replace("VAR_TICK_C", QString::number(tick_pos[radioGroupC->checkedId()]));
+	source.replace("VAR_TICK_D", QString::number(tick_pos[radioGroupD->checkedId()]));
+	source.replace("VAR_TICK_E", QString::number(tick_pos[radioGroupE->checkedId()]));
+	source.replace("VAR_TICK_F", QString::number(tick_pos[radioGroupF->checkedId()]));
+        source.replace("VAR_TICK_G", QString::number(tick_pos[radioGroupG->checkedId()]));
+	source.replace("VAR_TICK_H", QString::number(tick_pos[radioGroupH->checkedId()]));
 	source.replace("VAR_TEXT", edit->toPlainText());
 
         QFile out(QDir::tempPath() + "/grading.tex");
@@ -283,39 +215,84 @@ void GradingWindow::build_pdf()
 }
 
 
-
-
-
 void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 {
 	Option config("config", this);
 
-	if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
+        if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
 
-		if (viewer->state() == QProcess::Running) viewer->close();
+                if (viewer->state() == QProcess::Running) viewer->close();
 
                 viewer->start(config.getOption("bin_pdfview"), QStringList(QDir::tempPath() + "/grading.pdf"));
-		if (!viewer->waitForStarted(3000)) {
-			QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
-			viewer->close();
-			return;
-		}
-	} else {
-	QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht ordnugsgemäß beendet!", QMessageBox::Close, this).exec();
-	}
+                if (!viewer->waitForStarted(3000)) {
+                        QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
+                        viewer->close();
+                        return;
+                }
+        } else {
+                QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht ordnugsgemäß beendet!", QMessageBox::Close, this).exec();
+        }
 }
 
 
-
-
-
-void GradingWindow::closeEvent(QCloseEvent *event)
+void GradingWindow::groupRadioButtions()
 {
-	event->accept();
+        this->radioGroupA = new QButtonGroup;
+        this->radioGroupA->addButton(check_a1, GradingWindow::VERY_GOOD);
+        this->radioGroupA->addButton(check_a2, GradingWindow::GOOD);
+        this->radioGroupA->addButton(check_a3, GradingWindow::NORMAL);
+        this->radioGroupA->addButton(check_a4, GradingWindow::BAD);
+        this->radioGroupA->addButton(check_a5, GradingWindow::VERY_BAD);
+
+        this->radioGroupB = new QButtonGroup;
+        this->radioGroupB->addButton(check_b1, GradingWindow::VERY_GOOD);
+        this->radioGroupB->addButton(check_b2, GradingWindow::GOOD);
+        this->radioGroupB->addButton(check_b3, GradingWindow::NORMAL);
+        this->radioGroupB->addButton(check_b4, GradingWindow::BAD);
+        this->radioGroupB->addButton(check_b5, GradingWindow::VERY_BAD);
+
+        this->radioGroupC = new QButtonGroup;
+        this->radioGroupC->addButton(check_c1, GradingWindow::VERY_GOOD);
+        this->radioGroupC->addButton(check_c2, GradingWindow::GOOD);
+        this->radioGroupC->addButton(check_c3, GradingWindow::NORMAL);
+        this->radioGroupC->addButton(check_c4, GradingWindow::BAD);
+        this->radioGroupC->addButton(check_c5, GradingWindow::VERY_BAD);
+
+        this->radioGroupD = new QButtonGroup;
+        this->radioGroupD->addButton(check_d1, GradingWindow::VERY_GOOD);
+        this->radioGroupD->addButton(check_d2, GradingWindow::GOOD);
+        this->radioGroupD->addButton(check_d3, GradingWindow::NORMAL);
+        this->radioGroupD->addButton(check_d4, GradingWindow::BAD);
+        this->radioGroupD->addButton(check_d5, GradingWindow::VERY_BAD);
+
+        this->radioGroupE = new QButtonGroup;
+        this->radioGroupE->addButton(check_e1, GradingWindow::VERY_GOOD);
+        this->radioGroupE->addButton(check_e2, GradingWindow::GOOD);
+        this->radioGroupE->addButton(check_e3, GradingWindow::NORMAL);
+        this->radioGroupE->addButton(check_e4, GradingWindow::BAD);
+        this->radioGroupE->addButton(check_e5, GradingWindow::VERY_BAD);
+
+        this->radioGroupF = new QButtonGroup;
+        this->radioGroupF->addButton(check_f1, GradingWindow::VERY_GOOD);
+        this->radioGroupF->addButton(check_f2, GradingWindow::GOOD);
+        this->radioGroupF->addButton(check_f3, GradingWindow::NORMAL);
+        this->radioGroupF->addButton(check_f4, GradingWindow::BAD);
+        this->radioGroupF->addButton(check_f5, GradingWindow::VERY_BAD);
+
+        this->radioGroupG = new QButtonGroup;
+        this->radioGroupG->addButton(check_g1, GradingWindow::VERY_GOOD);
+        this->radioGroupG->addButton(check_g2, GradingWindow::GOOD);
+        this->radioGroupG->addButton(check_g3, GradingWindow::NORMAL);
+        this->radioGroupG->addButton(check_g4, GradingWindow::BAD);
+        this->radioGroupG->addButton(check_g5, GradingWindow::VERY_BAD);
+
+        this->radioGroupH = new QButtonGroup;
+        this->radioGroupH->addButton(check_h1, GradingWindow::VERY_GOOD);
+        this->radioGroupH->addButton(check_h2, GradingWindow::GOOD);
+        this->radioGroupH->addButton(check_h3, GradingWindow::NORMAL);
+        this->radioGroupH->addButton(check_h4, GradingWindow::BAD);
+        this->radioGroupH->addButton(check_h5, GradingWindow::VERY_BAD);
 }
-
-
-
 
 
 void GradingWindow::save_data()
@@ -324,80 +301,41 @@ void GradingWindow::save_data()
                 save_name = save_name_apprentice->text() + " " + QString::number(save_year->value());
         }
 
-	QString filename = QFileDialog::getSaveFileName(this, "Speichern", save_dir + save_name, "Beurteilung (*.grd)");
-	if (filename.isEmpty()) {
-		return;
-	}
+        QString filename = QFileDialog::getSaveFileName(this, "Speichern", save_dir + save_name, "Beurteilung (*.grd)");
+        if (filename.isEmpty()) {
+                return;
+        }
 
-	if (QFileInfo(filename).suffix().isEmpty()) 
-		filename.append(".grd");
-	
-	QFile file(filename);
+        if (QFileInfo(filename).suffix().isEmpty())
+                filename.append(".grd");
+
+        QFile file(filename);
 	if (!file.open(QIODevice::WriteOnly)) {
 		QMessageBox(QMessageBox::Warning, "Fehler", "Datei konnte nicht geöffnet werden!", QMessageBox::Close, this).exec();
 		return;
 	}
 
-	QDataStream out(&file);
-	out.setVersion(QDataStream::Qt_4_5);
+        QDataStream out(&file);
+        out.setVersion(QDataStream::Qt_4_5);
 
-	out << 0xEFAA << 1;
-	
-	out << save_name_apprentice->text();
-	out << save_name_instructor->text();
-	out << save_year->value();
-	out << save_date1->date();
-	out << save_date2->date();
-	out << save_comment->toPlainText();
-	
-	out << check_a1->isChecked();
-	out << check_a2->isChecked();
-	out << check_a3->isChecked();
-	out << check_a4->isChecked();
-	out << check_a5->isChecked();
-	
-	out << check_b1->isChecked();
-	out << check_b2->isChecked();
-	out << check_b3->isChecked();
-	out << check_b4->isChecked();
-	out << check_b5->isChecked();
-	
-	out << check_c1->isChecked();
-	out << check_c2->isChecked();
-	out << check_c3->isChecked();
-	out << check_c4->isChecked();
-	out << check_c5->isChecked();
-	
-	out << check_d1->isChecked();
-	out << check_d2->isChecked();
-	out << check_d3->isChecked();
-	out << check_d4->isChecked();
-	out << check_d5->isChecked();
-	
-	out << check_e1->isChecked();
-	out << check_e2->isChecked();
-	out << check_e3->isChecked();
-	out << check_e4->isChecked();
-	out << check_e5->isChecked();
-	
-	out << check_f1->isChecked();
-	out << check_f2->isChecked();
-	out << check_f3->isChecked();
-	out << check_f4->isChecked();
-	out << check_f5->isChecked();
-	
-	out << check_g1->isChecked();
-	out << check_g2->isChecked();
-	out << check_g3->isChecked();
-	out << check_g4->isChecked();
-	out << check_g5->isChecked();
-	
-	out << check_h1->isChecked();
-	out << check_h2->isChecked();
-	out << check_h3->isChecked();
-	out << check_h4->isChecked();
-	out << check_h5->isChecked();
-	
+        // Magic Byte und Version der Datei
+        out << 0xEFAA << 2;
+
+        out << save_name_apprentice->text();
+        out << save_name_instructor->text();
+        out << save_year->value();
+        out << save_date1->date();
+        out << save_date2->date();
+        out << save_comment->toPlainText();
+
+        out << radioGroupA->checkedId();
+        out << radioGroupB->checkedId();
+        out << radioGroupC->checkedId();
+        out << radioGroupD->checkedId();
+        out << radioGroupE->checkedId();
+        out << radioGroupF->checkedId();
+        out << radioGroupG->checkedId();
+        out << radioGroupH->checkedId();
 
 	out << combo_mw->currentIndex();
 
@@ -411,8 +349,6 @@ void GradingWindow::save_data()
 
 	file.close();
 }
-
-
 
 void GradingWindow::load_data()
 {
@@ -437,7 +373,7 @@ void GradingWindow::load_data()
 	QString text;
 	QDate date;
 	int value;
-	bool flag;
+        int radioButtonState;
 
 	in >> value;
 	if (value != 0xEFAA) {
@@ -447,7 +383,13 @@ void GradingWindow::load_data()
 
 	int version;
 	in >> version;
-	if (version > 1) {
+
+        if (version < 2) {
+                QMessageBox(QMessageBox::Warning, "Fehler", "Die Datei ist von einer inkompatiblen veralteten Version erstellt worden!", QMessageBox::Close, this).exec();
+                return;
+        }
+
+        if (version > 2) {
 		QMessageBox(QMessageBox::Warning, "Fehler", "Die Datei wurde von einer neueren Version des Programms gespeichert!", QMessageBox::Close, this).exec();
 		return;
 	}
@@ -466,96 +408,31 @@ void GradingWindow::load_data()
 	save_comment->setPlainText(text);
 
 
-	in >> flag;
-	check_a1->setChecked(flag);
-	in >> flag;
-	check_a2->setChecked(flag);
-	in >> flag;
-	check_a3->setChecked(flag);
-	in >> flag;
-	check_a4->setChecked(flag);
-	in >> flag;
-	check_a5->setChecked(flag);
+        in >> radioButtonState;
+        radioGroupA->button(radioButtonState)->setChecked(true);
 
-	in >> flag;
-	check_b1->setChecked(flag);
-	in >> flag;
-	check_b2->setChecked(flag);
-	in >> flag;
-	check_b3->setChecked(flag);
-	in >> flag;
-	check_b4->setChecked(flag);
-	in >> flag;
-	check_b5->setChecked(flag);
+        in >> radioButtonState;
+        radioGroupB->button(radioButtonState)->setChecked(true);
 
-	in >> flag;
-	check_c1->setChecked(flag);
-	in >> flag;
-	check_c2->setChecked(flag);
-	in >> flag;
-	check_c3->setChecked(flag);
-	in >> flag;
-	check_c4->setChecked(flag);
-	in >> flag;
-	check_c5->setChecked(flag);
+        in >> radioButtonState;
+        radioGroupC->button(radioButtonState)->setChecked(true);
 
-	in >> flag;
-	check_d1->setChecked(flag);
-	in >> flag;
-	check_d2->setChecked(flag);
-	in >> flag;
-	check_d3->setChecked(flag);
-	in >> flag;
-	check_d4->setChecked(flag);
-	in >> flag;
-	check_d5->setChecked(flag);
+        in >> radioButtonState;
+        radioGroupD->button(radioButtonState)->setChecked(true);
 
-	in >> flag;
-	check_e1->setChecked(flag);
-	in >> flag;
-	check_e2->setChecked(flag);
-	in >> flag;
-	check_e3->setChecked(flag);
-	in >> flag;
-	check_e4->setChecked(flag);
-	in >> flag;
-	check_e5->setChecked(flag);
+        in >> radioButtonState;
+        radioGroupE->button(radioButtonState)->setChecked(true);
 
-	in >> flag;
-	check_f1->setChecked(flag);
-	in >> flag;
-	check_f2->setChecked(flag);
-	in >> flag;
-	check_f3->setChecked(flag);
-	in >> flag;
-	check_f4->setChecked(flag);
-	in >> flag;
-	check_f5->setChecked(flag);
+        in >> radioButtonState;
+        radioGroupF->button(radioButtonState)->setChecked(true);
 
-	in >> flag;
-	check_g1->setChecked(flag);
-	in >> flag;
-	check_g2->setChecked(flag);
-	in >> flag;
-	check_g3->setChecked(flag);
-	in >> flag;
-	check_g4->setChecked(flag);
-	in >> flag;
-	check_g5->setChecked(flag);
+        in >> radioButtonState;
+        radioGroupG->button(radioButtonState)->setChecked(true);
 
-	in >> flag;
-	check_h1->setChecked(flag);
-	in >> flag;
-	check_h2->setChecked(flag);
-	in >> flag;
-	check_h3->setChecked(flag);
-	in >> flag;
-	check_h4->setChecked(flag);
-	in >> flag;
-	check_h5->setChecked(flag);
+        in >> radioButtonState;
+        radioGroupH->button(radioButtonState)->setChecked(true);
 
-	
-	in >> value;
+        in >> value;
 	combo_mw->setCurrentIndex(value);
 
 	in >> value;
@@ -575,7 +452,3 @@ void GradingWindow::load_data()
 	
 	file.close();
 }
-
-
-
-

@@ -1,6 +1,7 @@
 /*
  *
  *  Copyright (C) 2009, 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
+ *                           Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
  *
  *  This file is part of grading
  *
@@ -19,40 +20,39 @@
  *
  */
 
-
-#ifndef GRADINGWINDOW_H
-#define GRADINGWINDOW_H
+#pragma once
 
 #include <QtGui>
 #include "ui_GradingWindow.h"
 
+/*!
+* \class GradingWindow
+* \brief Class for creating main window of grading program.
+*
+* \author Stephan Reinhard
+* \author Wolfgang Forstmeier
+*/
 class GradingWindow : public QMainWindow, public Ui::GradingWindow
 {
-
-	Q_OBJECT
+        Q_OBJECT
 
 public:
-// Funktionen
-	GradingWindow(QWidget *parrent = 0);
-	~GradingWindow();
-
-
-public slots:
-
-protected:
-// Funktionen
-	void closeEvent(QCloseEvent *event);
+        // Constructor.
+        GradingWindow(QWidget *parrent = 0);
+        // Overwrite compiler generated constructor.
+        ~GradingWindow() {}
 
 private:
-// Variablen
-	QButtonGroup *ga;
-	QButtonGroup *gb;
-	QButtonGroup *gc;
-	QButtonGroup *gd;
-	QButtonGroup *ge;
-	QButtonGroup *gf;
-	QButtonGroup *gg;
-	QButtonGroup *gh;
+        QButtonGroup *radioGroupA;
+        QButtonGroup *radioGroupB;
+        QButtonGroup *radioGroupC;
+        QButtonGroup *radioGroupD;
+        QButtonGroup *radioGroupE;
+        QButtonGroup *radioGroupF;
+        QButtonGroup *radioGroupG;
+        QButtonGroup *radioGroupH;
+
+        enum GRADE { VERY_GOOD = 0, GOOD, NORMAL, BAD, VERY_BAD };
 
 	QProcess *latex;
 	QProcess *viewer;
@@ -60,13 +60,15 @@ private:
 	QString save_name;
 	QString save_dir;
 
+        void groupRadioButtions(void);
+
 private slots:
-	void stack_text();
-	void build_pdf();
-	void save_data();
-	void load_data();
-	void view(int exitCode, QProcess::ExitStatus exitStatus );
+        void stack_text();
+        void build_pdf();
+
+        void save_data();
+        void load_data();
+
+        void view(int exitCode, QProcess::ExitStatus exitStatus );
 
 };
-
-#endif
