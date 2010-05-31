@@ -1,7 +1,6 @@
 /*
  *
- *  Copyright (C) 2009, 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
- *                           Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
+ *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
  *
  *  This file is part of grading
  *
@@ -20,16 +19,28 @@
  *
  */
 
-#include <QApplication>
-#include "GradingWindow.h"
+#pragma once
 
-int main(int argc, char *argv[]) {
+#include <QString>
+#include <QVariant>
 
-	QApplication app(argc, argv);
+class GradingVariableContainer
+{
 
-    GradingWindow myGradingWindow;
-    myGradingWindow.show();
+private:
+        QString  name;
+        QVariant value;
 
-	return app.exec();
-}
+public:
+        template <class T>
+                        GradingVariableContainer(QString myName, T myValue) {
+                this->name  = myName;
+                this->value = myValue;
+        };
 
+        ~GradingVariableContainer() {};
+
+
+        QString  getName()  { return this->name;  };
+        QVariant getValue() { return this->value; };
+};

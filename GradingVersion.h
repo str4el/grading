@@ -1,7 +1,6 @@
 /*
  *
- *  Copyright (C) 2009, 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
- *                           Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
+ *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
  *
  *  This file is part of grading
  *
@@ -20,16 +19,18 @@
  *
  */
 
-#include <QApplication>
-#include "GradingWindow.h"
+#pragma once
 
-int main(int argc, char *argv[]) {
+#include <QString>
 
-	QApplication app(argc, argv);
+class GradingVersion {
 
-    GradingWindow myGradingWindow;
-    myGradingWindow.show();
+private:
+        static QString version;
 
-	return app.exec();
-}
+public:
+        static QString getVersion() { return GradingVersion::version; };
+
+};
+
 

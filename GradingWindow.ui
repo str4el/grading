@@ -1397,6 +1397,20 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
+         <widget class="QLabel" name="version_label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Grading</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QTextBrowser" name="browser">
           <property name="openExternalLinks">
            <bool>true</bool>
