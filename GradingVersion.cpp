@@ -21,4 +21,4 @@
 
 #include "GradingVersion.h"
 
-QString GradingVersion::version = "0.3.0";
+QString GradingVersion::version = "0.3.1";

@@ -1,6 +1,7 @@
 /*
  *
  *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
+ *  Copyright (C) 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
  *
  *  This file is part of grading
  *
@@ -32,15 +33,15 @@ private:
         QVariant value;
 
 public:
-        template <class T>
-                        GradingVariableContainer(QString myName, T myValue) {
+        GradingVariableContainer(QString myName, QVariant myValue)
+        {
                 this->name  = myName;
                 this->value = myValue;
-        };
+        }
 
-        ~GradingVariableContainer() {};
+        ~GradingVariableContainer() {}
 
 
-        QString  getName()  { return this->name;  };
-        QVariant getValue() { return this->value; };
+        QString  getName()  { return this->name;  }
+        QVariant getValue() { return this->value; }
 };

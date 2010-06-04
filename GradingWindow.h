@@ -40,7 +40,7 @@ public:
         // Constructor.
         GradingWindow(QWidget *parrent = 0);
         // Overwrite compiler generated constructor.
-        ~GradingWindow() {};
+        ~GradingWindow() {}
 
 private:
         QButtonGroup *radioGroupA;

@@ -1,6 +1,7 @@
 /*
  *
  *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
+ *  Copyright (C) 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
  *
  *  This file is part of grading
  *
@@ -19,13 +20,42 @@
  *
  */
 
-#include "GradingSave.h"
-
 #include <QFile>
 #include <QIODevice>
 #include <QDataStream>
 
 #include "GradingVersion.h"
+#include "GradingSave.h"
+
+GradingSave::~GradingSave() {
+        GradingVariableContainer *value;
+        foreach (value, valueMap.values()) {
+                delete value;
+        }
+
+        valueMap.clear();
+}
+
+
+
+bool GradingSave::registerVariable(QString varName, QVariant varValue)
+{
+
+        if (valueMap.contains(varName)) {
+                delete valueMap[varName];
+        }
+
+        this->valueMap.insert(varName, new GradingVariableContainer(varName, varValue));
+
+        if( !this->valueMap.contains(varName) )
+        {
+                return false;
+        }
+
+        return true;
+}
+
+
 
 QVariant GradingSave::getValue(QString varName)
 {
@@ -35,12 +65,18 @@ QVariant GradingSave::getValue(QString varName)
         }
 
         return this->valueMap.value(varName)->getValue();
-};
+}
+
+
+
 
 bool GradingSave::save( void )
 {
         return this->save( this->streamType );
 }
+
+
+
 
 bool GradingSave::save( TYPE myStreamType )
 {
@@ -56,6 +92,9 @@ bool GradingSave::save( TYPE myStreamType )
 
         }
 }
+
+
+
 
 bool GradingSave::saveBinaryFile( void )
 {
@@ -81,16 +120,20 @@ bool GradingSave::saveBinaryFile( void )
 
         file.close();
 
-        // Clear up map.
-        this->valueMap.clear();
-
         return true;
 }
+
+
+
 
 bool GradingSave::load(void)
 {
         return this->load( this->streamType );
 }
+
+
+
+
 
 bool GradingSave::load(TYPE myStreamType)
 {
@@ -106,6 +149,10 @@ bool GradingSave::load(TYPE myStreamType)
 
         }
 }
+
+
+
+
 
 bool GradingSave::loadBinaryFile()
 {

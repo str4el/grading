@@ -29,7 +29,7 @@ private:
         static QString version;
 
 public:
-        static QString getVersion() { return GradingVersion::version; };
+        static QString getVersion() { return GradingVersion::version; }
 
 };
 

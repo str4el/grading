@@ -23,8 +23,6 @@
 #include <QtGui>
 #include <QString>
 
-#include <boost/shared_ptr.hpp>
-
 #include "GradingWindow.h"
 #include "Option.h"
 #include "GradingSave.h"
@@ -316,7 +314,7 @@ void GradingWindow::save_data()
         if (QFileInfo(filename).suffix().isEmpty())
                 filename.append(".grd");
 
-        boost::shared_ptr<GradingSave> binarySave( new GradingSave( GradingSave::BINARY_FILE ) );
+        GradingSave *binarySave = new GradingSave( GradingSave::BINARY_FILE );
 
         binarySave->setFilename(filename);
 
@@ -345,11 +343,16 @@ void GradingWindow::save_data()
         binarySave->registerVariable("comboE index", combo_e->currentIndex());
 
         binarySave->registerVariable("edit", edit->toPlainText());
+        binarySave->registerVariable("edit", edit->toPlainText());
+
 
         if( !binarySave->save() )
         {
                 QMessageBox(QMessageBox::Warning, "Fehler", "Fehler beim speichern der Datei!", QMessageBox::Close, this).exec();
         }
+
+
+        delete binarySave;
 }
 
 void GradingWindow::load_data()
@@ -359,7 +362,7 @@ void GradingWindow::load_data()
                 return;
         }
 
-        boost::shared_ptr<GradingSave> binaryLoad( new GradingSave( GradingSave::BINARY_FILE ) );
+        GradingSave *binaryLoad = new GradingSave( GradingSave::BINARY_FILE );
 
         binaryLoad->setFilename(filename);
 
@@ -395,4 +398,6 @@ void GradingWindow::load_data()
         {
                 QMessageBox(QMessageBox::Warning, "Fehler", "Datei konnte nicht eingelesen werden!", QMessageBox::Close, this).exec();
         }
+
+        delete binaryLoad;
 }

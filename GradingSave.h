@@ -1,6 +1,7 @@
 /*
  *
  *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
+ *  Copyright (C) 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
  *
  *  This file is part of grading
  *
@@ -25,8 +26,6 @@
 #include <QMap>
 #include <QSharedPointer>
 
-#include "boost/shared_ptr.hpp"
-
 #include "GradingVariableContainer.h"
 
 class GradingSave
@@ -36,18 +35,18 @@ public:
         enum TYPE { BINARY_FILE = 0 };
 
 private:
-        QMap<QString, boost::shared_ptr<GradingVariableContainer> > valueMap;
+        QMap<QString, GradingVariableContainer *> valueMap;
         TYPE streamType;
         QString filename;
         const int fileVersion;
 
 public:    
         // Constructors
-        GradingSave() : fileVersion(0xEFAA) {};
-        GradingSave(TYPE myStreamType) : fileVersion(0xEFAA) { this->streamType = myStreamType; };
+        GradingSave() : fileVersion(0xEFAA) {}
+        GradingSave(TYPE myStreamType) : fileVersion(0xEFAA) { this->streamType = myStreamType; }
 
         // Destructors
-        ~GradingSave() {};
+        ~GradingSave();
 
         bool save(void);
         bool save(TYPE myStreamType);
@@ -59,27 +58,14 @@ public:
         bool loadBinaryFile(void);
 
         // Setter Methods
-        template <class T>
-                        bool registerVariable(QString varName, T varValue);
+        bool registerVariable(QString varName, QVariant varValue);
 
-        void setType(TYPE myStreamType) { this->streamType = myStreamType; };
-        void setFilename(QString myFilename) { this->filename = myFilename; };
+        void setType(TYPE myStreamType) { this->streamType = myStreamType; }
+        void setFilename(QString myFilename) { this->filename = myFilename; }
 
         // Getter Methods
         QVariant getValue(QString varName);
 };
 
-template <class T>
-                bool GradingSave::registerVariable(QString varName, T varValue)
-{
-        boost::shared_ptr<GradingVariableContainer> tmp(new GradingVariableContainer(varName, varValue));
 
-        this->valueMap[varName] = tmp;
 
-        if( !this->valueMap.contains(varName) )
-        {
-                return false;
-        }
-
-        return true;
-};

@@ -2,8 +2,6 @@ TEMPLATE = app
 TARGET = 
 DEPENDPATH += .
 INCLUDEPATH += .
-INCLUDEPATH += D:\Sourcen\boost_1_42_0
-INCLUDEPATH += C:\Programme\Boost\boost_1_43_0
 
 # Input
 HEADERS += GradingWindow.h \
