@@ -35,6 +35,9 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
         latex = new QProcess(this);
         viewer = new QProcess(this);
 
+        layout_scene = new QGraphicsScene(layout_preview);
+        draw_preview();
+
         // Group radio buttons.
         this->groupRadioButtions();
 
@@ -69,6 +72,18 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
         show();
 }
+
+
+
+
+GradingWindow::~GradingWindow()
+{
+        delete latex;
+        delete viewer;
+        delete layout_scene;
+}
+
+
 
 
 /* Die Funktion stack_text stellt den Beurteilungstext aus Vorgefertigten Sätzen zusammen.
@@ -298,6 +313,109 @@ void GradingWindow::groupRadioButtions()
         this->radioGroupH->addButton(check_h4, GradingWindow::BAD);
         this->radioGroupH->addButton(check_h5, GradingWindow::VERY_BAD);
 }
+
+
+
+
+
+void GradingWindow::draw_arrow(QGraphicsScene *scene, const QLineF line, const QPen pen)
+{
+        scene->addLine(line, pen);
+
+        QLineF wing(line.x1(), line.y1(), line.x1() + 3.0, line.y1());
+
+        wing.setAngle(line.angle() + 45.0);
+        scene->addLine(wing, pen);
+        wing.setAngle(line.angle() - 45.0);
+        scene->addLine(wing, pen);
+
+        wing.setLine(line.x2(), line.y2(), line.x2() + 3.0, line.y2());
+
+        wing.setAngle(line.angle() + 135.0);
+        scene->addLine(wing, pen);
+        wing.setAngle(line.angle() - 135.0);
+        scene->addLine(wing, pen);
+
+}
+
+
+
+
+void GradingWindow::draw_preview()
+{
+        qreal px = 15.0;
+        qreal py = 15.0;
+
+        qreal hx[5] = { 126.0, 139.0, 152.0, 165.0, 178.0 };
+        qreal hy[8] = { 64.0, 74, 84, 104, 114, 124, 144, 154 };
+        qreal hs = 5;
+
+        qreal ty = 180;
+
+
+        QPen black_solid(Qt::black);
+        QPen blue_solid(Qt::blue);
+        QPen black_dash(Qt::black);
+        black_dash.setStyle(Qt::DashLine);
+
+        QFont font;
+        font.setPixelSize(10);
+
+        layout_scene->clear();
+
+        // Der Rahmen
+        layout_scene->addRect(0, 0, 210, 297, black_solid);
+        layout_scene->addRect(px, py, 184, 250, black_dash);
+
+        // Ausenmaße
+        draw_arrow(layout_scene, QLineF(30, 2, 30, py - 2), blue_solid);
+        layout_scene->addText("1", font)->setPos(32, 0);
+
+        draw_arrow(layout_scene, QLineF(2, 30, px - 2, 30), blue_solid);
+        layout_scene->addText("2", font)->setPos(2, 13);
+
+
+        // Multiple choice
+        for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 8; j++) {
+                        layout_scene->addRect(hx[i], hy[j], hs, hs, Qt::SolidLine, Qt::Dense4Pattern);
+                }
+        }
+
+        draw_arrow(layout_scene, QLineF(px + 2, hy[0] + 2, hx[0] - 2, hy[0] + 2), blue_solid);
+        draw_arrow(layout_scene, QLineF(px + 2, hy[0] - 4, hx[1] - 2, hy[0] - 4), blue_solid);
+        draw_arrow(layout_scene, QLineF(px + 2, hy[0] - 10, hx[2] - 2, hy[0] - 10), blue_solid);
+        draw_arrow(layout_scene, QLineF(px + 2, hy[0] - 16, hx[3] - 2, hy[0] - 16), blue_solid);
+        draw_arrow(layout_scene, QLineF(px + 2, hy[0] - 22, hx[4] - 2, hy[0] - 22), blue_solid);
+
+        layout_scene->addText("3", font)->setPos(60, hy[0] + 2);
+        layout_scene->addText("7", font)->setPos(60, hy[0] - 38);
+
+        draw_arrow(layout_scene, QLineF(hx[4] + 3, py + 2, hx[4] + 3, hy[0] - 2), blue_solid);
+        layout_scene->addText("8", font)->setPos(hx[4] + 5, 35);
+
+        draw_arrow(layout_scene, QLineF(hx[4] + 3, hy[2] + hs + 2, hx[4] + 3, hy[3] - 2), blue_solid);
+        layout_scene->addText("9", font)->setPos(hx[4] + 5, hy[2] + hs - 2);
+
+        draw_arrow(layout_scene, QLineF(hx[4] + 3, hy[5] + hs + 2, hx[4] + 3, hy[6] - 2), blue_solid);
+        layout_scene->addText("10", font)->setPos(hx[4] + 3, hy[5] + hs - 2);
+
+        // Text
+        layout_scene->addRect(px + 2, ty, 180, 40, Qt::SolidLine, Qt::Dense4Pattern);
+
+        draw_arrow(layout_scene, QLineF(hx[4] + 3, hy[7] + hs + 2, hx[4] + 3, ty - 2), blue_solid);
+        layout_scene->addText("11", font)->setPos(hx[4] + 3, hy[7] + hs);
+
+
+
+        //layout_preview->scale(2.0, 2.0);
+        layout_preview->setScene(layout_scene);
+}
+
+
+
+
+
 
 
 void GradingWindow::save_data()

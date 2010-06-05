@@ -40,7 +40,7 @@ public:
         // Constructor.
         GradingWindow(QWidget *parrent = 0);
         // Overwrite compiler generated constructor.
-        ~GradingWindow() {}
+        ~GradingWindow();
 
 private:
         QButtonGroup *radioGroupA;
@@ -54,6 +54,8 @@ private:
 
         enum GRADE { VERY_GOOD = 0, GOOD, NORMAL, BAD, VERY_BAD };
 
+        QGraphicsScene *layout_scene;
+
         QProcess *latex;
         QProcess *viewer;
 
@@ -61,10 +63,12 @@ private:
         QString save_dir;
 
         void groupRadioButtions(void);
+        void draw_arrow(QGraphicsScene *scene, const QLineF line, const QPen pen);
 
 private slots:
         void stack_text();
         void build_pdf();
+        void draw_preview();
 
         void save_data();
         void load_data();

@@ -909,314 +909,382 @@
        <attribute name="title">
         <string>Format</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QGroupBox" name="groupBox_3">
-          <property name="title">
-           <string>Seitenrand</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="QLabel" name="label_24">
-             <property name="text">
-              <string>Abstand oben</string>
-             </property>
-             <property name="buddy">
-              <cstring>offset_top</cstring>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="offset_top">
-             <property name="toolTip">
-              <string>Der Abstand vom oberen Seitenrand. Damit kann der gesammte Inhalt nach oben oder unten verschoben werden.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_25">
-             <property name="text">
-              <string>Abstand links</string>
-             </property>
-             <property name="buddy">
-              <cstring>offset_left</cstring>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="offset_left">
-             <property name="toolTip">
-              <string>Der Abstand vom linken Seitenrand. Damit kann der gesammte Inhalt nach links oder rechts verschoben werden.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+         <widget class="QGraphicsView" name="layout_preview"/>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>Hackenpossitionen</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QLabel" name="label_27">
-             <property name="text">
-              <string>++</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="buddy">
-              <cstring>offset_tick_1</cstring>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="offset_tick_1">
-             <property name="toolTip">
-              <string>Die horizontale Position des ++ Hakens.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_28">
-             <property name="text">
-              <string>+</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="buddy">
-              <cstring>offset_tick_2</cstring>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="offset_tick_2">
-             <property name="toolTip">
-              <string>Die horizontale Position des + Hakens.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_29">
-             <property name="text">
-              <string>0</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="buddy">
-              <cstring>offset_tick_3</cstring>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="offset_tick_3">
-             <property name="toolTip">
-              <string>Die horizontale Position des 0 Hakens.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_30">
-             <property name="text">
-              <string>-</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="buddy">
-              <cstring>offset_tick_4</cstring>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="offset_tick_4">
-             <property name="toolTip">
-              <string>Die horizontale Position des - Hakens.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_31">
-             <property name="text">
-              <string>--</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="buddy">
-              <cstring>offset_tick_5</cstring>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="offset_tick_5">
-             <property name="toolTip">
-              <string>Die horizontale Position des -- Hakens.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Abstand</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="1">
-            <widget class="QSpinBox" name="offset_top_to_tick">
-             <property name="toolTip">
-              <string>Der Abstand vom oberen Seitenrand bis zum ersten Haken. Der gesammte folgende Inhalt wird mit verschoben.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="label_35">
-             <property name="text">
-              <string>zwischen Hacken 1</string>
-             </property>
-             <property name="buddy">
-              <cstring>offset_tick_to_tick_1</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QSpinBox" name="offset_tick_to_tick_1">
-             <property name="toolTip">
-              <string>Der Abstand zwischen den ersten drei Haken und den folgenden zwei. Der gesammte folgende Inhalt wird mit verschoben.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_34">
-             <property name="text">
-              <string>zum Text</string>
-             </property>
-             <property name="buddy">
-              <cstring>offset_tick_to_text</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QSpinBox" name="offset_tick_to_text">
-             <property name="toolTip">
-              <string>Der Abstand zwischen den lezten zwei Haken und dem Beurteilungstext.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLabel" name="label_33">
-             <property name="text">
-              <string>zwischen Hacken 2</string>
-             </property>
-             <property name="buddy">
-              <cstring>offset_tick_to_tick_2</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QSpinBox" name="offset_tick_to_tick_2">
-             <property name="toolTip">
-              <string>Der Abstand zwischen den zweiten zwei Haken und den lezten zwei. Der gesammte folgende Inhalt wird mit verschoben.</string>
-             </property>
-             <property name="minimum">
-              <number>-10</number>
-             </property>
-             <property name="maximum">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_36">
-             <property name="text">
-              <string>zu den Hacken</string>
-             </property>
-             <property name="buddy">
-              <cstring>offset_top_to_tick</cstring>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>99</height>
-           </size>
-          </property>
-         </spacer>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_24">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_top</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="offset_top">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Der Abstand vom oberen Seitenrand. Damit kann der gesammte Inhalt nach oben oder unten verschoben werden.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_25">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>2</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_left</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="offset_left">
+            <property name="toolTip">
+             <string>Der Abstand vom linken Seitenrand. Damit kann der gesammte Inhalt nach links oder rechts verschoben werden.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>3</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_tick_1</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="offset_tick_1">
+            <property name="toolTip">
+             <string>Die horizontale Position des ++ Hakens.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>4</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_tick_2</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QSpinBox" name="offset_tick_2">
+            <property name="toolTip">
+             <string>Die horizontale Position des + Hakens.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>5</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_tick_3</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSpinBox" name="offset_tick_3">
+            <property name="toolTip">
+             <string>Die horizontale Position des 0 Hakens.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>6</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_tick_4</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSpinBox" name="offset_tick_4">
+            <property name="toolTip">
+             <string>Die horizontale Position des - Hakens.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_31">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>7</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_tick_5</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QSpinBox" name="offset_tick_5">
+            <property name="toolTip">
+             <string>Die horizontale Position des -- Hakens.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_33">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>8</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_top_to_tick</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QSpinBox" name="offset_top_to_tick">
+            <property name="toolTip">
+             <string>Der Abstand vom oberen Seitenrand bis zum ersten Haken. Der gesammte folgende Inhalt wird mit verschoben.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_35">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>9</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_tick_to_tick_1</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QSpinBox" name="offset_tick_to_tick_1">
+            <property name="toolTip">
+             <string>Der Abstand zwischen den ersten drei Haken und den folgenden drei. Der gesammte folgende Inhalt wird mit verschoben.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_34">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>10</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_tick_to_tick_2</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QSpinBox" name="offset_tick_to_tick_2">
+            <property name="toolTip">
+             <string>Der Abstand zwischen den zweiten drei Haken und den lezten zwei. Der gesammte folgende Inhalt wird mit verschoben.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_36">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>11</string>
+            </property>
+            <property name="buddy">
+             <cstring>offset_tick_to_text</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QSpinBox" name="offset_tick_to_text">
+            <property name="toolTip">
+             <string>Der Abstand zwischen den lezten zwei Haken und dem Beurteilungstext.</string>
+            </property>
+            <property name="minimum">
+             <number>-10</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -1526,8 +1594,8 @@
   <tabstop>offset_tick_5</tabstop>
   <tabstop>offset_top_to_tick</tabstop>
   <tabstop>offset_tick_to_tick_1</tabstop>
-  <tabstop>offset_tick_to_text</tabstop>
   <tabstop>offset_tick_to_tick_2</tabstop>
+  <tabstop>offset_tick_to_text</tabstop>
   <tabstop>save_name_apprentice</tabstop>
   <tabstop>save_name_instructor</tabstop>
   <tabstop>save_year</tabstop>
@@ -1540,6 +1608,7 @@
   <tabstop>stack</tabstop>
   <tabstop>build</tabstop>
   <tabstop>close</tabstop>
+  <tabstop>layout_preview</tabstop>
  </tabstops>
  <resources/>
  <connections>
