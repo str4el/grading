@@ -946,11 +946,14 @@
             <property name="toolTip">
              <string>Der Abstand vom oberen Seitenrand. Damit kann der gesammte Inhalt nach oben oder unten verschoben werden.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -979,11 +982,14 @@
             <property name="toolTip">
              <string>Der Abstand vom linken Seitenrand. Damit kann der gesammte Inhalt nach links oder rechts verschoben werden.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1012,11 +1018,14 @@
             <property name="toolTip">
              <string>Die horizontale Position des ++ Hakens.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1045,11 +1054,14 @@
             <property name="toolTip">
              <string>Die horizontale Position des + Hakens.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1078,11 +1090,14 @@
             <property name="toolTip">
              <string>Die horizontale Position des 0 Hakens.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1111,11 +1126,14 @@
             <property name="toolTip">
              <string>Die horizontale Position des - Hakens.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1144,11 +1162,14 @@
             <property name="toolTip">
              <string>Die horizontale Position des -- Hakens.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1177,11 +1198,14 @@
             <property name="toolTip">
              <string>Der Abstand vom oberen Seitenrand bis zum ersten Haken. Der gesammte folgende Inhalt wird mit verschoben.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1210,11 +1234,14 @@
             <property name="toolTip">
              <string>Der Abstand zwischen den ersten drei Haken und den folgenden drei. Der gesammte folgende Inhalt wird mit verschoben.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1243,11 +1270,20 @@
             <property name="toolTip">
              <string>Der Abstand zwischen den zweiten drei Haken und den lezten zwei. Der gesammte folgende Inhalt wird mit verschoben.</string>
             </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
+            <property name="prefix">
+             <string/>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
             </property>
            </widget>
           </item>
@@ -1276,11 +1312,21 @@
             <property name="toolTip">
              <string>Der Abstand zwischen den lezten zwei Haken und dem Beurteilungstext.</string>
             </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
             <property name="minimum">
-             <number>-10</number>
+             <number>0</number>
             </property>
             <property name="maximum">
-             <number>10</number>
+             <number>300</number>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0" colspan="2">
+           <widget class="QPushButton" name="savePosButton">
+            <property name="text">
+             <string>Speichern</string>
             </property>
            </widget>
           </item>

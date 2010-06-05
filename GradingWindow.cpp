@@ -27,6 +27,7 @@
 #include "Option.h"
 #include "GradingSave.h"
 #include "GradingVersion.h"
+#include "GradingBuild.h"
 
 GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 {
@@ -35,8 +36,35 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
         latex = new QProcess(this);
         viewer = new QProcess(this);
 
+
+        builder = new GradingBuild();
+
+        connect(offset_top, SIGNAL(valueChanged(int)), builder, SLOT(setTopPos(int)));
+        connect(offset_left, SIGNAL(valueChanged(int)), builder, SLOT(setLeftPos(int)));
+        connect(offset_top_to_tick, SIGNAL(valueChanged(int)), builder, SLOT(setTopToTickPos(int)));
+        connect(offset_tick_to_tick_1, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos1(int)));
+        connect(offset_tick_to_tick_2, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos2(int)));
+        connect(offset_tick_to_text, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTextPos(int)));
+
+        load_pos();
+
+        connect(savePosButton, SIGNAL(clicked()), this, SLOT(save_pos()));
+
+
         layout_scene = new QGraphicsScene(layout_preview);
         draw_preview();
+
+        connect(offset_top, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_left, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_tick_1, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_tick_2, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_tick_3, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_tick_4, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_tick_5, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_top_to_tick, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_tick_to_tick_1, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_tick_to_tick_2, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
+        connect(offset_tick_to_text, SIGNAL(valueChanged(int)), this, SLOT(draw_preview()));
 
         // Group radio buttons.
         this->groupRadioButtions();
@@ -81,6 +109,7 @@ GradingWindow::~GradingWindow()
         delete latex;
         delete viewer;
         delete layout_scene;
+        delete builder;
 }
 
 
@@ -115,124 +144,43 @@ void GradingWindow::stack_text()
 }
 
 
-/* Die Funktion build_pdf liest den inhalt aus frame.tex modifiziert die Variablen und schreib es in grading.tex.
- * grading.tex wird an LaTeX übergeben und die resultierende pdf Datei angezeigt.
- */
+
+
+
 void GradingWindow::build_pdf()
 {
-        Option config("config", this);
-        bool ok;
+        builder->setText(edit->toPlainText());
 
-        int top_pos = config.getOption("top_pos").toInt(&ok);
-        if (!ok) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Postion oben.", QMessageBox::Close, this).exec();
-                return;
-        }
-        int left_pos = config.getOption("left_pos").toInt(&ok);
-        if (!ok) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Postion links.", QMessageBox::Close, this).exec();
-                return;
-        }
-        int top_to_tick = config.getOption("top_to_tick").toInt(&ok);
-        if (!ok) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration des oberen Abstands.", QMessageBox::Close, this).exec();
-                return;
-        }
-        int tick_to_text = config.getOption("tick_to_text").toInt(&ok);
-        if (!ok) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration des Abstands zum Text.", QMessageBox::Close, this).exec();
-                return;
-        }
-        int tick_to_tick_1 = config.getOption("tick_to_tick_1").toInt(&ok);
-        if (!ok) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration des ersten Abstand zwischen den Haken.", QMessageBox::Close, this).exec();
-                return;
-        }
-        int tick_to_tick_2 = config.getOption("tick_to_tick_2").toInt(&ok);
-        if (!ok) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration des zweiten Abstand zwischen den Haken.", QMessageBox::Close, this).exec();
-                return;
-        }
-
-        QString tick_pos_string = config.getOption("tick_pos");
-        if (tick_pos_string.isEmpty()) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Hackenpositionen! Option nicht Lesbar.", QMessageBox::Close, this).exec();
-                return;
-        }
-        QStringList tick_pos_list = tick_pos_string.split(QChar(';'));
-        if (tick_pos_list.size() != 5) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Hackenpositionen! Ungültige Anzahl.", QMessageBox::Close, this).exec();
-                return;
-        }
         int tick_pos[5];
-        for (int i = 0; i < 5; i++) {
-                tick_pos[i] = tick_pos_list[i].toInt(&ok);
-                if (!ok) {
-                        QMessageBox(QMessageBox::Warning, "Fehler", "Ungültige Konfiguration der Hackenpositionen! Optionen sind keine Zahlen.", QMessageBox::Close, this).exec();
-                        return;
-                }
-        }
+        tick_pos[0] = offset_tick_1->value();
+        tick_pos[1] = offset_tick_2->value();
+        tick_pos[2] = offset_tick_3->value();
+        tick_pos[3] = offset_tick_4->value();
+        tick_pos[4] = offset_tick_5->value();
 
-        tick_pos[0] += offset_tick_1->value();
-        tick_pos[1] += offset_tick_2->value();
-        tick_pos[2] += offset_tick_3->value();
-        tick_pos[3] += offset_tick_4->value();
-        tick_pos[4] += offset_tick_5->value();
+        builder->setTickPos(0, tick_pos[radioGroupA->checkedId()]);
+        builder->setTickPos(1, tick_pos[radioGroupB->checkedId()]);
+        builder->setTickPos(2, tick_pos[radioGroupC->checkedId()]);
+        builder->setTickPos(3, tick_pos[radioGroupD->checkedId()]);
+        builder->setTickPos(4, tick_pos[radioGroupE->checkedId()]);
+        builder->setTickPos(5, tick_pos[radioGroupF->checkedId()]);
+        builder->setTickPos(6, tick_pos[radioGroupG->checkedId()]);
+        builder->setTickPos(7, tick_pos[radioGroupH->checkedId()]);
 
 
+        builder->build();
 
-        QFile in("frame.tex");
-        if (!in.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Ramendatei konnte nicht geöffnet werden!", QMessageBox::Close, this).exec();
-                return;
-        }
-        QTextStream in_stream(&in);
-        in_stream.setCodec("UTF-8");
-
-        QString source = in_stream.readAll();
-        in.close();
-
-        if (source.isEmpty()) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Ramendatei ist leer oder defekt!", QMessageBox::Close, this).exec();
-                return;
-        }
-
-        source.replace("VAR_TOP_POS", QString::number(top_pos + offset_top->value()));
-        source.replace("VAR_LEFT_POS", QString::number(left_pos + offset_left->value()));
-        source.replace("VAR_TOP_TO_TICK", QString::number(top_to_tick + offset_top_to_tick->value()));
-        source.replace("VAR_TICK_TO_TEXT", QString::number(tick_to_text + offset_tick_to_text->value()));
-        source.replace("VAR_TICK_TO_TICK_1", QString::number(tick_to_tick_1 + offset_tick_to_tick_1->value()));
-        source.replace("VAR_TICK_TO_TICK_2", QString::number(tick_to_tick_2 + offset_tick_to_tick_2->value()));
-        source.replace("VAR_TICK_A", QString::number(tick_pos[radioGroupA->checkedId()]));
-        source.replace("VAR_TICK_B", QString::number(tick_pos[radioGroupB->checkedId()]));
-        source.replace("VAR_TICK_C", QString::number(tick_pos[radioGroupC->checkedId()]));
-        source.replace("VAR_TICK_D", QString::number(tick_pos[radioGroupD->checkedId()]));
-        source.replace("VAR_TICK_E", QString::number(tick_pos[radioGroupE->checkedId()]));
-        source.replace("VAR_TICK_F", QString::number(tick_pos[radioGroupF->checkedId()]));
-        source.replace("VAR_TICK_G", QString::number(tick_pos[radioGroupG->checkedId()]));
-        source.replace("VAR_TICK_H", QString::number(tick_pos[radioGroupH->checkedId()]));
-        source.replace("VAR_TEXT", edit->toPlainText());
-
-        QFile out(QDir::tempPath() + "/grading.tex");
-        if (!out.open(QIODevice::WriteOnly | QIODevice::Text)) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX Quelldatei konnte nicht erstellt werden!", QMessageBox::Close, this).exec();
-                return;
-        }
-
-        QTextStream out_stream(&out);
-        out_stream.setCodec("UTF-8");
-
-        out_stream << source;
-	out.close();
-
+        Option config("config", this);
         latex->setWorkingDirectory(QDir::tempPath());
         latex->start(config.getOption("bin_pdflatex"), QStringList("grading.tex"));
         if (!latex->waitForStarted(3000)) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
+                QMessageBox(QMessageBox::Warning, QString::fromUtf8("Fehler"), QString::fromUtf8("LaTeX konnte nicht gestartet werden!"), QMessageBox::Close, this).exec();
                 viewer->close();
                 return;
         }
 }
+
+
 
 
 void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
@@ -343,15 +291,29 @@ void GradingWindow::draw_arrow(QGraphicsScene *scene, const QLineF line, const Q
 
 void GradingWindow::draw_preview()
 {
-        qreal px = 15.0;
-        qreal py = 15.0;
+        qreal px = offset_left->value();
+        qreal py = offset_top->value();
 
-        qreal hx[5] = { 126.0, 139.0, 152.0, 165.0, 178.0 };
+        qreal hs = 4;
+
+        qreal hx[5];
+        hx[0] = px + offset_tick_1->value();
+        hx[1] = px + offset_tick_2->value();
+        hx[2] = px + offset_tick_3->value();
+        hx[3] = px + offset_tick_4->value();
+        hx[4] = px + offset_tick_5->value();
+
         qreal hy[8] = { 64.0, 74, 84, 104, 114, 124, 144, 154 };
-        qreal hs = 5;
+        hy[0] = py + offset_top_to_tick->value();
+        hy[1] = hy[0] + hs + 3;
+        hy[2] = hy[1] + hs + 3;
+        hy[3] = hy[2] + hs + 3 + offset_tick_to_tick_1->value();
+        hy[4] = hy[3] + hs + 3;
+        hy[5] = hy[4] + hs + 3;
+        hy[6] = hy[5] + hs + 3 + offset_tick_to_tick_2->value();
+        hy[7] = hy[6] + hs + 3;
 
-        qreal ty = 180;
-
+        qreal ty = hy[7] + hs + 3 + offset_tick_to_text->value();
 
         QPen black_solid(Qt::black);
         QPen blue_solid(Qt::blue);
@@ -406,9 +368,6 @@ void GradingWindow::draw_preview()
         draw_arrow(layout_scene, QLineF(hx[4] + 3, hy[7] + hs + 2, hx[4] + 3, ty - 2), blue_solid);
         layout_scene->addText("11", font)->setPos(hx[4] + 3, hy[7] + hs);
 
-
-
-        //layout_preview->scale(2.0, 2.0);
         layout_preview->setScene(layout_scene);
 }
 
@@ -519,3 +478,73 @@ void GradingWindow::load_data()
 
         delete binaryLoad;
 }
+
+
+
+void GradingWindow::save_pos()
+{
+        GradingSave *binarySave = new GradingSave( GradingSave::BINARY_FILE );
+
+        binarySave->setFilename("position.cfg");
+
+        binarySave->registerVariable("top_pos", offset_top->value());
+        binarySave->registerVariable("left_pos", offset_left->value());
+        binarySave->registerVariable("tick_1", offset_tick_1->value());
+        binarySave->registerVariable("tick_2", offset_tick_2->value());
+        binarySave->registerVariable("tick_3", offset_tick_3->value());
+        binarySave->registerVariable("tick_4", offset_tick_4->value());
+        binarySave->registerVariable("tick_5", offset_tick_5->value());
+        binarySave->registerVariable("top_to_tick", offset_top_to_tick->value());
+        binarySave->registerVariable("tick_to_tick_1", offset_tick_to_tick_1->value());
+        binarySave->registerVariable("tick_to_tick_2", offset_tick_to_tick_2->value());
+        binarySave->registerVariable("tick_to_text", offset_tick_to_text->value());
+
+        if( !binarySave->save() )
+        {
+                QMessageBox(QMessageBox::Warning, QString::fromUtf8("Fehler"), QString::fromUtf8("Fehler beim speichern der Positionen!"), QMessageBox::Close, this).exec();
+        }
+
+        delete binarySave;
+}
+
+
+
+
+void GradingWindow::load_pos()
+{
+        GradingSave *binaryLoad = new GradingSave( GradingSave::BINARY_FILE );
+
+        binaryLoad->setFilename("position.cfg");
+
+        if(binaryLoad->load()) {
+                offset_top->setValue(binaryLoad->getValue("top_pos").toInt());
+                offset_left->setValue(binaryLoad->getValue("left_pos").toInt());
+                offset_tick_1->setValue(binaryLoad->getValue("tick_1").toInt());
+                offset_tick_2->setValue(binaryLoad->getValue("tick_2").toInt());
+                offset_tick_3->setValue(binaryLoad->getValue("tick_3").toInt());
+                offset_tick_4->setValue(binaryLoad->getValue("tick_4").toInt());
+                offset_tick_5->setValue(binaryLoad->getValue("tick_5").toInt());
+                offset_top_to_tick->setValue(binaryLoad->getValue("top_to_tick").toInt());
+                offset_tick_to_tick_1->setValue(binaryLoad->getValue("tick_to_tick_1").toInt());
+                offset_tick_to_tick_2->setValue(binaryLoad->getValue("tick_to_tick_2").toInt());
+                offset_tick_to_text->setValue(binaryLoad->getValue("tick_to_text").toInt());
+        } else {
+                offset_top->setValue(15);
+                offset_left->setValue(15);
+                offset_tick_1->setValue(126);
+                offset_tick_2->setValue(139);
+                offset_tick_3->setValue(152);
+                offset_tick_4->setValue(165);
+                offset_tick_5->setValue(178);
+                offset_top_to_tick->setValue(65);
+                offset_tick_to_tick_1->setValue(14);
+                offset_tick_to_tick_2->setValue(6);
+                offset_tick_to_text->setValue(10);
+                save_pos();
+        }
+
+        delete binaryLoad;
+}
+
+
+

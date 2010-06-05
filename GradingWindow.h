@@ -24,6 +24,7 @@
 
 #include <QtGui>
 #include "ui_GradingWindow.h"
+#include "GradingBuild.h"
 
 /*!
 * \class GradingWindow
@@ -55,6 +56,7 @@ private:
         enum GRADE { VERY_GOOD = 0, GOOD, NORMAL, BAD, VERY_BAD };
 
         QGraphicsScene *layout_scene;
+        GradingBuild *builder;
 
         QProcess *latex;
         QProcess *viewer;
@@ -66,12 +68,15 @@ private:
         void draw_arrow(QGraphicsScene *scene, const QLineF line, const QPen pen);
 
 private slots:
-        void stack_text();
         void build_pdf();
+        void stack_text();
         void draw_preview();
 
         void save_data();
         void load_data();
+
+        void save_pos();
+        void load_pos();
 
         void view(int exitCode, QProcess::ExitStatus exitStatus );
 
