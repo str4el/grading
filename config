@@ -2,18 +2,6 @@
 bin_pdflatex="pdflatex"
 bin_pdfview="evince"
 
-# Positionen
-top_pos="15"
-left_pos="15"
-
-tick_pos="126; 139; 152; 165; 178"
-
-top_to_tick="64"
-tick_to_tick_1="14"
-tick_to_tick_2="6"
-tick_to_text="10"
-
-
 #Fertigkeiten
 text_a1="Durch [seine/ihre] sehr zügige und exakte Arbeitsweise erbrachte [er/sie] auch in Ausnahmesituationen eine vollst zufriedenstellende Leistung. "
 text_a2="Durch [seine/ihre] zügige und exakte Arbeitsweise erbrachte [er/sie] eine voll zufriedenstellende Leistung. "

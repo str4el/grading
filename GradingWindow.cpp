@@ -33,6 +33,8 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 {
         setupUi(this);
 
+        load_set();
+
         latex = new QProcess(this);
         viewer = new QProcess(this);
 
@@ -78,24 +80,6 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
         browser->setSource(QUrl("./help.htm"));
 
-        Option config("config", this);
-        save_dir = config.getOption("save_dir");
-
-        if (save_dir.isEmpty()) {
-#ifdef Q_OS_LINUX
-                save_dir = QProcessEnvironment::systemEnvironment().value("HOME");
-#endif
-
-#ifdef Q_OS_WIN32
-                QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders", QSettings::NativeFormat);
-                save_dir = settings.value("Personal").toString();
-#endif
-                if (save_dir.isEmpty()) {
-                        save_dir = ".";
-                }
-        }
-        save_dir += "/";
-
         version_label->setText(QString("Grading ") + GradingVersion::getVersion());
 
         show();
@@ -110,6 +94,14 @@ GradingWindow::~GradingWindow()
         delete viewer;
         delete layout_scene;
         delete builder;
+}
+
+
+
+void GradingWindow::closeEvent(QCloseEvent *event)
+{
+
+        save_set();
 }
 
 
@@ -401,8 +393,13 @@ void GradingWindow::save_data()
                 return;
         }
 
-        if (QFileInfo(filename).suffix().isEmpty())
+        QFileInfo fn(filename);
+
+        save_dir = fn.dir().path() + "/";
+
+        if (fn.suffix().isEmpty()) {
                 filename.append(".grd");
+        }
 
         GradingSave *binarySave = new GradingSave( GradingSave::BINARY_FILE );
 
@@ -436,7 +433,7 @@ void GradingWindow::save_data()
         binarySave->registerVariable("edit", edit->toPlainText());
 
 
-        if( !binarySave->save() )
+        if (!binarySave->save())
         {
                 QMessageBox(QMessageBox::Warning,
                             QString::fromUtf8("Fehler"),
@@ -455,11 +452,13 @@ void GradingWindow::load_data()
                 return;
         }
 
+        save_dir = QFileInfo(filename).dir().path() + "/";
+
         GradingSave *binaryLoad = new GradingSave( GradingSave::BINARY_FILE );
 
         binaryLoad->setFilename(filename);
 
-        if(binaryLoad->load()) {
+        if (binaryLoad->load()) {
                 save_name_apprentice->setText(binaryLoad->getValue("Apprentice Name").toString());
                 save_name_instructor->setText(binaryLoad->getValue("Instructor Name").toString());
                 save_year->setValue(binaryLoad->getValue("Year").toInt());
@@ -515,7 +514,7 @@ void GradingWindow::save_pos()
         binarySave->registerVariable("tick_to_tick_2", offset_tick_to_tick_2->value());
         binarySave->registerVariable("tick_to_text", offset_tick_to_text->value());
 
-        if(!binarySave->save()) {
+        if (!binarySave->save()) {
                 QMessageBox(QMessageBox::Warning,
                             QString::fromUtf8("Fehler"),
                             QString::fromUtf8("Fehler beim speichern der Positionen!"),
@@ -534,7 +533,7 @@ void GradingWindow::load_pos()
 
         binaryLoad->setFilename("position.cfg");
 
-        if(binaryLoad->load()) {
+        if (binaryLoad->load()) {
                 offset_top->setValue(binaryLoad->getValue("top_pos").toInt());
                 offset_left->setValue(binaryLoad->getValue("left_pos").toInt());
                 offset_tick_1->setValue(binaryLoad->getValue("tick_1").toInt());
@@ -564,5 +563,57 @@ void GradingWindow::load_pos()
         delete binaryLoad;
 }
 
+
+
+
+void GradingWindow::save_set()
+{
+        GradingSave *binarySave = new GradingSave( GradingSave::BINARY_FILE );
+
+        binarySave->setFilename("settings.cfg");
+
+        binarySave->registerVariable("save_dir", save_dir);
+
+        if (!binarySave->save()) {
+                QMessageBox(QMessageBox::Warning,
+                            QString::fromUtf8("Fehler"),
+                            QString::fromUtf8("Fehler beim speichern der Einstellungen!"),
+                            QMessageBox::Close, this).exec();
+        }
+
+        delete binarySave;
+}
+
+
+
+
+void GradingWindow::load_set()
+{
+        GradingSave *binaryLoad = new GradingSave( GradingSave::BINARY_FILE );
+
+        binaryLoad->setFilename("settings.cfg");
+
+        if (binaryLoad->load()) {
+                save_dir = binaryLoad->getValue("save_dir").toString();
+        }
+
+        if (save_dir.isEmpty()) {
+
+#ifdef Q_OS_LINUX
+                save_dir = QProcessEnvironment::systemEnvironment().value("HOME");
+#endif
+
+#ifdef Q_OS_WIN32
+                QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders", QSettings::NativeFormat);
+                save_dir = settings.value("Personal").toString();
+#endif
+                if (save_dir.isEmpty()) {
+                        save_dir = ".";
+                }
+                save_dir += "/";
+        }
+
+        delete binaryLoad;
+}
 
 

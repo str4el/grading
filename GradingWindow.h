@@ -78,6 +78,13 @@ private slots:
         void save_pos();
         void load_pos();
 
+        void save_set();
+        void load_set();
+
         void view(int exitCode, QProcess::ExitStatus exitStatus );
+
+protected:
+        void closeEvent(QCloseEvent *event);
+
 
 };
