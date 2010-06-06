@@ -40,9 +40,6 @@ GradingBuild::GradingBuild()
 }
 
 
-/* Die Funktion build_pdf liest den inhalt aus frame.tex modifiziert die Variablen und schreib es in grading.tex.
- * grading.tex wird an LaTeX übergeben und die resultierende pdf Datei angezeigt.
- */
 bool GradingBuild::build()
 {
 

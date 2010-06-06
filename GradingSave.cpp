@@ -47,8 +47,7 @@ bool GradingSave::registerVariable(QString varName, QVariant varValue)
 
         this->valueMap.insert(varName, new GradingVariableContainer(varName, varValue));
 
-        if( !this->valueMap.contains(varName) )
-        {
+        if(!this->valueMap.contains(varName)) {
                 return false;
         }
 
@@ -59,8 +58,7 @@ bool GradingSave::registerVariable(QString varName, QVariant varValue)
 
 QVariant GradingSave::getValue(QString varName)
 {
-        if( !this->valueMap.contains(varName) )
-        {
+        if(!this->valueMap.contains(varName)) {
                 return false;
         }
 
@@ -70,15 +68,15 @@ QVariant GradingSave::getValue(QString varName)
 
 
 
-bool GradingSave::save( void )
+bool GradingSave::save(void)
 {
-        return this->save( this->streamType );
+        return this->save(this->streamType);
 }
 
 
 
 
-bool GradingSave::save( TYPE myStreamType )
+bool GradingSave::save(TYPE myStreamType)
 {
         switch(myStreamType) {
 
@@ -100,8 +98,7 @@ bool GradingSave::saveBinaryFile( void )
 {
         QFile file(this->filename);
 
-        if (!file.open(QIODevice::WriteOnly))
-        {
+        if (!file.open(QIODevice::WriteOnly)) {
                 return false;
         }
 
@@ -111,8 +108,7 @@ bool GradingSave::saveBinaryFile( void )
 
         out << this->fileVersion << GradingVersion::getVersion();
 
-        foreach( QString key, this->valueMap.keys() )
-        {
+        foreach(QString key, this->valueMap.keys()) {
                 out << key;
                 QVariant x = this->valueMap.value(key)->getValue();
                 out << x;
@@ -175,12 +171,11 @@ bool GradingSave::loadBinaryFile()
         }
 
         in >> versionNumber;
-        if (versionNumber > GradingVersion::getVersion() ) {
+        if (versionNumber > GradingVersion::getVersion()) {
                 return false;
         }
 
-        while( in.status() == QDataStream::Ok)
-        {
+        while(in.status() == QDataStream::Ok) {
                 in >> key;
                 in >> value;
                 this->registerVariable(key,value);

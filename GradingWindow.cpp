@@ -1,7 +1,7 @@
 /*
  *
  *  Copyright (C) 2009, 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
- *                           Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
+ *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
  *
  *  This file is part of grading
  *
@@ -130,14 +130,18 @@ void GradingWindow::stack_text()
         if (combo_e->currentIndex() > 0) text += config.getOption(QString("text_e%1").arg(combo_e->currentIndex()));
 
         if (text.isEmpty()) {
-                QMessageBox(QMessageBox::Warning, QString::fromUtf8("Fehler"), QString::fromUtf8("Es konnte kein Text zusammengestellt werden. Möglicherweise ist die config Datei fehlerhaft."), QMessageBox::Close, this).exec();
+                QMessageBox(QMessageBox::Warning,
+                            QString::fromUtf8("Fehler"),
+                            QString::fromUtf8("Es konnte kein Text zusammengestellt werden. Möglicherweise ist die config Datei fehlerhaft."),
+                            QMessageBox::Close, this).exec();
                 return;
         }
 
-        if (combo_mw->currentIndex() == 0)
+        if (combo_mw->currentIndex() == 0) {
                 text.remove(QRegExp("/[\\w\\s]*\\]")).remove('[');
-        else
+        } else {
                 text.remove(QRegExp("\\[[\\w\\s]*/")).remove(']');
+        }
 
         edit->setPlainText(text);
         tab->setCurrentWidget(tab_edit);
@@ -174,7 +178,10 @@ void GradingWindow::build_pdf()
         latex->setWorkingDirectory(QDir::tempPath());
         latex->start(config.getOption("bin_pdflatex"), QStringList("grading.tex"));
         if (!latex->waitForStarted(3000)) {
-                QMessageBox(QMessageBox::Warning, QString::fromUtf8("Fehler"), QString::fromUtf8("LaTeX konnte nicht gestartet werden!"), QMessageBox::Close, this).exec();
+                QMessageBox(QMessageBox::Warning,
+                            QString::fromUtf8("Fehler"),
+                            QString::fromUtf8("LaTeX konnte nicht gestartet werden!"),
+                            QMessageBox::Close, this).exec();
                 viewer->close();
                 return;
         }
@@ -193,12 +200,18 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 
                 viewer->start(config.getOption("bin_pdfview"), QStringList(QDir::tempPath() + "/grading.pdf"));
                 if (!viewer->waitForStarted(3000)) {
-                        QMessageBox(QMessageBox::Warning, "Fehler", "Der PDF Betrachter konnte nicht gestartet werden!", QMessageBox::Close, this).exec();
+                        QMessageBox(QMessageBox::Warning,
+                                    QString::fromUtf8("Fehler"),
+                                    QString::fromUtf8("Der PDF Betrachter konnte nicht gestartet werden!"),
+                                    QMessageBox::Close, this).exec();
                         viewer->close();
                         return;
                 }
         } else {
-                QMessageBox(QMessageBox::Warning, QString::fromUtf8("Fehler"), QString::fromUtf8("LaTeX wurde nicht ordnugsgemäß beendet!"), QMessageBox::Close, this).exec();
+                QMessageBox(QMessageBox::Warning,
+                            QString::fromUtf8("Fehler"),
+                            QString::fromUtf8("LaTeX wurde nicht ordnugsgemäß beendet!"),
+                            QMessageBox::Close, this).exec();
         }
 }
 
@@ -425,7 +438,10 @@ void GradingWindow::save_data()
 
         if( !binarySave->save() )
         {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Fehler beim speichern der Datei!", QMessageBox::Close, this).exec();
+                QMessageBox(QMessageBox::Warning,
+                            QString::fromUtf8("Fehler"),
+                            QString::fromUtf8("Fehler beim speichern der Datei!"),
+                            QMessageBox::Close, this).exec();
         }
 
 
@@ -443,8 +459,7 @@ void GradingWindow::load_data()
 
         binaryLoad->setFilename(filename);
 
-        if( binaryLoad->load() )
-        {
+        if(binaryLoad->load()) {
                 save_name_apprentice->setText(binaryLoad->getValue("Apprentice Name").toString());
                 save_name_instructor->setText(binaryLoad->getValue("Instructor Name").toString());
                 save_year->setValue(binaryLoad->getValue("Year").toInt());
@@ -470,10 +485,11 @@ void GradingWindow::load_data()
                 combo_e->setCurrentIndex(binaryLoad->getValue("comboE index").toInt());
 
                 edit->setPlainText(binaryLoad->getValue("edit").toString());
-        }
-        else
-        {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Datei konnte nicht eingelesen werden!", QMessageBox::Close, this).exec();
+        } else {
+                QMessageBox(QMessageBox::Warning,
+                            QString::fromUtf8("Fehler"),
+                            QString::fromUtf8("Datei konnte nicht eingelesen werden!"),
+                            QMessageBox::Close, this).exec();
         }
 
         delete binaryLoad;
@@ -499,9 +515,11 @@ void GradingWindow::save_pos()
         binarySave->registerVariable("tick_to_tick_2", offset_tick_to_tick_2->value());
         binarySave->registerVariable("tick_to_text", offset_tick_to_text->value());
 
-        if( !binarySave->save() )
-        {
-                QMessageBox(QMessageBox::Warning, QString::fromUtf8("Fehler"), QString::fromUtf8("Fehler beim speichern der Positionen!"), QMessageBox::Close, this).exec();
+        if(!binarySave->save()) {
+                QMessageBox(QMessageBox::Warning,
+                            QString::fromUtf8("Fehler"),
+                            QString::fromUtf8("Fehler beim speichern der Positionen!"),
+                            QMessageBox::Close, this).exec();
         }
 
         delete binarySave;
