@@ -115,7 +115,7 @@ GradingWindow::~GradingWindow()
 
 
 
-/* Die Funktion stack_text stellt den Beurteilungstext aus Vorgefertigten Sätzen zusammen.
+/* Die Funktion stack_text stellt den Beurteilungstext aus Vorgefertigten SÃ¤tzen zusammen.
  * Je nachdem welche bewertung in den ComboBoxen festgelegt wurde.
  */
 void GradingWindow::stack_text()
@@ -130,7 +130,7 @@ void GradingWindow::stack_text()
         if (combo_e->currentIndex() > 0) text += config.getOption(QString("text_e%1").arg(combo_e->currentIndex()));
 
         if (text.isEmpty()) {
-                QMessageBox(QMessageBox::Warning, "Fehler", "Es konnte kein Text zusammengestellt werden. Möglicherweise ist die config Datei fehlerhaft.", QMessageBox::Close, this).exec();
+                QMessageBox(QMessageBox::Warning, QString::fromUtf8("Fehler"), QString::fromUtf8("Es konnte kein Text zusammengestellt werden. MÃ¶glicherweise ist die config Datei fehlerhaft."), QMessageBox::Close, this).exec();
                 return;
         }
 
@@ -198,7 +198,7 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
                         return;
                 }
         } else {
-                QMessageBox(QMessageBox::Warning, "Fehler", "LaTeX wurde nicht ordnugsgemäß beendet!", QMessageBox::Close, this).exec();
+                QMessageBox(QMessageBox::Warning, QString::fromUtf8("Fehler"), QString::fromUtf8("LaTeX wurde nicht ordnugsgemÃ¤ÃŸ beendet!"), QMessageBox::Close, this).exec();
         }
 }
 
@@ -329,7 +329,7 @@ void GradingWindow::draw_preview()
         layout_scene->addRect(0, 0, 210, 297, black_solid);
         layout_scene->addRect(px, py, 184, 250, black_dash);
 
-        // Ausenmaße
+        // AusenmaÃŸe
         draw_arrow(layout_scene, QLineF(30, 2, 30, py - 2), blue_solid);
         layout_scene->addText("1", font)->setPos(32, 0);
 
