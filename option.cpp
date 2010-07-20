@@ -22,7 +22,7 @@
 
 
 #include <QtGui>
-#include "Option.h"
+#include "option.h"
 
 
 

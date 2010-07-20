@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GradingWindow</class>
- <widget class="QMainWindow" name="GradingWindow">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>520</width>
-    <height>485</height>
+    <height>497</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1661,7 +1661,7 @@
   <connection>
    <sender>close</sender>
    <signal>clicked()</signal>
-   <receiver>GradingWindow</receiver>
+   <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">

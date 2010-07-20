@@ -19,18 +19,18 @@
  *
  */
 
-#ifndef GRADINGBUILD_H
-#define GRADINGBUILD_H
+#ifndef BUILD_H
+#define BUILD_H
 
 #include <QtCore>
 
-class GradingBuild : public QObject
+class Build : public QObject
 {
 
         Q_OBJECT
 
 public:
-    GradingBuild();
+    Build();
     bool build();
 
 public slots:
@@ -61,4 +61,4 @@ private:
 
 };
 
-#endif // GRADINGBUILD_H
+#endif // BUILD_H

@@ -21,14 +21,14 @@
  */
 
 #include <QApplication>
-#include "GradingWindow.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[]) {
 
 	QApplication app(argc, argv);
 
-    GradingWindow myGradingWindow;
-    myGradingWindow.show();
+    MainWindow mainwindow;
+    mainwindow.show();
 
 	return app.exec();
 }

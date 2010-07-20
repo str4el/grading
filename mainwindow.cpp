@@ -22,12 +22,12 @@
 
 #include <QtGui>
 
-#include "GradingWindow.h"
-#include "Option.h"
+#include "mainwindow.h"
+#include "option.h"
 #include "presets.h"
-#include "GradingBuild.h"
+#include "build.h"
 
-GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent), config("config.ini", QSettings::IniFormat, this)
+MainWindow::MainWindow(QWidget *parrent) : QMainWindow(parrent), config("config.ini", QSettings::IniFormat, this)
 {
         setupUi(this);
 
@@ -37,7 +37,7 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent), config("c
         viewer = new QProcess(this);
 
 
-        builder = new GradingBuild();
+        builder = new Build();
 
 
         connect(offset_top, SIGNAL(valueChanged(int)), builder, SLOT(setTopPos(int)));
@@ -87,7 +87,7 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent), config("c
 
 
 
-GradingWindow::~GradingWindow()
+MainWindow::~MainWindow()
 {
         delete latex;
         delete viewer;
@@ -97,7 +97,7 @@ GradingWindow::~GradingWindow()
 
 
 
-void GradingWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent(QCloseEvent *event)
 {
         save_set();
 }
@@ -108,7 +108,7 @@ void GradingWindow::closeEvent(QCloseEvent *event)
 /* Die Funktion stack_text stellt den Beurteilungstext aus Vorgefertigten Sätzen zusammen.
  * Je nachdem welche bewertung in den ComboBoxen festgelegt wurde.
  */
-void GradingWindow::stack_text()
+void MainWindow::stack_text()
 {
         Option config("config", this);
         QString text;
@@ -141,7 +141,7 @@ void GradingWindow::stack_text()
 
 
 
-void GradingWindow::build_pdf()
+void MainWindow::build_pdf()
 {
         builder->setText(edit->toPlainText());
 
@@ -180,7 +180,7 @@ void GradingWindow::build_pdf()
 
 
 
-void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
+void MainWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 {
         Option config("config", this);
 
@@ -206,70 +206,70 @@ void GradingWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 }
 
 
-void GradingWindow::groupRadioButtions()
+void MainWindow::groupRadioButtions()
 {
         this->radioGroupA = new QButtonGroup;
-        this->radioGroupA->addButton(check_a1, GradingWindow::VERY_GOOD);
-        this->radioGroupA->addButton(check_a2, GradingWindow::GOOD);
-        this->radioGroupA->addButton(check_a3, GradingWindow::NORMAL);
-        this->radioGroupA->addButton(check_a4, GradingWindow::BAD);
-        this->radioGroupA->addButton(check_a5, GradingWindow::VERY_BAD);
+        this->radioGroupA->addButton(check_a1, MainWindow::VERY_GOOD);
+        this->radioGroupA->addButton(check_a2, MainWindow::GOOD);
+        this->radioGroupA->addButton(check_a3, MainWindow::NORMAL);
+        this->radioGroupA->addButton(check_a4, MainWindow::BAD);
+        this->radioGroupA->addButton(check_a5, MainWindow::VERY_BAD);
 
         this->radioGroupB = new QButtonGroup;
-        this->radioGroupB->addButton(check_b1, GradingWindow::VERY_GOOD);
-        this->radioGroupB->addButton(check_b2, GradingWindow::GOOD);
-        this->radioGroupB->addButton(check_b3, GradingWindow::NORMAL);
-        this->radioGroupB->addButton(check_b4, GradingWindow::BAD);
-        this->radioGroupB->addButton(check_b5, GradingWindow::VERY_BAD);
+        this->radioGroupB->addButton(check_b1, MainWindow::VERY_GOOD);
+        this->radioGroupB->addButton(check_b2, MainWindow::GOOD);
+        this->radioGroupB->addButton(check_b3, MainWindow::NORMAL);
+        this->radioGroupB->addButton(check_b4, MainWindow::BAD);
+        this->radioGroupB->addButton(check_b5, MainWindow::VERY_BAD);
 
         this->radioGroupC = new QButtonGroup;
-        this->radioGroupC->addButton(check_c1, GradingWindow::VERY_GOOD);
-        this->radioGroupC->addButton(check_c2, GradingWindow::GOOD);
-        this->radioGroupC->addButton(check_c3, GradingWindow::NORMAL);
-        this->radioGroupC->addButton(check_c4, GradingWindow::BAD);
-        this->radioGroupC->addButton(check_c5, GradingWindow::VERY_BAD);
+        this->radioGroupC->addButton(check_c1, MainWindow::VERY_GOOD);
+        this->radioGroupC->addButton(check_c2, MainWindow::GOOD);
+        this->radioGroupC->addButton(check_c3, MainWindow::NORMAL);
+        this->radioGroupC->addButton(check_c4, MainWindow::BAD);
+        this->radioGroupC->addButton(check_c5, MainWindow::VERY_BAD);
 
         this->radioGroupD = new QButtonGroup;
-        this->radioGroupD->addButton(check_d1, GradingWindow::VERY_GOOD);
-        this->radioGroupD->addButton(check_d2, GradingWindow::GOOD);
-        this->radioGroupD->addButton(check_d3, GradingWindow::NORMAL);
-        this->radioGroupD->addButton(check_d4, GradingWindow::BAD);
-        this->radioGroupD->addButton(check_d5, GradingWindow::VERY_BAD);
+        this->radioGroupD->addButton(check_d1, MainWindow::VERY_GOOD);
+        this->radioGroupD->addButton(check_d2, MainWindow::GOOD);
+        this->radioGroupD->addButton(check_d3, MainWindow::NORMAL);
+        this->radioGroupD->addButton(check_d4, MainWindow::BAD);
+        this->radioGroupD->addButton(check_d5, MainWindow::VERY_BAD);
 
         this->radioGroupE = new QButtonGroup;
-        this->radioGroupE->addButton(check_e1, GradingWindow::VERY_GOOD);
-        this->radioGroupE->addButton(check_e2, GradingWindow::GOOD);
-        this->radioGroupE->addButton(check_e3, GradingWindow::NORMAL);
-        this->radioGroupE->addButton(check_e4, GradingWindow::BAD);
-        this->radioGroupE->addButton(check_e5, GradingWindow::VERY_BAD);
+        this->radioGroupE->addButton(check_e1, MainWindow::VERY_GOOD);
+        this->radioGroupE->addButton(check_e2, MainWindow::GOOD);
+        this->radioGroupE->addButton(check_e3, MainWindow::NORMAL);
+        this->radioGroupE->addButton(check_e4, MainWindow::BAD);
+        this->radioGroupE->addButton(check_e5, MainWindow::VERY_BAD);
 
         this->radioGroupF = new QButtonGroup;
-        this->radioGroupF->addButton(check_f1, GradingWindow::VERY_GOOD);
-        this->radioGroupF->addButton(check_f2, GradingWindow::GOOD);
-        this->radioGroupF->addButton(check_f3, GradingWindow::NORMAL);
-        this->radioGroupF->addButton(check_f4, GradingWindow::BAD);
-        this->radioGroupF->addButton(check_f5, GradingWindow::VERY_BAD);
+        this->radioGroupF->addButton(check_f1, MainWindow::VERY_GOOD);
+        this->radioGroupF->addButton(check_f2, MainWindow::GOOD);
+        this->radioGroupF->addButton(check_f3, MainWindow::NORMAL);
+        this->radioGroupF->addButton(check_f4, MainWindow::BAD);
+        this->radioGroupF->addButton(check_f5, MainWindow::VERY_BAD);
 
         this->radioGroupG = new QButtonGroup;
-        this->radioGroupG->addButton(check_g1, GradingWindow::VERY_GOOD);
-        this->radioGroupG->addButton(check_g2, GradingWindow::GOOD);
-        this->radioGroupG->addButton(check_g3, GradingWindow::NORMAL);
-        this->radioGroupG->addButton(check_g4, GradingWindow::BAD);
-        this->radioGroupG->addButton(check_g5, GradingWindow::VERY_BAD);
+        this->radioGroupG->addButton(check_g1, MainWindow::VERY_GOOD);
+        this->radioGroupG->addButton(check_g2, MainWindow::GOOD);
+        this->radioGroupG->addButton(check_g3, MainWindow::NORMAL);
+        this->radioGroupG->addButton(check_g4, MainWindow::BAD);
+        this->radioGroupG->addButton(check_g5, MainWindow::VERY_BAD);
 
         this->radioGroupH = new QButtonGroup;
-        this->radioGroupH->addButton(check_h1, GradingWindow::VERY_GOOD);
-        this->radioGroupH->addButton(check_h2, GradingWindow::GOOD);
-        this->radioGroupH->addButton(check_h3, GradingWindow::NORMAL);
-        this->radioGroupH->addButton(check_h4, GradingWindow::BAD);
-        this->radioGroupH->addButton(check_h5, GradingWindow::VERY_BAD);
+        this->radioGroupH->addButton(check_h1, MainWindow::VERY_GOOD);
+        this->radioGroupH->addButton(check_h2, MainWindow::GOOD);
+        this->radioGroupH->addButton(check_h3, MainWindow::NORMAL);
+        this->radioGroupH->addButton(check_h4, MainWindow::BAD);
+        this->radioGroupH->addButton(check_h5, MainWindow::VERY_BAD);
 }
 
 
 
 
 
-void GradingWindow::draw_arrow(QGraphicsScene *scene, const QLineF line, const QPen pen)
+void MainWindow::draw_arrow(QGraphicsScene *scene, const QLineF line, const QPen pen)
 {
         scene->addLine(line, pen);
 
@@ -292,7 +292,7 @@ void GradingWindow::draw_arrow(QGraphicsScene *scene, const QLineF line, const Q
 
 
 
-void GradingWindow::draw_preview()
+void MainWindow::draw_preview()
 {
         qreal px = offset_left->value();
         qreal py = offset_top->value();
@@ -377,7 +377,7 @@ void GradingWindow::draw_preview()
 
 
 
-void GradingWindow::save_data()
+void MainWindow::save_data()
 {
         if (save_name.isEmpty()) {
                 save_name = save_name_apprentice->text() + " " + QString::number(save_year->value());
@@ -423,7 +423,7 @@ void GradingWindow::save_data()
         save.setValue("assessment/text", edit->toPlainText());
 }
 
-void GradingWindow::load_data()
+void MainWindow::load_data()
 {
         QString filename = QFileDialog::getOpenFileName(this, "Open", save_dir, "Beurteilung (*.grd)");
         if (filename.isEmpty()) {
@@ -463,7 +463,7 @@ void GradingWindow::load_data()
 
 
 
-void GradingWindow::save_pos()
+void MainWindow::save_pos()
 {
         config.setValue("offset/top", offset_top->value());
         config.setValue("offset/left", offset_left->value());
@@ -481,7 +481,7 @@ void GradingWindow::save_pos()
 
 
 
-void GradingWindow::load_pos()
+void MainWindow::load_pos()
 {
         offset_top->setValue(config.value("offset/top", Presets::topOffset).toInt());
         offset_left->setValue(config.value("offset/left", Presets::leftOffset).toInt());
@@ -499,7 +499,7 @@ void GradingWindow::load_pos()
 
 
 
-void GradingWindow::save_set()
+void MainWindow::save_set()
 {
         config.setValue("dir/save", save_dir);
 }
@@ -507,7 +507,7 @@ void GradingWindow::save_set()
 
 
 
-void GradingWindow::load_set()
+void MainWindow::load_set()
 {
         save_dir = config.value("dir/save", Presets::saveDir()).toString();
 }

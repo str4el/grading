@@ -23,25 +23,25 @@
 #pragma once
 
 #include <QtGui>
-#include "ui_GradingWindow.h"
-#include "GradingBuild.h"
+#include "ui_mainwindow.h"
+#include "build.h"
 
 /*!
-* \class GradingWindow
+* \class MainWindow
 * \brief Class for creating main window of grading program.
 *
 * \author Stephan Reinhard
 * \author Wolfgang Forstmeier
 */
-class GradingWindow : public QMainWindow, public Ui::GradingWindow
+class MainWindow : public QMainWindow, public Ui::MainWindow
 {
         Q_OBJECT
 
 public:
         // Constructor.
-        GradingWindow(QWidget *parrent = 0);
+        MainWindow(QWidget *parrent = 0);
         // Overwrite compiler generated constructor.
-        ~GradingWindow();
+        ~MainWindow();
 
 private:
         QSettings config;
@@ -58,7 +58,7 @@ private:
         enum GRADE { VERY_GOOD = 0, GOOD, NORMAL, BAD, VERY_BAD };
 
         QGraphicsScene *layout_scene;
-        GradingBuild *builder;
+        Build *builder;
 
         QProcess *latex;
         QProcess *viewer;

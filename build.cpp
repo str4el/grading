@@ -21,10 +21,10 @@
 
 #include <QString>
 
-#include "GradingBuild.h"
+#include "build.h"
 
 
-GradingBuild::GradingBuild()
+Build::Build()
 {
         leftPos = 10;
         topPos = 10;
@@ -40,7 +40,7 @@ GradingBuild::GradingBuild()
 }
 
 
-bool GradingBuild::build()
+bool Build::build()
 {
 
         QString source;
