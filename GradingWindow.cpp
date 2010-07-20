@@ -21,15 +21,13 @@
  */
 
 #include <QtGui>
-#include <QString>
 
 #include "GradingWindow.h"
 #include "Option.h"
-#include "GradingSave.h"
-#include "GradingVersion.h"
+#include "presets.h"
 #include "GradingBuild.h"
 
-GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
+GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent), config("config.ini", QSettings::IniFormat, this)
 {
         setupUi(this);
 
@@ -40,6 +38,7 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
 
         builder = new GradingBuild();
+
 
         connect(offset_top, SIGNAL(valueChanged(int)), builder, SLOT(setTopPos(int)));
         connect(offset_left, SIGNAL(valueChanged(int)), builder, SLOT(setLeftPos(int)));
@@ -80,7 +79,7 @@ GradingWindow::GradingWindow(QWidget *parrent) : QMainWindow(parrent)
 
         browser->setSource(QUrl("./help.htm"));
 
-        version_label->setText(QString("Grading ") + GradingVersion::getVersion());
+        version_label->setText(QString("Grading ") + Presets::version);
 
         show();
 }
@@ -100,7 +99,6 @@ GradingWindow::~GradingWindow()
 
 void GradingWindow::closeEvent(QCloseEvent *event)
 {
-
         save_set();
 }
 
@@ -379,9 +377,6 @@ void GradingWindow::draw_preview()
 
 
 
-
-
-
 void GradingWindow::save_data()
 {
         if (save_name.isEmpty()) {
@@ -401,48 +396,31 @@ void GradingWindow::save_data()
                 filename.append(".grd");
         }
 
-        GradingSave *binarySave = new GradingSave( GradingSave::BINARY_FILE );
+        QSettings save(filename, QSettings::IniFormat, this);
 
-        binarySave->setFilename(filename);
+        save.setValue("info/apprentice", save_name_apprentice->text());
+        save.setValue("info/instructor", save_name_instructor->text());
+        save.setValue("info/year", save_year->value());
+        save.setValue("info/begin", save_date1->date().toString());
+        save.setValue("info/end", save_date2->date().toString());
+        save.setValue("info/comment", save_comment->toPlainText());
 
-        binarySave->registerVariable("Apprentice Name", save_name_apprentice->text());
-        binarySave->registerVariable("Instructor Name", save_name_instructor->text());
-        binarySave->registerVariable("Year", save_year->value());
-        binarySave->registerVariable("Date1", save_date1->date());
-        binarySave->registerVariable("Date2", save_date2->date());
-        binarySave->registerVariable("comment", save_comment->toPlainText());
+        save.setValue("grades/a", radioGroupA->checkedId());
+        save.setValue("grades/b", radioGroupB->checkedId());
+        save.setValue("grades/c", radioGroupC->checkedId());
+        save.setValue("grades/d", radioGroupD->checkedId());
+        save.setValue("grades/e", radioGroupE->checkedId());
+        save.setValue("grades/f", radioGroupF->checkedId());
+        save.setValue("grades/g", radioGroupG->checkedId());
+        save.setValue("grades/h", radioGroupH->checkedId());
 
-        binarySave->registerVariable("radioGroupA", radioGroupA->checkedId());
-        binarySave->registerVariable("radioGroupB", radioGroupB->checkedId());
-        binarySave->registerVariable("radioGroupC", radioGroupC->checkedId());
-        binarySave->registerVariable("radioGroupD", radioGroupD->checkedId());
-        binarySave->registerVariable("radioGroupE", radioGroupE->checkedId());
-        binarySave->registerVariable("radioGroupF", radioGroupF->checkedId());
-        binarySave->registerVariable("radioGroupG", radioGroupG->checkedId());
-        binarySave->registerVariable("radioGroupH", radioGroupH->checkedId());
-
-        binarySave->registerVariable("MW index", combo_mw->currentIndex());
-
-        binarySave->registerVariable("combaA index", combo_a->currentIndex());
-        binarySave->registerVariable("comboB index", combo_b->currentIndex());
-        binarySave->registerVariable("comboC index", combo_c->currentIndex());
-        binarySave->registerVariable("comboD index", combo_d->currentIndex());
-        binarySave->registerVariable("comboE index", combo_e->currentIndex());
-
-        binarySave->registerVariable("edit", edit->toPlainText());
-        binarySave->registerVariable("edit", edit->toPlainText());
-
-
-        if (!binarySave->save())
-        {
-                QMessageBox(QMessageBox::Warning,
-                            QString::fromUtf8("Fehler"),
-                            QString::fromUtf8("Fehler beim speichern der Datei!"),
-                            QMessageBox::Close, this).exec();
-        }
-
-
-        delete binarySave;
+        save.setValue("assessment/sex", combo_mw->currentIndex());
+        save.setValue("assessment/a", combo_a->currentIndex());
+        save.setValue("assessment/b", combo_b->currentIndex());
+        save.setValue("assessment/c", combo_c->currentIndex());
+        save.setValue("assessment/d", combo_d->currentIndex());
+        save.setValue("assessment/e", combo_e->currentIndex());
+        save.setValue("assessment/text", edit->toPlainText());
 }
 
 void GradingWindow::load_data()
@@ -454,74 +432,50 @@ void GradingWindow::load_data()
 
         save_dir = QFileInfo(filename).dir().path() + "/";
 
-        GradingSave *binaryLoad = new GradingSave( GradingSave::BINARY_FILE );
+        QSettings load(filename, QSettings::IniFormat, this);
 
-        binaryLoad->setFilename(filename);
+        save_name_apprentice->setText(load.value("info/apprentice").toString());
+        save_name_instructor->setText(load.value("info/instructor").toString());
+        save_year->setValue(load.value("info/year").toInt());
+        save_date1->setDate(QDate::fromString(load.value("info/begin").toString()));
+        save_date2->setDate(QDate::fromString(load.value("info/end").toString()));
+        save_comment->setPlainText(load.value("info/comment").toString());
 
-        if (binaryLoad->load()) {
-                save_name_apprentice->setText(binaryLoad->getValue("Apprentice Name").toString());
-                save_name_instructor->setText(binaryLoad->getValue("Instructor Name").toString());
-                save_year->setValue(binaryLoad->getValue("Year").toInt());
-                save_date1->setDate(binaryLoad->getValue("Date1").toDate());
-                save_date2->setDate(binaryLoad->getValue("Date2").toDate());
-                save_comment->setPlainText(binaryLoad->getValue("comment").toString());
+        radioGroupA->button(load.value("grades/a").toInt())->setChecked(true);
+        radioGroupB->button(load.value("grades/b").toInt())->setChecked(true);
+        radioGroupC->button(load.value("grades/c").toInt())->setChecked(true);
+        radioGroupD->button(load.value("grades/d").toInt())->setChecked(true);
+        radioGroupE->button(load.value("grades/e").toInt())->setChecked(true);
+        radioGroupF->button(load.value("grades/f").toInt())->setChecked(true);
+        radioGroupG->button(load.value("grades/g").toInt())->setChecked(true);
+        radioGroupH->button(load.value("grades/h").toInt())->setChecked(true);
 
-                radioGroupA->button(binaryLoad->getValue("radioGroupA").toInt())->setChecked(true);
-                radioGroupB->button(binaryLoad->getValue("radioGroupB").toInt())->setChecked(true);
-                radioGroupC->button(binaryLoad->getValue("radioGroupC").toInt())->setChecked(true);
-                radioGroupD->button(binaryLoad->getValue("radioGroupD").toInt())->setChecked(true);
-                radioGroupE->button(binaryLoad->getValue("radioGroupE").toInt())->setChecked(true);
-                radioGroupF->button(binaryLoad->getValue("radioGroupF").toInt())->setChecked(true);
-                radioGroupG->button(binaryLoad->getValue("radioGroupG").toInt())->setChecked(true);
-                radioGroupH->button(binaryLoad->getValue("radioGroupH").toInt())->setChecked(true);
-
-                combo_mw->setCurrentIndex(binaryLoad->getValue("MW index").toInt());
-
-                combo_a->setCurrentIndex(binaryLoad->getValue("combaA index").toInt());
-                combo_b->setCurrentIndex(binaryLoad->getValue("comboB index").toInt());
-                combo_c->setCurrentIndex(binaryLoad->getValue("comboC index").toInt());
-                combo_d->setCurrentIndex(binaryLoad->getValue("comboD index").toInt());
-                combo_e->setCurrentIndex(binaryLoad->getValue("comboE index").toInt());
-
-                edit->setPlainText(binaryLoad->getValue("edit").toString());
-        } else {
-                QMessageBox(QMessageBox::Warning,
-                            QString::fromUtf8("Fehler"),
-                            QString::fromUtf8("Datei konnte nicht eingelesen werden!"),
-                            QMessageBox::Close, this).exec();
-        }
-
-        delete binaryLoad;
+        combo_mw->setCurrentIndex(load.value("assessment/sex").toInt());
+        combo_a->setCurrentIndex(load.value("assessment/a").toInt());
+        combo_b->setCurrentIndex(load.value("assessment/b").toInt());
+        combo_c->setCurrentIndex(load.value("assessment/c").toInt());
+        combo_d->setCurrentIndex(load.value("assessment/d").toInt());
+        combo_e->setCurrentIndex(load.value("assessment/e").toInt());
+        edit->setPlainText(load.value("assessment/text").toString());
 }
+
+
 
 
 
 void GradingWindow::save_pos()
 {
-        GradingSave *binarySave = new GradingSave( GradingSave::BINARY_FILE );
-
-        binarySave->setFilename("position.cfg");
-
-        binarySave->registerVariable("top_pos", offset_top->value());
-        binarySave->registerVariable("left_pos", offset_left->value());
-        binarySave->registerVariable("tick_1", offset_tick_1->value());
-        binarySave->registerVariable("tick_2", offset_tick_2->value());
-        binarySave->registerVariable("tick_3", offset_tick_3->value());
-        binarySave->registerVariable("tick_4", offset_tick_4->value());
-        binarySave->registerVariable("tick_5", offset_tick_5->value());
-        binarySave->registerVariable("top_to_tick", offset_top_to_tick->value());
-        binarySave->registerVariable("tick_to_tick_1", offset_tick_to_tick_1->value());
-        binarySave->registerVariable("tick_to_tick_2", offset_tick_to_tick_2->value());
-        binarySave->registerVariable("tick_to_text", offset_tick_to_text->value());
-
-        if (!binarySave->save()) {
-                QMessageBox(QMessageBox::Warning,
-                            QString::fromUtf8("Fehler"),
-                            QString::fromUtf8("Fehler beim speichern der Positionen!"),
-                            QMessageBox::Close, this).exec();
-        }
-
-        delete binarySave;
+        config.setValue("offset/top", offset_top->value());
+        config.setValue("offset/left", offset_left->value());
+        config.setValue("offset/tick1", offset_tick_1->value());
+        config.setValue("offset/tick2", offset_tick_2->value());
+        config.setValue("offset/tick3", offset_tick_3->value());
+        config.setValue("offset/tick4", offset_tick_4->value());
+        config.setValue("offset/tick5", offset_tick_5->value());
+        config.setValue("offset/top_to_tick", offset_top_to_tick->value());
+        config.setValue("offset/tick_to_tick1", offset_tick_to_tick_1->value());
+        config.setValue("offset/tick_to_tick2", offset_tick_to_tick_2->value());
+        config.setValue("offset/tick_to_text", offset_tick_to_text->value());
 }
 
 
@@ -529,38 +483,17 @@ void GradingWindow::save_pos()
 
 void GradingWindow::load_pos()
 {
-        GradingSave *binaryLoad = new GradingSave( GradingSave::BINARY_FILE );
-
-        binaryLoad->setFilename("position.cfg");
-
-        if (binaryLoad->load()) {
-                offset_top->setValue(binaryLoad->getValue("top_pos").toInt());
-                offset_left->setValue(binaryLoad->getValue("left_pos").toInt());
-                offset_tick_1->setValue(binaryLoad->getValue("tick_1").toInt());
-                offset_tick_2->setValue(binaryLoad->getValue("tick_2").toInt());
-                offset_tick_3->setValue(binaryLoad->getValue("tick_3").toInt());
-                offset_tick_4->setValue(binaryLoad->getValue("tick_4").toInt());
-                offset_tick_5->setValue(binaryLoad->getValue("tick_5").toInt());
-                offset_top_to_tick->setValue(binaryLoad->getValue("top_to_tick").toInt());
-                offset_tick_to_tick_1->setValue(binaryLoad->getValue("tick_to_tick_1").toInt());
-                offset_tick_to_tick_2->setValue(binaryLoad->getValue("tick_to_tick_2").toInt());
-                offset_tick_to_text->setValue(binaryLoad->getValue("tick_to_text").toInt());
-        } else {
-                offset_top->setValue(15);
-                offset_left->setValue(15);
-                offset_tick_1->setValue(126);
-                offset_tick_2->setValue(139);
-                offset_tick_3->setValue(152);
-                offset_tick_4->setValue(165);
-                offset_tick_5->setValue(178);
-                offset_top_to_tick->setValue(65);
-                offset_tick_to_tick_1->setValue(14);
-                offset_tick_to_tick_2->setValue(6);
-                offset_tick_to_text->setValue(10);
-                save_pos();
-        }
-
-        delete binaryLoad;
+        offset_top->setValue(config.value("offset/top", Presets::topOffset).toInt());
+        offset_left->setValue(config.value("offset/left", Presets::leftOffset).toInt());
+        offset_tick_1->setValue(config.value("offset/tick1", Presets::tickOffset[0]).toInt());
+        offset_tick_2->setValue(config.value("offset/tick2", Presets::tickOffset[1]).toInt());
+        offset_tick_3->setValue(config.value("offset/tick3", Presets::tickOffset[2]).toInt());
+        offset_tick_4->setValue(config.value("offset/tick4", Presets::tickOffset[3]).toInt());
+        offset_tick_5->setValue(config.value("offset/tick5", Presets::tickOffset[4]).toInt());
+        offset_top_to_tick->setValue(config.value("offset/top_to_tick", Presets::topToTick).toInt());
+        offset_tick_to_tick_1->setValue(config.value("offset/tick_to_tick1", Presets::tickToTick1).toInt());
+        offset_tick_to_tick_2->setValue(config.value("offset/tick_to_tick2", Presets::tickToTick2).toInt());
+        offset_tick_to_text->setValue(config.value("offset/tick_to_text", Presets::tickToText).toInt());
 }
 
 
@@ -568,20 +501,7 @@ void GradingWindow::load_pos()
 
 void GradingWindow::save_set()
 {
-        GradingSave *binarySave = new GradingSave( GradingSave::BINARY_FILE );
-
-        binarySave->setFilename("settings.cfg");
-
-        binarySave->registerVariable("save_dir", save_dir);
-
-        if (!binarySave->save()) {
-                QMessageBox(QMessageBox::Warning,
-                            QString::fromUtf8("Fehler"),
-                            QString::fromUtf8("Fehler beim speichern der Einstellungen!"),
-                            QMessageBox::Close, this).exec();
-        }
-
-        delete binarySave;
+        config.setValue("dir/save", save_dir);
 }
 
 
@@ -589,31 +509,7 @@ void GradingWindow::save_set()
 
 void GradingWindow::load_set()
 {
-        GradingSave *binaryLoad = new GradingSave( GradingSave::BINARY_FILE );
-
-        binaryLoad->setFilename("settings.cfg");
-
-        if (binaryLoad->load()) {
-                save_dir = binaryLoad->getValue("save_dir").toString();
-        }
-
-        if (save_dir.isEmpty()) {
-
-#ifdef Q_OS_LINUX
-                save_dir = QProcessEnvironment::systemEnvironment().value("HOME");
-#endif
-
-#ifdef Q_OS_WIN32
-                QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders", QSettings::NativeFormat);
-                save_dir = settings.value("Personal").toString();
-#endif
-                if (save_dir.isEmpty()) {
-                        save_dir = ".";
-                }
-                save_dir += "/";
-        }
-
-        delete binaryLoad;
+        save_dir = config.value("dir/save", Presets::saveDir()).toString();
 }
 
 

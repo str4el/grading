@@ -1,6 +1,7 @@
 /*
  *
  *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
+ *  Copyright (C) 2010 Stephan Reinhard <stephan-reinhard@gmx.de>
  *
  *  This file is part of grading
  *
@@ -23,13 +24,18 @@
 
 #include <QString>
 
-class GradingVersion {
-
-private:
-        static QString version;
+class Presets {
 
 public:
-        static QString getVersion() { return GradingVersion::version; }
+        static QString saveDir();
+        static QString version;
+        static int topOffset;
+        static int leftOffset;
+        static int tickOffset[5];
+        static int topToTick;
+        static int tickToTick1;
+        static int tickToTick2;
+        static int tickToText;
 
 };
 

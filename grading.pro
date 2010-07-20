@@ -6,15 +6,11 @@ INCLUDEPATH += .
 # Input
 HEADERS += GradingWindow.h \
     Option.h \
-    GradingSave.h \
-    GradingVariableContainer.h \
-    GradingVersion.h \
+    presets.h \
     GradingBuild.h
 FORMS += GradingWindow.ui
 SOURCES += GradingWindow.cpp \
     Option.cpp \
     main.cpp \
-    GradingVariableContainer.cpp \
-    GradingSave.cpp \
-    GradingVersion.cpp \
+    presets.cpp \
     GradingBuild.cpp

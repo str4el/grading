@@ -44,6 +44,8 @@ public:
         ~GradingWindow();
 
 private:
+        QSettings config;
+
         QButtonGroup *radioGroupA;
         QButtonGroup *radioGroupB;
         QButtonGroup *radioGroupC;
