@@ -26,16 +26,36 @@
 
 class Presets {
 
+private:
+        static QString mVersion;
+        static int mTopOffset;
+        static int mLeftOffset;
+        static int mTickOffset[5];
+        static int mTopToTick;
+        static int mTickToTick[2];
+        static int mTickToText;
+
 public:
+        static QString version() { return mVersion; }
+        static int topOffset() { return mTopOffset; }
+        static int leftOffset() { return mLeftOffset; }
+        static int topToTick() { return mTopToTick; }
+        static int tickToText() { return mTickToText; }
+
+        static int tickOffset(int n)
+        {
+                if (n <= 0 || n > 5) return 0;
+                return mTickOffset[n - 1];
+        }
+
+        static int tickToTick(int n)
+        {
+                if (n <= 0 || n > 2) return 0;
+                return mTickToTick[n - 1];
+        }
+
         static QString saveDir();
-        static QString version;
-        static int topOffset;
-        static int leftOffset;
-        static int tickOffset[5];
-        static int topToTick;
-        static int tickToTick1;
-        static int tickToTick2;
-        static int tickToText;
+
 
 };
 

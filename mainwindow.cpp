@@ -79,7 +79,7 @@ MainWindow::MainWindow(QWidget *parrent) : QMainWindow(parrent), config("config.
 
         browser->setSource(QUrl("./help.htm"));
 
-        version_label->setText(QString("Grading ") + Presets::version);
+        version_label->setText(QString("Grading ") + Presets::version());
 
         show();
 }
@@ -483,17 +483,17 @@ void MainWindow::save_pos()
 
 void MainWindow::load_pos()
 {
-        offset_top->setValue(config.value("offset/top", Presets::topOffset).toInt());
-        offset_left->setValue(config.value("offset/left", Presets::leftOffset).toInt());
-        offset_tick_1->setValue(config.value("offset/tick1", Presets::tickOffset[0]).toInt());
-        offset_tick_2->setValue(config.value("offset/tick2", Presets::tickOffset[1]).toInt());
-        offset_tick_3->setValue(config.value("offset/tick3", Presets::tickOffset[2]).toInt());
-        offset_tick_4->setValue(config.value("offset/tick4", Presets::tickOffset[3]).toInt());
-        offset_tick_5->setValue(config.value("offset/tick5", Presets::tickOffset[4]).toInt());
-        offset_top_to_tick->setValue(config.value("offset/top_to_tick", Presets::topToTick).toInt());
-        offset_tick_to_tick_1->setValue(config.value("offset/tick_to_tick1", Presets::tickToTick1).toInt());
-        offset_tick_to_tick_2->setValue(config.value("offset/tick_to_tick2", Presets::tickToTick2).toInt());
-        offset_tick_to_text->setValue(config.value("offset/tick_to_text", Presets::tickToText).toInt());
+        offset_top->setValue(config.value("offset/top", Presets::topOffset()).toInt());
+        offset_left->setValue(config.value("offset/left", Presets::leftOffset()).toInt());
+        offset_tick_1->setValue(config.value("offset/tick1", Presets::tickOffset(1)).toInt());
+        offset_tick_2->setValue(config.value("offset/tick2", Presets::tickOffset(2)).toInt());
+        offset_tick_3->setValue(config.value("offset/tick3", Presets::tickOffset(3)).toInt());
+        offset_tick_4->setValue(config.value("offset/tick4", Presets::tickOffset(4)).toInt());
+        offset_tick_5->setValue(config.value("offset/tick5", Presets::tickOffset(5)).toInt());
+        offset_top_to_tick->setValue(config.value("offset/top_to_tick", Presets::topToTick()).toInt());
+        offset_tick_to_tick_1->setValue(config.value("offset/tick_to_tick1", Presets::tickToTick(1)).toInt());
+        offset_tick_to_tick_2->setValue(config.value("offset/tick_to_tick2", Presets::tickToTick(2)).toInt());
+        offset_tick_to_text->setValue(config.value("offset/tick_to_text", Presets::tickToText()).toInt());
 }
 
 
