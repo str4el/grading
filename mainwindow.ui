@@ -840,7 +840,7 @@
            <item row="2" column="2">
             <widget class="QLabel" name="label_16">
              <property name="text">
-              <string>Gesammtnote</string>
+              <string>Gesamtnote</string>
              </property>
              <property name="buddy">
               <cstring>combo_e</cstring>
@@ -1502,6 +1502,76 @@
            </widget>
           </item>
          </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_settings">
+       <attribute name="title">
+        <string>Einstellungen</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Beurteilungstexte</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QComboBox" name="settingsGradeDomainComboBox"/>
+             </item>
+             <item>
+              <widget class="QComboBox" name="settingsGradeComboBox">
+               <item>
+                <property name="text">
+                 <string>Sehr Gut</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Gut</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Befriedigend</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mangelhaft</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="settingsGradeTextSaveButton">
+               <property name="text">
+                <string>Speichern</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="settingsGradeEdit"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>121</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>

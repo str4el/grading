@@ -37,6 +37,14 @@ MainWindow::MainWindow(QWidget *parrent) : QMainWindow(parrent), config("config.
         viewer = new QProcess(this);
 
 
+        domainNames.insert("skills", "Fertigkeiten");
+        domainNames.insert("care", "Sorgfalt");
+        domainNames.insert("interest", "Interesse");
+        domainNames.insert("teamwork", "Zusammenarbeit");
+        domainNames.insert("total", "Gesamtnote");
+
+        settingsGradeInit();
+
         builder = new Build();
 
 
@@ -105,19 +113,25 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 
 
+QString MainWindow::getText(QString domain, int grade)
+{
+        if (grade <= 0 || grade > 5) return QString();
+        return config.value(QString("grades/%1%2").arg(domain).arg(grade), QString("%1 %2").arg(domainNames[domain]).arg(grade)).toString() + " ";
+}
+
+
 /* Die Funktion stack_text stellt den Beurteilungstext aus Vorgefertigten Sätzen zusammen.
  * Je nachdem welche bewertung in den ComboBoxen festgelegt wurde.
  */
 void MainWindow::stack_text()
 {
-        Option config("config", this);
         QString text;
 
-        if (combo_a->currentIndex() > 0) text += config.getOption(QString("text_a%1").arg(combo_a->currentIndex()));
-        if (combo_b->currentIndex() > 0) text += config.getOption(QString("text_b%1").arg(combo_b->currentIndex()));
-        if (combo_c->currentIndex() > 0) text += config.getOption(QString("text_c%1").arg(combo_c->currentIndex()));
-        if (combo_d->currentIndex() > 0) text += config.getOption(QString("text_d%1").arg(combo_d->currentIndex()));
-        if (combo_e->currentIndex() > 0) text += config.getOption(QString("text_e%1").arg(combo_e->currentIndex()));
+        text += getText("skills", combo_a->currentIndex());
+        text += getText("care", combo_b->currentIndex());
+        text += getText("interest", combo_c->currentIndex());
+        text += getText("teamwork", combo_d->currentIndex());
+        text += getText("total", combo_e->currentIndex());
 
         if (text.isEmpty()) {
                 QMessageBox(QMessageBox::Warning,
@@ -266,6 +280,38 @@ void MainWindow::groupRadioButtions()
 }
 
 
+
+void MainWindow::settingsGradeInit()
+{
+        QString domain;
+        foreach (domain, domainNames.keys()) {
+                settingsGradeDomainComboBox->addItem(domainNames[domain], domain);
+        }
+
+        connect(this->settingsGradeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(settingsGradeRead()));
+        connect(this->settingsGradeDomainComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(settingsGradeRead()));
+        connect(this->settingsGradeTextSaveButton, SIGNAL(clicked()), this, SLOT(settingsGradeWrite()));
+
+        settingsGradeRead();
+}
+
+
+void MainWindow::settingsGradeRead()
+{
+        QString domain = settingsGradeDomainComboBox->itemData(settingsGradeDomainComboBox->currentIndex()).toString();
+        int grade = settingsGradeComboBox->currentIndex() + 1;
+        this->settingsGradeEdit->setPlainText(getText(domain, grade));
+
+        qDebug() << domain << grade << getText(domain, grade);
+}
+
+
+void MainWindow::settingsGradeWrite()
+{
+        QString domain = settingsGradeDomainComboBox->itemData(settingsGradeDomainComboBox->currentIndex()).toString();
+        int grade = settingsGradeComboBox->currentIndex() + 1;
+        config.setValue(QString("grades/%1%2").arg(domain).arg(grade), settingsGradeEdit->toPlainText());
+}
 
 
 
@@ -422,6 +468,9 @@ void MainWindow::save_data()
         save.setValue("assessment/e", combo_e->currentIndex());
         save.setValue("assessment/text", edit->toPlainText());
 }
+
+
+
 
 void MainWindow::load_data()
 {

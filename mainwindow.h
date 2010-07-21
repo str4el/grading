@@ -46,6 +46,8 @@ public:
 private:
         QSettings config;
 
+        QMap<QString, QString> domainNames;
+
         QButtonGroup *radioGroupA;
         QButtonGroup *radioGroupB;
         QButtonGroup *radioGroupC;
@@ -69,7 +71,13 @@ private:
         void groupRadioButtions(void);
         void draw_arrow(QGraphicsScene *scene, const QLineF line, const QPen pen);
 
+        QString getText(QString domain, int grade);
+
 private slots:
+        void settingsGradeInit();
+        void settingsGradeRead();
+        void settingsGradeWrite();
+
         void build_pdf();
         void stack_text();
         void draw_preview();
