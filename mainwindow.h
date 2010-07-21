@@ -78,6 +78,9 @@ private slots:
         void settingsGradeRead();
         void settingsGradeWrite();
 
+        void settingsLatexFind();
+        void settingsPdfFind();
+
         void build_pdf();
         void stack_text();
         void draw_preview();
@@ -87,9 +90,6 @@ private slots:
 
         void save_pos();
         void load_pos();
-
-        void save_set();
-        void load_set();
 
         void view(int exitCode, QProcess::ExitStatus exitStatus );
 

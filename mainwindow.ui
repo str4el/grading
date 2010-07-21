@@ -1511,6 +1511,49 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_8">
         <item>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Programmpfade</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <widget class="QLabel" name="settingsLatexLabel">
+             <property name="text">
+              <string>LaTeX</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="settingsLatexEdit"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="settingsLatexButton">
+             <property name="text">
+              <string>Durchsuchen ...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="settingsPdfLabel">
+             <property name="text">
+              <string>PDF Betrachter</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="settingsPdfEdit"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="settingsPdfButton">
+             <property name="text">
+              <string>Durchsuchen ...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QGroupBox" name="groupBox">
           <property name="title">
            <string>Beurteilungstexte</string>
@@ -1568,7 +1611,7 @@
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>121</height>
+            <height>27</height>
            </size>
           </property>
          </spacer>

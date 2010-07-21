@@ -25,7 +25,7 @@
 #include <QSettings>
 
 
-QString Presets::mVersion = "0.3.1";
+QString Presets::mVersion = "0.4.0";
 
 /* Default positions
  */

@@ -23,7 +23,6 @@
 #include <QtGui>
 
 #include "mainwindow.h"
-#include "option.h"
 #include "presets.h"
 #include "build.h"
 
@@ -31,23 +30,28 @@ MainWindow::MainWindow(QWidget *parrent) : QMainWindow(parrent), config("config.
 {
         setupUi(this);
 
-        load_set();
-
-        latex = new QProcess(this);
-        viewer = new QProcess(this);
-
-
         domainNames.insert("skills", "Fertigkeiten");
         domainNames.insert("care", "Sorgfalt");
         domainNames.insert("interest", "Interesse");
         domainNames.insert("teamwork", "Zusammenarbeit");
         domainNames.insert("total", "Gesamtnote");
 
+
+        save_dir = config.value("path/save", Presets::saveDir()).toString();
+        this->settingsLatexEdit->setText(config.value("path/latex").toString());
+        this->settingsPdfEdit->setText(config.value("path/pdf").toString());
         settingsGradeInit();
+        load_pos();
+
+        connect(this->settingsLatexButton, SIGNAL(clicked()), this, SLOT(settingsLatexFind()));
+        connect(this->settingsPdfButton, SIGNAL(clicked()), this, SLOT(settingsPdfFind()));
+
+        latex = new QProcess(this);
+        viewer = new QProcess(this);
+
+
 
         builder = new Build();
-
-
         connect(offset_top, SIGNAL(valueChanged(int)), builder, SLOT(setTopPos(int)));
         connect(offset_left, SIGNAL(valueChanged(int)), builder, SLOT(setLeftPos(int)));
         connect(offset_top_to_tick, SIGNAL(valueChanged(int)), builder, SLOT(setTopToTickPos(int)));
@@ -55,7 +59,6 @@ MainWindow::MainWindow(QWidget *parrent) : QMainWindow(parrent), config("config.
         connect(offset_tick_to_tick_2, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos2(int)));
         connect(offset_tick_to_text, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTextPos(int)));
 
-        load_pos();
 
         connect(savePosButton, SIGNAL(clicked()), this, SLOT(save_pos()));
 
@@ -107,7 +110,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-        save_set();
+        config.setValue("path/save", save_dir);
+        config.setValue("path/latex", this->settingsLatexEdit->text());
+        config.setValue("path/pdf", this->settingsPdfEdit->text());
 }
 
 
@@ -178,13 +183,12 @@ void MainWindow::build_pdf()
 
         builder->build();
 
-        Option config("config", this);
         latex->setWorkingDirectory(QDir::tempPath());
-        latex->start(config.getOption("bin_pdflatex"), QStringList("grading.tex"));
+        latex->start(this->settingsLatexEdit->text(), QStringList("grading.tex"));
         if (!latex->waitForStarted(3000)) {
                 QMessageBox(QMessageBox::Warning,
                             QString::fromUtf8("Fehler"),
-                            QString::fromUtf8("LaTeX konnte nicht gestartet werden!"),
+                            QString::fromUtf8("LaTeX konnte nicht gestartet werden! Einstellungen überprüfen."),
                             QMessageBox::Close, this).exec();
                 viewer->close();
                 return;
@@ -196,17 +200,15 @@ void MainWindow::build_pdf()
 
 void MainWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 {
-        Option config("config", this);
-
         if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
 
                 if (viewer->state() == QProcess::Running) viewer->close();
 
-                viewer->start(config.getOption("bin_pdfview"), QStringList(QDir::tempPath() + "/grading.pdf"));
+                viewer->start(this->settingsPdfEdit->text(), QStringList(QDir::tempPath() + "/grading.pdf"));
                 if (!viewer->waitForStarted(3000)) {
                         QMessageBox(QMessageBox::Warning,
                                     QString::fromUtf8("Fehler"),
-                                    QString::fromUtf8("Der PDF Betrachter konnte nicht gestartet werden!"),
+                                    QString::fromUtf8("Der PDF Betrachter konnte nicht gestartet werden! Einstellungen überprüfen"),
                                     QMessageBox::Close, this).exec();
                         viewer->close();
                         return;
@@ -281,6 +283,32 @@ void MainWindow::groupRadioButtions()
 
 
 
+
+void MainWindow::settingsLatexFind()
+{
+        QString filename = QFileDialog::getOpenFileName(this, "Suche nach Latex", this->settingsLatexEdit->text());
+        if (filename.isEmpty()) {
+                return;
+        }
+        this->settingsLatexEdit->setText(filename);
+}
+
+
+
+
+
+void MainWindow::settingsPdfFind()
+{
+        QString filename = QFileDialog::getOpenFileName(this, "Suche nach PDF Betrachter", this->settingsPdfEdit->text());
+        if (filename.isEmpty()) {
+                return;
+        }
+        this->settingsPdfEdit->setText(filename);
+}
+
+
+
+
 void MainWindow::settingsGradeInit()
 {
         QString domain;
@@ -296,14 +324,17 @@ void MainWindow::settingsGradeInit()
 }
 
 
+
+
+
 void MainWindow::settingsGradeRead()
 {
         QString domain = settingsGradeDomainComboBox->itemData(settingsGradeDomainComboBox->currentIndex()).toString();
         int grade = settingsGradeComboBox->currentIndex() + 1;
         this->settingsGradeEdit->setPlainText(getText(domain, grade));
-
-        qDebug() << domain << grade << getText(domain, grade);
 }
+
+
 
 
 void MainWindow::settingsGradeWrite()
@@ -312,6 +343,7 @@ void MainWindow::settingsGradeWrite()
         int grade = settingsGradeComboBox->currentIndex() + 1;
         config.setValue(QString("grades/%1%2").arg(domain).arg(grade), settingsGradeEdit->toPlainText());
 }
+
 
 
 
@@ -451,21 +483,21 @@ void MainWindow::save_data()
         save.setValue("info/end", save_date2->date().toString());
         save.setValue("info/comment", save_comment->toPlainText());
 
-        save.setValue("grades/a", radioGroupA->checkedId());
-        save.setValue("grades/b", radioGroupB->checkedId());
-        save.setValue("grades/c", radioGroupC->checkedId());
-        save.setValue("grades/d", radioGroupD->checkedId());
-        save.setValue("grades/e", radioGroupE->checkedId());
-        save.setValue("grades/f", radioGroupF->checkedId());
-        save.setValue("grades/g", radioGroupG->checkedId());
-        save.setValue("grades/h", radioGroupH->checkedId());
+        save.setValue("grades/knowledge", radioGroupA->checkedId());
+        save.setValue("grades/skills", radioGroupB->checkedId());
+        save.setValue("grades/safety", radioGroupC->checkedId());
+        save.setValue("grades/reliability", radioGroupD->checkedId());
+        save.setValue("grades/activity", radioGroupE->checkedId());
+        save.setValue("grades/proper_handling", radioGroupF->checkedId());
+        save.setValue("grades/teamwork", radioGroupG->checkedId());
+        save.setValue("grades/responsibility", radioGroupH->checkedId());
 
         save.setValue("assessment/sex", combo_mw->currentIndex());
-        save.setValue("assessment/a", combo_a->currentIndex());
-        save.setValue("assessment/b", combo_b->currentIndex());
-        save.setValue("assessment/c", combo_c->currentIndex());
-        save.setValue("assessment/d", combo_d->currentIndex());
-        save.setValue("assessment/e", combo_e->currentIndex());
+        save.setValue("assessment/skills", combo_a->currentIndex());
+        save.setValue("assessment/care", combo_b->currentIndex());
+        save.setValue("assessment/interest", combo_c->currentIndex());
+        save.setValue("assessment/teamwork", combo_d->currentIndex());
+        save.setValue("assessment/total", combo_e->currentIndex());
         save.setValue("assessment/text", edit->toPlainText());
 }
 
@@ -490,21 +522,21 @@ void MainWindow::load_data()
         save_date2->setDate(QDate::fromString(load.value("info/end").toString()));
         save_comment->setPlainText(load.value("info/comment").toString());
 
-        radioGroupA->button(load.value("grades/a").toInt())->setChecked(true);
-        radioGroupB->button(load.value("grades/b").toInt())->setChecked(true);
-        radioGroupC->button(load.value("grades/c").toInt())->setChecked(true);
-        radioGroupD->button(load.value("grades/d").toInt())->setChecked(true);
-        radioGroupE->button(load.value("grades/e").toInt())->setChecked(true);
-        radioGroupF->button(load.value("grades/f").toInt())->setChecked(true);
-        radioGroupG->button(load.value("grades/g").toInt())->setChecked(true);
-        radioGroupH->button(load.value("grades/h").toInt())->setChecked(true);
+        radioGroupA->button(load.value("grades/knowledge").toInt())->setChecked(true);
+        radioGroupB->button(load.value("grades/skills").toInt())->setChecked(true);
+        radioGroupC->button(load.value("grades/safety").toInt())->setChecked(true);
+        radioGroupD->button(load.value("grades/reliability").toInt())->setChecked(true);
+        radioGroupE->button(load.value("grades/activity").toInt())->setChecked(true);
+        radioGroupF->button(load.value("grades/proper_handling").toInt())->setChecked(true);
+        radioGroupG->button(load.value("grades/teamwork").toInt())->setChecked(true);
+        radioGroupH->button(load.value("grades/responsibility").toInt())->setChecked(true);
 
         combo_mw->setCurrentIndex(load.value("assessment/sex").toInt());
-        combo_a->setCurrentIndex(load.value("assessment/a").toInt());
-        combo_b->setCurrentIndex(load.value("assessment/b").toInt());
-        combo_c->setCurrentIndex(load.value("assessment/c").toInt());
-        combo_d->setCurrentIndex(load.value("assessment/d").toInt());
-        combo_e->setCurrentIndex(load.value("assessment/e").toInt());
+        combo_a->setCurrentIndex(load.value("assessment/skills").toInt());
+        combo_b->setCurrentIndex(load.value("assessment/care").toInt());
+        combo_c->setCurrentIndex(load.value("assessment/interest").toInt());
+        combo_d->setCurrentIndex(load.value("assessment/teamwork").toInt());
+        combo_e->setCurrentIndex(load.value("assessment/total").toInt());
         edit->setPlainText(load.value("assessment/text").toString());
 }
 
@@ -514,17 +546,17 @@ void MainWindow::load_data()
 
 void MainWindow::save_pos()
 {
-        config.setValue("offset/top", offset_top->value());
-        config.setValue("offset/left", offset_left->value());
-        config.setValue("offset/tick1", offset_tick_1->value());
-        config.setValue("offset/tick2", offset_tick_2->value());
-        config.setValue("offset/tick3", offset_tick_3->value());
-        config.setValue("offset/tick4", offset_tick_4->value());
-        config.setValue("offset/tick5", offset_tick_5->value());
-        config.setValue("offset/top_to_tick", offset_top_to_tick->value());
-        config.setValue("offset/tick_to_tick1", offset_tick_to_tick_1->value());
-        config.setValue("offset/tick_to_tick2", offset_tick_to_tick_2->value());
-        config.setValue("offset/tick_to_text", offset_tick_to_text->value());
+        config.setValue("position/top", offset_top->value());
+        config.setValue("position/left", offset_left->value());
+        config.setValue("position/tick1", offset_tick_1->value());
+        config.setValue("position/tick2", offset_tick_2->value());
+        config.setValue("position/tick3", offset_tick_3->value());
+        config.setValue("position/tick4", offset_tick_4->value());
+        config.setValue("position/tick5", offset_tick_5->value());
+        config.setValue("position/top_to_tick", offset_top_to_tick->value());
+        config.setValue("position/tick_to_tick1", offset_tick_to_tick_1->value());
+        config.setValue("position/tick_to_tick2", offset_tick_to_tick_2->value());
+        config.setValue("position/tick_to_text", offset_tick_to_text->value());
 }
 
 
@@ -532,33 +564,17 @@ void MainWindow::save_pos()
 
 void MainWindow::load_pos()
 {
-        offset_top->setValue(config.value("offset/top", Presets::topOffset()).toInt());
-        offset_left->setValue(config.value("offset/left", Presets::leftOffset()).toInt());
-        offset_tick_1->setValue(config.value("offset/tick1", Presets::tickOffset(1)).toInt());
-        offset_tick_2->setValue(config.value("offset/tick2", Presets::tickOffset(2)).toInt());
-        offset_tick_3->setValue(config.value("offset/tick3", Presets::tickOffset(3)).toInt());
-        offset_tick_4->setValue(config.value("offset/tick4", Presets::tickOffset(4)).toInt());
-        offset_tick_5->setValue(config.value("offset/tick5", Presets::tickOffset(5)).toInt());
-        offset_top_to_tick->setValue(config.value("offset/top_to_tick", Presets::topToTick()).toInt());
-        offset_tick_to_tick_1->setValue(config.value("offset/tick_to_tick1", Presets::tickToTick(1)).toInt());
-        offset_tick_to_tick_2->setValue(config.value("offset/tick_to_tick2", Presets::tickToTick(2)).toInt());
-        offset_tick_to_text->setValue(config.value("offset/tick_to_text", Presets::tickToText()).toInt());
-}
-
-
-
-
-void MainWindow::save_set()
-{
-        config.setValue("dir/save", save_dir);
-}
-
-
-
-
-void MainWindow::load_set()
-{
-        save_dir = config.value("dir/save", Presets::saveDir()).toString();
+        offset_top->setValue(config.value("position/top", Presets::topOffset()).toInt());
+        offset_left->setValue(config.value("position/left", Presets::leftOffset()).toInt());
+        offset_tick_1->setValue(config.value("position/tick1", Presets::tickOffset(1)).toInt());
+        offset_tick_2->setValue(config.value("position/tick2", Presets::tickOffset(2)).toInt());
+        offset_tick_3->setValue(config.value("position/tick3", Presets::tickOffset(3)).toInt());
+        offset_tick_4->setValue(config.value("position/tick4", Presets::tickOffset(4)).toInt());
+        offset_tick_5->setValue(config.value("position/tick5", Presets::tickOffset(5)).toInt());
+        offset_top_to_tick->setValue(config.value("position/top_to_tick", Presets::topToTick()).toInt());
+        offset_tick_to_tick_1->setValue(config.value("position/tick_to_tick1", Presets::tickToTick(1)).toInt());
+        offset_tick_to_tick_2->setValue(config.value("position/tick_to_tick2", Presets::tickToTick(2)).toInt());
+        offset_tick_to_text->setValue(config.value("position/tick_to_text", Presets::tickToText()).toInt());
 }
 
 
