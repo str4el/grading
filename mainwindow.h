@@ -54,14 +54,14 @@ private:
 
         QMap<QString, QString> domainNames;
 
-        QButtonGroup *radioGroupA;
-        QButtonGroup *radioGroupB;
-        QButtonGroup *radioGroupC;
-        QButtonGroup *radioGroupD;
-        QButtonGroup *radioGroupE;
-        QButtonGroup *radioGroupF;
-        QButtonGroup *radioGroupG;
-        QButtonGroup *radioGroupH;
+        QButtonGroup *assessmentKnowledgeRadioGroup;
+        QButtonGroup *assessmentSkillsRadioGroup;
+        QButtonGroup *assessmentSavetyRadioGroup;
+        QButtonGroup *assessmentReliabilityRadioGroup;
+        QButtonGroup *assessmentActivityRadioGroup;
+        QButtonGroup *assessmentProperHandlingRadioGroup;
+        QButtonGroup *assessmentTeamworkRadioGroup;
+        QButtonGroup *assessmentResponsibilityRadioGroup;
 
         enum GRADE { VERY_GOOD = 0, GOOD, NORMAL, BAD, VERY_BAD };
 
@@ -97,7 +97,7 @@ private slots:
         void savePos();
         void loadPos();
 
-        void view(int exitCode, QProcess::ExitStatus exitStatus );
+        void viewPdf(int exitCode, QProcess::ExitStatus exitStatus );
 
 protected:
         void closeEvent(QCloseEvent *event);

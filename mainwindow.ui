@@ -33,9 +33,9 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="tabGrades">
+      <widget class="QWidget" name="assessmentTab">
        <attribute name="title">
         <string>Wertung</string>
        </attribute>
@@ -108,12 +108,12 @@
               <string>Fachkenntnisse</string>
              </property>
              <property name="buddy">
-              <cstring>checkA1</cstring>
+              <cstring>assessmentKnowledge1RadioButton</cstring>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QRadioButton" name="checkA1">
+            <widget class="QRadioButton" name="assessmentKnowledge1RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -126,7 +126,7 @@
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QRadioButton" name="checkA2">
+            <widget class="QRadioButton" name="assessmentKnowledge2RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -136,7 +136,7 @@
             </widget>
            </item>
            <item row="1" column="3">
-            <widget class="QRadioButton" name="checkA3">
+            <widget class="QRadioButton" name="assessmentKnowledge3RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -146,7 +146,7 @@
             </widget>
            </item>
            <item row="1" column="4">
-            <widget class="QRadioButton" name="checkA4">
+            <widget class="QRadioButton" name="assessmentKnowledge4RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -156,7 +156,7 @@
             </widget>
            </item>
            <item row="1" column="5">
-            <widget class="QRadioButton" name="checkA5">
+            <widget class="QRadioButton" name="assessmentKnowledge5RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -177,12 +177,12 @@
               <string>Fertigkeiten</string>
              </property>
              <property name="buddy">
-              <cstring>checkB1</cstring>
+              <cstring>assessmentSkills1RadioButton</cstring>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QRadioButton" name="checkB1">
+            <widget class="QRadioButton" name="assessmentSkills1RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -195,7 +195,7 @@
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QRadioButton" name="checkB2">
+            <widget class="QRadioButton" name="assessmentSkills2RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -205,7 +205,7 @@
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QRadioButton" name="checkB3">
+            <widget class="QRadioButton" name="assessmentSkills3RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -215,7 +215,7 @@
             </widget>
            </item>
            <item row="2" column="4">
-            <widget class="QRadioButton" name="checkB4">
+            <widget class="QRadioButton" name="assessmentSkills4RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -225,7 +225,7 @@
             </widget>
            </item>
            <item row="2" column="5">
-            <widget class="QRadioButton" name="checkB5">
+            <widget class="QRadioButton" name="assessmentSkills5RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -246,12 +246,12 @@
               <string>Arbeitssicheres Verhalten</string>
              </property>
              <property name="buddy">
-              <cstring>checkC1</cstring>
+              <cstring>assessmentSavety1RadioButton</cstring>
              </property>
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QRadioButton" name="checkC1">
+            <widget class="QRadioButton" name="assessmentSavety1RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -264,7 +264,7 @@
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QRadioButton" name="checkC2">
+            <widget class="QRadioButton" name="assessmentSavety2RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -274,7 +274,7 @@
             </widget>
            </item>
            <item row="3" column="3">
-            <widget class="QRadioButton" name="checkC3">
+            <widget class="QRadioButton" name="assessmentSavety3RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -284,7 +284,7 @@
             </widget>
            </item>
            <item row="3" column="4">
-            <widget class="QRadioButton" name="checkC4">
+            <widget class="QRadioButton" name="assessmentSavety4RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -294,7 +294,7 @@
             </widget>
            </item>
            <item row="3" column="5">
-            <widget class="QRadioButton" name="checkC5">
+            <widget class="QRadioButton" name="assessmentSavety5RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -315,12 +315,12 @@
               <string>Zuverlässigkeit</string>
              </property>
              <property name="buddy">
-              <cstring>checkD1</cstring>
+              <cstring>assessmentReliability1RadioButton</cstring>
              </property>
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QRadioButton" name="checkD1">
+            <widget class="QRadioButton" name="assessmentReliability1RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -333,7 +333,7 @@
             </widget>
            </item>
            <item row="4" column="2">
-            <widget class="QRadioButton" name="checkD2">
+            <widget class="QRadioButton" name="assessmentReliability2RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -343,7 +343,7 @@
             </widget>
            </item>
            <item row="4" column="3">
-            <widget class="QRadioButton" name="checkD3">
+            <widget class="QRadioButton" name="assessmentReliability3RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -353,7 +353,7 @@
             </widget>
            </item>
            <item row="4" column="4">
-            <widget class="QRadioButton" name="checkD4">
+            <widget class="QRadioButton" name="assessmentReliability4RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -363,7 +363,7 @@
             </widget>
            </item>
            <item row="4" column="5">
-            <widget class="QRadioButton" name="checkD5">
+            <widget class="QRadioButton" name="assessmentReliability5RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -384,12 +384,12 @@
               <string>Lern- und Arbeitsbereitschaft</string>
              </property>
              <property name="buddy">
-              <cstring>checkE1</cstring>
+              <cstring>assessmentActivity1RadioButton</cstring>
              </property>
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QRadioButton" name="checkE1">
+            <widget class="QRadioButton" name="assessmentActivity1RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -402,7 +402,7 @@
             </widget>
            </item>
            <item row="5" column="2">
-            <widget class="QRadioButton" name="checkE2">
+            <widget class="QRadioButton" name="assessmentActivity2RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -412,7 +412,7 @@
             </widget>
            </item>
            <item row="5" column="3">
-            <widget class="QRadioButton" name="checkE3">
+            <widget class="QRadioButton" name="assessmentActivity3RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -422,7 +422,7 @@
             </widget>
            </item>
            <item row="5" column="4">
-            <widget class="QRadioButton" name="checkE4">
+            <widget class="QRadioButton" name="assessmentActivity4RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -432,7 +432,7 @@
             </widget>
            </item>
            <item row="5" column="5">
-            <widget class="QRadioButton" name="checkE5">
+            <widget class="QRadioButton" name="assessmentActivity5RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -453,12 +453,12 @@
               <string>Umgang mit Einrichtungen / Arbeitsmitteln</string>
              </property>
              <property name="buddy">
-              <cstring>checkF1</cstring>
+              <cstring>assessmentProperHandling1RadioButton</cstring>
              </property>
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QRadioButton" name="checkF1">
+            <widget class="QRadioButton" name="assessmentProperHandling1RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -471,7 +471,7 @@
             </widget>
            </item>
            <item row="6" column="2">
-            <widget class="QRadioButton" name="checkF2">
+            <widget class="QRadioButton" name="assessmentProperHandling2RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -481,7 +481,7 @@
             </widget>
            </item>
            <item row="6" column="3">
-            <widget class="QRadioButton" name="checkF3">
+            <widget class="QRadioButton" name="assessmentProperHandling3RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -491,7 +491,7 @@
             </widget>
            </item>
            <item row="6" column="4">
-            <widget class="QRadioButton" name="checkF4">
+            <widget class="QRadioButton" name="assessmentProperHandling4RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -501,7 +501,7 @@
             </widget>
            </item>
            <item row="6" column="5">
-            <widget class="QRadioButton" name="checkF5">
+            <widget class="QRadioButton" name="assessmentProperHandling5RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -522,12 +522,12 @@
               <string>Teamfähigkeit</string>
              </property>
              <property name="buddy">
-              <cstring>checkG1</cstring>
+              <cstring>assessmentTeamwork1RadioButton</cstring>
              </property>
             </widget>
            </item>
            <item row="7" column="1">
-            <widget class="QRadioButton" name="checkG1">
+            <widget class="QRadioButton" name="assessmentTeamwork1RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -540,7 +540,7 @@
             </widget>
            </item>
            <item row="7" column="2">
-            <widget class="QRadioButton" name="checkG2">
+            <widget class="QRadioButton" name="assessmentTeamwork2RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -550,7 +550,7 @@
             </widget>
            </item>
            <item row="7" column="3">
-            <widget class="QRadioButton" name="checkG3">
+            <widget class="QRadioButton" name="assessmentTeamwork3RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -560,7 +560,7 @@
             </widget>
            </item>
            <item row="7" column="4">
-            <widget class="QRadioButton" name="checkG4">
+            <widget class="QRadioButton" name="assessmentTeamwork4RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -570,7 +570,7 @@
             </widget>
            </item>
            <item row="7" column="5">
-            <widget class="QRadioButton" name="checkG5">
+            <widget class="QRadioButton" name="assessmentTeamwork5RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -591,12 +591,12 @@
               <string>Verantwortungsbewustsein</string>
              </property>
              <property name="buddy">
-              <cstring>checkH1</cstring>
+              <cstring>assessmentResponsibility1RadioButton</cstring>
              </property>
             </widget>
            </item>
            <item row="8" column="1">
-            <widget class="QRadioButton" name="checkH1">
+            <widget class="QRadioButton" name="assessmentResponsibility1RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -609,7 +609,7 @@
             </widget>
            </item>
            <item row="8" column="2">
-            <widget class="QRadioButton" name="checkH2">
+            <widget class="QRadioButton" name="assessmentResponsibility2RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -619,7 +619,7 @@
             </widget>
            </item>
            <item row="8" column="3">
-            <widget class="QRadioButton" name="checkH3">
+            <widget class="QRadioButton" name="assessmentResponsibility3RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -629,7 +629,7 @@
             </widget>
            </item>
            <item row="8" column="4">
-            <widget class="QRadioButton" name="checkH4">
+            <widget class="QRadioButton" name="assessmentResponsibility4RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -639,7 +639,7 @@
             </widget>
            </item>
            <item row="8" column="5">
-            <widget class="QRadioButton" name="checkH5">
+            <widget class="QRadioButton" name="assessmentResponsibility5RadioButton">
              <property name="text">
               <string/>
              </property>
@@ -663,12 +663,12 @@
               <string>Geschlecht</string>
              </property>
              <property name="buddy">
-              <cstring>comboMw</cstring>
+              <cstring>assessmentSexCombo</cstring>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="comboMw">
+            <widget class="QComboBox" name="assessmentSexCombo">
              <item>
               <property name="text">
                <string>Männlich</string>
@@ -687,12 +687,12 @@
               <string>Interesse</string>
              </property>
              <property name="buddy">
-              <cstring>comboC</cstring>
+              <cstring>assessmentInterestCombo</cstring>
              </property>
             </widget>
            </item>
            <item row="0" column="3">
-            <widget class="QComboBox" name="comboC">
+            <widget class="QComboBox" name="assessmentInterestCombo">
              <item>
               <property name="text">
                <string>Nicht erwähnen</string>
@@ -726,12 +726,12 @@
               <string>Fertigkeiten</string>
              </property>
              <property name="buddy">
-              <cstring>comboA</cstring>
+              <cstring>assessmentSkillsCombo</cstring>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboA">
+            <widget class="QComboBox" name="assessmentSkillsCombo">
              <item>
               <property name="text">
                <string>Nicht erwähnen</string>
@@ -765,12 +765,12 @@
               <string>Zusammenarbeit</string>
              </property>
              <property name="buddy">
-              <cstring>comboD</cstring>
+              <cstring>assessmentTeamworkCombo</cstring>
              </property>
             </widget>
            </item>
            <item row="1" column="3">
-            <widget class="QComboBox" name="comboD">
+            <widget class="QComboBox" name="assessmentTeamworkCombo">
              <item>
               <property name="text">
                <string>Nicht erwähnen</string>
@@ -804,12 +804,12 @@
               <string>Sorgfalt</string>
              </property>
              <property name="buddy">
-              <cstring>comboB</cstring>
+              <cstring>assessmentCareCombo</cstring>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QComboBox" name="comboB">
+            <widget class="QComboBox" name="assessmentCareCombo">
              <item>
               <property name="text">
                <string>Nicht erwähnen</string>
@@ -843,12 +843,12 @@
               <string>Gesamtnote</string>
              </property>
              <property name="buddy">
-              <cstring>comboE</cstring>
+              <cstring>assessmentTotalCombo</cstring>
              </property>
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QComboBox" name="comboE">
+            <widget class="QComboBox" name="assessmentTotalCombo">
              <item>
               <property name="text">
                <string>Nicht erwähnen</string>
@@ -881,7 +881,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabEdit">
+      <widget class="QWidget" name="editTab">
        <attribute name="title">
         <string>Texteditor</string>
        </attribute>
@@ -892,12 +892,12 @@
            <string>Beurteilungstext</string>
           </property>
           <property name="buddy">
-           <cstring>edit</cstring>
+           <cstring>editTextEdit</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="edit">
+         <widget class="QPlainTextEdit" name="editTextEdit">
           <property name="tabChangesFocus">
            <bool>true</bool>
           </property>
@@ -905,13 +905,13 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabLayout">
+      <widget class="QWidget" name="layoutTab">
        <attribute name="title">
         <string>Format</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout2">
         <item>
-         <widget class="QGraphicsView" name="layoutPreview"/>
+         <widget class="QGraphicsView" name="layoutPreView"/>
         </item>
         <item>
          <layout class="QGridLayout" name="gridLayout4">
@@ -931,12 +931,12 @@
              <string>1</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTop</cstring>
+             <cstring>layoutTopOffsetSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QSpinBox" name="offsetTop">
+           <widget class="QSpinBox" name="layoutTopOffsetSpinBox">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -973,12 +973,12 @@
              <string>2</string>
             </property>
             <property name="buddy">
-             <cstring>offsetLeft</cstring>
+             <cstring>layoutLeftOffsetSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QSpinBox" name="offsetLeft">
+           <widget class="QSpinBox" name="layoutLeftOffsetSpinBox">
             <property name="toolTip">
              <string>Der Abstand vom linken Seitenrand. Damit kann der gesammte Inhalt nach links oder rechts verschoben werden.</string>
             </property>
@@ -1009,12 +1009,12 @@
              <string>3</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTick1</cstring>
+             <cstring>layoutTick1PosSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QSpinBox" name="offsetTick1">
+           <widget class="QSpinBox" name="layoutTick1PosSpinBox">
             <property name="toolTip">
              <string>Die horizontale Position des ++ Hakens.</string>
             </property>
@@ -1045,12 +1045,12 @@
              <string>4</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTick2</cstring>
+             <cstring>layoutTick2PosSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QSpinBox" name="offsetTick2">
+           <widget class="QSpinBox" name="layoutTick2PosSpinBox">
             <property name="toolTip">
              <string>Die horizontale Position des + Hakens.</string>
             </property>
@@ -1081,12 +1081,12 @@
              <string>5</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTick3</cstring>
+             <cstring>layoutTick3PosSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QSpinBox" name="offsetTick3">
+           <widget class="QSpinBox" name="layoutTick3PosSpinBox">
             <property name="toolTip">
              <string>Die horizontale Position des 0 Hakens.</string>
             </property>
@@ -1117,12 +1117,12 @@
              <string>6</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTick4</cstring>
+             <cstring>layoutTick4PosSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="5" column="1">
-           <widget class="QSpinBox" name="offsetTick4">
+           <widget class="QSpinBox" name="layoutTick4PosSpinBox">
             <property name="toolTip">
              <string>Die horizontale Position des - Hakens.</string>
             </property>
@@ -1153,12 +1153,12 @@
              <string>7</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTick5</cstring>
+             <cstring>layoutTick5PosSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="6" column="1">
-           <widget class="QSpinBox" name="offsetTick5">
+           <widget class="QSpinBox" name="layoutTick5PosSpinBox">
             <property name="toolTip">
              <string>Die horizontale Position des -- Hakens.</string>
             </property>
@@ -1189,12 +1189,12 @@
              <string>8</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTopToTick</cstring>
+             <cstring>layoutTopToTickSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="7" column="1">
-           <widget class="QSpinBox" name="offsetTopToTick">
+           <widget class="QSpinBox" name="layoutTopToTickSpinBox">
             <property name="toolTip">
              <string>Der Abstand vom oberen Seitenrand bis zum ersten Haken. Der gesammte folgende Inhalt wird mit verschoben.</string>
             </property>
@@ -1225,12 +1225,12 @@
              <string>9</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTickToTick1</cstring>
+             <cstring>layoutTickToTick1SpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="8" column="1">
-           <widget class="QSpinBox" name="offsetTickToTick1">
+           <widget class="QSpinBox" name="layoutTickToTick1SpinBox">
             <property name="toolTip">
              <string>Der Abstand zwischen den ersten drei Haken und den folgenden drei. Der gesammte folgende Inhalt wird mit verschoben.</string>
             </property>
@@ -1261,12 +1261,12 @@
              <string>10</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTickToTick2</cstring>
+             <cstring>layoutTickToTick2SpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="9" column="1">
-           <widget class="QSpinBox" name="offsetTickToTick2">
+           <widget class="QSpinBox" name="layoutTickToTick2SpinBox">
             <property name="toolTip">
              <string>Der Abstand zwischen den zweiten drei Haken und den lezten zwei. Der gesammte folgende Inhalt wird mit verschoben.</string>
             </property>
@@ -1303,12 +1303,12 @@
              <string>11</string>
             </property>
             <property name="buddy">
-             <cstring>offsetTickToText</cstring>
+             <cstring>layoutTickToTextSpinBox</cstring>
             </property>
            </widget>
           </item>
           <item row="10" column="1">
-           <widget class="QSpinBox" name="offsetTickToText">
+           <widget class="QSpinBox" name="layoutTickToTextSpinBox">
             <property name="toolTip">
              <string>Der Abstand zwischen den lezten zwei Haken und dem Beurteilungstext.</string>
             </property>
@@ -1324,7 +1324,7 @@
            </widget>
           </item>
           <item row="11" column="0" colspan="2">
-           <widget class="QPushButton" name="savePosButton">
+           <widget class="QPushButton" name="layoutSaveButton">
             <property name="text">
              <string>Speichern</string>
             </property>
@@ -1334,7 +1334,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabSave">
+      <widget class="QWidget" name="saveTab">
        <attribute name="title">
         <string>Speichern</string>
        </attribute>
@@ -1356,12 +1356,12 @@
                 <string>Name Auszubildender</string>
                </property>
                <property name="buddy">
-                <cstring>saveNameApprentice</cstring>
+                <cstring>saveApprenticeNameEdit</cstring>
                </property>
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QLineEdit" name="saveNameApprentice"/>
+              <widget class="QLineEdit" name="saveApprenticeNameEdit"/>
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label23">
@@ -1369,12 +1369,12 @@
                 <string>Name Ausbilder</string>
                </property>
                <property name="buddy">
-                <cstring>saveNameInstructor</cstring>
+                <cstring>saveInstructorNameEdit</cstring>
                </property>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QLineEdit" name="saveNameInstructor">
+              <widget class="QLineEdit" name="saveInstructorNameEdit">
                <property name="text">
                 <string/>
                </property>
@@ -1390,12 +1390,12 @@
                 <string>Lehrjahr</string>
                </property>
                <property name="buddy">
-                <cstring>saveYear</cstring>
+                <cstring>saveYearEdit</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="saveYear">
+              <widget class="QSpinBox" name="saveYearEdit">
                <property name="minimum">
                 <number>1</number>
                </property>
@@ -1413,12 +1413,12 @@
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
                <property name="buddy">
-                <cstring>saveDate1</cstring>
+                <cstring>saveBeginDateEdit</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QDateEdit" name="saveDate1">
+              <widget class="QDateEdit" name="saveBeginDateEdit">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1439,12 +1439,12 @@
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
                <property name="buddy">
-                <cstring>saveDate2</cstring>
+                <cstring>saveEndDateEdit</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QDateEdit" name="saveDate2">
+              <widget class="QDateEdit" name="saveEndDateEdit">
                <property name="displayFormat">
                 <string>dd.MM.yyyy</string>
                </property>
@@ -1458,12 +1458,12 @@
               <string>Kommentar</string>
              </property>
              <property name="buddy">
-              <cstring>saveComment</cstring>
+              <cstring>saveCommentEdit</cstring>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPlainTextEdit" name="saveComment">
+            <widget class="QPlainTextEdit" name="saveCommentEdit">
              <property name="tabChangesFocus">
               <bool>true</bool>
              </property>
@@ -1488,14 +1488,14 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="save">
+           <widget class="QPushButton" name="saveSaveButton">
             <property name="text">
              <string>Speichern</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="load">
+           <widget class="QPushButton" name="saveLoadButton">
             <property name="text">
              <string>Laden</string>
             </property>
@@ -1505,7 +1505,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabSettings">
+      <widget class="QWidget" name="settingsTab">
        <attribute name="title">
         <string>Einstellungen</string>
        </attribute>
@@ -1618,13 +1618,13 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabHelp">
+      <widget class="QWidget" name="infoTab">
        <attribute name="title">
         <string>Info</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout3">
         <item>
-         <widget class="QLabel" name="versionLabel">
+         <widget class="QLabel" name="infoVersionLabel">
           <property name="font">
            <font>
             <pointsize>14</pointsize>
@@ -1638,7 +1638,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="browser">
+         <widget class="QTextBrowser" name="infoBrowser">
           <property name="openExternalLinks">
            <bool>true</bool>
           </property>
@@ -1651,7 +1651,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="stack">
+       <widget class="QPushButton" name="stackButton">
         <property name="toolTip">
          <string>Erstellt aus vorgefertigten Textteilen je nach wahl der Textvorlagen einen Text und springt in den Texteditor - Tab.</string>
         </property>
@@ -1661,7 +1661,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="build">
+       <widget class="QPushButton" name="buildButton">
         <property name="toolTip">
          <string>Erstellt nach den Einstellungen ein PDF Dokument und zeigt es in einem PDF - Viewer an um es auszudrucken.</string>
         </property>
@@ -1684,7 +1684,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="close">
+       <widget class="QPushButton" name="closeButton">
         <property name="text">
          <string>Schliessen</string>
         </property>
@@ -1697,82 +1697,82 @@
  </widget>
  <tabstops>
   <tabstop>tab</tabstop>
-  <tabstop>checkA1</tabstop>
-  <tabstop>checkA2</tabstop>
-  <tabstop>checkA3</tabstop>
-  <tabstop>checkA4</tabstop>
-  <tabstop>checkA5</tabstop>
-  <tabstop>checkB1</tabstop>
-  <tabstop>checkB2</tabstop>
-  <tabstop>checkB3</tabstop>
-  <tabstop>checkB4</tabstop>
-  <tabstop>checkB5</tabstop>
-  <tabstop>checkC1</tabstop>
-  <tabstop>checkC2</tabstop>
-  <tabstop>checkC3</tabstop>
-  <tabstop>checkC4</tabstop>
-  <tabstop>checkC5</tabstop>
-  <tabstop>checkD1</tabstop>
-  <tabstop>checkD2</tabstop>
-  <tabstop>checkD3</tabstop>
-  <tabstop>checkD4</tabstop>
-  <tabstop>checkD5</tabstop>
-  <tabstop>checkE1</tabstop>
-  <tabstop>checkE2</tabstop>
-  <tabstop>checkE3</tabstop>
-  <tabstop>checkE4</tabstop>
-  <tabstop>checkE5</tabstop>
-  <tabstop>checkF1</tabstop>
-  <tabstop>checkF2</tabstop>
-  <tabstop>checkF3</tabstop>
-  <tabstop>checkF4</tabstop>
-  <tabstop>checkF5</tabstop>
-  <tabstop>checkG1</tabstop>
-  <tabstop>checkG2</tabstop>
-  <tabstop>checkG3</tabstop>
-  <tabstop>checkG4</tabstop>
-  <tabstop>checkG5</tabstop>
-  <tabstop>checkH1</tabstop>
-  <tabstop>checkH2</tabstop>
-  <tabstop>checkH3</tabstop>
-  <tabstop>checkH4</tabstop>
-  <tabstop>checkH5</tabstop>
-  <tabstop>comboMw</tabstop>
-  <tabstop>comboA</tabstop>
-  <tabstop>comboB</tabstop>
-  <tabstop>comboC</tabstop>
-  <tabstop>comboD</tabstop>
-  <tabstop>comboE</tabstop>
-  <tabstop>edit</tabstop>
-  <tabstop>offsetTop</tabstop>
-  <tabstop>offsetLeft</tabstop>
-  <tabstop>offsetTick1</tabstop>
-  <tabstop>offsetTick2</tabstop>
-  <tabstop>offsetTick3</tabstop>
-  <tabstop>offsetTick4</tabstop>
-  <tabstop>offsetTick5</tabstop>
-  <tabstop>offsetTopToTick</tabstop>
-  <tabstop>offsetTickToTick1</tabstop>
-  <tabstop>offsetTickToTick2</tabstop>
-  <tabstop>offsetTickToText</tabstop>
-  <tabstop>saveNameApprentice</tabstop>
-  <tabstop>saveNameInstructor</tabstop>
-  <tabstop>saveYear</tabstop>
-  <tabstop>saveDate1</tabstop>
-  <tabstop>saveDate2</tabstop>
-  <tabstop>saveComment</tabstop>
-  <tabstop>save</tabstop>
-  <tabstop>load</tabstop>
-  <tabstop>browser</tabstop>
-  <tabstop>stack</tabstop>
-  <tabstop>build</tabstop>
-  <tabstop>close</tabstop>
-  <tabstop>layoutPreview</tabstop>
+  <tabstop>assessmentKnowledge1RadioButton</tabstop>
+  <tabstop>assessmentKnowledge2RadioButton</tabstop>
+  <tabstop>assessmentKnowledge3RadioButton</tabstop>
+  <tabstop>assessmentKnowledge4RadioButton</tabstop>
+  <tabstop>assessmentKnowledge5RadioButton</tabstop>
+  <tabstop>assessmentSkills1RadioButton</tabstop>
+  <tabstop>assessmentSkills2RadioButton</tabstop>
+  <tabstop>assessmentSkills3RadioButton</tabstop>
+  <tabstop>assessmentSkills4RadioButton</tabstop>
+  <tabstop>assessmentSkills5RadioButton</tabstop>
+  <tabstop>assessmentSavety1RadioButton</tabstop>
+  <tabstop>assessmentSavety2RadioButton</tabstop>
+  <tabstop>assessmentSavety3RadioButton</tabstop>
+  <tabstop>assessmentSavety4RadioButton</tabstop>
+  <tabstop>assessmentSavety5RadioButton</tabstop>
+  <tabstop>assessmentReliability1RadioButton</tabstop>
+  <tabstop>assessmentReliability2RadioButton</tabstop>
+  <tabstop>assessmentReliability3RadioButton</tabstop>
+  <tabstop>assessmentReliability4RadioButton</tabstop>
+  <tabstop>assessmentReliability5RadioButton</tabstop>
+  <tabstop>assessmentActivity1RadioButton</tabstop>
+  <tabstop>assessmentActivity2RadioButton</tabstop>
+  <tabstop>assessmentActivity3RadioButton</tabstop>
+  <tabstop>assessmentActivity4RadioButton</tabstop>
+  <tabstop>assessmentActivity5RadioButton</tabstop>
+  <tabstop>assessmentProperHandling1RadioButton</tabstop>
+  <tabstop>assessmentProperHandling2RadioButton</tabstop>
+  <tabstop>assessmentProperHandling3RadioButton</tabstop>
+  <tabstop>assessmentProperHandling4RadioButton</tabstop>
+  <tabstop>assessmentProperHandling5RadioButton</tabstop>
+  <tabstop>assessmentTeamwork1RadioButton</tabstop>
+  <tabstop>assessmentTeamwork2RadioButton</tabstop>
+  <tabstop>assessmentTeamwork3RadioButton</tabstop>
+  <tabstop>assessmentTeamwork4RadioButton</tabstop>
+  <tabstop>assessmentTeamwork5RadioButton</tabstop>
+  <tabstop>assessmentResponsibility1RadioButton</tabstop>
+  <tabstop>assessmentResponsibility2RadioButton</tabstop>
+  <tabstop>assessmentResponsibility3RadioButton</tabstop>
+  <tabstop>assessmentResponsibility4RadioButton</tabstop>
+  <tabstop>assessmentResponsibility5RadioButton</tabstop>
+  <tabstop>assessmentSexCombo</tabstop>
+  <tabstop>assessmentSkillsCombo</tabstop>
+  <tabstop>assessmentCareCombo</tabstop>
+  <tabstop>assessmentInterestCombo</tabstop>
+  <tabstop>assessmentTeamworkCombo</tabstop>
+  <tabstop>assessmentTotalCombo</tabstop>
+  <tabstop>editTextEdit</tabstop>
+  <tabstop>layoutTopOffsetSpinBox</tabstop>
+  <tabstop>layoutLeftOffsetSpinBox</tabstop>
+  <tabstop>layoutTick1PosSpinBox</tabstop>
+  <tabstop>layoutTick2PosSpinBox</tabstop>
+  <tabstop>layoutTick3PosSpinBox</tabstop>
+  <tabstop>layoutTick4PosSpinBox</tabstop>
+  <tabstop>layoutTick5PosSpinBox</tabstop>
+  <tabstop>layoutTopToTickSpinBox</tabstop>
+  <tabstop>layoutTickToTick1SpinBox</tabstop>
+  <tabstop>layoutTickToTick2SpinBox</tabstop>
+  <tabstop>layoutTickToTextSpinBox</tabstop>
+  <tabstop>saveApprenticeNameEdit</tabstop>
+  <tabstop>saveInstructorNameEdit</tabstop>
+  <tabstop>saveYearEdit</tabstop>
+  <tabstop>saveBeginDateEdit</tabstop>
+  <tabstop>saveEndDateEdit</tabstop>
+  <tabstop>saveCommentEdit</tabstop>
+  <tabstop>saveSaveButton</tabstop>
+  <tabstop>saveLoadButton</tabstop>
+  <tabstop>infoBrowser</tabstop>
+  <tabstop>stackButton</tabstop>
+  <tabstop>buildButton</tabstop>
+  <tabstop>closeButton</tabstop>
+  <tabstop>layoutPreView</tabstop>
  </tabstops>
  <resources/>
  <connections>
   <connection>
-   <sender>close</sender>
+   <sender>closeButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>

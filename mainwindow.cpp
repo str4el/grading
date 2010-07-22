@@ -56,45 +56,45 @@ MainWindow::MainWindow(QWidget *parrent) :
 
 
         builder = new Build();
-        connect(ui->offsetTop, SIGNAL(valueChanged(int)), builder, SLOT(setTopPos(int)));
-        connect(ui->offsetLeft, SIGNAL(valueChanged(int)), builder, SLOT(setLeftPos(int)));
-        connect(ui->offsetTopToTick, SIGNAL(valueChanged(int)), builder, SLOT(setTopToTickPos(int)));
-        connect(ui->offsetTickToTick1, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos1(int)));
-        connect(ui->offsetTickToTick2, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos2(int)));
-        connect(ui->offsetTickToText, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTextPos(int)));
+        connect(ui->layoutTopOffsetSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTopPos(int)));
+        connect(ui->layoutLeftOffsetSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setLeftPos(int)));
+        connect(ui->layoutTopToTickSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTopToTickPos(int)));
+        connect(ui->layoutTickToTick1SpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos1(int)));
+        connect(ui->layoutTickToTick2SpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos2(int)));
+        connect(ui->layoutTickToTextSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTextPos(int)));
 
 
-        connect(ui->savePosButton, SIGNAL(clicked()), this, SLOT(savePos()));
+        connect(ui->layoutSaveButton, SIGNAL(clicked()), this, SLOT(savePos()));
 
 
-        layoutScene = new QGraphicsScene(ui->layoutPreview);
+        layoutScene = new QGraphicsScene(ui->layoutPreView);
         drawPreview();
 
-        connect(ui->offsetTop, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetLeft, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTick1, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTick2, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTick3, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTick4, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTick5, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTopToTick, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTickToTick1, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTickToTick2, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
-        connect(ui->offsetTickToText, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTopOffsetSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutLeftOffsetSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTick1PosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTick2PosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTick3PosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTick4PosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTick5PosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTopToTickSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTickToTick1SpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTickToTick2SpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutTickToTextSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
 
         // Group radio buttons.
         this->groupRadioButtions();
 
-        connect(ui->stack, SIGNAL(clicked()), this, SLOT(stackText()));
-        connect(ui->build, SIGNAL(clicked()), this, SLOT(buildPdf()));
-        connect(latex, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(view(int,QProcess::ExitStatus)));
+        connect(ui->stackButton, SIGNAL(clicked()), this, SLOT(stackText()));
+        connect(ui->buildButton, SIGNAL(clicked()), this, SLOT(buildPdf()));
+        connect(latex, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(viewPdf(int,QProcess::ExitStatus)));
 
-        connect(ui->save, SIGNAL(clicked()), this, SLOT(saveData()));
-        connect(ui->load, SIGNAL(clicked()), this, SLOT(loadData()));
+        connect(ui->saveSaveButton, SIGNAL(clicked()), this, SLOT(saveData()));
+        connect(ui->saveLoadButton, SIGNAL(clicked()), this, SLOT(loadData()));
 
-        ui->browser->setSource(QUrl("./help.htm"));
+        ui->infoBrowser->setSource(QUrl("./help.htm"));
 
-        ui->versionLabel->setText(QString("Grading ") + Presets::version());
+        ui->infoVersionLabel->setText(QString("Grading ") + Presets::version());
 
         show();
 }
@@ -136,11 +136,11 @@ void MainWindow::stackText()
 {
         QString text;
 
-        text += getText("skills", ui->comboA->currentIndex());
-        text += getText("care", ui->comboB->currentIndex());
-        text += getText("interest", ui->comboC->currentIndex());
-        text += getText("teamwork", ui->comboD->currentIndex());
-        text += getText("total", ui->comboE->currentIndex());
+        text += getText("skills", ui->assessmentSkillsCombo->currentIndex());
+        text += getText("care", ui->assessmentCareCombo->currentIndex());
+        text += getText("interest", ui->assessmentInterestCombo->currentIndex());
+        text += getText("teamwork", ui->assessmentTeamworkCombo->currentIndex());
+        text += getText("total", ui->assessmentTotalCombo->currentIndex());
 
         if (text.isEmpty()) {
                 QMessageBox(QMessageBox::Warning,
@@ -150,14 +150,14 @@ void MainWindow::stackText()
                 return;
         }
 
-        if (ui->comboMw->currentIndex() == 0) {
+        if (ui->assessmentSexCombo->currentIndex() == 0) {
                 text.remove(QRegExp("/[\\w\\s]*\\]")).remove('[');
         } else {
                 text.remove(QRegExp("\\[[\\w\\s]*/")).remove(']');
         }
 
-        ui->edit->setPlainText(text);
-        ui->tab->setCurrentWidget(ui->tabEdit);
+        ui->editTextEdit->setPlainText(text);
+        ui->tab->setCurrentWidget(ui->editTab);
 }
 
 
@@ -166,23 +166,23 @@ void MainWindow::stackText()
 
 void MainWindow::buildPdf()
 {
-        builder->setText(ui->edit->toPlainText());
+        builder->setText(ui->editTextEdit->toPlainText());
 
         int tickPos[5];
-        tickPos[0] = ui->offsetTick1->value();
-        tickPos[1] = ui->offsetTick2->value();
-        tickPos[2] = ui->offsetTick3->value();
-        tickPos[3] = ui->offsetTick4->value();
-        tickPos[4] = ui->offsetTick5->value();
+        tickPos[0] = ui->layoutTick1PosSpinBox->value();
+        tickPos[1] = ui->layoutTick2PosSpinBox->value();
+        tickPos[2] = ui->layoutTick3PosSpinBox->value();
+        tickPos[3] = ui->layoutTick4PosSpinBox->value();
+        tickPos[4] = ui->layoutTick5PosSpinBox->value();
 
-        builder->setTickPos(0, tickPos[radioGroupA->checkedId()]);
-        builder->setTickPos(1, tickPos[radioGroupB->checkedId()]);
-        builder->setTickPos(2, tickPos[radioGroupC->checkedId()]);
-        builder->setTickPos(3, tickPos[radioGroupD->checkedId()]);
-        builder->setTickPos(4, tickPos[radioGroupE->checkedId()]);
-        builder->setTickPos(5, tickPos[radioGroupF->checkedId()]);
-        builder->setTickPos(6, tickPos[radioGroupG->checkedId()]);
-        builder->setTickPos(7, tickPos[radioGroupH->checkedId()]);
+        builder->setTickPos(0, tickPos[assessmentKnowledgeRadioGroup->checkedId()]);
+        builder->setTickPos(1, tickPos[assessmentSkillsRadioGroup->checkedId()]);
+        builder->setTickPos(2, tickPos[assessmentSavetyRadioGroup->checkedId()]);
+        builder->setTickPos(3, tickPos[assessmentReliabilityRadioGroup->checkedId()]);
+        builder->setTickPos(4, tickPos[assessmentActivityRadioGroup->checkedId()]);
+        builder->setTickPos(5, tickPos[assessmentProperHandlingRadioGroup->checkedId()]);
+        builder->setTickPos(6, tickPos[assessmentTeamworkRadioGroup->checkedId()]);
+        builder->setTickPos(7, tickPos[assessmentResponsibilityRadioGroup->checkedId()]);
 
 
         builder->build();
@@ -202,7 +202,7 @@ void MainWindow::buildPdf()
 
 
 
-void MainWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
+void MainWindow::viewPdf(int exitCode, QProcess::ExitStatus exitStatus )
 {
         if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
 
@@ -228,61 +228,61 @@ void MainWindow::view(int exitCode, QProcess::ExitStatus exitStatus )
 
 void MainWindow::groupRadioButtions()
 {
-        this->radioGroupA = new QButtonGroup;
-        this->radioGroupA->addButton(ui->checkA1, MainWindow::VERY_GOOD);
-        this->radioGroupA->addButton(ui->checkA2, MainWindow::GOOD);
-        this->radioGroupA->addButton(ui->checkA3, MainWindow::NORMAL);
-        this->radioGroupA->addButton(ui->checkA4, MainWindow::BAD);
-        this->radioGroupA->addButton(ui->checkA5, MainWindow::VERY_BAD);
+        this->assessmentKnowledgeRadioGroup = new QButtonGroup;
+        this->assessmentKnowledgeRadioGroup->addButton(ui->assessmentKnowledge1RadioButton, MainWindow::VERY_GOOD);
+        this->assessmentKnowledgeRadioGroup->addButton(ui->assessmentKnowledge2RadioButton, MainWindow::GOOD);
+        this->assessmentKnowledgeRadioGroup->addButton(ui->assessmentKnowledge3RadioButton, MainWindow::NORMAL);
+        this->assessmentKnowledgeRadioGroup->addButton(ui->assessmentKnowledge4RadioButton, MainWindow::BAD);
+        this->assessmentKnowledgeRadioGroup->addButton(ui->assessmentKnowledge5RadioButton, MainWindow::VERY_BAD);
 
-        this->radioGroupB = new QButtonGroup;
-        this->radioGroupB->addButton(ui->checkB1, MainWindow::VERY_GOOD);
-        this->radioGroupB->addButton(ui->checkB2, MainWindow::GOOD);
-        this->radioGroupB->addButton(ui->checkB3, MainWindow::NORMAL);
-        this->radioGroupB->addButton(ui->checkB4, MainWindow::BAD);
-        this->radioGroupB->addButton(ui->checkB5, MainWindow::VERY_BAD);
+        this->assessmentSkillsRadioGroup = new QButtonGroup;
+        this->assessmentSkillsRadioGroup->addButton(ui->assessmentSkills1RadioButton, MainWindow::VERY_GOOD);
+        this->assessmentSkillsRadioGroup->addButton(ui->assessmentSkills2RadioButton, MainWindow::GOOD);
+        this->assessmentSkillsRadioGroup->addButton(ui->assessmentSkills3RadioButton, MainWindow::NORMAL);
+        this->assessmentSkillsRadioGroup->addButton(ui->assessmentSkills4RadioButton, MainWindow::BAD);
+        this->assessmentSkillsRadioGroup->addButton(ui->assessmentSkills5RadioButton, MainWindow::VERY_BAD);
 
-        this->radioGroupC = new QButtonGroup;
-        this->radioGroupC->addButton(ui->checkC1, MainWindow::VERY_GOOD);
-        this->radioGroupC->addButton(ui->checkC2, MainWindow::GOOD);
-        this->radioGroupC->addButton(ui->checkC3, MainWindow::NORMAL);
-        this->radioGroupC->addButton(ui->checkC4, MainWindow::BAD);
-        this->radioGroupC->addButton(ui->checkC5, MainWindow::VERY_BAD);
+        this->assessmentSavetyRadioGroup = new QButtonGroup;
+        this->assessmentSavetyRadioGroup->addButton(ui->assessmentSavety1RadioButton, MainWindow::VERY_GOOD);
+        this->assessmentSavetyRadioGroup->addButton(ui->assessmentSavety2RadioButton, MainWindow::GOOD);
+        this->assessmentSavetyRadioGroup->addButton(ui->assessmentSavety3RadioButton, MainWindow::NORMAL);
+        this->assessmentSavetyRadioGroup->addButton(ui->assessmentSavety4RadioButton, MainWindow::BAD);
+        this->assessmentSavetyRadioGroup->addButton(ui->assessmentSavety5RadioButton, MainWindow::VERY_BAD);
 
-        this->radioGroupD = new QButtonGroup;
-        this->radioGroupD->addButton(ui->checkD1, MainWindow::VERY_GOOD);
-        this->radioGroupD->addButton(ui->checkD2, MainWindow::GOOD);
-        this->radioGroupD->addButton(ui->checkD3, MainWindow::NORMAL);
-        this->radioGroupD->addButton(ui->checkD4, MainWindow::BAD);
-        this->radioGroupD->addButton(ui->checkD5, MainWindow::VERY_BAD);
+        this->assessmentReliabilityRadioGroup = new QButtonGroup;
+        this->assessmentReliabilityRadioGroup->addButton(ui->assessmentReliability1RadioButton, MainWindow::VERY_GOOD);
+        this->assessmentReliabilityRadioGroup->addButton(ui->assessmentReliability2RadioButton, MainWindow::GOOD);
+        this->assessmentReliabilityRadioGroup->addButton(ui->assessmentReliability3RadioButton, MainWindow::NORMAL);
+        this->assessmentReliabilityRadioGroup->addButton(ui->assessmentReliability4RadioButton, MainWindow::BAD);
+        this->assessmentReliabilityRadioGroup->addButton(ui->assessmentReliability5RadioButton, MainWindow::VERY_BAD);
 
-        this->radioGroupE = new QButtonGroup;
-        this->radioGroupE->addButton(ui->checkE1, MainWindow::VERY_GOOD);
-        this->radioGroupE->addButton(ui->checkE2, MainWindow::GOOD);
-        this->radioGroupE->addButton(ui->checkE3, MainWindow::NORMAL);
-        this->radioGroupE->addButton(ui->checkE4, MainWindow::BAD);
-        this->radioGroupE->addButton(ui->checkE5, MainWindow::VERY_BAD);
+        this->assessmentActivityRadioGroup = new QButtonGroup;
+        this->assessmentActivityRadioGroup->addButton(ui->assessmentActivity1RadioButton, MainWindow::VERY_GOOD);
+        this->assessmentActivityRadioGroup->addButton(ui->assessmentActivity2RadioButton, MainWindow::GOOD);
+        this->assessmentActivityRadioGroup->addButton(ui->assessmentActivity3RadioButton, MainWindow::NORMAL);
+        this->assessmentActivityRadioGroup->addButton(ui->assessmentActivity4RadioButton, MainWindow::BAD);
+        this->assessmentActivityRadioGroup->addButton(ui->assessmentActivity5RadioButton, MainWindow::VERY_BAD);
 
-        this->radioGroupF = new QButtonGroup;
-        this->radioGroupF->addButton(ui->checkF1, MainWindow::VERY_GOOD);
-        this->radioGroupF->addButton(ui->checkF2, MainWindow::GOOD);
-        this->radioGroupF->addButton(ui->checkF3, MainWindow::NORMAL);
-        this->radioGroupF->addButton(ui->checkF4, MainWindow::BAD);
-        this->radioGroupF->addButton(ui->checkF5, MainWindow::VERY_BAD);
+        this->assessmentProperHandlingRadioGroup = new QButtonGroup;
+        this->assessmentProperHandlingRadioGroup->addButton(ui->assessmentProperHandling1RadioButton, MainWindow::VERY_GOOD);
+        this->assessmentProperHandlingRadioGroup->addButton(ui->assessmentProperHandling2RadioButton, MainWindow::GOOD);
+        this->assessmentProperHandlingRadioGroup->addButton(ui->assessmentProperHandling3RadioButton, MainWindow::NORMAL);
+        this->assessmentProperHandlingRadioGroup->addButton(ui->assessmentProperHandling4RadioButton, MainWindow::BAD);
+        this->assessmentProperHandlingRadioGroup->addButton(ui->assessmentProperHandling5RadioButton, MainWindow::VERY_BAD);
 
-        this->radioGroupG = new QButtonGroup;
-        this->radioGroupG->addButton(ui->checkG1, MainWindow::VERY_GOOD);
-        this->radioGroupG->addButton(ui->checkG2, MainWindow::GOOD);
-        this->radioGroupG->addButton(ui->checkG3, MainWindow::NORMAL);
-        this->radioGroupG->addButton(ui->checkG4, MainWindow::BAD);
-        this->radioGroupG->addButton(ui->checkG5, MainWindow::VERY_BAD);
+        this->assessmentTeamworkRadioGroup = new QButtonGroup;
+        this->assessmentTeamworkRadioGroup->addButton(ui->assessmentTeamwork1RadioButton, MainWindow::VERY_GOOD);
+        this->assessmentTeamworkRadioGroup->addButton(ui->assessmentTeamwork2RadioButton, MainWindow::GOOD);
+        this->assessmentTeamworkRadioGroup->addButton(ui->assessmentTeamwork3RadioButton, MainWindow::NORMAL);
+        this->assessmentTeamworkRadioGroup->addButton(ui->assessmentTeamwork4RadioButton, MainWindow::BAD);
+        this->assessmentTeamworkRadioGroup->addButton(ui->assessmentTeamwork5RadioButton, MainWindow::VERY_BAD);
 
-        this->radioGroupH = new QButtonGroup;
-        this->radioGroupH->addButton(ui->checkH1, MainWindow::VERY_GOOD);
-        this->radioGroupH->addButton(ui->checkH2, MainWindow::GOOD);
-        this->radioGroupH->addButton(ui->checkH3, MainWindow::NORMAL);
-        this->radioGroupH->addButton(ui->checkH4, MainWindow::BAD);
-        this->radioGroupH->addButton(ui->checkH5, MainWindow::VERY_BAD);
+        this->assessmentResponsibilityRadioGroup = new QButtonGroup;
+        this->assessmentResponsibilityRadioGroup->addButton(ui->assessmentResponsibility1RadioButton, MainWindow::VERY_GOOD);
+        this->assessmentResponsibilityRadioGroup->addButton(ui->assessmentResponsibility2RadioButton, MainWindow::GOOD);
+        this->assessmentResponsibilityRadioGroup->addButton(ui->assessmentResponsibility3RadioButton, MainWindow::NORMAL);
+        this->assessmentResponsibilityRadioGroup->addButton(ui->assessmentResponsibility4RadioButton, MainWindow::BAD);
+        this->assessmentResponsibilityRadioGroup->addButton(ui->assessmentResponsibility5RadioButton, MainWindow::VERY_BAD);
 }
 
 
@@ -376,29 +376,29 @@ void MainWindow::drawArrow(QGraphicsScene *scene, const QLineF line, const QPen 
 
 void MainWindow::drawPreview()
 {
-        qreal px = ui->offsetLeft->value();
-        qreal py = ui->offsetTop->value();
+        qreal px = ui->layoutLeftOffsetSpinBox->value();
+        qreal py = ui->layoutTopOffsetSpinBox->value();
 
         qreal hs = 4;
 
         qreal hx[5];
-        hx[0] = px + ui->offsetTick1->value();
-        hx[1] = px + ui->offsetTick2->value();
-        hx[2] = px + ui->offsetTick3->value();
-        hx[3] = px + ui->offsetTick4->value();
-        hx[4] = px + ui->offsetTick5->value();
+        hx[0] = px + ui->layoutTick1PosSpinBox->value();
+        hx[1] = px + ui->layoutTick2PosSpinBox->value();
+        hx[2] = px + ui->layoutTick3PosSpinBox->value();
+        hx[3] = px + ui->layoutTick4PosSpinBox->value();
+        hx[4] = px + ui->layoutTick5PosSpinBox->value();
 
         qreal hy[8] = { 64.0, 74, 84, 104, 114, 124, 144, 154 };
-        hy[0] = py + ui->offsetTopToTick->value();
+        hy[0] = py + ui->layoutTopToTickSpinBox->value();
         hy[1] = hy[0] + hs + 3;
         hy[2] = hy[1] + hs + 3;
-        hy[3] = hy[2] + hs + 3 + ui->offsetTickToTick1->value();
+        hy[3] = hy[2] + hs + 3 + ui->layoutTickToTick1SpinBox->value();
         hy[4] = hy[3] + hs + 3;
         hy[5] = hy[4] + hs + 3;
-        hy[6] = hy[5] + hs + 3 + ui->offsetTickToTick2->value();
+        hy[6] = hy[5] + hs + 3 + ui->layoutTickToTick2SpinBox->value();
         hy[7] = hy[6] + hs + 3;
 
-        qreal ty = hy[7] + hs + 3 + ui->offsetTickToText->value();
+        qreal ty = hy[7] + hs + 3 + ui->layoutTickToTextSpinBox->value();
 
         QPen blackSolid(Qt::black);
         QPen blueSolid(Qt::blue);
@@ -453,7 +453,7 @@ void MainWindow::drawPreview()
         drawArrow(layoutScene, QLineF(hx[4] + 3, hy[7] + hs + 2, hx[4] + 3, ty - 2), blueSolid);
         layoutScene->addText("11", font)->setPos(hx[4] + 3, hy[7] + hs);
 
-        ui->layoutPreview->setScene(layoutScene);
+        ui->layoutPreView->setScene(layoutScene);
 }
 
 
@@ -462,7 +462,7 @@ void MainWindow::drawPreview()
 void MainWindow::saveData()
 {
         if (saveName.isEmpty()) {
-                saveName = ui->saveNameApprentice->text() + " " + QString::number(ui->saveYear->value());
+                saveName = ui->saveApprenticeNameEdit->text() + " " + QString::number(ui->saveYearEdit->value());
         }
 
         QString filename = QFileDialog::getSaveFileName(this, "Save", saveDir + saveName, "Beurteilung (*.grd)");
@@ -480,29 +480,29 @@ void MainWindow::saveData()
 
         QSettings save(filename, QSettings::IniFormat, this);
 
-        save.setValue("info/apprentice", ui->saveNameApprentice->text());
-        save.setValue("info/instructor", ui->saveNameInstructor->text());
-        save.setValue("info/year", ui->saveYear->value());
-        save.setValue("info/begin", ui->saveDate1->date().toString());
-        save.setValue("info/end", ui->saveDate2->date().toString());
-        save.setValue("info/comment", ui->saveComment->toPlainText());
+        save.setValue("info/apprentice", ui->saveApprenticeNameEdit->text());
+        save.setValue("info/instructor", ui->saveInstructorNameEdit->text());
+        save.setValue("info/year", ui->saveYearEdit->value());
+        save.setValue("info/begin", ui->saveBeginDateEdit->date().toString());
+        save.setValue("info/end", ui->saveEndDateEdit->date().toString());
+        save.setValue("info/comment", ui->saveCommentEdit->toPlainText());
 
-        save.setValue("grades/knowledge", radioGroupA->checkedId());
-        save.setValue("grades/skills", radioGroupB->checkedId());
-        save.setValue("grades/safety", radioGroupC->checkedId());
-        save.setValue("grades/reliability", radioGroupD->checkedId());
-        save.setValue("grades/activity", radioGroupE->checkedId());
-        save.setValue("grades/proper_handling", radioGroupF->checkedId());
-        save.setValue("grades/teamwork", radioGroupG->checkedId());
-        save.setValue("grades/responsibility", radioGroupH->checkedId());
+        save.setValue("grades/knowledge", assessmentKnowledgeRadioGroup->checkedId());
+        save.setValue("grades/skills", assessmentSkillsRadioGroup->checkedId());
+        save.setValue("grades/safety", assessmentSavetyRadioGroup->checkedId());
+        save.setValue("grades/reliability", assessmentReliabilityRadioGroup->checkedId());
+        save.setValue("grades/activity", assessmentActivityRadioGroup->checkedId());
+        save.setValue("grades/proper_handling", assessmentProperHandlingRadioGroup->checkedId());
+        save.setValue("grades/teamwork", assessmentTeamworkRadioGroup->checkedId());
+        save.setValue("grades/responsibility", assessmentResponsibilityRadioGroup->checkedId());
 
-        save.setValue("assessment/sex", ui->comboMw->currentIndex());
-        save.setValue("assessment/skills", ui->comboA->currentIndex());
-        save.setValue("assessment/care", ui->comboB->currentIndex());
-        save.setValue("assessment/interest", ui->comboC->currentIndex());
-        save.setValue("assessment/teamwork", ui->comboD->currentIndex());
-        save.setValue("assessment/total", ui->comboE->currentIndex());
-        save.setValue("assessment/text", ui->edit->toPlainText());
+        save.setValue("assessment/sex", ui->assessmentSexCombo->currentIndex());
+        save.setValue("assessment/skills", ui->assessmentSkillsCombo->currentIndex());
+        save.setValue("assessment/care", ui->assessmentCareCombo->currentIndex());
+        save.setValue("assessment/interest", ui->assessmentInterestCombo->currentIndex());
+        save.setValue("assessment/teamwork", ui->assessmentTeamworkCombo->currentIndex());
+        save.setValue("assessment/total", ui->assessmentTotalCombo->currentIndex());
+        save.setValue("assessment/text", ui->editTextEdit->toPlainText());
 }
 
 
@@ -519,29 +519,29 @@ void MainWindow::loadData()
 
         QSettings load(filename, QSettings::IniFormat, this);
 
-        ui->saveNameApprentice->setText(load.value("info/apprentice").toString());
-        ui->saveNameInstructor->setText(load.value("info/instructor").toString());
-        ui->saveYear->setValue(load.value("info/year").toInt());
-        ui->saveDate1->setDate(QDate::fromString(load.value("info/begin").toString()));
-        ui->saveDate2->setDate(QDate::fromString(load.value("info/end").toString()));
-        ui->saveComment->setPlainText(load.value("info/comment").toString());
+        ui->saveApprenticeNameEdit->setText(load.value("info/apprentice").toString());
+        ui->saveInstructorNameEdit->setText(load.value("info/instructor").toString());
+        ui->saveYearEdit->setValue(load.value("info/year").toInt());
+        ui->saveBeginDateEdit->setDate(QDate::fromString(load.value("info/begin").toString()));
+        ui->saveEndDateEdit->setDate(QDate::fromString(load.value("info/end").toString()));
+        ui->saveCommentEdit->setPlainText(load.value("info/comment").toString());
 
-        radioGroupA->button(load.value("grades/knowledge").toInt())->setChecked(true);
-        radioGroupB->button(load.value("grades/skills").toInt())->setChecked(true);
-        radioGroupC->button(load.value("grades/safety").toInt())->setChecked(true);
-        radioGroupD->button(load.value("grades/reliability").toInt())->setChecked(true);
-        radioGroupE->button(load.value("grades/activity").toInt())->setChecked(true);
-        radioGroupF->button(load.value("grades/proper_handling").toInt())->setChecked(true);
-        radioGroupG->button(load.value("grades/teamwork").toInt())->setChecked(true);
-        radioGroupH->button(load.value("grades/responsibility").toInt())->setChecked(true);
+        assessmentKnowledgeRadioGroup->button(load.value("grades/knowledge").toInt())->setChecked(true);
+        assessmentSkillsRadioGroup->button(load.value("grades/skills").toInt())->setChecked(true);
+        assessmentSavetyRadioGroup->button(load.value("grades/safety").toInt())->setChecked(true);
+        assessmentReliabilityRadioGroup->button(load.value("grades/reliability").toInt())->setChecked(true);
+        assessmentActivityRadioGroup->button(load.value("grades/activity").toInt())->setChecked(true);
+        assessmentProperHandlingRadioGroup->button(load.value("grades/proper_handling").toInt())->setChecked(true);
+        assessmentTeamworkRadioGroup->button(load.value("grades/teamwork").toInt())->setChecked(true);
+        assessmentResponsibilityRadioGroup->button(load.value("grades/responsibility").toInt())->setChecked(true);
 
-        ui->comboMw->setCurrentIndex(load.value("assessment/sex").toInt());
-        ui->comboA->setCurrentIndex(load.value("assessment/skills").toInt());
-        ui->comboB->setCurrentIndex(load.value("assessment/care").toInt());
-        ui->comboC->setCurrentIndex(load.value("assessment/interest").toInt());
-        ui->comboD->setCurrentIndex(load.value("assessment/teamwork").toInt());
-        ui->comboE->setCurrentIndex(load.value("assessment/total").toInt());
-        ui->edit->setPlainText(load.value("assessment/text").toString());
+        ui->assessmentSexCombo->setCurrentIndex(load.value("assessment/sex").toInt());
+        ui->assessmentSkillsCombo->setCurrentIndex(load.value("assessment/skills").toInt());
+        ui->assessmentCareCombo->setCurrentIndex(load.value("assessment/care").toInt());
+        ui->assessmentInterestCombo->setCurrentIndex(load.value("assessment/interest").toInt());
+        ui->assessmentTeamworkCombo->setCurrentIndex(load.value("assessment/teamwork").toInt());
+        ui->assessmentTotalCombo->setCurrentIndex(load.value("assessment/total").toInt());
+        ui->editTextEdit->setPlainText(load.value("assessment/text").toString());
 }
 
 
@@ -550,17 +550,17 @@ void MainWindow::loadData()
 
 void MainWindow::savePos()
 {
-        config.setValue("position/top", ui->offsetTop->value());
-        config.setValue("position/left", ui->offsetLeft->value());
-        config.setValue("position/tick1", ui->offsetTick1->value());
-        config.setValue("position/tick2", ui->offsetTick2->value());
-        config.setValue("position/tick3", ui->offsetTick3->value());
-        config.setValue("position/tick4", ui->offsetTick4->value());
-        config.setValue("position/tick5", ui->offsetTick5->value());
-        config.setValue("position/top_to_tick", ui->offsetTopToTick->value());
-        config.setValue("position/tick_to_tick1", ui->offsetTickToTick1->value());
-        config.setValue("position/tick_to_tick2", ui->offsetTickToTick2->value());
-        config.setValue("position/tick_to_text", ui->offsetTickToText->value());
+        config.setValue("position/top", ui->layoutTopOffsetSpinBox->value());
+        config.setValue("position/left", ui->layoutLeftOffsetSpinBox->value());
+        config.setValue("position/tick1", ui->layoutTick1PosSpinBox->value());
+        config.setValue("position/tick2", ui->layoutTick2PosSpinBox->value());
+        config.setValue("position/tick3", ui->layoutTick3PosSpinBox->value());
+        config.setValue("position/tick4", ui->layoutTick4PosSpinBox->value());
+        config.setValue("position/tick5", ui->layoutTick5PosSpinBox->value());
+        config.setValue("position/top_to_tick", ui->layoutTopToTickSpinBox->value());
+        config.setValue("position/tick_to_tick1", ui->layoutTickToTick1SpinBox->value());
+        config.setValue("position/tick_to_tick2", ui->layoutTickToTick2SpinBox->value());
+        config.setValue("position/tick_to_text", ui->layoutTickToTextSpinBox->value());
 }
 
 
@@ -568,17 +568,17 @@ void MainWindow::savePos()
 
 void MainWindow::loadPos()
 {
-        ui->offsetTop->setValue(config.value("position/top", Presets::topOffset()).toInt());
-        ui->offsetLeft->setValue(config.value("position/left", Presets::leftOffset()).toInt());
-        ui->offsetTick1->setValue(config.value("position/tick1", Presets::tickOffset(1)).toInt());
-        ui->offsetTick2->setValue(config.value("position/tick2", Presets::tickOffset(2)).toInt());
-        ui->offsetTick3->setValue(config.value("position/tick3", Presets::tickOffset(3)).toInt());
-        ui->offsetTick4->setValue(config.value("position/tick4", Presets::tickOffset(4)).toInt());
-        ui->offsetTick5->setValue(config.value("position/tick5", Presets::tickOffset(5)).toInt());
-        ui->offsetTopToTick->setValue(config.value("position/top_to_tick", Presets::topToTick()).toInt());
-        ui->offsetTickToTick1->setValue(config.value("position/tick_to_tick1", Presets::tickToTick(1)).toInt());
-        ui->offsetTickToTick2->setValue(config.value("position/tick_to_tick2", Presets::tickToTick(2)).toInt());
-        ui->offsetTickToText->setValue(config.value("position/tick_to_text", Presets::tickToText()).toInt());
+        ui->layoutTopOffsetSpinBox->setValue(config.value("position/top", Presets::topOffset()).toInt());
+        ui->layoutLeftOffsetSpinBox->setValue(config.value("position/left", Presets::leftOffset()).toInt());
+        ui->layoutTick1PosSpinBox->setValue(config.value("position/tick1", Presets::tickOffset(1)).toInt());
+        ui->layoutTick2PosSpinBox->setValue(config.value("position/tick2", Presets::tickOffset(2)).toInt());
+        ui->layoutTick3PosSpinBox->setValue(config.value("position/tick3", Presets::tickOffset(3)).toInt());
+        ui->layoutTick4PosSpinBox->setValue(config.value("position/tick4", Presets::tickOffset(4)).toInt());
+        ui->layoutTick5PosSpinBox->setValue(config.value("position/tick5", Presets::tickOffset(5)).toInt());
+        ui->layoutTopToTickSpinBox->setValue(config.value("position/top_to_tick", Presets::topToTick()).toInt());
+        ui->layoutTickToTick1SpinBox->setValue(config.value("position/tick_to_tick1", Presets::tickToTick(1)).toInt());
+        ui->layoutTickToTick2SpinBox->setValue(config.value("position/tick_to_tick2", Presets::tickToTick(2)).toInt());
+        ui->layoutTickToTextSpinBox->setValue(config.value("position/tick_to_text", Presets::tickToText()).toInt());
 }
 
 
