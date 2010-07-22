@@ -65,17 +65,17 @@ private:
 
         enum GRADE { VERY_GOOD = 0, GOOD, NORMAL, BAD, VERY_BAD };
 
-        QGraphicsScene *layout_scene;
+        QGraphicsScene *layoutScene;
         Build *builder;
 
         QProcess *latex;
         QProcess *viewer;
 
-        QString save_name;
-        QString save_dir;
+        QString saveName;
+        QString saveDir;
 
         void groupRadioButtions(void);
-        void draw_arrow(QGraphicsScene *scene, const QLineF line, const QPen pen);
+        void drawArrow(QGraphicsScene *scene, const QLineF line, const QPen pen);
 
         QString getText(QString domain, int grade);
 
@@ -87,15 +87,15 @@ private slots:
         void settingsLatexFind();
         void settingsPdfFind();
 
-        void build_pdf();
-        void stack_text();
-        void draw_preview();
+        void buildPdf();
+        void stackText();
+        void drawPreview();
 
-        void save_data();
-        void load_data();
+        void saveData();
+        void loadData();
 
-        void save_pos();
-        void load_pos();
+        void savePos();
+        void loadPos();
 
         void view(int exitCode, QProcess::ExitStatus exitStatus );
 
