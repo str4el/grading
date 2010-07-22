@@ -23,8 +23,12 @@
 #pragma once
 
 #include <QtGui>
-#include "ui_mainwindow.h"
 #include "build.h"
+
+namespace Ui {
+        class MainWindow;
+}
+
 
 /*!
 * \class MainWindow
@@ -33,7 +37,7 @@
 * \author Stephan Reinhard
 * \author Wolfgang Forstmeier
 */
-class MainWindow : public QMainWindow, public Ui::MainWindow
+class MainWindow : public QMainWindow
 {
         Q_OBJECT
 
@@ -44,6 +48,8 @@ public:
         ~MainWindow();
 
 private:
+        Ui::MainWindow *ui;
+
         QSettings config;
 
         QMap<QString, QString> domainNames;
