@@ -47,30 +47,21 @@ bool Build::build()
 
         source += QString::fromUtf8("\\batchmode\n\\documentclass[11pt]{article}\n\\usepackage{ngerman}\n");
         source += QString::fromUtf8("\\usepackage[utf8]{inputenc}\n\\usepackage{vmargin}\n\\setpapersize{A4}\n");
-
-        source += QString::fromUtf8("\\setmargins{");
-        source += QString::number(leftPos) + QString::fromUtf8("mm}{");
-        source += QString::number(topPos) + QString::fromUtf8("mm}");
-        source += QString::fromUtf8("{184mm}{250mm}{12pt}{25pt}{0pt}{30pt}\n");
-
+        source += QString::fromUtf8("\\setmargins{%1mm}{%2mm}{184mm}{250mm}{12pt}{25pt}{0pt}{30pt}\n").arg(leftPos).arg(topPos);
         source +=QString::fromUtf8("\\parindent0pt\n\\pagestyle{empty}\n\\begin{document}\n");
 
-        source += QString::fromUtf8("\\vspace*{") + QString::number(topToTickPos) + QString::fromUtf8("mm}\n");
-
-        source += QString::fromUtf8("\\hspace*{") + QString::number(tickPos[0]) + QString::fromUtf8("mm}$\\surd$\\\\\n");
-        source += QString::fromUtf8("\\hspace*{") + QString::number(tickPos[1]) + QString::fromUtf8("mm}$\\surd$\\\\\n");
-        source += QString::fromUtf8("\\hspace*{") + QString::number(tickPos[2]) + QString::fromUtf8("mm}$\\surd$\\\\[") + QString::number(tickToTickPos1) + QString::fromUtf8("mm]\n");
-        source += QString::fromUtf8("\\hspace*{") + QString::number(tickPos[3]) + QString::fromUtf8("mm}$\\surd$\\\\\n");
-        source += QString::fromUtf8("\\hspace*{") + QString::number(tickPos[4]) + QString::fromUtf8("mm}$\\surd$\\\\\n");
-        source += QString::fromUtf8("\\hspace*{") + QString::number(tickPos[5]) + QString::fromUtf8("mm}$\\surd$\\\\[") + QString::number(tickToTickPos2) + QString::fromUtf8("mm]\n");
-        source += QString::fromUtf8("\\hspace*{") + QString::number(tickPos[6]) + QString::fromUtf8("mm}$\\surd$\\\\\n");
-        source += QString::fromUtf8("\\hspace*{") + QString::number(tickPos[7]) + QString::fromUtf8("mm}$\\surd$\\\\\n\n");
-
-        source += QString::fromUtf8("\\vspace*{") + QString::number(tickToTextPos) + QString::fromUtf8("mm}\\Large\n");
-
+        source += QString::fromUtf8("\\vspace*{%1mm}\n").arg(topToTickPos);
+        source += QString::fromUtf8("\\hspace*{%1mm}$\\surd$\\\\\n").arg(tickPos[0]);
+        source += QString::fromUtf8("\\hspace*{%1mm}$\\surd$\\\\\n").arg(tickPos[1]);
+        source += QString::fromUtf8("\\hspace*{%1mm}$\\surd$\\\\[%2mm]\n").arg(tickPos[2]).arg(tickToTickPos1);
+        source += QString::fromUtf8("\\hspace*{%1mm}$\\surd$\\\\\n").arg(tickPos[3]);
+        source += QString::fromUtf8("\\hspace*{%1mm}$\\surd$\\\\\n").arg(tickPos[4]);
+        source += QString::fromUtf8("\\hspace*{%1mm}$\\surd$\\\\[%2mm]\n").arg(tickPos[5]).arg(tickToTickPos2);
+        source += QString::fromUtf8("\\hspace*{%1mm}$\\surd$\\\\\n").arg(tickPos[6]);
+        source += QString::fromUtf8("\\hspace*{%1mm}$\\surd$\\\\\n\n").arg(tickPos[7]);
+        source += QString::fromUtf8("\\vspace*{%1mm}\\Large\n").arg(tickToTextPos);
         source += text;
         source += QString::fromUtf8("\n\\end{document}\n");
-
 
         QFile out(QDir::tempPath() + "/grading.tex");
         if (!out.open(QIODevice::WriteOnly | QIODevice::Text)) {
