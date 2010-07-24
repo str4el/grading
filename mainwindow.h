@@ -94,6 +94,9 @@ private slots:
         void saveData();
         void loadData();
 
+        void saveSettings();
+        void loadSettings();
+
         void savePos();
         void loadPos();
         void setDefaultPos();

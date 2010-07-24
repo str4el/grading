@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parrent) :
 {
         ui->setupUi(this);
 
+
         domainNames.insert("skills", "Fertigkeiten");
         domainNames.insert("care", "Sorgfalt");
         domainNames.insert("interest", "Interesse");
@@ -41,11 +42,10 @@ MainWindow::MainWindow(QWidget *parrent) :
         domainNames.insert("total", "Gesamtnote");
 
 
-        saveDir = config.value("path/save", Presets::saveDir()).toString();
-        ui->settingsLatexEdit->setText(config.value("path/latex").toString());
-        ui->settingsPdfEdit->setText(config.value("path/pdf").toString());
-        settingsGradeInit();
+        loadSettings();
         loadPos();
+
+        settingsGradeInit();
 
         connect(ui->settingsLatexButton, SIGNAL(clicked()), this, SLOT(settingsLatexFind()));
         connect(ui->settingsPdfButton, SIGNAL(clicked()), this, SLOT(settingsPdfFind()));
@@ -114,9 +114,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-        config.setValue("path/save", saveDir);
-        config.setValue("path/latex", ui->settingsLatexEdit->text());
-        config.setValue("path/pdf", ui->settingsPdfEdit->text());
+        saveSettings();
 }
 
 
@@ -542,6 +540,36 @@ void MainWindow::loadData()
         ui->assessmentTeamworkCombo->setCurrentIndex(load.value("assessment/teamwork").toInt());
         ui->assessmentTotalCombo->setCurrentIndex(load.value("assessment/total").toInt());
         ui->editTextEdit->setPlainText(load.value("assessment/text").toString());
+}
+
+
+
+
+
+void MainWindow::saveSettings()
+{
+        config.setValue("gui/width", this->size().width());
+        config.setValue("gui/height", this->size().height());
+
+        config.setValue("path/save", saveDir);
+        config.setValue("path/latex", ui->settingsLatexEdit->text());
+        config.setValue("path/pdf", ui->settingsPdfEdit->text());
+}
+
+
+
+
+
+void MainWindow::loadSettings()
+{
+        QSize guiSize;
+        guiSize.setWidth(config.value("gui/width", this->sizeHint().width()).toInt());
+        guiSize.setHeight(config.value("gui/height", this->sizeHint().height()).toInt());
+        this->resize(guiSize);
+
+        saveDir = config.value("path/save", Presets::saveDir()).toString();
+        ui->settingsLatexEdit->setText(config.value("path/latex").toString());
+        ui->settingsPdfEdit->setText(config.value("path/pdf").toString());
 }
 
 
