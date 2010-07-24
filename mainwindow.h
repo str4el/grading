@@ -96,6 +96,7 @@ private slots:
 
         void savePos();
         void loadPos();
+        void setDefaultPos();
 
         void viewPdf(int exitCode, QProcess::ExitStatus exitStatus );
 

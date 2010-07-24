@@ -64,8 +64,8 @@ MainWindow::MainWindow(QWidget *parrent) :
         connect(ui->layoutTickToTextSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTextPos(int)));
 
 
+        connect(ui->layoutDefaultsButton, SIGNAL(clicked()), this, SLOT(setDefaultPos()));
         connect(ui->layoutSaveButton, SIGNAL(clicked()), this, SLOT(savePos()));
-
 
         layoutScene = new QGraphicsScene(ui->layoutPreView);
         drawPreview();
@@ -546,6 +546,21 @@ void MainWindow::loadData()
 
 
 
+
+void MainWindow::setDefaultPos()
+{
+        ui->layoutTopOffsetSpinBox->setValue(Presets::topOffset());
+        ui->layoutLeftOffsetSpinBox->setValue(Presets::leftOffset());
+        ui->layoutTick1PosSpinBox->setValue(Presets::tickOffset(1));
+        ui->layoutTick2PosSpinBox->setValue(Presets::tickOffset(2));
+        ui->layoutTick3PosSpinBox->setValue(Presets::tickOffset(3));
+        ui->layoutTick4PosSpinBox->setValue(Presets::tickOffset(4));
+        ui->layoutTick5PosSpinBox->setValue(Presets::tickOffset(5));
+        ui->layoutTopToTickSpinBox->setValue(Presets::topToTick());
+        ui->layoutTickToTick1SpinBox->setValue(Presets::tickToTick(1));
+        ui->layoutTickToTick2SpinBox->setValue(Presets::tickToTick(2));
+        ui->layoutTickToTextSpinBox->setValue(Presets::tickToText());
+}
 
 
 void MainWindow::savePos()

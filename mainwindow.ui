@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>520</width>
-    <height>497</height>
+    <height>530</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -909,12 +909,12 @@
        <attribute name="title">
         <string>Format</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout2">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QGraphicsView" name="layoutPreView"/>
         </item>
         <item>
-         <layout class="QGridLayout" name="gridLayout4">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QLabel" name="label24">
             <property name="font">
@@ -1324,6 +1324,13 @@
            </widget>
           </item>
           <item row="11" column="0" colspan="2">
+           <widget class="QPushButton" name="layoutDefaultsButton">
+            <property name="text">
+             <string>Standardwerte</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0" colspan="2">
            <widget class="QPushButton" name="layoutSaveButton">
             <property name="text">
              <string>Speichern</string>
