@@ -34,7 +34,6 @@ MainWindow::MainWindow(QWidget *parrent) :
 {
         ui->setupUi(this);
 
-
         domainNames.insert("skills", "Fertigkeiten");
         domainNames.insert("care", "Sorgfalt");
         domainNames.insert("interest", "Interesse");
@@ -43,7 +42,6 @@ MainWindow::MainWindow(QWidget *parrent) :
 
 
         loadSettings();
-        loadPos();
 
         settingsGradeInit();
 
@@ -58,10 +56,12 @@ MainWindow::MainWindow(QWidget *parrent) :
         builder = new Build();
         connect(ui->layoutTopOffsetSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTopPos(int)));
         connect(ui->layoutLeftOffsetSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setLeftPos(int)));
+        connect(ui->layoutWidthSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setWidth(int)));
         connect(ui->layoutTopToTickSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTopToTickPos(int)));
         connect(ui->layoutTickToTick1SpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos1(int)));
         connect(ui->layoutTickToTick2SpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos2(int)));
         connect(ui->layoutTickToTextSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTextPos(int)));
+        loadPos();
 
 
         connect(ui->layoutDefaultsButton, SIGNAL(clicked()), this, SLOT(setDefaultPos()));
@@ -72,6 +72,7 @@ MainWindow::MainWindow(QWidget *parrent) :
 
         connect(ui->layoutTopOffsetSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
         connect(ui->layoutLeftOffsetSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
+        connect(ui->layoutWidthSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
         connect(ui->layoutTick1PosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
         connect(ui->layoutTick2PosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
         connect(ui->layoutTick3PosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(drawPreview()));
@@ -376,6 +377,7 @@ void MainWindow::drawPreview()
 {
         qreal px = ui->layoutLeftOffsetSpinBox->value();
         qreal py = ui->layoutTopOffsetSpinBox->value();
+        qreal width = ui->layoutWidthSpinBox->value();
 
         qreal hs = 4;
 
@@ -410,7 +412,7 @@ void MainWindow::drawPreview()
 
         // Der Rahmen
         layoutScene->addRect(0, 0, 210, 297, blackSolid);
-        layoutScene->addRect(px, py, 184, 250, blackDash);
+        layoutScene->addRect(px, py, ui->layoutWidthSpinBox->value(), 250, blackDash);
 
         // Ausenmaße
         drawArrow(layoutScene, QLineF(30, 2, 30, py - 2), blueSolid);
@@ -418,6 +420,9 @@ void MainWindow::drawPreview()
 
         drawArrow(layoutScene, QLineF(2, 30, px - 2, 30), blueSolid);
         layoutScene->addText("2", font)->setPos(2, 13);
+
+        drawArrow(layoutScene, QLineF(px, py + 255, px + width, py + 255), blueSolid);
+        layoutScene->addText("12", font)->setPos(60, py + 255);
 
 
         // Multiple choice
@@ -446,7 +451,7 @@ void MainWindow::drawPreview()
         layoutScene->addText("10", font)->setPos(hx[4] + 3, hy[5] + hs - 2);
 
         // Text
-        layoutScene->addRect(px + 2, ty, 180, 40, Qt::SolidLine, Qt::Dense4Pattern);
+        layoutScene->addRect(px, ty, ui->layoutWidthSpinBox->value(), 40, Qt::SolidLine, Qt::Dense4Pattern);
 
         drawArrow(layoutScene, QLineF(hx[4] + 3, hy[7] + hs + 2, hx[4] + 3, ty - 2), blueSolid);
         layoutScene->addText("11", font)->setPos(hx[4] + 3, hy[7] + hs);
@@ -579,6 +584,7 @@ void MainWindow::setDefaultPos()
 {
         ui->layoutTopOffsetSpinBox->setValue(Presets::topOffset());
         ui->layoutLeftOffsetSpinBox->setValue(Presets::leftOffset());
+        ui->layoutWidthSpinBox->setValue(Presets::width());
         ui->layoutTick1PosSpinBox->setValue(Presets::tickOffset(1));
         ui->layoutTick2PosSpinBox->setValue(Presets::tickOffset(2));
         ui->layoutTick3PosSpinBox->setValue(Presets::tickOffset(3));
@@ -595,6 +601,7 @@ void MainWindow::savePos()
 {
         config.setValue("position/top", ui->layoutTopOffsetSpinBox->value());
         config.setValue("position/left", ui->layoutLeftOffsetSpinBox->value());
+        config.setValue("position/width", ui->layoutWidthSpinBox->value());
         config.setValue("position/tick1", ui->layoutTick1PosSpinBox->value());
         config.setValue("position/tick2", ui->layoutTick2PosSpinBox->value());
         config.setValue("position/tick3", ui->layoutTick3PosSpinBox->value());
@@ -613,6 +620,7 @@ void MainWindow::loadPos()
 {
         ui->layoutTopOffsetSpinBox->setValue(config.value("position/top", Presets::topOffset()).toInt());
         ui->layoutLeftOffsetSpinBox->setValue(config.value("position/left", Presets::leftOffset()).toInt());
+        ui->layoutWidthSpinBox->setValue(config.value("position/Width", Presets::width()).toInt());
         ui->layoutTick1PosSpinBox->setValue(config.value("position/tick1", Presets::tickOffset(1)).toInt());
         ui->layoutTick2PosSpinBox->setValue(config.value("position/tick2", Presets::tickOffset(2)).toInt());
         ui->layoutTick3PosSpinBox->setValue(config.value("position/tick3", Presets::tickOffset(3)).toInt());

@@ -30,6 +30,7 @@ private:
         static QString mVersion;
         static int mTopOffset;
         static int mLeftOffset;
+        static int mWidth;
         static int mTickOffset[5];
         static int mTopToTick;
         static int mTickToTick[2];
@@ -39,6 +40,7 @@ public:
         static QString version() { return mVersion; }
         static int topOffset() { return mTopOffset; }
         static int leftOffset() { return mLeftOffset; }
+        static int width() { return mWidth; }
         static int topToTick() { return mTopToTick; }
         static int tickToText() { return mTickToText; }
 

@@ -25,15 +25,16 @@
 #include <QSettings>
 
 
-QString Presets::mVersion = "0.4.2";
+QString Presets::mVersion = "0.4.3";
 
 /* Default positions
  */
 int Presets::mTopOffset = 15;
-int Presets::mLeftOffset = 15;
-int Presets::mTickOffset[5] = { 126, 139, 152, 165, 178 };
-int Presets::mTopToTick = 65;
-int Presets::mTickToTick[2] = { 14, 6 };
+int Presets::mLeftOffset = 14;
+int Presets::mWidth = 180;
+int Presets::mTickOffset[5] = { 122, 135, 147, 160, 173 };
+int Presets::mTopToTick = 60;
+int Presets::mTickToTick[2] = { 12, 5 };
 int Presets::mTickToText = 10;
 
 
