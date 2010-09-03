@@ -31,6 +31,7 @@ QString Presets::mVersion = "0.4.2";
  */
 int Presets::mTopOffset = 15;
 int Presets::mLeftOffset = 15;
+int Presets::mWidth = 180;
 int Presets::mTickOffset[5] = { 126, 139, 152, 165, 178 };
 int Presets::mTopToTick = 65;
 int Presets::mTickToTick[2] = { 14, 6 };

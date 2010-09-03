@@ -47,7 +47,7 @@ bool Build::build()
 
         source += QString::fromUtf8("\\batchmode\n\\documentclass[11pt]{article}\n\\usepackage{ngerman}\n");
         source += QString::fromUtf8("\\usepackage[utf8]{inputenc}\n\\usepackage{vmargin}\n\\setpapersize{A4}\n");
-        source += QString::fromUtf8("\\setmargins{%1mm}{%2mm}{184mm}{250mm}{12pt}{25pt}{0pt}{30pt}\n").arg(leftPos).arg(topPos);
+        source += QString::fromUtf8("\\setmargins{%1mm}{%2mm}{%3mm}{250mm}{12pt}{25pt}{0pt}{30pt}\n").arg(leftPos).arg(topPos).arg(width);
         source +=QString::fromUtf8("\\parindent0pt\n\\pagestyle{empty}\n\\begin{document}\n");
 
         source += QString::fromUtf8("\\vspace*{%1mm}\n").arg(topToTickPos);

@@ -1323,17 +1323,50 @@
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
+          <item row="12" column="0" colspan="2">
            <widget class="QPushButton" name="layoutDefaultsButton">
             <property name="text">
              <string>Standardwerte</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="0" colspan="2">
+          <item row="13" column="0" colspan="2">
            <widget class="QPushButton" name="layoutSaveButton">
             <property name="text">
              <string>Speichern</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
+           <widget class="QSpinBox" name="layoutWidthSpinBox">
+            <property name="toolTip">
+             <string>Die nutzbare Breite</string>
+            </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
+            <property name="maximum">
+             <number>300</number>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
+           <widget class="QLabel" name="label50">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>12</string>
+            </property>
+            <property name="buddy">
+             <cstring>layoutWidthSpinBox</cstring>
             </property>
            </widget>
           </item>
@@ -1762,6 +1795,7 @@
   <tabstop>layoutTickToTick1SpinBox</tabstop>
   <tabstop>layoutTickToTick2SpinBox</tabstop>
   <tabstop>layoutTickToTextSpinBox</tabstop>
+  <tabstop>layoutWidthSpinBox</tabstop>
   <tabstop>saveApprenticeNameEdit</tabstop>
   <tabstop>saveInstructorNameEdit</tabstop>
   <tabstop>saveYearEdit</tabstop>
@@ -1775,6 +1809,16 @@
   <tabstop>buildButton</tabstop>
   <tabstop>closeButton</tabstop>
   <tabstop>layoutPreView</tabstop>
+  <tabstop>layoutDefaultsButton</tabstop>
+  <tabstop>layoutSaveButton</tabstop>
+  <tabstop>settingsLatexEdit</tabstop>
+  <tabstop>settingsLatexButton</tabstop>
+  <tabstop>settingsPdfEdit</tabstop>
+  <tabstop>settingsPdfButton</tabstop>
+  <tabstop>settingsGradeDomainComboBox</tabstop>
+  <tabstop>settingsGradeComboBox</tabstop>
+  <tabstop>settingsGradeTextSaveButton</tabstop>
+  <tabstop>settingsGradeEdit</tabstop>
  </tabstops>
  <resources/>
  <connections>
