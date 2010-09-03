@@ -42,7 +42,6 @@ MainWindow::MainWindow(QWidget *parrent) :
 
 
         loadSettings();
-        loadPos();
 
         settingsGradeInit();
 
@@ -62,6 +61,7 @@ MainWindow::MainWindow(QWidget *parrent) :
         connect(ui->layoutTickToTick1SpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos1(int)));
         connect(ui->layoutTickToTick2SpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTickPos2(int)));
         connect(ui->layoutTickToTextSpinBox, SIGNAL(valueChanged(int)), builder, SLOT(setTickToTextPos(int)));
+        loadPos();
 
 
         connect(ui->layoutDefaultsButton, SIGNAL(clicked()), this, SLOT(setDefaultPos()));
