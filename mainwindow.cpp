@@ -116,6 +116,7 @@ MainWindow::~MainWindow()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
         saveSettings();
+        event->accept();
 }
 
 
