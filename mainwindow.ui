@@ -1376,7 +1376,7 @@
       </widget>
       <widget class="QWidget" name="saveTab">
        <attribute name="title">
-        <string>Speichern</string>
+        <string>Archiv</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout7">
         <item>
