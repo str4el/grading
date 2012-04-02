@@ -1466,7 +1466,10 @@
                 </sizepolicy>
                </property>
                <property name="displayFormat">
-                <string>dd.MM.yyyy</string>
+                <string>dd.MM.yy</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1486,7 +1489,10 @@
              <item>
               <widget class="QDateEdit" name="saveEndDateEdit">
                <property name="displayFormat">
-                <string>dd.MM.yyyy</string>
+                <string>dd.MM.yy</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1707,6 +1713,13 @@
         </property>
         <property name="text">
          <string>Erstellen</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="statusLabel">
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>

@@ -34,6 +34,9 @@ MainWindow::MainWindow(QWidget *parrent) :
 {
         ui->setupUi(this);
 
+        ui->saveBeginDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
+        ui->saveEndDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
+
         domainNames.insert("skills", "Fertigkeiten");
         domainNames.insert("care", "Sorgfalt");
         domainNames.insert("interest", "Interesse");
@@ -185,11 +188,13 @@ void MainWindow::buildPdf()
         builder->setTickPos(7, tickPos[assessmentResponsibilityRadioGroup->checkedId()]);
 
 
+        ui->statusLabel->setText(QString::fromUtf8("Wird erstellt ..."));
         builder->build();
 
         latex->setWorkingDirectory(QDir::tempPath());
         latex->start(ui->settingsLatexEdit->text(), QStringList("grading.tex"));
         if (!latex->waitForStarted(3000)) {
+                ui->statusLabel->setText(QString::fromUtf8("nicht erfolgreich"));
                 QMessageBox(QMessageBox::Warning,
                             QString::fromUtf8("Fehler"),
                             QString::fromUtf8("LaTeX konnte nicht gestartet werden! Einstellungen überprüfen."),
@@ -204,6 +209,8 @@ void MainWindow::buildPdf()
 
 void MainWindow::viewPdf(int exitCode, QProcess::ExitStatus exitStatus )
 {
+        ui->statusLabel->setText(QString::fromUtf8("erfolgreich"));
+
         if ((exitStatus == QProcess::NormalExit) && (exitCode == 0)) {
 
                 if (viewer->state() == QProcess::Running) viewer->close();
