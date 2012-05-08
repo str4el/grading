@@ -96,7 +96,11 @@ MainWindow::MainWindow(QWidget *parrent) :
         connect(ui->saveSaveButton, SIGNAL(clicked()), this, SLOT(saveData()));
         connect(ui->saveLoadButton, SIGNAL(clicked()), this, SLOT(loadData()));
 
-        ui->infoBrowser->setSource(QUrl("./help.htm"));
+        QFile help(":/doc/help.htm");
+        if(help.open(QFile::ReadOnly)) {
+                ui->infoBrowser->setText(help.readAll());
+                help.close();
+        }
 
         ui->infoVersionLabel->setText(QString("Grading ") + Presets::version());
 

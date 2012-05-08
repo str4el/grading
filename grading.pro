@@ -12,3 +12,6 @@ SOURCES += mainwindow.cpp \
     main.cpp \
     presets.cpp \
     build.cpp
+
+RESOURCES += \
+    main.qrc
