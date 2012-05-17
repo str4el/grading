@@ -8,14 +8,18 @@ HEADERS += mainwindow.h \
     presets.h \
     build.h \
     builder.h \
-    preview.h
+    preview.h \
+    layout.h
 FORMS += mainwindow.ui
 SOURCES += mainwindow.cpp \
     main.cpp \
     presets.cpp \
     build.cpp \
     builder.cpp \
-    preview.cpp
+    preview.cpp \
+    layout.cpp
+
+
 
 
 
