@@ -1,41 +1,47 @@
+/*
+ *
+ *  Copyright (C) 2012 Stephan Reinhard <Stephan-Reinhard@gmx.de>
+ *
+ *  This file is part of grading
+ *
+ *  grading program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+
 #ifndef PAINTER_H
 #define PAINTER_H
 
-#include <QObject>
-#include <QString>
-#include <QRect>
-#include <QFont>
+#include <QtGlobal>
 
+class QPoint;
 class QPainter;
+class QString;
+class QStringList;
+class QRectF;
+class QFont;
 
-class Painter : public QObject
+class Painter
 {
-        Q_OBJECT
 
 private:
-        QFont mFont;
-        QString mText;
-        QRect mTextRect;
-
+        Painter() {}
         static qreal drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place, qreal freeSpace);
 
 public:
-        explicit Painter(QObject *parent = 0);
-        bool paint (QPainter &p);
-
-        static void drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font = QFont());
+        static void drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font);
         static void drawCheck(QPainter &p, const QPoint & pos, const int size);
-
-        // getter
-        QFont font (void) const { return mFont; }
-        QString text (void) const { return mText; }
-        QRect textRect (void) const { return mTextRect; }
-
-public slots:
-        // setter
-        void setFont (const QFont & f) { mFont = f; }
-        void setText (const QString & t) { mText = t; }
-        void setTextRect (const QRect &  r) { mTextRect = r; }
 
 };
 

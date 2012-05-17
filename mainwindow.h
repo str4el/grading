@@ -1,6 +1,6 @@
 /*
  *
- *  Copyright (C) 2009, 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
+ *  Copyright (C) 2009 - 2012 Stephan Reinhard <Stephan-Reinhard@gmx.de>
  *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
  *
  *  This file is part of grading
@@ -75,7 +75,7 @@ private slots:
         void saveSettings(void);
         void loadSettings(void);
 
-        void readGradeSelection(void);
+        void updateLayout(void);
         void stackText(void);
 
 protected:

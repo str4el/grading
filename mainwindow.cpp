@@ -1,6 +1,6 @@
 /*
  *
- *  Copyright (C) 2009, 2010 Stephan Reinhard <Stephan-Reinhard@gmx.de>
+ *  Copyright (C) 2009 - 2012 Stephan Reinhard <Stephan-Reinhard@gmx.de>
  *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
  *
  *  This file is part of grading
@@ -33,7 +33,10 @@ MainWindow::MainWindow(QWidget *parrent) :
                 config("config.ini", QSettings::IniFormat, this)
 {
         ui->setupUi(this);
+
         layout = new Layout(this);
+        ui->previewWidget->setLayout(layout);
+        connect (ui->tab, SIGNAL(currentChanged(int)), this, SLOT(updateLayout()));
 
         ui->saveBeginDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
         ui->saveEndDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
@@ -43,7 +46,6 @@ MainWindow::MainWindow(QWidget *parrent) :
         domainNames.insert("interest", "Interesse");
         domainNames.insert("teamwork", "Zusammenarbeit");
         domainNames.insert("total", "Gesamtnote");
-
 
         loadSettings();
         settingsGradeInit();
@@ -67,7 +69,6 @@ MainWindow::MainWindow(QWidget *parrent) :
                 QButtonGroup * group = new QButtonGroup(this);
                 foreach (QCheckBox *checkBox, ui->gradeSelectionGroupBox->findChildren<QCheckBox *>(rx)) {
                         group->addButton(checkBox);
-                        connect (checkBox, SIGNAL(clicked()), this, SLOT(readGradeSelection()));
                 }
         }
 
@@ -87,7 +88,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 
 
-void MainWindow::readGradeSelection()
+void MainWindow::updateLayout()
 {
         foreach (QString yName, Presets::instance().gradeSelectionYNames()) {
                 foreach (QString xName, Presets::instance().gradeSelectionXNames()) {
@@ -99,6 +100,8 @@ void MainWindow::readGradeSelection()
                         }
                 }
         }
+
+        layout->setAssessmentText(ui->editTextEdit->toPlainText());
 }
 
 

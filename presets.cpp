@@ -1,7 +1,7 @@
 /*
  *
  *  Copyright (C) 2010 Wolfgang Forstmeier <wolfgang.forstmeier@gmail.com>
- *  Copyright (C) 2010 Stephan Reinhard <stephan-reinhard@gmx.de>
+ *  Copyright (C) 2010 - 2012 Stephan Reinhard <stephan-reinhard@gmx.de>
  *
  *  This file is part of grading
  *
