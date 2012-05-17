@@ -20,7 +20,53 @@
  *
  */
 
-#pragma once
+
+#ifndef PRESETS_H
+#define PRESETS_H
+
+#include <QMap>
+#include <QStringList>
+#include <QRect>
+
+
+/*!
+* \class Presets2
+* \brief Meyers-Singleton Klasse, welches die Grundeinstellungen des Programms enthält
+*
+* \author Stephan Reinhard
+*/
+
+class Presets2 {
+
+private:
+        const QString mProgramVersion;
+
+        QMap <QString, int> mGradeSelectionXPos;
+        QMap <QString, int> mGradeSelectionYPos;
+        const QRect mAssessmentTextRect;
+
+
+        // Privater Standard- und Copykonstruktor verhindert neue Objekte
+        Presets2();
+        Presets2(const Presets2 &);
+        Presets2 & operator=(const Presets2 &);
+
+public:
+        static Presets2 & instance (void)
+        {
+                static Presets2 mInstance;
+                return mInstance;
+        }
+
+        inline QString programVersion(void) const { return mProgramVersion; }
+        inline QStringList gradeSelectionXNames(void) const { return mGradeSelectionXPos.keys(); }
+        inline QStringList gradeSelectionYNames(void) const { return mGradeSelectionYPos.keys(); }
+        int gradeSelectionXPos(const QString & name) const;
+        int gradeSelectionYPos(const QString & name) const;
+        inline const QRect & assessmentTextRect(void) const { return mAssessmentTextRect; }
+
+};
+
 
 #include <QString>
 
@@ -62,3 +108,4 @@ public:
 };
 
 
+#endif // PRESETS_H
