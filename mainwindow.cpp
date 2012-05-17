@@ -25,6 +25,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "presets.h"
+#include "layout.h"
 
 MainWindow::MainWindow(QWidget *parrent) :
                 QMainWindow(parrent),
@@ -32,6 +33,7 @@ MainWindow::MainWindow(QWidget *parrent) :
                 config("config.ini", QSettings::IniFormat, this)
 {
         ui->setupUi(this);
+        layout = new Layout(this);
 
         ui->saveBeginDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
         ui->saveEndDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
@@ -56,8 +58,23 @@ MainWindow::MainWindow(QWidget *parrent) :
         ui->infoVersionLabel->setText(QString("Grading ") + Presets::instance().programVersion());
 
 
+
+        // Gruppierung und Verbindung der Checks herstellen
+        foreach (QString grade, QString("Knowledge Skills Savety Reliability Activity ProperHandling Teamwork Responsibility").split(' ')) {
+                QRegExp rx(QString("assessment%1*CheckBox").arg(grade));
+                rx.setPatternSyntax(QRegExp::Wildcard);
+
+                QButtonGroup * group = new QButtonGroup(this);
+                foreach (QCheckBox *checkBox, ui->gradeSelectionGroupBox->findChildren<QCheckBox *>(rx)) {
+                        group->addButton(checkBox);
+                        connect (checkBox, SIGNAL(clicked()), this, SLOT(readGradeSelection()));
+                }
+        }
+
         show();
+
 }
+
 
 
 
@@ -65,6 +82,23 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
         saveSettings();
         event->accept();
+}
+
+
+
+
+void MainWindow::readGradeSelection()
+{
+        foreach (QString yName, Presets::instance().gradeSelectionYNames()) {
+                foreach (QString xName, Presets::instance().gradeSelectionXNames()) {
+                        QCheckBox *checkBox = ui->gradeSelectionGroupBox->findChild<QCheckBox *>(QString("assessment%1%2CheckBox").arg(yName).arg(xName));
+                        if (checkBox) {
+                                if (checkBox->isChecked()) {
+                                        layout->setGradeSelection(yName, xName);
+                                }
+                        }
+                }
+        }
 }
 
 

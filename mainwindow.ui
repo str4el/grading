@@ -108,7 +108,7 @@
               <string>Fachkenntnisse</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentKnowledge1CheckBox</cstring>
+              <cstring>assessmentKnowledgeVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -124,7 +124,7 @@
               <string>Fertigkeiten</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentSkills1CheckBox</cstring>
+              <cstring>assessmentSkillsVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -140,7 +140,7 @@
               <string>Arbeitssicheres Verhalten</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentSavety1CheckBox</cstring>
+              <cstring>assessmentSavetyVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -156,7 +156,7 @@
               <string>Zuverlässigkeit</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentReliability1CheckBox</cstring>
+              <cstring>assessmentReliabilityVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -172,7 +172,7 @@
               <string>Lern- und Arbeitsbereitschaft</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentActivity1CheckBox</cstring>
+              <cstring>assessmentActivityVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -188,7 +188,7 @@
               <string>Umgang mit Einrichtungen / Arbeitsmitteln</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentProperHandling1CheckBox</cstring>
+              <cstring>assessmentProperHandlingVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -204,7 +204,7 @@
               <string>Teamfähigkeit</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentTeamwork1CheckBox</cstring>
+              <cstring>assessmentTeamworkVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -220,12 +220,12 @@
               <string>Verantwortungsbewustsein</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentResponsibility1CheckBox</cstring>
+              <cstring>assessmentResponsibilityVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QCheckBox" name="assessmentKnowledge1CheckBox">
+            <widget class="QCheckBox" name="assessmentKnowledgeVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -238,7 +238,7 @@
             </widget>
            </item>
            <item row="8" column="2">
-            <widget class="QCheckBox" name="assessmentResponsibility2CheckBox">
+            <widget class="QCheckBox" name="assessmentResponsibilityGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -248,7 +248,7 @@
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QCheckBox" name="assessmentActivity1CheckBox">
+            <widget class="QCheckBox" name="assessmentActivityVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -261,7 +261,7 @@
             </widget>
            </item>
            <item row="5" column="2">
-            <widget class="QCheckBox" name="assessmentActivity2CheckBox">
+            <widget class="QCheckBox" name="assessmentActivityGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -271,7 +271,7 @@
             </widget>
            </item>
            <item row="5" column="3">
-            <widget class="QCheckBox" name="assessmentActivity3CheckBox">
+            <widget class="QCheckBox" name="assessmentActivityNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -281,7 +281,7 @@
             </widget>
            </item>
            <item row="5" column="4">
-            <widget class="QCheckBox" name="assessmentActivity4CheckBox">
+            <widget class="QCheckBox" name="assessmentActivityBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -291,7 +291,7 @@
             </widget>
            </item>
            <item row="5" column="5">
-            <widget class="QCheckBox" name="assessmentActivity5CheckBox">
+            <widget class="QCheckBox" name="assessmentActivityVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -301,7 +301,7 @@
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QCheckBox" name="assessmentKnowledge2CheckBox">
+            <widget class="QCheckBox" name="assessmentKnowledgeGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -311,7 +311,7 @@
             </widget>
            </item>
            <item row="1" column="3">
-            <widget class="QCheckBox" name="assessmentKnowledge3CheckBox">
+            <widget class="QCheckBox" name="assessmentKnowledgeNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -321,7 +321,7 @@
             </widget>
            </item>
            <item row="1" column="4">
-            <widget class="QCheckBox" name="assessmentKnowledge4CheckBox">
+            <widget class="QCheckBox" name="assessmentKnowledgeBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -331,7 +331,7 @@
             </widget>
            </item>
            <item row="1" column="5">
-            <widget class="QCheckBox" name="assessmentKnowledge5CheckBox">
+            <widget class="QCheckBox" name="assessmentKnowledgeVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -341,7 +341,7 @@
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QCheckBox" name="assessmentSkills1CheckBox">
+            <widget class="QCheckBox" name="assessmentSkillsVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -354,7 +354,7 @@
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QCheckBox" name="assessmentSkills2CheckBox">
+            <widget class="QCheckBox" name="assessmentSkillsGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -364,7 +364,7 @@
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QCheckBox" name="assessmentSkills3CheckBox">
+            <widget class="QCheckBox" name="assessmentSkillsNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -374,7 +374,7 @@
             </widget>
            </item>
            <item row="2" column="4">
-            <widget class="QCheckBox" name="assessmentSkills4CheckBox">
+            <widget class="QCheckBox" name="assessmentSkillsBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -384,7 +384,7 @@
             </widget>
            </item>
            <item row="2" column="5">
-            <widget class="QCheckBox" name="assessmentSkills5CheckBox">
+            <widget class="QCheckBox" name="assessmentSkillsVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -394,7 +394,7 @@
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QCheckBox" name="assessmentSavety1CheckBox">
+            <widget class="QCheckBox" name="assessmentSavetyVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -407,7 +407,7 @@
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QCheckBox" name="assessmentSavety2CheckBox">
+            <widget class="QCheckBox" name="assessmentSavetyGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -417,7 +417,7 @@
             </widget>
            </item>
            <item row="3" column="3">
-            <widget class="QCheckBox" name="assessmentSavety3CheckBox">
+            <widget class="QCheckBox" name="assessmentSavetyNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -427,7 +427,7 @@
             </widget>
            </item>
            <item row="3" column="4">
-            <widget class="QCheckBox" name="assessmentSavety4CheckBox">
+            <widget class="QCheckBox" name="assessmentSavetyBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -437,7 +437,7 @@
             </widget>
            </item>
            <item row="3" column="5">
-            <widget class="QCheckBox" name="assessmentSavety5CheckBox">
+            <widget class="QCheckBox" name="assessmentSavetyVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -447,7 +447,7 @@
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QCheckBox" name="assessmentReliability1CheckBox">
+            <widget class="QCheckBox" name="assessmentReliabilityVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -460,7 +460,7 @@
             </widget>
            </item>
            <item row="4" column="2">
-            <widget class="QCheckBox" name="assessmentReliability2CheckBox">
+            <widget class="QCheckBox" name="assessmentReliabilityGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -470,7 +470,7 @@
             </widget>
            </item>
            <item row="4" column="3">
-            <widget class="QCheckBox" name="assessmentReliability3CheckBox">
+            <widget class="QCheckBox" name="assessmentReliabilityNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -480,7 +480,7 @@
             </widget>
            </item>
            <item row="4" column="4">
-            <widget class="QCheckBox" name="assessmentReliability4CheckBox">
+            <widget class="QCheckBox" name="assessmentReliabilityBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -490,7 +490,7 @@
             </widget>
            </item>
            <item row="4" column="5">
-            <widget class="QCheckBox" name="assessmentReliability5CheckBox">
+            <widget class="QCheckBox" name="assessmentReliabilityVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -500,7 +500,7 @@
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QCheckBox" name="assessmentProperHandling1CheckBox">
+            <widget class="QCheckBox" name="assessmentProperHandlingVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -513,7 +513,7 @@
             </widget>
            </item>
            <item row="6" column="2">
-            <widget class="QCheckBox" name="assessmentProperHandling2CheckBox">
+            <widget class="QCheckBox" name="assessmentProperHandlingGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -523,7 +523,7 @@
             </widget>
            </item>
            <item row="6" column="3">
-            <widget class="QCheckBox" name="assessmentProperHandling3CheckBox">
+            <widget class="QCheckBox" name="assessmentProperHandlingNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -533,7 +533,7 @@
             </widget>
            </item>
            <item row="6" column="4">
-            <widget class="QCheckBox" name="assessmentProperHandling4CheckBox">
+            <widget class="QCheckBox" name="assessmentProperHandlingBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -543,7 +543,7 @@
             </widget>
            </item>
            <item row="6" column="5">
-            <widget class="QCheckBox" name="assessmentProperHandling5CheckBox">
+            <widget class="QCheckBox" name="assessmentProperHandlingVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -553,7 +553,7 @@
             </widget>
            </item>
            <item row="7" column="1">
-            <widget class="QCheckBox" name="assessmentTeamwork1CheckBox">
+            <widget class="QCheckBox" name="assessmentTeamworkVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -566,7 +566,7 @@
             </widget>
            </item>
            <item row="7" column="2">
-            <widget class="QCheckBox" name="assessmentTeamwork2CheckBox">
+            <widget class="QCheckBox" name="assessmentTeamworkGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -576,7 +576,7 @@
             </widget>
            </item>
            <item row="7" column="3">
-            <widget class="QCheckBox" name="assessmentTeamwork3CheckBox">
+            <widget class="QCheckBox" name="assessmentTeamworkNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -586,7 +586,7 @@
             </widget>
            </item>
            <item row="7" column="4">
-            <widget class="QCheckBox" name="assessmentTeamwork4CheckBox">
+            <widget class="QCheckBox" name="assessmentTeamworkBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -596,7 +596,7 @@
             </widget>
            </item>
            <item row="7" column="5">
-            <widget class="QCheckBox" name="assessmentTeamwork5CheckBox">
+            <widget class="QCheckBox" name="assessmentTeamworkVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -606,7 +606,7 @@
             </widget>
            </item>
            <item row="8" column="1">
-            <widget class="QCheckBox" name="assessmentResponsibility1CheckBox">
+            <widget class="QCheckBox" name="assessmentResponsibilityVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -619,7 +619,7 @@
             </widget>
            </item>
            <item row="8" column="3">
-            <widget class="QCheckBox" name="assessmentResponsibility3CheckBox">
+            <widget class="QCheckBox" name="assessmentResponsibilityNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -629,7 +629,7 @@
             </widget>
            </item>
            <item row="8" column="4">
-            <widget class="QCheckBox" name="assessmentResponsibility4CheckBox">
+            <widget class="QCheckBox" name="assessmentResponsibilityBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -639,7 +639,7 @@
             </widget>
            </item>
            <item row="8" column="5">
-            <widget class="QCheckBox" name="assessmentResponsibility5CheckBox">
+            <widget class="QCheckBox" name="assessmentResponsibilityVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -1765,46 +1765,46 @@
  </customwidgets>
  <tabstops>
   <tabstop>tab</tabstop>
-  <tabstop>assessmentKnowledge1CheckBox</tabstop>
-  <tabstop>assessmentKnowledge2CheckBox</tabstop>
-  <tabstop>assessmentKnowledge3CheckBox</tabstop>
-  <tabstop>assessmentKnowledge4CheckBox</tabstop>
-  <tabstop>assessmentKnowledge5CheckBox</tabstop>
-  <tabstop>assessmentSkills1CheckBox</tabstop>
-  <tabstop>assessmentSkills2CheckBox</tabstop>
-  <tabstop>assessmentSkills3CheckBox</tabstop>
-  <tabstop>assessmentSkills4CheckBox</tabstop>
-  <tabstop>assessmentSkills5CheckBox</tabstop>
-  <tabstop>assessmentSavety1CheckBox</tabstop>
-  <tabstop>assessmentSavety2CheckBox</tabstop>
-  <tabstop>assessmentSavety3CheckBox</tabstop>
-  <tabstop>assessmentSavety4CheckBox</tabstop>
-  <tabstop>assessmentSavety5CheckBox</tabstop>
-  <tabstop>assessmentReliability1CheckBox</tabstop>
-  <tabstop>assessmentReliability2CheckBox</tabstop>
-  <tabstop>assessmentReliability3CheckBox</tabstop>
-  <tabstop>assessmentReliability4CheckBox</tabstop>
-  <tabstop>assessmentReliability5CheckBox</tabstop>
-  <tabstop>assessmentActivity1CheckBox</tabstop>
-  <tabstop>assessmentActivity2CheckBox</tabstop>
-  <tabstop>assessmentActivity3CheckBox</tabstop>
-  <tabstop>assessmentActivity4CheckBox</tabstop>
-  <tabstop>assessmentActivity5CheckBox</tabstop>
-  <tabstop>assessmentProperHandling1CheckBox</tabstop>
-  <tabstop>assessmentProperHandling2CheckBox</tabstop>
-  <tabstop>assessmentProperHandling3CheckBox</tabstop>
-  <tabstop>assessmentProperHandling4CheckBox</tabstop>
-  <tabstop>assessmentProperHandling5CheckBox</tabstop>
-  <tabstop>assessmentTeamwork1CheckBox</tabstop>
-  <tabstop>assessmentTeamwork2CheckBox</tabstop>
-  <tabstop>assessmentTeamwork3CheckBox</tabstop>
-  <tabstop>assessmentTeamwork4CheckBox</tabstop>
-  <tabstop>assessmentTeamwork5CheckBox</tabstop>
-  <tabstop>assessmentResponsibility1CheckBox</tabstop>
-  <tabstop>assessmentResponsibility2CheckBox</tabstop>
-  <tabstop>assessmentResponsibility3CheckBox</tabstop>
-  <tabstop>assessmentResponsibility4CheckBox</tabstop>
-  <tabstop>assessmentResponsibility5CheckBox</tabstop>
+  <tabstop>assessmentKnowledgeVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentKnowledgeGoodCheckBox</tabstop>
+  <tabstop>assessmentKnowledgeNormalCheckBox</tabstop>
+  <tabstop>assessmentKnowledgeBadCheckBox</tabstop>
+  <tabstop>assessmentKnowledgeVeryBadCheckBox</tabstop>
+  <tabstop>assessmentSkillsVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentSkillsGoodCheckBox</tabstop>
+  <tabstop>assessmentSkillsNormalCheckBox</tabstop>
+  <tabstop>assessmentSkillsBadCheckBox</tabstop>
+  <tabstop>assessmentSkillsVeryBadCheckBox</tabstop>
+  <tabstop>assessmentSavetyVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentSavetyGoodCheckBox</tabstop>
+  <tabstop>assessmentSavetyNormalCheckBox</tabstop>
+  <tabstop>assessmentSavetyBadCheckBox</tabstop>
+  <tabstop>assessmentSavetyVeryBadCheckBox</tabstop>
+  <tabstop>assessmentReliabilityVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentReliabilityGoodCheckBox</tabstop>
+  <tabstop>assessmentReliabilityNormalCheckBox</tabstop>
+  <tabstop>assessmentReliabilityBadCheckBox</tabstop>
+  <tabstop>assessmentReliabilityVeryBadCheckBox</tabstop>
+  <tabstop>assessmentActivityVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentActivityGoodCheckBox</tabstop>
+  <tabstop>assessmentActivityNormalCheckBox</tabstop>
+  <tabstop>assessmentActivityBadCheckBox</tabstop>
+  <tabstop>assessmentActivityVeryBadCheckBox</tabstop>
+  <tabstop>assessmentProperHandlingVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentProperHandlingGoodCheckBox</tabstop>
+  <tabstop>assessmentProperHandlingNormalCheckBox</tabstop>
+  <tabstop>assessmentProperHandlingBadCheckBox</tabstop>
+  <tabstop>assessmentProperHandlingVeryBadCheckBox</tabstop>
+  <tabstop>assessmentTeamworkVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentTeamworkGoodCheckBox</tabstop>
+  <tabstop>assessmentTeamworkNormalCheckBox</tabstop>
+  <tabstop>assessmentTeamworkBadCheckBox</tabstop>
+  <tabstop>assessmentTeamworkVeryBadCheckBox</tabstop>
+  <tabstop>assessmentResponsibilityVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentResponsibilityGoodCheckBox</tabstop>
+  <tabstop>assessmentResponsibilityNormalCheckBox</tabstop>
+  <tabstop>assessmentResponsibilityBadCheckBox</tabstop>
+  <tabstop>assessmentResponsibilityVeryBadCheckBox</tabstop>
   <tabstop>assessmentSexCombo</tabstop>
   <tabstop>assessmentSkillsCombo</tabstop>
   <tabstop>assessmentCareCombo</tabstop>

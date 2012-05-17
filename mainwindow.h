@@ -25,6 +25,8 @@
 
 #include <QtGui>
 
+class Layout;
+
 namespace Ui {
         class MainWindow;
 }
@@ -51,28 +53,30 @@ private:
         Ui::MainWindow *ui;
 
         QSettings config;
+        Layout *layout;
 
         QMap<QString, QString> domainNames;
-
-        QGraphicsScene *layoutScene;
 
         QString saveName;
         QString saveDir;
 
         QString getText(QString domain, int grade);
 
+
 private slots:
         void settingsGradeInit(void);
         void settingsGradeRead(void);
         void settingsGradeWrite(void);
 
-        void stackText(void);
 
         void saveData(void);
         void loadData(void);
 
         void saveSettings(void);
         void loadSettings(void);
+
+        void readGradeSelection(void);
+        void stackText(void);
 
 protected:
         void closeEvent(QCloseEvent *event);
