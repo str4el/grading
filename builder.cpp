@@ -15,9 +15,6 @@ Builder::Builder(QObject *parent) :
 
 bool Builder::paint(QPainter &p)
 {
-        qDebug() << p.viewport() << p.window();
-
-        //p.setFont(QFontDialog::getFont(0, p.font()));
         drawBlockText(p, mText, mTextRect);
         return true;
 }
@@ -47,7 +44,7 @@ qreal Builder::drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place,
 
 
 
-void Builder::drawBlockText(QPainter &p, const QString &text, QRectF place)
+void Builder::drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font)
 {
         qreal spaceSize = p.boundingRect(QRectF(), Qt::AlignLeft, " ").width();
         qreal spaceLeft = place.width();
@@ -56,6 +53,8 @@ void Builder::drawBlockText(QPainter &p, const QString &text, QRectF place)
         qreal wordHeight;
         QString word;
         QStringList lineWords;
+
+        p.setFont(font);
 
         foreach (word, text.split(' ')) {
                 wordWidth = p.boundingRect(QRectF(), Qt::AlignLeft, word).width();
