@@ -41,7 +41,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout5">
         <item>
-         <widget class="QGroupBox" name="groupBox5">
+         <widget class="QGroupBox" name="gradeSelectionGroupBox">
           <property name="title">
            <string>Noten</string>
           </property>
@@ -108,60 +108,7 @@
               <string>Fachkenntnisse</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentKnowledge1RadioButton</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QRadioButton" name="assessmentKnowledge1RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QRadioButton" name="assessmentKnowledge2RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QRadioButton" name="assessmentKnowledge3RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QRadioButton" name="assessmentKnowledge4RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="5">
-            <widget class="QRadioButton" name="assessmentKnowledge5RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
+              <cstring>assessmentKnowledge1CheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -177,60 +124,7 @@
               <string>Fertigkeiten</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentSkills1RadioButton</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QRadioButton" name="assessmentSkills1RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QRadioButton" name="assessmentSkills2RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="3">
-            <widget class="QRadioButton" name="assessmentSkills3RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="4">
-            <widget class="QRadioButton" name="assessmentSkills4RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="5">
-            <widget class="QRadioButton" name="assessmentSkills5RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
+              <cstring>assessmentSkills1CheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -246,60 +140,7 @@
               <string>Arbeitssicheres Verhalten</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentSavety1RadioButton</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QRadioButton" name="assessmentSavety1RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="2">
-            <widget class="QRadioButton" name="assessmentSavety2RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="3">
-            <widget class="QRadioButton" name="assessmentSavety3RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="4">
-            <widget class="QRadioButton" name="assessmentSavety4RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="5">
-            <widget class="QRadioButton" name="assessmentSavety5RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
+              <cstring>assessmentSavety1CheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -315,60 +156,7 @@
               <string>Zuverlässigkeit</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentReliability1RadioButton</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QRadioButton" name="assessmentReliability1RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="2">
-            <widget class="QRadioButton" name="assessmentReliability2RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="3">
-            <widget class="QRadioButton" name="assessmentReliability3RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="4">
-            <widget class="QRadioButton" name="assessmentReliability4RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="5">
-            <widget class="QRadioButton" name="assessmentReliability5RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
+              <cstring>assessmentReliability1CheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -384,60 +172,7 @@
               <string>Lern- und Arbeitsbereitschaft</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentActivity1RadioButton</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QRadioButton" name="assessmentActivity1RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="2">
-            <widget class="QRadioButton" name="assessmentActivity2RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="3">
-            <widget class="QRadioButton" name="assessmentActivity3RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="4">
-            <widget class="QRadioButton" name="assessmentActivity4RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="5">
-            <widget class="QRadioButton" name="assessmentActivity5RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
+              <cstring>assessmentActivity1CheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -453,60 +188,7 @@
               <string>Umgang mit Einrichtungen / Arbeitsmitteln</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentProperHandling1RadioButton</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <widget class="QRadioButton" name="assessmentProperHandling1RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="2">
-            <widget class="QRadioButton" name="assessmentProperHandling2RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="3">
-            <widget class="QRadioButton" name="assessmentProperHandling3RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="4">
-            <widget class="QRadioButton" name="assessmentProperHandling4RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="5">
-            <widget class="QRadioButton" name="assessmentProperHandling5RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
+              <cstring>assessmentProperHandling1CheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -522,60 +204,7 @@
               <string>Teamfähigkeit</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentTeamwork1RadioButton</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="1">
-            <widget class="QRadioButton" name="assessmentTeamwork1RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="2">
-            <widget class="QRadioButton" name="assessmentTeamwork2RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="3">
-            <widget class="QRadioButton" name="assessmentTeamwork3RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="4">
-            <widget class="QRadioButton" name="assessmentTeamwork4RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="5">
-            <widget class="QRadioButton" name="assessmentTeamwork5RadioButton">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
+              <cstring>assessmentTeamwork1CheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -591,12 +220,12 @@
               <string>Verantwortungsbewustsein</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentResponsibility1RadioButton</cstring>
+              <cstring>assessmentResponsibility1CheckBox</cstring>
              </property>
             </widget>
            </item>
-           <item row="8" column="1">
-            <widget class="QRadioButton" name="assessmentResponsibility1RadioButton">
+           <item row="1" column="1">
+            <widget class="QCheckBox" name="assessmentKnowledge1CheckBox">
              <property name="text">
               <string/>
              </property>
@@ -609,7 +238,7 @@
             </widget>
            </item>
            <item row="8" column="2">
-            <widget class="QRadioButton" name="assessmentResponsibility2RadioButton">
+            <widget class="QCheckBox" name="assessmentResponsibility2CheckBox">
              <property name="text">
               <string/>
              </property>
@@ -618,8 +247,379 @@
              </property>
             </widget>
            </item>
+           <item row="5" column="1">
+            <widget class="QCheckBox" name="assessmentActivity1CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QCheckBox" name="assessmentActivity2CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="3">
+            <widget class="QCheckBox" name="assessmentActivity3CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="4">
+            <widget class="QCheckBox" name="assessmentActivity4CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="5">
+            <widget class="QCheckBox" name="assessmentActivity5CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QCheckBox" name="assessmentKnowledge2CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QCheckBox" name="assessmentKnowledge3CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QCheckBox" name="assessmentKnowledge4CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="5">
+            <widget class="QCheckBox" name="assessmentKnowledge5CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QCheckBox" name="assessmentSkills1CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QCheckBox" name="assessmentSkills2CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QCheckBox" name="assessmentSkills3CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4">
+            <widget class="QCheckBox" name="assessmentSkills4CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="5">
+            <widget class="QCheckBox" name="assessmentSkills5CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QCheckBox" name="assessmentSavety1CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QCheckBox" name="assessmentSavety2CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QCheckBox" name="assessmentSavety3CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QCheckBox" name="assessmentSavety4CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="5">
+            <widget class="QCheckBox" name="assessmentSavety5CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QCheckBox" name="assessmentReliability1CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QCheckBox" name="assessmentReliability2CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3">
+            <widget class="QCheckBox" name="assessmentReliability3CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="4">
+            <widget class="QCheckBox" name="assessmentReliability4CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="5">
+            <widget class="QCheckBox" name="assessmentReliability5CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QCheckBox" name="assessmentProperHandling1CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="2">
+            <widget class="QCheckBox" name="assessmentProperHandling2CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="3">
+            <widget class="QCheckBox" name="assessmentProperHandling3CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="4">
+            <widget class="QCheckBox" name="assessmentProperHandling4CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="5">
+            <widget class="QCheckBox" name="assessmentProperHandling5CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QCheckBox" name="assessmentTeamwork1CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="2">
+            <widget class="QCheckBox" name="assessmentTeamwork2CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="3">
+            <widget class="QCheckBox" name="assessmentTeamwork3CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="4">
+            <widget class="QCheckBox" name="assessmentTeamwork4CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="5">
+            <widget class="QCheckBox" name="assessmentTeamwork5CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QCheckBox" name="assessmentResponsibility1CheckBox">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="autoExclusive">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
            <item row="8" column="3">
-            <widget class="QRadioButton" name="assessmentResponsibility3RadioButton">
+            <widget class="QCheckBox" name="assessmentResponsibility3CheckBox">
              <property name="text">
               <string/>
              </property>
@@ -629,7 +629,7 @@
             </widget>
            </item>
            <item row="8" column="4">
-            <widget class="QRadioButton" name="assessmentResponsibility4RadioButton">
+            <widget class="QCheckBox" name="assessmentResponsibility4CheckBox">
              <property name="text">
               <string/>
              </property>
@@ -639,7 +639,7 @@
             </widget>
            </item>
            <item row="8" column="5">
-            <widget class="QRadioButton" name="assessmentResponsibility5RadioButton">
+            <widget class="QCheckBox" name="assessmentResponsibility5CheckBox">
              <property name="text">
               <string/>
              </property>
@@ -907,11 +907,18 @@
       </widget>
       <widget class="QWidget" name="layoutTab">
        <attribute name="title">
-        <string>Format</string>
+        <string>Vorschau</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QGraphicsView" name="layoutPreView"/>
+         <widget class="Preview" name="previewWidget" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item>
          <layout class="QGridLayout" name="gridLayout_2">
@@ -1748,48 +1755,56 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Preview</class>
+   <extends>QWidget</extends>
+   <header>preview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tab</tabstop>
-  <tabstop>assessmentKnowledge1RadioButton</tabstop>
-  <tabstop>assessmentKnowledge2RadioButton</tabstop>
-  <tabstop>assessmentKnowledge3RadioButton</tabstop>
-  <tabstop>assessmentKnowledge4RadioButton</tabstop>
-  <tabstop>assessmentKnowledge5RadioButton</tabstop>
-  <tabstop>assessmentSkills1RadioButton</tabstop>
-  <tabstop>assessmentSkills2RadioButton</tabstop>
-  <tabstop>assessmentSkills3RadioButton</tabstop>
-  <tabstop>assessmentSkills4RadioButton</tabstop>
-  <tabstop>assessmentSkills5RadioButton</tabstop>
-  <tabstop>assessmentSavety1RadioButton</tabstop>
-  <tabstop>assessmentSavety2RadioButton</tabstop>
-  <tabstop>assessmentSavety3RadioButton</tabstop>
-  <tabstop>assessmentSavety4RadioButton</tabstop>
-  <tabstop>assessmentSavety5RadioButton</tabstop>
-  <tabstop>assessmentReliability1RadioButton</tabstop>
-  <tabstop>assessmentReliability2RadioButton</tabstop>
-  <tabstop>assessmentReliability3RadioButton</tabstop>
-  <tabstop>assessmentReliability4RadioButton</tabstop>
-  <tabstop>assessmentReliability5RadioButton</tabstop>
-  <tabstop>assessmentActivity1RadioButton</tabstop>
-  <tabstop>assessmentActivity2RadioButton</tabstop>
-  <tabstop>assessmentActivity3RadioButton</tabstop>
-  <tabstop>assessmentActivity4RadioButton</tabstop>
-  <tabstop>assessmentActivity5RadioButton</tabstop>
-  <tabstop>assessmentProperHandling1RadioButton</tabstop>
-  <tabstop>assessmentProperHandling2RadioButton</tabstop>
-  <tabstop>assessmentProperHandling3RadioButton</tabstop>
-  <tabstop>assessmentProperHandling4RadioButton</tabstop>
-  <tabstop>assessmentProperHandling5RadioButton</tabstop>
-  <tabstop>assessmentTeamwork1RadioButton</tabstop>
-  <tabstop>assessmentTeamwork2RadioButton</tabstop>
-  <tabstop>assessmentTeamwork3RadioButton</tabstop>
-  <tabstop>assessmentTeamwork4RadioButton</tabstop>
-  <tabstop>assessmentTeamwork5RadioButton</tabstop>
-  <tabstop>assessmentResponsibility1RadioButton</tabstop>
-  <tabstop>assessmentResponsibility2RadioButton</tabstop>
-  <tabstop>assessmentResponsibility3RadioButton</tabstop>
-  <tabstop>assessmentResponsibility4RadioButton</tabstop>
-  <tabstop>assessmentResponsibility5RadioButton</tabstop>
+  <tabstop>assessmentKnowledge1CheckBox</tabstop>
+  <tabstop>assessmentKnowledge2CheckBox</tabstop>
+  <tabstop>assessmentKnowledge3CheckBox</tabstop>
+  <tabstop>assessmentKnowledge4CheckBox</tabstop>
+  <tabstop>assessmentKnowledge5CheckBox</tabstop>
+  <tabstop>assessmentSkills1CheckBox</tabstop>
+  <tabstop>assessmentSkills2CheckBox</tabstop>
+  <tabstop>assessmentSkills3CheckBox</tabstop>
+  <tabstop>assessmentSkills4CheckBox</tabstop>
+  <tabstop>assessmentSkills5CheckBox</tabstop>
+  <tabstop>assessmentSavety1CheckBox</tabstop>
+  <tabstop>assessmentSavety2CheckBox</tabstop>
+  <tabstop>assessmentSavety3CheckBox</tabstop>
+  <tabstop>assessmentSavety4CheckBox</tabstop>
+  <tabstop>assessmentSavety5CheckBox</tabstop>
+  <tabstop>assessmentReliability1CheckBox</tabstop>
+  <tabstop>assessmentReliability2CheckBox</tabstop>
+  <tabstop>assessmentReliability3CheckBox</tabstop>
+  <tabstop>assessmentReliability4CheckBox</tabstop>
+  <tabstop>assessmentReliability5CheckBox</tabstop>
+  <tabstop>assessmentActivity1CheckBox</tabstop>
+  <tabstop>assessmentActivity2CheckBox</tabstop>
+  <tabstop>assessmentActivity3CheckBox</tabstop>
+  <tabstop>assessmentActivity4CheckBox</tabstop>
+  <tabstop>assessmentActivity5CheckBox</tabstop>
+  <tabstop>assessmentProperHandling1CheckBox</tabstop>
+  <tabstop>assessmentProperHandling2CheckBox</tabstop>
+  <tabstop>assessmentProperHandling3CheckBox</tabstop>
+  <tabstop>assessmentProperHandling4CheckBox</tabstop>
+  <tabstop>assessmentProperHandling5CheckBox</tabstop>
+  <tabstop>assessmentTeamwork1CheckBox</tabstop>
+  <tabstop>assessmentTeamwork2CheckBox</tabstop>
+  <tabstop>assessmentTeamwork3CheckBox</tabstop>
+  <tabstop>assessmentTeamwork4CheckBox</tabstop>
+  <tabstop>assessmentTeamwork5CheckBox</tabstop>
+  <tabstop>assessmentResponsibility1CheckBox</tabstop>
+  <tabstop>assessmentResponsibility2CheckBox</tabstop>
+  <tabstop>assessmentResponsibility3CheckBox</tabstop>
+  <tabstop>assessmentResponsibility4CheckBox</tabstop>
+  <tabstop>assessmentResponsibility5CheckBox</tabstop>
   <tabstop>assessmentSexCombo</tabstop>
   <tabstop>assessmentSkillsCombo</tabstop>
   <tabstop>assessmentCareCombo</tabstop>
@@ -1821,7 +1836,6 @@
   <tabstop>stackButton</tabstop>
   <tabstop>buildButton</tabstop>
   <tabstop>closeButton</tabstop>
-  <tabstop>layoutPreView</tabstop>
   <tabstop>layoutDefaultsButton</tabstop>
   <tabstop>layoutSaveButton</tabstop>
   <tabstop>settingsLatexEdit</tabstop>

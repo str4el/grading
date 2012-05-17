@@ -20,10 +20,10 @@
  *
  */
 
-#pragma once
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QtGui>
-#include "build.h"
 
 namespace Ui {
         class MainWindow;
@@ -32,7 +32,7 @@ namespace Ui {
 
 /*!
 * \class MainWindow
-* \brief Class for creating main window of grading program.
+* \brief Class for careating main window of grading program.
 *
 * \author Stephan Reinhard
 * \author Wolfgang Forstmeier
@@ -45,7 +45,7 @@ public:
         // Constructor.
         MainWindow(QWidget *parrent = 0);
         // Overwrite compiler generated constructor.
-        ~MainWindow();
+        ~MainWindow() {}
 
 private:
         Ui::MainWindow *ui;
@@ -54,57 +54,31 @@ private:
 
         QMap<QString, QString> domainNames;
 
-        QButtonGroup *assessmentKnowledgeRadioGroup;
-        QButtonGroup *assessmentSkillsRadioGroup;
-        QButtonGroup *assessmentSavetyRadioGroup;
-        QButtonGroup *assessmentReliabilityRadioGroup;
-        QButtonGroup *assessmentActivityRadioGroup;
-        QButtonGroup *assessmentProperHandlingRadioGroup;
-        QButtonGroup *assessmentTeamworkRadioGroup;
-        QButtonGroup *assessmentResponsibilityRadioGroup;
-
-        enum GRADE { VERY_GOOD = 0, GOOD, NORMAL, BAD, VERY_BAD };
-
         QGraphicsScene *layoutScene;
-        Build *builder;
-
-        QProcess *latex;
-        QProcess *viewer;
 
         QString saveName;
         QString saveDir;
 
-        void groupRadioButtions(void);
-        void drawArrow(QGraphicsScene *scene, const QLineF line, const QPen pen);
-
         QString getText(QString domain, int grade);
 
 private slots:
-        void settingsGradeInit();
-        void settingsGradeRead();
-        void settingsGradeWrite();
+        void settingsGradeInit(void);
+        void settingsGradeRead(void);
+        void settingsGradeWrite(void);
 
-        void settingsLatexFind();
-        void settingsPdfFind();
+        void stackText(void);
 
-        void buildPdf();
-        void stackText();
-        void drawPreview();
+        void saveData(void);
+        void loadData(void);
 
-        void saveData();
-        void loadData();
-
-        void saveSettings();
-        void loadSettings();
-
-        void savePos();
-        void loadPos();
-        void setDefaultPos();
-
-        void viewPdf(int exitCode, QProcess::ExitStatus exitStatus );
+        void saveSettings(void);
+        void loadSettings(void);
 
 protected:
         void closeEvent(QCloseEvent *event);
 
 
 };
+
+
+#endif // MAINWINDOW_H
