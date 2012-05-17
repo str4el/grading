@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parrent) :
 
         ui->infoBrowser->setSource(QUrl("./help.htm"));
 
-        ui->infoVersionLabel->setText(QString("Grading ") + Presets2::instance().programVersion());
+        ui->infoVersionLabel->setText(QString("Grading ") + Presets::instance().programVersion());
 
 
         show();

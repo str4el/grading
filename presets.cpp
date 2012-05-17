@@ -26,7 +26,7 @@
 #include <QRect>
 
 
-Presets2::Presets2 () :
+Presets::Presets () :
         mProgramVersion("0.5.0"),
         mAssessmentTextRect(10, 200, 150, 50)
 {
@@ -50,7 +50,7 @@ Presets2::Presets2 () :
 
 
 
-int Presets2::gradeSelectionXPos(const QString &name) const
+int Presets::gradeSelectionXPos(const QString &name) const
 {
         if (mGradeSelectionXPos.contains(name)) {
                 return mGradeSelectionXPos[name];
@@ -62,7 +62,7 @@ int Presets2::gradeSelectionXPos(const QString &name) const
 
 
 
-int Presets2::gradeSelectionYPos(const QString &name) const
+int Presets::gradeSelectionYPos(const QString &name) const
 {
         if (mGradeSelectionYPos.contains(name)) {
                 return mGradeSelectionYPos[name];

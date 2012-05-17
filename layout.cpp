@@ -7,7 +7,7 @@
 Layout::Layout(QObject *parent) :
         QObject(parent)
 {
-        mAssessmentTextRect = Presets2::instance().assessmentTextRect();
+        mAssessmentTextRect = Presets::instance().assessmentTextRect();
 }
 
 
@@ -45,7 +45,7 @@ int Layout::gradeSelectionXPos(const QString &name) const
                 return mGradeSelectionXPos[name].toInt();
         }
 
-        return Presets2::instance().gradeSelectionXPos(name);
+        return Presets::instance().gradeSelectionXPos(name);
 }
 
 
@@ -57,7 +57,7 @@ int Layout::gradeSelectionYPos(const QString &name) const
                 return mGradeSelectionYPos[name].toInt();
         }
 
-        return Presets2::instance().gradeSelectionYPos(name);
+        return Presets::instance().gradeSelectionYPos(name);
 }
 
 

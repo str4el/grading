@@ -30,13 +30,13 @@
 
 
 /*!
-* \class Presets2
+* \class Presets
 * \brief Meyers-Singleton Klasse, welches die Grundeinstellungen des Programms enthält
 *
 * \author Stephan Reinhard
 */
 
-class Presets2 {
+class Presets {
 
 private:
         const QString mProgramVersion;
@@ -47,14 +47,14 @@ private:
 
 
         // Privater Standard- und Copykonstruktor verhindert neue Objekte
-        Presets2();
-        Presets2(const Presets2 &);
-        Presets2 & operator=(const Presets2 &);
+        Presets();
+        Presets(const Presets &);
+        Presets & operator=(const Presets &);
 
 public:
-        static Presets2 & instance (void)
+        static Presets & instance (void)
         {
-                static Presets2 mInstance;
+                static Presets mInstance;
                 return mInstance;
         }
 
