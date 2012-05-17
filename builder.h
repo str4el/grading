@@ -24,6 +24,7 @@ public:
         bool paint (QPainter &p);
 
         static void drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font = QFont());
+        static void drawCheck(QPainter &p, const QPoint & pos, const int size);
 
         // getter
         QFont font (void) const { return mFont; }

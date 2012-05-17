@@ -1,9 +1,10 @@
 #include "builder.h"
 
 #include <QPainter>
-#include <QFontDialog>
+#include <QPainterPath>
+#include <QBrush>
 
-#include <QDebug>
+
 
 Builder::Builder(QObject *parent) :
         QObject(parent)
@@ -74,6 +75,23 @@ void Builder::drawBlockText(QPainter &p, const QString &text, QRectF place, cons
         }
         p.drawText(place, Qt::AlignLeft, lineWords.join(" "));
 
+}
+
+
+
+
+void Builder::drawCheck(QPainter &p, const QPoint &pos, const int size)
+{
+
+        QPainterPath path;
+        path.moveTo(QPointF(-0.30,  0.00) * size);
+        path.quadTo(QPointF(-0.10,  0.00) * size, QPointF( 0.00,  0.15) * size);
+        path.quadTo(QPointF( 0.15, -0.20) * size, QPointF( 0.50, -0.40) * size);
+        path.quadTo(QPointF( 0.10, -0.10) * size, QPointF( 0.00,  0.40) * size);
+        path.quadTo(QPointF( 0.00,  0.10) * size, QPointF(-0.30,  0.00) * size);
+        path.translate(pos);
+
+        p.fillPath(path, QBrush(Qt::black));
 }
 
 
