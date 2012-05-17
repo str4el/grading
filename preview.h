@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QPointer>
-#include "builder.h"
+#include "painter.h"
 
 
 
@@ -16,7 +16,7 @@ class Preview : public QWidget
         Q_OBJECT
 
 private:
-        QPointer <Builder> mBuilder;
+        QPointer <Painter> mBuilder;
         QRect mWindow;
 
 protected:
@@ -26,7 +26,7 @@ protected:
 public:
         explicit Preview(QWidget *parent = 0);
 
-        void setBuilder (Builder *b) { mBuilder = b; }
+        void setBuilder (Painter *b) { mBuilder = b; }
 
 
 };

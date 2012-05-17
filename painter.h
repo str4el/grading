@@ -1,5 +1,5 @@
-#ifndef BUILDER_H
-#define BUILDER_H
+#ifndef PAINTER_H
+#define PAINTER_H
 
 #include <QObject>
 #include <QString>
@@ -8,7 +8,7 @@
 
 class QPainter;
 
-class Builder : public QObject
+class Painter : public QObject
 {
         Q_OBJECT
 
@@ -20,7 +20,7 @@ private:
         static qreal drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place, qreal freeSpace);
 
 public:
-        explicit Builder(QObject *parent = 0);
+        explicit Painter(QObject *parent = 0);
         bool paint (QPainter &p);
 
         static void drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font = QFont());
@@ -39,4 +39,4 @@ public slots:
 
 };
 
-#endif // BUILDER_H
+#endif // PAINTER_H

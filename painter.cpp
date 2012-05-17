@@ -1,4 +1,4 @@
-#include "builder.h"
+#include "painter.h"
 
 #include <QPainter>
 #include <QPainterPath>
@@ -6,7 +6,7 @@
 
 
 
-Builder::Builder(QObject *parent) :
+Painter::Painter(QObject *parent) :
         QObject(parent)
 {
 }
@@ -14,7 +14,7 @@ Builder::Builder(QObject *parent) :
 
 
 
-bool Builder::paint(QPainter &p)
+bool Painter::paint(QPainter &p)
 {
         drawBlockText(p, mText, mTextRect);
         return true;
@@ -23,7 +23,7 @@ bool Builder::paint(QPainter &p)
 
 
 
-qreal Builder::drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place, qreal freeSpace)
+qreal Painter::drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place, qreal freeSpace)
 {
         QRectF boundingRect(place.topLeft(), place.bottomLeft());
 
@@ -45,7 +45,7 @@ qreal Builder::drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place,
 
 
 
-void Builder::drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font)
+void Painter::drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font)
 {
         qreal spaceSize = p.boundingRect(QRectF(), Qt::AlignLeft, " ").width();
         qreal spaceLeft = place.width();
@@ -80,7 +80,7 @@ void Builder::drawBlockText(QPainter &p, const QString &text, QRectF place, cons
 
 
 
-void Builder::drawCheck(QPainter &p, const QPoint &pos, const int size)
+void Painter::drawCheck(QPainter &p, const QPoint &pos, const int size)
 {
 
         QPainterPath path;
