@@ -57,10 +57,14 @@ MainWindow::MainWindow(QWidget *parrent) :
         connect(ui->saveSaveButton, SIGNAL(clicked()), this, SLOT(saveData()));
         connect(ui->saveLoadButton, SIGNAL(clicked()), this, SLOT(loadData()));
 
+        connect(ui->layoutXOffsetSpinBox, SIGNAL(valueChanged(int)), mLayout, SLOT(setXOffset(int)));
+        connect(ui->layoutYOffsetSpinBox, SIGNAL(valueChanged(int)), mLayout, SLOT(setYOffest(int)));
+
+        connect(mLayout, SIGNAL(changed()), ui->previewWidget, SLOT(update()));
+
+
         ui->infoBrowser->setSource(QUrl("./help.htm"));
-
         ui->infoVersionLabel->setText(QString("Grading ") + Presets::instance().programVersion());
-
 
 
         // Gruppierung und Verbindung der Checks herstellen

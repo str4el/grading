@@ -38,6 +38,8 @@ class Layout : public QObject
         Q_OBJECT
 
 private:
+        int mXOffset;
+        int mYOffset;
         QHash<QString, QVariant> mGradeSelectionXPos;
         QHash<QString, QVariant> mGradeSelectionYPos;
         QMap<QString, QString> mGradeSelection;
@@ -53,6 +55,8 @@ public:
         void save (QSettings & settings);
         void load (QSettings & settings);
 
+        inline int xOffset (void) const { return mXOffset; }
+        inline int yOffset (void) const { return mYOffset; }
         int gradeSelectionXPos(const QString & name) const;
         int gradeSelectionYPos(const QString & name) const;
         QPoint gradeSelectionPos(const QString & xName, const QString & yName) const;
@@ -62,9 +66,11 @@ public:
 
         inline QFont font (void) const { return mFont; }
         inline QString assessmentText (void) const { return mAssessmentText; }
-        inline QRectF assessmentTextRect(void) const { return mAssessmentTextRect; }
+        inline QRectF assessmentTextRect(void) const { return mAssessmentTextRect.translated(mXOffset, mYOffset); }
 
 public slots:
+        void setXOffset (const int offset) { mXOffset = offset; emit changed(); }
+        void setYOffest (const int offset) { mYOffset = offset; emit changed(); }
         void setGradeSelectionXPos(const QString & name, const int pos);
         void setGradeSelectionYPos(const QString & name, const int pos);
 

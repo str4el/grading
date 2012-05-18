@@ -957,10 +957,10 @@
                 <string> mm</string>
                </property>
                <property name="minimum">
-                <number>0</number>
+                <number>-10</number>
                </property>
                <property name="maximum">
-                <number>300</number>
+                <number>10</number>
                </property>
               </widget>
              </item>
@@ -993,10 +993,10 @@
                 <string> mm</string>
                </property>
                <property name="minimum">
-                <number>0</number>
+                <number>-10</number>
                </property>
                <property name="maximum">
-                <number>300</number>
+                <number>10</number>
                </property>
               </widget>
              </item>

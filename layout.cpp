@@ -27,7 +27,9 @@
 #include <QSettings>
 
 Layout::Layout(QObject *parent) :
-        QObject(parent)
+        QObject(parent),
+        mXOffset(0),
+        mYOffset(0)
 {
         mAssessmentTextRect = Presets::instance().assessmentTextRect();
 }
@@ -64,10 +66,10 @@ void Layout::save(QSettings &settings)
 int Layout::gradeSelectionXPos(const QString &name) const
 {
         if (mGradeSelectionXPos.contains(name)) {
-                return mGradeSelectionXPos[name].toInt();
+                return mGradeSelectionXPos[name].toInt() + mXOffset;
         }
 
-        return Presets::instance().gradeSelectionXPos(name);
+        return Presets::instance().gradeSelectionXPos(name) + mXOffset;
 }
 
 
@@ -76,10 +78,10 @@ int Layout::gradeSelectionXPos(const QString &name) const
 int Layout::gradeSelectionYPos(const QString &name) const
 {
         if (mGradeSelectionYPos.contains(name)) {
-                return mGradeSelectionYPos[name].toInt();
+                return mGradeSelectionYPos[name].toInt() + mYOffset;
         }
 
-        return Presets::instance().gradeSelectionYPos(name);
+        return Presets::instance().gradeSelectionYPos(name) + mYOffset;
 }
 
 
