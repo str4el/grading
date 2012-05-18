@@ -40,18 +40,30 @@ private:
         QRect mWindow;
         QPoint mOffset;
         qreal mZoom;
+        qreal mDpm;
+
+        QString mActiveX;
+        QString mActiveY;
+        bool mAssessmentTextActive;
 
         QPointer <Layout> mLayout;
 
 protected:
         void resizeEvent(QResizeEvent *event);
         void paintEvent(QPaintEvent *event);
+        void mousePressEvent(QMouseEvent *event);
 
 
 public:
         explicit Preview(QWidget *parent = 0);
 
         void setLayout (Layout *l) { mLayout = l; }
+
+signals:
+        void deactivated (void);
+        void assessmentTextActivated (void);
+        void gradeActivated(QString, QString);
+
 
 
 };
