@@ -1182,6 +1182,20 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="layoutLoadButton">
+            <property name="text">
+             <string>Laden</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="layoutSaveButton">
+            <property name="text">
+             <string>Speichern</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer name="verticalSpacer_2">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -1193,20 +1207,6 @@
              </size>
             </property>
            </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="layoutDefaultsButton">
-            <property name="text">
-             <string>Standardwerte</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="layoutSaveButton">
-            <property name="text">
-             <string>Speichern</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </item>
@@ -1612,7 +1612,7 @@
   <tabstop>stackButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>closeButton</tabstop>
-  <tabstop>layoutDefaultsButton</tabstop>
+  <tabstop>layoutLoadButton</tabstop>
   <tabstop>layoutSaveButton</tabstop>
   <tabstop>settingsGradeDomainComboBox</tabstop>
   <tabstop>settingsGradeComboBox</tabstop>

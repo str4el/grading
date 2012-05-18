@@ -85,9 +85,10 @@ private slots:
 
         void saveData(void);
         void loadData(void);
-
         void saveSettings(void);
         void loadSettings(void);
+        void saveLayout(void);
+        void loadLayout(void);
 
         void updateLayout(void);
         void stackText(void);

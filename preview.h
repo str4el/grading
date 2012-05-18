@@ -58,6 +58,14 @@ public:
         explicit Preview(QWidget *parent = 0);
 
         void setLayout (Layout *l) { mLayout = l; }
+        inline void unmark (void)
+        {
+                mAssessmentTextActive = false;
+                mActiveX.clear();
+                mActiveY.clear();
+                update();
+        }
+
 
 signals:
         void deactivated (void);

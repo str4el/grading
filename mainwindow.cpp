@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parrent) :
         domainNames.insert("total", "Gesamtnote");
 
         loadSettings();
+        loadLayout();
         settingsGradeInit();
 
         connect(ui->stackButton, SIGNAL(clicked()), this, SLOT(stackText()));
@@ -57,6 +58,9 @@ MainWindow::MainWindow(QWidget *parrent) :
 
         connect(ui->saveSaveButton, SIGNAL(clicked()), this, SLOT(saveData()));
         connect(ui->saveLoadButton, SIGNAL(clicked()), this, SLOT(loadData()));
+
+        connect(ui->layoutSaveButton, SIGNAL(clicked()), this, SLOT(saveLayout()));
+        connect(ui->layoutLoadButton, SIGNAL(clicked()), this, SLOT(loadLayout()));
 
 
         // Verbindungen für die Layoutmainpulation
@@ -438,7 +442,20 @@ void MainWindow::loadSettings()
 
 
 
+void MainWindow::saveLayout()
+{
+        mLayout->save(config);
+}
 
+
+
+
+void MainWindow::loadLayout()
+{
+        deactivateLayout();
+        mLayout->load(config);
+        ui->previewWidget->unmark();
+}
 
 
 
