@@ -53,7 +53,7 @@ private:
         Ui::MainWindow *ui;
 
         QSettings config;
-        Layout *layout;
+        Layout *mLayout;
 
         QMap<QString, QString> domainNames;
 
@@ -68,6 +68,7 @@ private slots:
         void settingsGradeRead(void);
         void settingsGradeWrite(void);
 
+        void print (void);
 
         void saveData(void);
         void loadData(void);

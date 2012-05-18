@@ -26,6 +26,7 @@
 #include "ui_mainwindow.h"
 #include "presets.h"
 #include "layout.h"
+#include "painter.h"
 
 MainWindow::MainWindow(QWidget *parrent) :
                 QMainWindow(parrent),
@@ -34,8 +35,8 @@ MainWindow::MainWindow(QWidget *parrent) :
 {
         ui->setupUi(this);
 
-        layout = new Layout(this);
-        ui->previewWidget->setLayout(layout);
+        mLayout = new Layout(this);
+        ui->previewWidget->setLayout(mLayout);
         connect (ui->tab, SIGNAL(currentChanged(int)), this, SLOT(updateLayout()));
 
         ui->saveBeginDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
@@ -51,6 +52,7 @@ MainWindow::MainWindow(QWidget *parrent) :
         settingsGradeInit();
 
         connect(ui->stackButton, SIGNAL(clicked()), this, SLOT(stackText()));
+        connect(ui->printButton, SIGNAL(clicked()), this, SLOT(print()));
 
         connect(ui->saveSaveButton, SIGNAL(clicked()), this, SLOT(saveData()));
         connect(ui->saveLoadButton, SIGNAL(clicked()), this, SLOT(loadData()));
@@ -95,13 +97,13 @@ void MainWindow::updateLayout()
                         QCheckBox *checkBox = ui->gradeSelectionGroupBox->findChild<QCheckBox *>(QString("assessment%1%2CheckBox").arg(yName).arg(xName));
                         if (checkBox) {
                                 if (checkBox->isChecked()) {
-                                        layout->setGradeSelection(yName, xName);
+                                        mLayout->setGradeSelection(yName, xName);
                                 }
                         }
                 }
         }
 
-        layout->setAssessmentText(ui->editTextEdit->toPlainText());
+        mLayout->setAssessmentText(ui->editTextEdit->toPlainText());
 }
 
 
@@ -181,6 +183,36 @@ void MainWindow::settingsGradeWrite()
         QString domain = ui->settingsGradeDomainComboBox->itemData(ui->settingsGradeDomainComboBox->currentIndex()).toString();
         int grade = ui->settingsGradeComboBox->currentIndex() + 1;
         config.setValue(QString("grades/%1%2").arg(domain).arg(grade), ui->settingsGradeEdit->toPlainText());
+}
+
+
+
+
+
+void MainWindow::print()
+{
+        updateLayout();
+
+        QPrinter printer;
+        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setFullPage(true);
+        printer.setResolution(600);
+        printer.setOutputFileName("/tmp/test.pdf");
+
+        QPainter p;
+        if (p.begin(&printer)) {
+                Painter ph;
+                ph.setFactor(qreal(p.device()->logicalDpiX()) / 25.4);
+
+                foreach (QPoint point, mLayout->gradeSelectionPoints()) {
+                        ph.drawCheck(p, point, 5);
+                }
+
+                p.setFont(mLayout->font());
+                ph.drawBlockText(p, mLayout->assessmentText(), mLayout->assessmentTextRect());
+
+                p.end();
+        }
 }
 
 

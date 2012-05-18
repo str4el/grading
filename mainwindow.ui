@@ -1714,12 +1714,12 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="buildButton">
+       <widget class="QPushButton" name="printButton">
         <property name="toolTip">
          <string>Erstellt nach den Einstellungen ein PDF Dokument und zeigt es in einem PDF - Viewer an um es auszudrucken.</string>
         </property>
         <property name="text">
-         <string>Erstellen</string>
+         <string>Drucken</string>
         </property>
        </widget>
       </item>
@@ -1834,7 +1834,7 @@
   <tabstop>saveLoadButton</tabstop>
   <tabstop>infoBrowser</tabstop>
   <tabstop>stackButton</tabstop>
-  <tabstop>buildButton</tabstop>
+  <tabstop>printButton</tabstop>
   <tabstop>closeButton</tabstop>
   <tabstop>layoutDefaultsButton</tabstop>
   <tabstop>layoutSaveButton</tabstop>

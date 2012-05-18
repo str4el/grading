@@ -28,6 +28,17 @@
 
 
 
+
+Painter::Painter () :
+        mFactor(1.0)
+{
+
+}
+
+
+
+
+
 qreal Painter::drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place, qreal freeSpace)
 {
         QRectF boundingRect(place.topLeft(), place.bottomLeft());
@@ -50,35 +61,34 @@ qreal Painter::drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place,
 
 
 
-void Painter::drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font)
+void Painter::drawBlockText(QPainter &p, const QString &text, const QRectF & place)
 {
+        QRectF fPlace(place.topLeft() * mFactor, place.bottomRight() * mFactor);
         qreal spaceSize = p.boundingRect(QRectF(), Qt::AlignLeft, " ").width();
-        qreal spaceLeft = place.width();
+        qreal spaceLeft = fPlace.width();
         qreal lineWidth = 0;
         qreal wordWidth;
         qreal wordHeight;
         QString word;
         QStringList lineWords;
 
-        p.setFont(font);
-
         foreach (word, text.split(' ')) {
                 wordWidth = p.boundingRect(QRectF(), Qt::AlignLeft, word).width();
 
-                if (lineWidth + spaceSize + wordWidth < place.width()) {
+                if (lineWidth + spaceSize + wordWidth < fPlace.width()) {
                         lineWidth += wordWidth + spaceSize;
                         spaceLeft -= wordWidth;
                 } else {
-                        wordHeight = drawBlockTextLine(p, lineWords, place, spaceLeft);
-                        place.setTop(place.top() + wordHeight + spaceSize);
+                        wordHeight = drawBlockTextLine(p, lineWords, fPlace, spaceLeft);
+                        fPlace.setTop(fPlace.top() + wordHeight + spaceSize);
 
                         lineWords.clear();
                         lineWidth = wordWidth;
-                        spaceLeft = place.width() - wordWidth;
+                        spaceLeft = fPlace.width() - wordWidth;
                 }
                 lineWords.append(word);
         }
-        p.drawText(place, Qt::AlignLeft, lineWords.join(" "));
+        p.drawText(fPlace, Qt::AlignLeft, lineWords.join(" "));
 
 }
 
@@ -87,14 +97,15 @@ void Painter::drawBlockText(QPainter &p, const QString &text, QRectF place, cons
 
 void Painter::drawCheck(QPainter &p, const QPoint &pos, const int size)
 {
+        qreal fSize = qreal(size) * mFactor;
 
         QPainterPath path;
-        path.moveTo(QPointF(-0.30,  0.00) * size);
-        path.quadTo(QPointF(-0.10,  0.00) * size, QPointF( 0.00,  0.15) * size);
-        path.quadTo(QPointF( 0.15, -0.20) * size, QPointF( 0.50, -0.40) * size);
-        path.quadTo(QPointF( 0.10, -0.10) * size, QPointF( 0.00,  0.40) * size);
-        path.quadTo(QPointF( 0.00,  0.10) * size, QPointF(-0.30,  0.00) * size);
-        path.translate(pos);
+        path.moveTo(QPointF(-0.30,  0.00) * fSize);
+        path.quadTo(QPointF(-0.10,  0.00) * fSize, QPointF( 0.00,  0.15) * fSize);
+        path.quadTo(QPointF( 0.15, -0.20) * fSize, QPointF( 0.50, -0.40) * fSize);
+        path.quadTo(QPointF( 0.10, -0.10) * fSize, QPointF( 0.00,  0.40) * fSize);
+        path.quadTo(QPointF( 0.00,  0.10) * fSize, QPointF(-0.30,  0.00) * fSize);
+        path.translate(QPointF(pos) * mFactor);
 
         p.fillPath(path, QBrush(Qt::black));
 }

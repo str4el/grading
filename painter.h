@@ -36,12 +36,16 @@ class Painter
 {
 
 private:
-        Painter() {}
+        qreal mFactor;
+
         static qreal drawBlockTextLine(QPainter &p, QStringList &words, QRectF &place, qreal freeSpace);
 
 public:
-        static void drawBlockText(QPainter &p, const QString &text, QRectF place, const QFont & font);
-        static void drawCheck(QPainter &p, const QPoint & pos, const int size);
+        Painter();
+
+        void setFactor (const qreal factor) { mFactor = factor; }
+        void drawBlockText(QPainter &p, const QString &text, const QRectF & place);
+        void drawCheck(QPainter &p, const QPoint & pos, const int size);
 
 };
 

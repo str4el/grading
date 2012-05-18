@@ -27,7 +27,7 @@
 
 Preview::Preview(QWidget *parent) :
         QWidget(parent),
-        mWindow(0,0, 2100, 2970)
+        mWindow(0,0, 794, 1123)
 {
 }
 
@@ -57,11 +57,14 @@ void Preview::paintEvent(QPaintEvent *event)
 
 
         if (mLayout) {
+                Painter ph;
+                ph.setFactor(qreal(p.device()->logicalDpiX()) / 25.4);
+
                 foreach (QPoint point, mLayout->gradeSelectionPoints()) {
-                        Painter::drawCheck(p, point * 10, 50);
+                        ph.drawCheck(p, point, 5);
                 }
 
-                QRectF textRect(mLayout->assessmentTextRect().topLeft() * 10, mLayout->assessmentTextRect().bottomRight() * 10);
-                Painter::drawBlockText(p, mLayout->assessmentText(), textRect, mLayout->font());
+                p.setFont(mLayout->font());
+                ph.drawBlockText(p, mLayout->assessmentText(), mLayout->assessmentTextRect());
         }
 }
