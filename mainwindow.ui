@@ -921,459 +921,277 @@
          </widget>
         </item>
         <item>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label24">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QGroupBox" name="groupBox_3">
+            <property name="title">
+             <string>Gesammt Offset</string>
             </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>1</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTopOffsetSpinBox</cstring>
-            </property>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label25">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>X</string>
+               </property>
+               <property name="buddy">
+                <cstring>layoutXOffsetSpinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="layoutXOffsetSpinBox">
+               <property name="toolTip">
+                <string>Der Abstand vom linken Seitenrand. Damit kann der gesammte Inhalt nach links oder rechts verschoben werden.</string>
+               </property>
+               <property name="suffix">
+                <string> mm</string>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>300</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label27">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Y</string>
+               </property>
+               <property name="buddy">
+                <cstring>layoutYOffsetSpinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="layoutYOffsetSpinBox">
+               <property name="toolTip">
+                <string>Die horizontale Position des ++ Hakens.</string>
+               </property>
+               <property name="suffix">
+                <string> mm</string>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>300</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QSpinBox" name="layoutTopOffsetSpinBox">
-            <property name="minimumSize">
+          <item>
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="title">
+             <string>Position</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label29">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>X</string>
+               </property>
+               <property name="buddy">
+                <cstring>layoutPosXSpinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="layoutPosXSpinBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string>Die horizontale Position des 0 Hakens.</string>
+               </property>
+               <property name="suffix">
+                <string> mm</string>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>300</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label30">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Y</string>
+               </property>
+               <property name="buddy">
+                <cstring>layoutPosYSpinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="layoutPosYSpinBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string>Die horizontale Position des - Hakens.</string>
+               </property>
+               <property name="suffix">
+                <string> mm</string>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>300</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label31">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>W</string>
+               </property>
+               <property name="buddy">
+                <cstring>layoutWidthSpinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="layoutWidthSpinBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string>Die horizontale Position des -- Hakens.</string>
+               </property>
+               <property name="suffix">
+                <string> mm</string>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>300</number>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label33">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>H</string>
+               </property>
+               <property name="buddy">
+                <cstring>layoutHeightSpinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="layoutHeightSpinBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string>Der Abstand vom oberen Seitenrand bis zum ersten Haken. Der gesammte folgende Inhalt wird mit verschoben.</string>
+               </property>
+               <property name="suffix">
+                <string> mm</string>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>300</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>100</width>
-              <height>0</height>
+              <width>20</width>
+              <height>40</height>
              </size>
             </property>
-            <property name="toolTip">
-             <string>Der Abstand vom oberen Seitenrand. Damit kann der gesammte Inhalt nach oben oder unten verschoben werden.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
+           </spacer>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label25">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>2</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutLeftOffsetSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="layoutLeftOffsetSpinBox">
-            <property name="toolTip">
-             <string>Der Abstand vom linken Seitenrand. Damit kann der gesammte Inhalt nach links oder rechts verschoben werden.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label27">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>3</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTick1PosSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="layoutTick1PosSpinBox">
-            <property name="toolTip">
-             <string>Die horizontale Position des ++ Hakens.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label28">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>4</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTick2PosSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QSpinBox" name="layoutTick2PosSpinBox">
-            <property name="toolTip">
-             <string>Die horizontale Position des + Hakens.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label29">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>5</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTick3PosSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QSpinBox" name="layoutTick3PosSpinBox">
-            <property name="toolTip">
-             <string>Die horizontale Position des 0 Hakens.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label30">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>6</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTick4PosSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QSpinBox" name="layoutTick4PosSpinBox">
-            <property name="toolTip">
-             <string>Die horizontale Position des - Hakens.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="label31">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>7</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTick5PosSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QSpinBox" name="layoutTick5PosSpinBox">
-            <property name="toolTip">
-             <string>Die horizontale Position des -- Hakens.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label33">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>8</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTopToTickSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QSpinBox" name="layoutTopToTickSpinBox">
-            <property name="toolTip">
-             <string>Der Abstand vom oberen Seitenrand bis zum ersten Haken. Der gesammte folgende Inhalt wird mit verschoben.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="label35">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>9</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTickToTick1SpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
-           <widget class="QSpinBox" name="layoutTickToTick1SpinBox">
-            <property name="toolTip">
-             <string>Der Abstand zwischen den ersten drei Haken und den folgenden drei. Der gesammte folgende Inhalt wird mit verschoben.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0">
-           <widget class="QLabel" name="label34">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>10</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTickToTick2SpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="1">
-           <widget class="QSpinBox" name="layoutTickToTick2SpinBox">
-            <property name="toolTip">
-             <string>Der Abstand zwischen den zweiten drei Haken und den lezten zwei. Der gesammte folgende Inhalt wird mit verschoben.</string>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="prefix">
-             <string/>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0">
-           <widget class="QLabel" name="label36">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>11</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutTickToTextSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="1">
-           <widget class="QSpinBox" name="layoutTickToTextSpinBox">
-            <property name="toolTip">
-             <string>Der Abstand zwischen den lezten zwei Haken und dem Beurteilungstext.</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="0" colspan="2">
+          <item>
            <widget class="QPushButton" name="layoutDefaultsButton">
             <property name="text">
              <string>Standardwerte</string>
             </property>
            </widget>
           </item>
-          <item row="13" column="0" colspan="2">
+          <item>
            <widget class="QPushButton" name="layoutSaveButton">
             <property name="text">
              <string>Speichern</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="1">
-           <widget class="QSpinBox" name="layoutWidthSpinBox">
-            <property name="toolTip">
-             <string>Die nutzbare Breite</string>
-            </property>
-            <property name="suffix">
-             <string> mm</string>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="0">
-           <widget class="QLabel" name="label50">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>12</string>
-            </property>
-            <property name="buddy">
-             <cstring>layoutWidthSpinBox</cstring>
             </property>
            </widget>
           </item>
@@ -1563,49 +1381,6 @@
         <string>Einstellungen</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout8">
-        <item>
-         <widget class="QGroupBox" name="groupBox2">
-          <property name="title">
-           <string>Programmpfade</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout5">
-           <item row="0" column="0">
-            <widget class="QLabel" name="settingsLatexLabel">
-             <property name="text">
-              <string>LaTeX</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="settingsLatexEdit"/>
-           </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="settingsLatexButton">
-             <property name="text">
-              <string>Durchsuchen ...</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="settingsPdfLabel">
-             <property name="text">
-              <string>PDF Betrachter</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="settingsPdfEdit"/>
-           </item>
-           <item row="1" column="2">
-            <widget class="QPushButton" name="settingsPdfButton">
-             <property name="text">
-              <string>Durchsuchen ...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
         <item>
          <widget class="QGroupBox" name="groupBox">
           <property name="title">
@@ -1812,18 +1587,6 @@
   <tabstop>assessmentTeamworkCombo</tabstop>
   <tabstop>assessmentTotalCombo</tabstop>
   <tabstop>editTextEdit</tabstop>
-  <tabstop>layoutTopOffsetSpinBox</tabstop>
-  <tabstop>layoutLeftOffsetSpinBox</tabstop>
-  <tabstop>layoutTick1PosSpinBox</tabstop>
-  <tabstop>layoutTick2PosSpinBox</tabstop>
-  <tabstop>layoutTick3PosSpinBox</tabstop>
-  <tabstop>layoutTick4PosSpinBox</tabstop>
-  <tabstop>layoutTick5PosSpinBox</tabstop>
-  <tabstop>layoutTopToTickSpinBox</tabstop>
-  <tabstop>layoutTickToTick1SpinBox</tabstop>
-  <tabstop>layoutTickToTick2SpinBox</tabstop>
-  <tabstop>layoutTickToTextSpinBox</tabstop>
-  <tabstop>layoutWidthSpinBox</tabstop>
   <tabstop>saveApprenticeNameEdit</tabstop>
   <tabstop>saveInstructorNameEdit</tabstop>
   <tabstop>saveYearEdit</tabstop>
@@ -1838,10 +1601,6 @@
   <tabstop>closeButton</tabstop>
   <tabstop>layoutDefaultsButton</tabstop>
   <tabstop>layoutSaveButton</tabstop>
-  <tabstop>settingsLatexEdit</tabstop>
-  <tabstop>settingsLatexButton</tabstop>
-  <tabstop>settingsPdfEdit</tabstop>
-  <tabstop>settingsPdfButton</tabstop>
   <tabstop>settingsGradeDomainComboBox</tabstop>
   <tabstop>settingsGradeComboBox</tabstop>
   <tabstop>settingsGradeTextSaveButton</tabstop>

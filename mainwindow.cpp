@@ -295,8 +295,6 @@ void MainWindow::saveSettings()
         config.setValue("gui/height", this->size().height());
 
         config.setValue("path/save", saveDir);
-        config.setValue("path/latex", ui->settingsLatexEdit->text());
-        config.setValue("path/pdf", ui->settingsPdfEdit->text());
 }
 
 
@@ -311,8 +309,6 @@ void MainWindow::loadSettings()
         this->resize(guiSize);
 
         saveDir = config.value("path/save", QDir::homePath()).toString();
-        ui->settingsLatexEdit->setText(config.value("path/latex").toString());
-        ui->settingsPdfEdit->setText(config.value("path/pdf").toString());
 }
 
 
