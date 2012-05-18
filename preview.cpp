@@ -85,6 +85,7 @@ void Preview::paintEvent(QPaintEvent *event)
                         p.drawLine(mWindow.left(), y, mWindow.right(), y);
                 }
 
+                p.setPen(Qt::black);
 
                 Painter ph;
                 ph.setFactor(mDpm);

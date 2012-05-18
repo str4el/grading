@@ -55,6 +55,10 @@ private:
         QSettings config;
         Layout *mLayout;
 
+        QString mActiveLayoutX;
+        QString mActiveLayoutY;
+        bool mAssessmentTextLayoutActive;
+
         QMap<QString, QString> domainNames;
 
         QString saveName;
@@ -67,6 +71,15 @@ private slots:
         void settingsGradeInit(void);
         void settingsGradeRead(void);
         void settingsGradeWrite(void);
+
+        void updateLayoutXPos (int);
+        void updateLayoutYPos (int);
+        void updateLayoutWidth (int);
+        void updateLayoutHeight (int);
+
+        void deactivateLayout (void);
+        void activateLayoutGrade (QString, QString);
+        void activateAssessmentTextLayout (void);
 
         void print (void);
 
