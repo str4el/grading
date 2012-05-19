@@ -46,15 +46,43 @@ void Layout::setDefaults()
 }
 
 
-
+#include <QDebug>
 
 void Layout::load(QSettings &settings)
 {
         settings.beginGroup("layout");
 
-        mGradeSelectionXPos = settings.value("grade_selection_x_position").toHash();
-        mGradeSelectionYPos = settings.value("grade_selection_y_position").toHash();
-        mAssessmentTextRect = settings.value("assessment_text_rect", Presets::instance().assessmentTextRect()).toRect();
+        QString str = settings.value("assessment_text_position").toString();
+        bool ok1, ok2, ok3, ok4;
+
+        mAssessmentTextRect.setLeft   (str.section(',', 0, 0).toInt(&ok1));
+        mAssessmentTextRect.setTop    (str.section(',', 1, 1).toInt(&ok2));
+        mAssessmentTextRect.setWidth  (str.section(',', 2, 2).toInt(&ok3));
+        mAssessmentTextRect.setHeight (str.section(',', 3, 3).toInt(&ok4));
+
+        if (!(ok1 && ok2 && ok3 && ok4)) {
+                mAssessmentTextRect = Presets::instance().assessmentTextRect();
+        }
+
+
+
+        str = settings.value("grade_x_position").toString();
+        foreach (str, str.split(',')) {
+                bool ok;
+                int val = str.section(':', 1).toInt(&ok);
+                if (ok) {
+                        mGradeSelectionXPos[str.section(':', 0, 0).simplified()] = val;
+                }
+        }
+
+        str = settings.value("grade_y_position").toString();
+        foreach (str, str.split(',')) {
+                bool ok;
+                int val = str.section(':', 1).toInt(&ok);
+                if (ok) {
+                        mGradeSelectionYPos[str.section(':', 0, 0).simplified()] = val;
+                }
+        }
 
         QString fontFamily = settings.value("font_family").toString();
         int fontSize = settings.value("font_size", -1).toInt();
@@ -76,9 +104,28 @@ void Layout::save(QSettings &settings)
 {
         settings.beginGroup("layout");
 
-        settings.setValue("grade_selection_x_position", mGradeSelectionXPos);
-        settings.setValue("grade_selection_y_position", mGradeSelectionYPos);
-        settings.setValue("assessment_text_rect", mAssessmentTextRect);
+        settings.setValue("assessment_text_position",
+                          QString("%1, %2, %3, %4")
+                          .arg(mAssessmentTextRect.left())
+                          .arg(mAssessmentTextRect.top())
+                          .arg(mAssessmentTextRect.width())
+                          .arg(mAssessmentTextRect.height())
+                          );
+
+
+        QString str;
+        foreach (QString key, mGradeSelectionXPos.keys()) {
+                str.append(key + ": " + QString::number(mGradeSelectionXPos[key]) + ", ");
+        }
+        str.chop(1);
+        settings.setValue("grade_x_position", str);
+
+        str.clear();
+        foreach (QString key, mGradeSelectionYPos.keys()) {
+                str.append(key + ": " + QString::number(mGradeSelectionYPos[key]) + ", ");
+        }
+        str.chop(1);
+        settings.setValue("grade_y_position", str);
 
         settings.setValue("font_family", mFont.family());
         settings.setValue("font_size", mFont.pointSize());
@@ -93,7 +140,7 @@ void Layout::save(QSettings &settings)
 int Layout::gradeSelectionXPos(const QString &name) const
 {
         if (mGradeSelectionXPos.contains(name)) {
-                return mGradeSelectionXPos[name].toInt() + mXOffset;
+                return mGradeSelectionXPos[name] + mXOffset;
         }
 
         return Presets::instance().gradeSelectionXPos(name) + mXOffset;
@@ -105,7 +152,7 @@ int Layout::gradeSelectionXPos(const QString &name) const
 int Layout::gradeSelectionYPos(const QString &name) const
 {
         if (mGradeSelectionYPos.contains(name)) {
-                return mGradeSelectionYPos[name].toInt() + mYOffset;
+                return mGradeSelectionYPos[name] + mYOffset;
         }
 
         return Presets::instance().gradeSelectionYPos(name) + mYOffset;
@@ -127,7 +174,7 @@ QPoint Layout::gradeSelectionPos(const QString &xName, const QString &yName) con
 
 void Layout::setGradeSelectionXPos(const QString &name, const int pos)
 {
-        mGradeSelectionXPos[name].setValue(pos);
+        mGradeSelectionXPos[name] = pos;
         emit changed();
 }
 
@@ -136,7 +183,7 @@ void Layout::setGradeSelectionXPos(const QString &name, const int pos)
 
 void Layout::setGradeSelectionYPos(const QString &name, const int pos)
 {
-        mGradeSelectionYPos[name].setValue(pos);
+        mGradeSelectionYPos[name] = pos;
         emit changed();
 }
 

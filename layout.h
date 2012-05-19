@@ -40,8 +40,8 @@ class Layout : public QObject
 private:
         int mXOffset;
         int mYOffset;
-        QHash<QString, QVariant> mGradeSelectionXPos;
-        QHash<QString, QVariant> mGradeSelectionYPos;
+        QHash<QString, int> mGradeSelectionXPos;
+        QHash<QString, int> mGradeSelectionYPos;
         QMap<QString, QString> mGradeSelection;
 
         QFont mFont;
