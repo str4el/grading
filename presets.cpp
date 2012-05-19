@@ -29,6 +29,7 @@
 Presets::Presets () :
         mProgramName("Grading"),
         mProgramVersion("0.5.0"),
+        mFileVersion(3),
         mAssessmentTextRect(10, 200, 150, 50),
         mFont("Sans Serif" ,12)
 {
@@ -41,7 +42,7 @@ Presets::Presets () :
 
         mGradeSelectionYPos.insert("Knowledge",       75);
         mGradeSelectionYPos.insert("Skills",          85);
-        mGradeSelectionYPos.insert("Savety",          95);
+        mGradeSelectionYPos.insert("Safety",          95);
         mGradeSelectionYPos.insert("Reliability",    115);
         mGradeSelectionYPos.insert("Activity",       125);
         mGradeSelectionYPos.insert("ProperHandling", 135);

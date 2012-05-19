@@ -42,6 +42,7 @@ class Presets {
 private:
         const QString mProgramName;
         const QString mProgramVersion;
+        const int mFileVersion;
 
         QMap <QString, int> mGradeSelectionXPos;
         QMap <QString, int> mGradeSelectionYPos;
@@ -63,6 +64,7 @@ public:
 
         inline QString programName (void) const { return mProgramName; }
         inline QString programVersion(void) const { return mProgramVersion; }
+        inline int fileVersion (void) const { return mFileVersion; }
         inline QStringList gradeSelectionXNames(void) const { return mGradeSelectionXPos.keys(); }
         inline QStringList gradeSelectionYNames(void) const { return mGradeSelectionYPos.keys(); }
         int gradeSelectionXPos(const QString & name) const;

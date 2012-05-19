@@ -29,6 +29,7 @@
 #include "presets.h"
 #include "layout.h"
 #include "painter.h"
+#include "fileconverter.h"
 
 MainWindow::MainWindow(QWidget *parrent) :
         QMainWindow(parrent),
@@ -85,7 +86,7 @@ MainWindow::MainWindow(QWidget *parrent) :
 
 
         // Gruppierung und Verbindung der Checks herstellen
-        foreach (QString grade, QString("Knowledge Skills Savety Reliability Activity ProperHandling Teamwork Responsibility").split(' ')) {
+        foreach (QString grade, QString("Knowledge Skills Safety Reliability Activity ProperHandling Teamwork Responsibility").split(' ')) {
                 QRegExp rx(QString("assessment%1*CheckBox").arg(grade));
                 rx.setPatternSyntax(QRegExp::Wildcard);
 
@@ -372,7 +373,8 @@ void MainWindow::saveData()
         }
 
         QSettings save(filename, QSettings::IniFormat, this);
-        save.setValue("file/version", Presets::instance().programVersion());
+        save.setValue("file/type", Presets::instance().programName());
+        save.setValue("file/version", Presets::instance().fileVersion());
 
         save.setValue("info/apprentice", ui->saveApprenticeNameEdit->text());
         save.setValue("info/instructor", ui->saveInstructorNameEdit->text());
@@ -419,11 +421,44 @@ void MainWindow::loadData()
 
         QSettings load(filename, QSettings::IniFormat, this);
 
-        if (load.value("file/version", "0.4.0") != Presets::instance().programVersion()) {
-                QMessageBox::information(this,
-                                         Presets::instance().programName(),
-                                         QString::fromUtf8("Diese Datei wurde mit einer anderen Version gespeichert. Es ist möglich, dass die Daten nicht richtig geladen wurden"),
-                                         QMessageBox::Ok);
+        QMessageBox message(this);
+        message.setWindowTitle(Presets::instance().programName());
+        switch (FileConverter::isConvertible(load.value("file/version", 2).toInt())) {
+        case FileConverter::ToOld:
+                message.setIcon(QMessageBox::Warning);
+                message.setText(QString::fromUtf8("Diese Datei wurde mit einer zu alten Version gespeichert und kann nicht Konvertiert werden!"));
+                message.setStandardButtons(QMessageBox::Ok);
+                message.exec();
+                return;
+                break;
+
+        case FileConverter::Convertible:
+                message.setIcon(QMessageBox::Information);
+                message.setText(QString::fromUtf8("Diese Datei wurde von einer älteren Version erstllt. Soll sie jetzt konvertiert werden?"));
+                message.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+
+                if (message.exec() == QMessageBox::Yes) {
+                        if (!FileConverter(filename).convert()) {
+                                message.setIcon(QMessageBox::Critical);
+                                message.setText(QString::fromUtf8("Konvertierung ist Fehlgeschlagen!"));
+                                message.setStandardButtons(QMessageBox::Ok);
+                                message.exec();
+                                return;
+                        }
+                } else {
+                        return;
+                }
+                break;
+
+        case FileConverter::Newer:
+                message.setIcon(QMessageBox::Warning);
+                message.setText(QString::fromUtf8("Diese Datei wurde mit einer neueren Version erstellt. Es ist sehr wahrseinlich, dass die geladenen Daten nicht korrekt sind!"));
+                message.setStandardButtons(QMessageBox::Ok);
+                message.exec();
+                break;
+
+        case FileConverter::ExactMatch:
+                break;
         }
 
         ui->saveApprenticeNameEdit->setText(load.value("info/apprentice").toString());
@@ -434,14 +469,12 @@ void MainWindow::loadData()
         ui->saveCommentEdit->setPlainText(load.value("info/comment").toString());
 
         load.beginGroup("grades");
+        QList<QCheckBox *> checks = ui->gradeSelectionGroupBox->findChildren<QCheckBox *>();
         foreach (QString grade, load.childKeys()) {
-                QCheckBox *checkBox = ui->gradeSelectionGroupBox->findChild<QCheckBox *>(QString("assessment%1%2CheckBox")
-                                                                                         .arg(grade)
-                                                                                         .arg(load.value(grade).toString())
-                                                                                         );
-
-                if (checkBox) {
-                        checkBox->setChecked(true);
+                foreach (QCheckBox *check, checks) {
+                        if (check->objectName().toLower() == QString("assessment%1%2CheckBox").arg(grade).arg(load.value(grade).toString()).toLower()) {
+                                check->setChecked(true);
+                        }
                 }
         }
         load.endGroup();

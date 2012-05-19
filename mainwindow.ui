@@ -140,7 +140,7 @@
               <string>Arbeitssicheres Verhalten</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentSavetyVeryGoodCheckBox</cstring>
+              <cstring>assessmentSafetyVeryGoodCheckBox</cstring>
              </property>
             </widget>
            </item>
@@ -394,7 +394,7 @@
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QCheckBox" name="assessmentSavetyVeryGoodCheckBox">
+            <widget class="QCheckBox" name="assessmentSafetyVeryGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -407,7 +407,7 @@
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QCheckBox" name="assessmentSavetyGoodCheckBox">
+            <widget class="QCheckBox" name="assessmentSafetyGoodCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -417,7 +417,7 @@
             </widget>
            </item>
            <item row="3" column="3">
-            <widget class="QCheckBox" name="assessmentSavetyNormalCheckBox">
+            <widget class="QCheckBox" name="assessmentSafetyNormalCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -427,7 +427,7 @@
             </widget>
            </item>
            <item row="3" column="4">
-            <widget class="QCheckBox" name="assessmentSavetyBadCheckBox">
+            <widget class="QCheckBox" name="assessmentSafetyBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -437,7 +437,7 @@
             </widget>
            </item>
            <item row="3" column="5">
-            <widget class="QCheckBox" name="assessmentSavetyVeryBadCheckBox">
+            <widget class="QCheckBox" name="assessmentSafetyVeryBadCheckBox">
              <property name="text">
               <string/>
              </property>
@@ -1577,11 +1577,11 @@
   <tabstop>assessmentSkillsNormalCheckBox</tabstop>
   <tabstop>assessmentSkillsBadCheckBox</tabstop>
   <tabstop>assessmentSkillsVeryBadCheckBox</tabstop>
-  <tabstop>assessmentSavetyVeryGoodCheckBox</tabstop>
-  <tabstop>assessmentSavetyGoodCheckBox</tabstop>
-  <tabstop>assessmentSavetyNormalCheckBox</tabstop>
-  <tabstop>assessmentSavetyBadCheckBox</tabstop>
-  <tabstop>assessmentSavetyVeryBadCheckBox</tabstop>
+  <tabstop>assessmentSafetyVeryGoodCheckBox</tabstop>
+  <tabstop>assessmentSafetyGoodCheckBox</tabstop>
+  <tabstop>assessmentSafetyNormalCheckBox</tabstop>
+  <tabstop>assessmentSafetyBadCheckBox</tabstop>
+  <tabstop>assessmentSafetyVeryBadCheckBox</tabstop>
   <tabstop>assessmentReliabilityVeryGoodCheckBox</tabstop>
   <tabstop>assessmentReliabilityGoodCheckBox</tabstop>
   <tabstop>assessmentReliabilityNormalCheckBox</tabstop>
