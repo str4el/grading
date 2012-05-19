@@ -65,7 +65,6 @@ void Preview::paintEvent(QPaintEvent *event)
         if (mLayout) {
                 QPen mark(Qt::red);
                 mark.setStyle(Qt::DashLine);
-                mark.setWidth(3);
                 p.setPen(mark);
 
                 if (mAssessmentTextActive) {

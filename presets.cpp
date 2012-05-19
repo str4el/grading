@@ -27,8 +27,10 @@
 
 
 Presets::Presets () :
+        mProgramName("Grading"),
         mProgramVersion("0.5.0"),
-        mAssessmentTextRect(10, 200, 150, 50)
+        mAssessmentTextRect(10, 200, 150, 50),
+        mFont("Sans Serif" ,12)
 {
         // Standardpositionen
         mGradeSelectionXPos.insert("VeryGood",       138);

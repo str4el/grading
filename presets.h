@@ -27,6 +27,7 @@
 #include <QMap>
 #include <QStringList>
 #include <QRect>
+#include <QFont>
 
 
 /*!
@@ -39,11 +40,13 @@
 class Presets {
 
 private:
+        const QString mProgramName;
         const QString mProgramVersion;
 
         QMap <QString, int> mGradeSelectionXPos;
         QMap <QString, int> mGradeSelectionYPos;
         const QRect mAssessmentTextRect;
+        const QFont mFont;
 
 
         // Privater Standard- und Copykonstruktor verhindert neue Objekte
@@ -58,12 +61,14 @@ public:
                 return mInstance;
         }
 
+        inline QString programName (void) const { return mProgramName; }
         inline QString programVersion(void) const { return mProgramVersion; }
         inline QStringList gradeSelectionXNames(void) const { return mGradeSelectionXPos.keys(); }
         inline QStringList gradeSelectionYNames(void) const { return mGradeSelectionYPos.keys(); }
         int gradeSelectionXPos(const QString & name) const;
         int gradeSelectionYPos(const QString & name) const;
         inline const QRect & assessmentTextRect(void) const { return mAssessmentTextRect; }
+        inline const QFont & font (void) const { return mFont; }
 
 };
 

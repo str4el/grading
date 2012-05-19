@@ -77,6 +77,7 @@ private slots:
         void updateLayoutTextRect (void);
         void updateLayoutXPos (int);
         void updateLayoutYPos (int);
+        void getFont (void);
 
         void deactivateLayout (void);
         void activateLayoutGrade (QString, QString);

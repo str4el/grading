@@ -42,6 +42,7 @@ void Layout::setDefaults()
         mAssessmentTextRect = Presets::instance().assessmentTextRect();
         mGradeSelectionXPos.clear();
         mGradeSelectionYPos.clear();
+        mFont = Presets::instance().font();
 }
 
 
@@ -50,9 +51,20 @@ void Layout::setDefaults()
 void Layout::load(QSettings &settings)
 {
         settings.beginGroup("layout");
+
         mGradeSelectionXPos = settings.value("grade_selection_x_position").toHash();
         mGradeSelectionYPos = settings.value("grade_selection_y_position").toHash();
         mAssessmentTextRect = settings.value("assessment_text_rect").toRect();
+
+        QString fontFamily = settings.value("font_family").toString();
+        int fontSize = settings.value("font_size", -1).toInt();
+
+        mFont = Presets::instance().font();
+        if (!fontFamily.isEmpty() && fontSize > 1) {
+                mFont.setFamily(fontFamily);
+                mFont.setPointSize(fontSize);
+        }
+
         settings.endGroup();
 }
 
@@ -63,9 +75,14 @@ void Layout::load(QSettings &settings)
 void Layout::save(QSettings &settings)
 {
         settings.beginGroup("layout");
+
         settings.setValue("grade_selection_x_position", mGradeSelectionXPos);
         settings.setValue("grade_selection_y_position", mGradeSelectionYPos);
         settings.setValue("assessment_text_rect", mAssessmentTextRect);
+
+        settings.setValue("font_family", mFont.family());
+        settings.setValue("font_size", mFont.pointSize());
+
         settings.endGroup();
 }
 

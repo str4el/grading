@@ -22,6 +22,7 @@
 
 #include <QtGui>
 #include <QPrintDialog>
+#include <QFontDialog>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -76,6 +77,7 @@ MainWindow::MainWindow(QWidget *parrent) :
         connect(ui->previewWidget, SIGNAL(assessmentTextActivated()), this, SLOT(activateAssessmentTextLayout()));
         connect(ui->previewWidget, SIGNAL(gradeActivated(QString,QString)), this, SLOT(activateLayoutGrade(QString,QString)));
         connect(mLayout, SIGNAL(changed()), ui->previewWidget, SLOT(update()));
+        connect(ui->layoutFontButton, SIGNAL(clicked()), this, SLOT(getFont()));
 
 
         ui->infoBrowser->setSource(QUrl("./help.htm"));
@@ -245,6 +247,15 @@ void MainWindow::updateLayoutYPos(int pos)
         } else if (!mActiveLayoutY.isEmpty()) {
                 mLayout->setGradeSelectionYPos(mActiveLayoutY, pos);
         }
+}
+
+
+
+
+void MainWindow::getFont()
+{
+        mLayout->setFont(QFontDialog::getFont(0, mLayout->font(), this));
+        ui->previewWidget->update();
 }
 
 
