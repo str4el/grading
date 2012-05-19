@@ -26,6 +26,7 @@
 #include <QtGui>
 
 class Layout;
+class QPrinter;
 
 namespace Ui {
         class MainWindow;
@@ -53,6 +54,7 @@ private:
         Ui::MainWindow *ui;
 
         QSettings config;
+        QPrinter mPrinter;
         Layout *mLayout;
 
         QString mActiveLayoutX;

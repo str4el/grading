@@ -21,6 +21,7 @@
  */
 
 #include <QtGui>
+#include <QPrintDialog>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -310,26 +311,31 @@ void MainWindow::print()
 {
         updateLayout();
 
-        QPrinter printer;
-        printer.setOutputFormat(QPrinter::PdfFormat);
-        printer.setFullPage(true);
-        printer.setResolution(600);
-        printer.setOutputFileName("/tmp/test.pdf");
+        QPrintDialog printDialog (&mPrinter, this);
+        printDialog.setOption(QAbstractPrintDialog::PrintShowPageSize, false);
 
-        QPainter p;
-        if (p.begin(&printer)) {
-                Painter ph;
-                ph.setFactor(qreal(p.device()->logicalDpiX()) / 25.4);
+        if (printDialog.exec()) {
 
-                foreach (QPoint point, mLayout->gradeSelectionPoints()) {
-                        ph.drawCheck(p, point, 5);
+                mPrinter.setFullPage(true);
+                mPrinter.setResolution(300);
+
+                QPainter p;
+                if (p.begin(&mPrinter)) {
+                        Painter ph;
+                        ph.setFactor(qreal(p.device()->logicalDpiX()) / 25.4);
+
+                        foreach (QPoint point, mLayout->gradeSelectionPoints()) {
+                                ph.drawCheck(p, point, 5);
+                        }
+
+                        p.setFont(mLayout->font());
+                        ph.drawBlockText(p, mLayout->assessmentText(), mLayout->assessmentTextRect());
+
+                        p.end();
                 }
-
-                p.setFont(mLayout->font());
-                ph.drawBlockText(p, mLayout->assessmentText(), mLayout->assessmentTextRect());
-
-                p.end();
         }
+
+
 }
 
 
