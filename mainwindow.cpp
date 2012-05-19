@@ -372,7 +372,7 @@ void MainWindow::saveData()
         }
 
         QSettings save(filename, QSettings::IniFormat, this);
-        save.setValue("general/version", Presets::instance().programVersion());
+        save.setValue("file/version", Presets::instance().programVersion());
 
         save.setValue("info/apprentice", ui->saveApprenticeNameEdit->text());
         save.setValue("info/instructor", ui->saveInstructorNameEdit->text());
@@ -383,20 +383,18 @@ void MainWindow::saveData()
 
 
 
-        QString grades;
+        save.beginGroup("grades");
         foreach (QString yName, Presets::instance().gradeSelectionYNames()) {
                 foreach (QString xName, Presets::instance().gradeSelectionXNames()) {
                         QCheckBox *checkBox = ui->gradeSelectionGroupBox->findChild<QCheckBox *>(QString("assessment%1%2CheckBox").arg(yName).arg(xName));
                         if (checkBox) {
                                 if (checkBox->isChecked()) {
-                                        grades.append(yName + ": " + xName + ", ");
+                                        save.setValue(yName, xName);
                                 }
                         }
                 }
         }
-        grades.chop(2);
-        save.setValue("assessment/grades", grades);
-
+        save.endGroup();
 
         save.setValue("assessment/sex", ui->assessmentSexCombo->currentIndex());
         save.setValue("assessment/skills", ui->assessmentSkillsCombo->currentIndex());
@@ -421,7 +419,7 @@ void MainWindow::loadData()
 
         QSettings load(filename, QSettings::IniFormat, this);
 
-        if (load.value("general/version", "0.4.0") != Presets::instance().programVersion()) {
+        if (load.value("file/version", "0.4.0") != Presets::instance().programVersion()) {
                 QMessageBox::information(this,
                                          Presets::instance().programName(),
                                          QString::fromUtf8("Diese Datei wurde mit einer anderen Version gespeichert. Es ist möglich, dass die Daten nicht richtig geladen wurden"),
@@ -435,17 +433,18 @@ void MainWindow::loadData()
         ui->saveEndDateEdit->setDate(QDate::fromString(load.value("info/end").toString()));
         ui->saveCommentEdit->setPlainText(load.value("info/comment").toString());
 
-        QString str = load.value("assessment/grades").toString();
-        foreach (str, str.split(',')) {
+        load.beginGroup("grades");
+        foreach (QString grade, load.childKeys()) {
                 QCheckBox *checkBox = ui->gradeSelectionGroupBox->findChild<QCheckBox *>(QString("assessment%1%2CheckBox")
-                                                                                         .arg(str.section(':', 0, 0).simplified())
-                                                                                         .arg(str.section(':', 1, 1).simplified())
+                                                                                         .arg(grade)
+                                                                                         .arg(load.value(grade).toString())
                                                                                          );
 
                 if (checkBox) {
                         checkBox->setChecked(true);
                 }
         }
+        load.endGroup();
 
         ui->assessmentSexCombo->setCurrentIndex(load.value("assessment/sex").toInt());
         ui->assessmentSkillsCombo->setCurrentIndex(load.value("assessment/skills").toInt());
