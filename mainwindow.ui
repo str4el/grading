@@ -931,6 +931,9 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="toolTip">
+           <string>Auf ein Element klicken um die Geometrie zu veränderne</string>
+          </property>
          </widget>
         </item>
         <item>
@@ -964,7 +967,7 @@
              <item row="0" column="1">
               <widget class="QSpinBox" name="layoutXOffsetSpinBox">
                <property name="toolTip">
-                <string>Der Abstand vom linken Seitenrand. Damit kann der gesammte Inhalt nach links oder rechts verschoben werden.</string>
+                <string>Verschiebt das gesamte Dokument nach links oder rechts</string>
                </property>
                <property name="suffix">
                 <string> mm</string>
@@ -1000,7 +1003,7 @@
              <item row="1" column="1">
               <widget class="QSpinBox" name="layoutYOffsetSpinBox">
                <property name="toolTip">
-                <string>Die horizontale Position des ++ Hakens.</string>
+                <string>Verschiebt das gesamte Dokument nach oben oder unten</string>
                </property>
                <property name="suffix">
                 <string> mm</string>
@@ -1048,7 +1051,7 @@
                 <bool>false</bool>
                </property>
                <property name="toolTip">
-                <string>Die horizontale Position des 0 Hakens.</string>
+                <string>Die absolute horizontale Position des ausgewählten Elements</string>
                </property>
                <property name="suffix">
                 <string> mm</string>
@@ -1087,7 +1090,7 @@
                 <bool>false</bool>
                </property>
                <property name="toolTip">
-                <string>Die horizontale Position des - Hakens.</string>
+                <string>Die absolute vertikale Position des ausgewählten Elements</string>
                </property>
                <property name="suffix">
                 <string> mm</string>
@@ -1126,7 +1129,7 @@
                 <bool>false</bool>
                </property>
                <property name="toolTip">
-                <string>Die horizontale Position des -- Hakens.</string>
+                <string>Die breite des ausgewählten Elements</string>
                </property>
                <property name="suffix">
                 <string> mm</string>
@@ -1165,7 +1168,7 @@
                 <bool>false</bool>
                </property>
                <property name="toolTip">
-                <string>Der Abstand vom oberen Seitenrand bis zum ersten Haken. Der gesammte folgende Inhalt wird mit verschoben.</string>
+                <string>Die höhe des ausgewählten Elements</string>
                </property>
                <property name="suffix">
                 <string> mm</string>
@@ -1518,7 +1521,7 @@
       <item>
        <widget class="QPushButton" name="printButton">
         <property name="toolTip">
-         <string>Erstellt nach den Einstellungen ein PDF Dokument und zeigt es in einem PDF - Viewer an um es auszudrucken.</string>
+         <string>Öffnet den Druckerdialog und Druckt das Dokument</string>
         </property>
         <property name="text">
          <string>Drucken</string>
@@ -1547,6 +1550,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="closeButton">
+        <property name="toolTip">
+         <string>Beendet das Programm</string>
+        </property>
         <property name="text">
          <string>Schliessen</string>
         </property>
