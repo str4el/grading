@@ -78,6 +78,8 @@ public slots:
         void setAssessmentText (const QString & text) { mAssessmentText = text; emit changed(); }
         void setAssessmentTextRect(const QRectF & rect) { mAssessmentTextRect = rect; emit changed(); }
 
+        void setDefaults (void);
+
 signals:
         void changed (void);
 

@@ -72,10 +72,9 @@ private slots:
         void settingsGradeRead(void);
         void settingsGradeWrite(void);
 
+        void updateLayoutTextRect (void);
         void updateLayoutXPos (int);
         void updateLayoutYPos (int);
-        void updateLayoutWidth (int);
-        void updateLayoutHeight (int);
 
         void deactivateLayout (void);
         void activateLayoutGrade (QString, QString);
@@ -89,6 +88,7 @@ private slots:
         void loadSettings(void);
         void saveLayout(void);
         void loadLayout(void);
+        void setDefaultLayout(void);
 
         void updateLayout(void);
         void stackText(void);

@@ -31,7 +31,17 @@ Layout::Layout(QObject *parent) :
         mXOffset(0),
         mYOffset(0)
 {
+        setDefaults();
+}
+
+
+
+
+void Layout::setDefaults()
+{
         mAssessmentTextRect = Presets::instance().assessmentTextRect();
+        mGradeSelectionXPos.clear();
+        mGradeSelectionYPos.clear();
 }
 
 

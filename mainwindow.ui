@@ -1182,6 +1182,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="layoutDefaultsButton">
+            <property name="text">
+             <string>Standardwerte</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="layoutLoadButton">
             <property name="text">
              <string>Laden</string>

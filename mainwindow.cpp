@@ -61,6 +61,7 @@ MainWindow::MainWindow(QWidget *parrent) :
 
         connect(ui->layoutSaveButton, SIGNAL(clicked()), this, SLOT(saveLayout()));
         connect(ui->layoutLoadButton, SIGNAL(clicked()), this, SLOT(loadLayout()));
+        connect(ui->layoutDefaultsButton, SIGNAL(clicked()), this, SLOT(setDefaultLayout()));
 
 
         // Verbindungen für die Layoutmainpulation
@@ -68,8 +69,8 @@ MainWindow::MainWindow(QWidget *parrent) :
         connect(ui->layoutYOffsetSpinBox, SIGNAL(valueChanged(int)), mLayout, SLOT(setYOffest(int)));
         connect(ui->layoutPosXSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateLayoutXPos(int)));
         connect(ui->layoutPosYSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateLayoutYPos(int)));
-        connect(ui->layoutWidthSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateLayoutWidth(int)));
-        connect(ui->layoutHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateLayoutHeight(int)));
+        connect(ui->layoutWidthSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateLayoutTextRect()));
+        connect(ui->layoutHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateLayoutTextRect()));
         connect(ui->previewWidget, SIGNAL(deactivated()), this, SLOT(deactivateLayout()));
         connect(ui->previewWidget, SIGNAL(assessmentTextActivated()), this, SLOT(activateAssessmentTextLayout()));
         connect(ui->previewWidget, SIGNAL(gradeActivated(QString,QString)), this, SLOT(activateLayoutGrade(QString,QString)));
@@ -206,12 +207,27 @@ void MainWindow::settingsGradeWrite()
 
 
 
+void MainWindow::updateLayoutTextRect()
+{
+        QRectF rect;
+        rect.setLeft(ui->layoutPosXSpinBox->value());
+        rect.setTop(ui->layoutPosYSpinBox->value());
+        rect.setWidth(ui->layoutWidthSpinBox->value());
+        rect.setHeight(ui->layoutHeightSpinBox->value());
+
+        if (mAssessmentTextLayoutActive) {
+                mLayout->setAssessmentTextRect(rect);
+        }
+}
+
+
+
+
+
 void MainWindow::updateLayoutXPos(int pos)
 {
         if (mAssessmentTextLayoutActive) {
-                QRectF rect = mLayout->assessmentTextRect();
-                rect.moveLeft(pos);
-                mLayout->setAssessmentTextRect(rect);
+                updateLayoutTextRect();
         } else if (!mActiveLayoutX.isEmpty()) {
                 mLayout->setGradeSelectionXPos(mActiveLayoutX, pos);
         }
@@ -224,35 +240,9 @@ void MainWindow::updateLayoutXPos(int pos)
 void MainWindow::updateLayoutYPos(int pos)
 {
         if (mAssessmentTextLayoutActive) {
-                QRectF rect = mLayout->assessmentTextRect();
-                rect.moveTop(pos);
-                mLayout->setAssessmentTextRect(rect);
+                updateLayoutTextRect();
         } else if (!mActiveLayoutY.isEmpty()) {
                 mLayout->setGradeSelectionYPos(mActiveLayoutY, pos);
-        }
-}
-
-
-
-
-void MainWindow::updateLayoutWidth(int size)
-{
-        if (mAssessmentTextLayoutActive) {
-                QRectF rect = mLayout->assessmentTextRect();
-                rect.setWidth(size);
-                mLayout->setAssessmentTextRect(rect);
-        }
-}
-
-
-
-
-void MainWindow::updateLayoutHeight(int size)
-{
-        if (mAssessmentTextLayoutActive) {
-                QRectF rect = mLayout->assessmentTextRect();
-                rect.setHeight(size);
-                mLayout->setAssessmentTextRect(rect);
         }
 }
 
@@ -280,7 +270,7 @@ void MainWindow::activateAssessmentTextLayout()
         mActiveLayoutX.clear();
         mActiveLayoutY.clear();
 
-        QRectF rect = mLayout->assessmentTextRect();
+        QRectF rect = mLayout->assessmentTextRect().translated(- ui->layoutXOffsetSpinBox->value(), - ui->layoutYOffsetSpinBox->value());
         ui->layoutPosXSpinBox->setValue(rect.left());
         ui->layoutPosYSpinBox->setValue(rect.top());
         ui->layoutWidthSpinBox->setValue(rect.width());
@@ -302,8 +292,8 @@ void MainWindow::activateLayoutGrade(QString y, QString x)
         mActiveLayoutX.clear();
         mActiveLayoutY.clear();
 
-        ui->layoutPosXSpinBox->setValue(mLayout->gradeSelectionXPos(x));
-        ui->layoutPosYSpinBox->setValue(mLayout->gradeSelectionYPos(y));
+        ui->layoutPosXSpinBox->setValue(mLayout->gradeSelectionXPos(x) - ui->layoutXOffsetSpinBox->value());
+        ui->layoutPosYSpinBox->setValue(mLayout->gradeSelectionYPos(y) - ui->layoutYOffsetSpinBox->value());
         ui->layoutPosXSpinBox->setEnabled(true);
         ui->layoutPosYSpinBox->setEnabled(true);
         ui->layoutWidthSpinBox->setEnabled(false);
@@ -454,6 +444,16 @@ void MainWindow::loadLayout()
 {
         deactivateLayout();
         mLayout->load(config);
+        ui->previewWidget->unmark();
+}
+
+
+
+
+void MainWindow::setDefaultLayout()
+{
+        deactivateLayout();
+        mLayout->setDefaults();
         ui->previewWidget->unmark();
 }
 
