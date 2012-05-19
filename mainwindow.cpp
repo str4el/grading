@@ -372,6 +372,7 @@ void MainWindow::saveData()
         }
 
         QSettings save(filename, QSettings::IniFormat, this);
+        save.setValue("general/version", Presets::instance().programVersion());
 
         save.setValue("info/apprentice", ui->saveApprenticeNameEdit->text());
         save.setValue("info/instructor", ui->saveInstructorNameEdit->text());
@@ -379,6 +380,23 @@ void MainWindow::saveData()
         save.setValue("info/begin", ui->saveBeginDateEdit->date().toString());
         save.setValue("info/end", ui->saveEndDateEdit->date().toString());
         save.setValue("info/comment", ui->saveCommentEdit->toPlainText());
+
+
+
+        QString grades;
+        foreach (QString yName, Presets::instance().gradeSelectionYNames()) {
+                foreach (QString xName, Presets::instance().gradeSelectionXNames()) {
+                        QCheckBox *checkBox = ui->gradeSelectionGroupBox->findChild<QCheckBox *>(QString("assessment%1%2CheckBox").arg(yName).arg(xName));
+                        if (checkBox) {
+                                if (checkBox->isChecked()) {
+                                        grades.append(yName + ": " + xName + ", ");
+                                }
+                        }
+                }
+        }
+        grades.chop(2);
+        save.setValue("assessment/grades", grades);
+
 
         save.setValue("assessment/sex", ui->assessmentSexCombo->currentIndex());
         save.setValue("assessment/skills", ui->assessmentSkillsCombo->currentIndex());
@@ -403,12 +421,31 @@ void MainWindow::loadData()
 
         QSettings load(filename, QSettings::IniFormat, this);
 
+        if (load.value("general/version", "0.4.0") != Presets::instance().programVersion()) {
+                QMessageBox::information(this,
+                                         Presets::instance().programName(),
+                                         QString::fromUtf8("Diese Datei wurde mit einer anderen Version gespeichert. Es ist möglich, dass die Daten nicht richtig geladen wurden"),
+                                         QMessageBox::Ok);
+        }
+
         ui->saveApprenticeNameEdit->setText(load.value("info/apprentice").toString());
         ui->saveInstructorNameEdit->setText(load.value("info/instructor").toString());
         ui->saveYearEdit->setValue(load.value("info/year").toInt());
         ui->saveBeginDateEdit->setDate(QDate::fromString(load.value("info/begin").toString()));
         ui->saveEndDateEdit->setDate(QDate::fromString(load.value("info/end").toString()));
         ui->saveCommentEdit->setPlainText(load.value("info/comment").toString());
+
+        QString str = load.value("assessment/grades").toString();
+        foreach (str, str.split(',')) {
+                QCheckBox *checkBox = ui->gradeSelectionGroupBox->findChild<QCheckBox *>(QString("assessment%1%2CheckBox")
+                                                                                         .arg(str.section(':', 0, 0).simplified())
+                                                                                         .arg(str.section(':', 1, 1).simplified())
+                                                                                         );
+
+                if (checkBox) {
+                        checkBox->setChecked(true);
+                }
+        }
 
         ui->assessmentSexCombo->setCurrentIndex(load.value("assessment/sex").toInt());
         ui->assessmentSkillsCombo->setCurrentIndex(load.value("assessment/skills").toInt());
@@ -442,7 +479,7 @@ void MainWindow::loadSettings()
         guiSize.setHeight(config.value("gui/height", this->sizeHint().height()).toInt());
         this->resize(guiSize);
 
-        saveDir = config.value("path/save", QDir::homePath()).toString();
+        saveDir = config.value("path/save", QDir::homePath()).toString() + "/";
 }
 
 

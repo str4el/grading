@@ -124,7 +124,7 @@ void Layout::save(QSettings &settings)
         foreach (QString key, mGradeSelectionYPos.keys()) {
                 str.append(key + ": " + QString::number(mGradeSelectionYPos[key]) + ", ");
         }
-        str.chop(1);
+        str.chop(2);
         settings.setValue("grade_y_position", str);
 
         settings.setValue("font_family", mFont.family());
