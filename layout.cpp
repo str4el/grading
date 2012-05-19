@@ -54,7 +54,7 @@ void Layout::load(QSettings &settings)
 
         mGradeSelectionXPos = settings.value("grade_selection_x_position").toHash();
         mGradeSelectionYPos = settings.value("grade_selection_y_position").toHash();
-        mAssessmentTextRect = settings.value("assessment_text_rect").toRect();
+        mAssessmentTextRect = settings.value("assessment_text_rect", Presets::instance().assessmentTextRect()).toRect();
 
         QString fontFamily = settings.value("font_family").toString();
         int fontSize = settings.value("font_size", -1).toInt();

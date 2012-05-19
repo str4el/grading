@@ -33,7 +33,7 @@
 MainWindow::MainWindow(QWidget *parrent) :
         QMainWindow(parrent),
         ui(new Ui::MainWindow),
-        config("config.ini", QSettings::IniFormat, this),
+        config("grading.ini", QSettings::IniFormat, this),
         mAssessmentTextLayoutActive(false)
 {
         ui->setupUi(this);
@@ -81,7 +81,7 @@ MainWindow::MainWindow(QWidget *parrent) :
 
 
         ui->infoBrowser->setSource(QUrl("./help.htm"));
-        ui->infoVersionLabel->setText(QString("Grading ") + Presets::instance().programVersion());
+        ui->infoVersionLabel->setText(Presets::instance().programName() + " " + Presets::instance().programVersion());
 
 
         // Gruppierung und Verbindung der Checks herstellen
