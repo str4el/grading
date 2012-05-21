@@ -172,7 +172,7 @@ void MainWindow::stackText()
                 text.remove(QRegExp("\\[[\\w\\s]*/")).remove(']');
         }
 
-        ui->editTextEdit->setPlainText(text);
+        ui->editTextEdit->setPlainText(text.simplified());
         ui->tab->setCurrentWidget(ui->editTab);
 }
 
