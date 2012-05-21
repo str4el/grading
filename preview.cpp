@@ -34,16 +34,6 @@ Preview::Preview(QWidget *parent) :
         mAssessmentTextActive(false)
 
 {
-}
-
-
-
-
-void Preview::resizeEvent(QResizeEvent *event)
-{
-        mZoom = qMin(qreal(width()) / mWindow.width(), qreal(height()) / mWindow.height());
-        mOffset.setX((width()  - mWindow.width()  * mZoom) / 2);
-        mOffset.setY((height() - mWindow.height() * mZoom) / 2);
 
 }
 
@@ -54,6 +44,12 @@ void Preview::paintEvent(QPaintEvent *event)
 {
         QPainter p(this);
         mDpm = qreal(p.device()->logicalDpiX()) / 25.4;
+
+        mWindow.setWidth(210.0 * mDpm);
+        mWindow.setHeight(297.0 * mDpm);
+        mZoom = qMin(qreal(width()) / mWindow.width(), qreal(height()) / mWindow.height());
+        mOffset.setX((width()  - mWindow.width()  * mZoom) / 2);
+        mOffset.setY((height() - mWindow.height() * mZoom) / 2);
 
         p.setRenderHint(QPainter::Antialiasing, true);
         p.setViewport(mOffset.rx(), mOffset.ry(), mWindow.width() * mZoom, mWindow.height() * mZoom);
