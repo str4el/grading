@@ -19,5 +19,5 @@ SOURCES += mainwindow.cpp \
     layout.cpp \
     fileconverter.cpp
 
-
-
+RESOURCES += \
+    main.qrc

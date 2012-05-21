@@ -90,10 +90,17 @@ MainWindow::MainWindow(QWidget *parrent) :
                 QRegExp rx(QString("assessment%1*CheckBox").arg(grade));
                 rx.setPatternSyntax(QRegExp::Wildcard);
 
+
                 QButtonGroup * group = new QButtonGroup(this);
                 foreach (QCheckBox *checkBox, ui->gradeSelectionGroupBox->findChildren<QCheckBox *>(rx)) {
                         group->addButton(checkBox);
                 }
+        }
+
+        QFile help(":/doc/help.htm");
+        if(help.open(QFile::ReadOnly)) {
+                ui->infoBrowser->setText(help.readAll());
+                help.close();
         }
 
         show();
