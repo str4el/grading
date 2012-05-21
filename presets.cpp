@@ -30,24 +30,24 @@ Presets::Presets () :
         mProgramName("Grading"),
         mProgramVersion("0.5.0"),
         mFileVersion(3),
-        mAssessmentTextRect(10, 200, 150, 50),
+        mAssessmentTextRect(20, 160, 175, 35),
         mFont("Sans Serif" ,12)
 {
         // Standardpositionen
-        mGradeSelectionXPos.insert("VeryGood",       138);
-        mGradeSelectionXPos.insert("Good",           151);
-        mGradeSelectionXPos.insert("Normal",         164);
-        mGradeSelectionXPos.insert("Bad",            177);
-        mGradeSelectionXPos.insert("VeryBad",        190);
+        mGradeSelectionXPos.insert("VeryGood",       142);
+        mGradeSelectionXPos.insert("Good",           154);
+        mGradeSelectionXPos.insert("Normal",         167);
+        mGradeSelectionXPos.insert("Bad",            180);
+        mGradeSelectionXPos.insert("VeryBad",        193);
 
-        mGradeSelectionYPos.insert("Knowledge",       75);
-        mGradeSelectionYPos.insert("Skills",          85);
-        mGradeSelectionYPos.insert("Safety",          95);
-        mGradeSelectionYPos.insert("Reliability",    115);
+        mGradeSelectionYPos.insert("Knowledge",       93);
+        mGradeSelectionYPos.insert("Skills",          98);
+        mGradeSelectionYPos.insert("Safety",         103);
+        mGradeSelectionYPos.insert("Reliability",    120);
         mGradeSelectionYPos.insert("Activity",       125);
-        mGradeSelectionYPos.insert("ProperHandling", 135);
-        mGradeSelectionYPos.insert("Teamwork",       150);
-        mGradeSelectionYPos.insert("Responsibility", 160);
+        mGradeSelectionYPos.insert("ProperHandling", 129);
+        mGradeSelectionYPos.insert("Teamwork",       139);
+        mGradeSelectionYPos.insert("Responsibility", 144);
 }
 
 
