@@ -11,6 +11,7 @@ private:
         QSettings file;
 
         void from2to3 (void);
+        void from3to4 (void);
 
 public:
         enum VersionType {

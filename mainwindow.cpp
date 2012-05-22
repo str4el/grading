@@ -104,6 +104,9 @@ MainWindow::MainWindow(QWidget *parrent) :
                 ui->settingsGradeComboBox->addItem(Presets::instance().gradeCaption(grade), grade);
         }
 
+        ui->assessmentSexCombo->addItem(QString::fromUtf8("Männlich"), "Male");
+        ui->assessmentSexCombo->addItem(QString::fromUtf8("Weiblich"), "Female");
+
         connect(ui->settingsGradeDomainComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(readDomainText()));
         connect(ui->settingsGradeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(readDomainText()));
         connect(ui->settingsGradeTextSaveButton, SIGNAL(clicked()), this, SLOT(writeDomainText()));
@@ -394,6 +397,8 @@ void MainWindow::saveData()
                 QString value = comboBox->itemData(comboBox->currentIndex()).toString();
                 save.setValue(key, value);
         }
+
+        save.setValue("text", ui->editTextEdit->toPlainText());
         save.endGroup();
 }
 
@@ -474,6 +479,8 @@ void MainWindow::loadData()
                 QString key = comboBox->objectName().remove("assessment").remove("Combo");
                 comboBox->setCurrentIndex(comboBox->findData(load.value(key)));
         }
+
+        ui->editTextEdit->setPlainText(load.value("text").toString());
         load.endGroup();
 }
 
