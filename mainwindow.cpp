@@ -104,6 +104,8 @@ MainWindow::MainWindow(QWidget *parrent) :
                 ui->settingsGradeComboBox->addItem(Presets::instance().gradeCaption(grade), grade);
         }
 
+        readDomainText();
+
         ui->assessmentSexCombo->addItem(QString::fromUtf8("Männlich"), "Male");
         ui->assessmentSexCombo->addItem(QString::fromUtf8("Weiblich"), "Female");
 

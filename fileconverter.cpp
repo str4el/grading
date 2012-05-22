@@ -90,13 +90,13 @@ void FileConverter::from3to4()
         domains.insert("skills", "Skills");
         domains.insert("teamwork", "Teamwork");
         domains.insert("care", "ProperHandling");
-        domains.insert("interset", "Activity");
+        domains.insert("interest", "Activity");
 
         file.beginGroup("assessment");
         foreach (QString domain, domains.keys()) {
                 bool ok;
                 int val = file.value(domain, -1).toInt(&ok);
-                if (ok && val >= 0 && val < domains.size()) {
+                if (ok && val >= 0 && val < grades.size()) {
                         file.setValue(domains[domain], grades[val]);
                 }
         }
