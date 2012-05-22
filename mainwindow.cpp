@@ -500,7 +500,7 @@ void MainWindow::loadSettings()
         guiSize.setHeight(config.value("gui/height", this->sizeHint().height()).toInt());
         this->resize(guiSize);
 
-        saveDir = config.value("path/save", QDir::homePath()).toString() + "/";
+        saveDir = config.value("path/save", QDir::homePath() + "/").toString();
 }
 
 
