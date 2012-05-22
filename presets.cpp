@@ -28,7 +28,7 @@
 
 Presets::Presets () :
         mProgramName("Grading"),
-        mProgramVersion("0.5.1"),
+        mProgramVersion("0.6.0"),
         mFileVersion(4),
         mAssessmentTextRect(20, 160, 175, 35),
         mFont("Sans Serif" ,12)
