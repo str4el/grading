@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>530</height>
+    <width>480</width>
+    <height>617</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -39,7 +39,7 @@
        <attribute name="title">
         <string>Wertung</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout5">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QGroupBox" name="gradeSelectionGroupBox">
           <property name="title">
@@ -652,11 +652,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox4">
+         <widget class="QGroupBox" name="assessmentSelectionGroupBox">
           <property name="title">
            <string>Textvorlagen</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout2">
+          <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
             <widget class="QLabel" name="label17">
              <property name="text">
@@ -681,47 +681,21 @@
              </item>
             </widget>
            </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="label19">
-             <property name="text">
-              <string>Interesse</string>
-             </property>
-             <property name="buddy">
-              <cstring>assessmentInterestCombo</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QComboBox" name="assessmentInterestCombo">
-             <item>
-              <property name="text">
-               <string>Nicht erwähnen</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Sehr Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Befriedigend</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Mangelhaft</string>
-              </property>
-             </item>
-            </widget>
-           </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label14">
+             <property name="text">
+              <string>Fachkenntnisse</string>
+             </property>
+             <property name="buddy">
+              <cstring>assessmentKnowledgeCombo</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="assessmentKnowledgeCombo"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label22">
              <property name="text">
               <string>Fertigkeiten</string>
              </property>
@@ -730,151 +704,86 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="assessmentSkillsCombo">
-             <item>
-              <property name="text">
-               <string>Nicht erwähnen</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Sehr Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Befriedigend</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Mangelhaft</string>
-              </property>
-             </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="assessmentSkillsCombo"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label19">
+             <property name="text">
+              <string>Arbeitssicheres Verhalten</string>
+             </property>
+             <property name="buddy">
+              <cstring>assessmentSafetyCombo</cstring>
+             </property>
             </widget>
            </item>
-           <item row="1" column="2">
+           <item row="3" column="1">
+            <widget class="QComboBox" name="assessmentSafetyCombo"/>
+           </item>
+           <item row="4" column="0">
             <widget class="QLabel" name="label15">
              <property name="text">
-              <string>Zusammenarbeit</string>
+              <string>Zuverlässigkeit</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentTeamworkCombo</cstring>
+              <cstring>assessmentReliabilityCombo</cstring>
              </property>
             </widget>
            </item>
-           <item row="1" column="3">
-            <widget class="QComboBox" name="assessmentTeamworkCombo">
-             <item>
-              <property name="text">
-               <string>Nicht erwähnen</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Sehr Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Befriedigend</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Mangelhaft</string>
-              </property>
-             </item>
-            </widget>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="assessmentReliabilityCombo"/>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label22">
+           <item row="5" column="0">
+            <widget class="QLabel" name="label14_2">
              <property name="text">
-              <string>Sorgfalt</string>
+              <string>Lern- und Arbeitsbereitschaft</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentCareCombo</cstring>
+              <cstring>assessmentKnowledgeCombo</cstring>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QComboBox" name="assessmentCareCombo">
-             <item>
-              <property name="text">
-               <string>Nicht erwähnen</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Sehr Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Befriedigend</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Mangelhaft</string>
-              </property>
-             </item>
-            </widget>
+           <item row="5" column="1">
+            <widget class="QComboBox" name="assessmentActivityCombo"/>
            </item>
-           <item row="2" column="2">
-            <widget class="QLabel" name="label16">
+           <item row="6" column="0">
+            <widget class="QLabel" name="label22_2">
              <property name="text">
-              <string>Gesamtnote</string>
+              <string>Umgang mit Einrichtungen / Arbeitsmitteln</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentTotalCombo</cstring>
+              <cstring>assessmentSkillsCombo</cstring>
              </property>
             </widget>
            </item>
-           <item row="2" column="3">
-            <widget class="QComboBox" name="assessmentTotalCombo">
-             <item>
-              <property name="text">
-               <string>Nicht erwähnen</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Sehr Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Gut</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Befriedigend</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Mangelhaft</string>
-              </property>
-             </item>
+           <item row="6" column="1">
+            <widget class="QComboBox" name="assessmentProperHandlingCombo"/>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label19_2">
+             <property name="text">
+              <string>Teamfähigkeit</string>
+             </property>
+             <property name="buddy">
+              <cstring>assessmentSafetyCombo</cstring>
+             </property>
             </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QComboBox" name="assessmentTeamworkCombo"/>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label15_2">
+             <property name="text">
+              <string>Verantwortungsbewustsein</string>
+             </property>
+             <property name="buddy">
+              <cstring>assessmentReliabilityCombo</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QComboBox" name="assessmentResponsibilityCombo"/>
            </item>
           </layout>
          </widget>
@@ -887,7 +796,7 @@
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>40</height>
+            <height>0</height>
            </size>
           </property>
          </spacer>
@@ -1423,28 +1332,7 @@
               <widget class="QComboBox" name="settingsGradeDomainComboBox"/>
              </item>
              <item>
-              <widget class="QComboBox" name="settingsGradeComboBox">
-               <item>
-                <property name="text">
-                 <string>Sehr Gut</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Gut</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Befriedigend</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Mangelhaft</string>
-                </property>
-               </item>
-              </widget>
+              <widget class="QComboBox" name="settingsGradeComboBox"/>
              </item>
              <item>
               <widget class="QPushButton" name="settingsGradeTextSaveButton">
@@ -1614,11 +1502,10 @@
   <tabstop>assessmentResponsibilityBadCheckBox</tabstop>
   <tabstop>assessmentResponsibilityVeryBadCheckBox</tabstop>
   <tabstop>assessmentSexCombo</tabstop>
+  <tabstop>assessmentKnowledgeCombo</tabstop>
   <tabstop>assessmentSkillsCombo</tabstop>
-  <tabstop>assessmentCareCombo</tabstop>
-  <tabstop>assessmentInterestCombo</tabstop>
-  <tabstop>assessmentTeamworkCombo</tabstop>
-  <tabstop>assessmentTotalCombo</tabstop>
+  <tabstop>assessmentSafetyCombo</tabstop>
+  <tabstop>assessmentReliabilityCombo</tabstop>
   <tabstop>editTextEdit</tabstop>
   <tabstop>saveApprenticeNameEdit</tabstop>
   <tabstop>saveInstructorNameEdit</tabstop>
@@ -1648,8 +1535,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>446</x>
-     <y>506</y>
+     <x>447</x>
+     <y>606</y>
     </hint>
     <hint type="destinationlabel">
      <x>296</x>

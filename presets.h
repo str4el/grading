@@ -24,7 +24,7 @@
 #ifndef PRESETS_H
 #define PRESETS_H
 
-#include <QMap>
+#include <QHash>
 #include <QStringList>
 #include <QRect>
 #include <QFont>
@@ -44,8 +44,12 @@ private:
         const QString mProgramVersion;
         const int mFileVersion;
 
-        QMap <QString, int> mGradeSelectionXPos;
-        QMap <QString, int> mGradeSelectionYPos;
+        QHash <QString, QString> mDomainCaption;
+        QHash <QString, QString> mGradeCaption;
+
+        QHash <QString, int> mGradeSelectionXPos;
+        QHash <QString, int> mGradeSelectionYPos;
+        QHash <QString, QString> mAssessmentTextBlock;
         const QRect mAssessmentTextRect;
         const QFont mFont;
 
@@ -65,10 +69,17 @@ public:
         inline QString programName (void) const { return mProgramName; }
         inline QString programVersion(void) const { return mProgramVersion; }
         inline int fileVersion (void) const { return mFileVersion; }
+
+        QString domainCaption (const QString & domain) const;
+        QString gradeCaption (const QString & grade) const;
+        inline QStringList domainNames (void) const { return mDomainCaption.keys(); }
+        inline QStringList gradeNames (void) const { return mGradeCaption.keys(); }
+
         inline QStringList gradeSelectionXNames(void) const { return mGradeSelectionXPos.keys(); }
         inline QStringList gradeSelectionYNames(void) const { return mGradeSelectionYPos.keys(); }
         int gradeSelectionXPos(const QString & name) const;
         int gradeSelectionYPos(const QString & name) const;
+        QString assessmentTextBlock(const QString & name) const;
         inline const QRect & assessmentTextRect(void) const { return mAssessmentTextRect; }
         inline const QFont & font (void) const { return mFont; }
 

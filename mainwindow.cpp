@@ -46,15 +46,8 @@ MainWindow::MainWindow(QWidget *parrent) :
         ui->saveBeginDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
         ui->saveEndDateEdit->setDate(QDate(QDate::currentDate().year(), 1, 1));
 
-        domainNames.insert("skills", "Fertigkeiten");
-        domainNames.insert("care", "Sorgfalt");
-        domainNames.insert("interest", "Interesse");
-        domainNames.insert("teamwork", "Zusammenarbeit");
-        domainNames.insert("total", "Gesamtnote");
-
         loadSettings();
         loadLayout();
-        settingsGradeInit();
 
         connect(ui->stackButton, SIGNAL(clicked()), this, SLOT(stackText()));
         connect(ui->printButton, SIGNAL(clicked()), this, SLOT(print()));
@@ -86,16 +79,34 @@ MainWindow::MainWindow(QWidget *parrent) :
 
 
         // Gruppierung und Verbindung der Checks herstellen
-        foreach (QString grade, QString("Knowledge Skills Safety Reliability Activity ProperHandling Teamwork Responsibility").split(' ')) {
-                QRegExp rx(QString("assessment%1*CheckBox").arg(grade));
+        foreach (QString domain, QString("Knowledge Skills Safety Reliability Activity ProperHandling Teamwork Responsibility").split(' ')) {
+                QRegExp rx;
                 rx.setPatternSyntax(QRegExp::Wildcard);
+                rx.setPattern(QString("assessment%1*CheckBox").arg(domain));
 
 
                 QButtonGroup * group = new QButtonGroup(this);
                 foreach (QCheckBox *checkBox, ui->gradeSelectionGroupBox->findChildren<QCheckBox *>(rx)) {
                         group->addButton(checkBox);
                 }
+
+                QComboBox * comboBox = ui->assessmentSelectionGroupBox->findChild<QComboBox *>(QString("assessment%1Combo").arg(domain));
+                if (comboBox) {
+                        foreach (QString grade, QString("NoText VeryGood Good Normal Bad VeryBad").split(' ')) {
+                                comboBox->addItem(Presets::instance().gradeCaption(grade), grade);
+                        }
+                }
+
+                ui->settingsGradeDomainComboBox->addItem(Presets::instance().domainCaption(domain), domain);
         }
+
+        foreach (QString grade, QString("VeryGood Good Normal Bad VeryBad").split(' ')) {
+                ui->settingsGradeComboBox->addItem(Presets::instance().gradeCaption(grade), grade);
+        }
+
+        connect(ui->settingsGradeDomainComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(readDomainText()));
+        connect(ui->settingsGradeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(readDomainText()));
+        connect(ui->settingsGradeTextSaveButton, SIGNAL(clicked()), this, SLOT(writeDomainText()));
 
         QFile help(":/doc/help.htm");
         if(help.open(QFile::ReadOnly)) {
@@ -138,13 +149,6 @@ void MainWindow::updateLayout()
 
 
 
-QString MainWindow::getText(QString domain, int grade)
-{
-        if (grade <= 0 || grade > 5) return QString();
-        return config.value(QString("grades/%1%2").arg(domain).arg(grade), QString("%1 %2").arg(domainNames[domain]).arg(grade)).toString() + " ";
-}
-
-
 /* Die Funktion stackText stellt den Beurteilungstext aus Vorgefertigten Sätzen zusammen.
  * Je nachdem welche bewertung in den ComboBoxen festgelegt wurde.
  */
@@ -152,19 +156,16 @@ void MainWindow::stackText()
 {
         QString text;
 
-        text += getText("skills", ui->assessmentSkillsCombo->currentIndex());
-        text += getText("care", ui->assessmentCareCombo->currentIndex());
-        text += getText("interest", ui->assessmentInterestCombo->currentIndex());
-        text += getText("teamwork", ui->assessmentTeamworkCombo->currentIndex());
-        text += getText("total", ui->assessmentTotalCombo->currentIndex());
-
-        if (text.isEmpty()) {
-                QMessageBox(QMessageBox::Warning,
-                            QString::fromUtf8("Fehler"),
-                            QString::fromUtf8("Es konnte kein Text zusammengestellt werden. Möglicherweise ist die config Datei fehlerhaft."),
-                            QMessageBox::Close, this).exec();
-                return;
+        config.beginGroup("text");
+        foreach (QString domain, QString("Knowledge Skills Safety Reliability Activity ProperHandling Teamwork Responsibility").split(' ')) {
+                QComboBox *comboBox = ui->assessmentSelectionGroupBox->findChild<QComboBox *>(QString("assessment%1Combo").arg(domain));
+                if (comboBox) {
+                        QString grade = comboBox->itemData(comboBox->currentIndex()).toString();
+                        text += config.value(domain + grade, Presets::instance().assessmentTextBlock(domain + grade)).toString() + " ";
+                }
         }
+        config.endGroup();
+
 
         if (ui->assessmentSexCombo->currentIndex() == 0) {
                 text.remove(QRegExp("/[\\w\\s]*\\]")).remove('[');
@@ -175,45 +176,6 @@ void MainWindow::stackText()
         ui->editTextEdit->setPlainText(text.simplified());
         ui->tab->setCurrentWidget(ui->editTab);
 }
-
-
-
-
-void MainWindow::settingsGradeInit()
-{
-        QString domain;
-        foreach (domain, domainNames.keys()) {
-                ui->settingsGradeDomainComboBox->addItem(domainNames[domain], domain);
-        }
-
-        connect(ui->settingsGradeComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(settingsGradeRead()));
-        connect(ui->settingsGradeDomainComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(settingsGradeRead()));
-        connect(ui->settingsGradeTextSaveButton, SIGNAL(clicked()), this, SLOT(settingsGradeWrite()));
-
-        settingsGradeRead();
-}
-
-
-
-
-
-void MainWindow::settingsGradeRead()
-{
-        QString domain = ui->settingsGradeDomainComboBox->itemData(ui->settingsGradeDomainComboBox->currentIndex()).toString();
-        int grade = ui->settingsGradeComboBox->currentIndex() + 1;
-        ui->settingsGradeEdit->setPlainText(getText(domain, grade));
-}
-
-
-
-
-void MainWindow::settingsGradeWrite()
-{
-        QString domain = ui->settingsGradeDomainComboBox->itemData(ui->settingsGradeDomainComboBox->currentIndex()).toString();
-        int grade = ui->settingsGradeComboBox->currentIndex() + 1;
-        config.setValue(QString("grades/%1%2").arg(domain).arg(grade), ui->settingsGradeEdit->toPlainText());
-}
-
 
 
 
@@ -326,6 +288,26 @@ void MainWindow::activateLayoutGrade(QString y, QString x)
 
 
 
+void MainWindow::readDomainText()
+{
+        QString domain = ui->settingsGradeDomainComboBox->itemData(ui->settingsGradeDomainComboBox->currentIndex()).toString();
+        QString grade = ui->settingsGradeComboBox->itemData(ui->settingsGradeComboBox->currentIndex()).toString();
+        ui->settingsGradeEdit->setText(config.value(QString("text/") + domain + grade, Presets::instance().assessmentTextBlock(domain + grade)).toString());
+}
+
+
+
+
+void MainWindow::writeDomainText()
+{
+        QString domain = ui->settingsGradeDomainComboBox->itemData(ui->settingsGradeDomainComboBox->currentIndex()).toString();
+        QString grade = ui->settingsGradeComboBox->itemData(ui->settingsGradeComboBox->currentIndex()).toString();
+        config.setValue(QString("text/") + domain + grade, ui->settingsGradeEdit->toPlainText());
+}
+
+
+
+
 void MainWindow::print()
 {
         updateLayout();
@@ -405,13 +387,14 @@ void MainWindow::saveData()
         }
         save.endGroup();
 
-        save.setValue("assessment/sex", ui->assessmentSexCombo->currentIndex());
-        save.setValue("assessment/skills", ui->assessmentSkillsCombo->currentIndex());
-        save.setValue("assessment/care", ui->assessmentCareCombo->currentIndex());
-        save.setValue("assessment/interest", ui->assessmentInterestCombo->currentIndex());
-        save.setValue("assessment/teamwork", ui->assessmentTeamworkCombo->currentIndex());
-        save.setValue("assessment/total", ui->assessmentTotalCombo->currentIndex());
-        save.setValue("assessment/text", ui->editTextEdit->toPlainText());
+
+        save.beginGroup("assessment");
+        foreach (QComboBox *comboBox, ui->assessmentSelectionGroupBox->findChildren<QComboBox *>()) {
+                QString key = comboBox->objectName().remove("assessment").remove("Combo");
+                QString value = comboBox->itemData(comboBox->currentIndex()).toString();
+                save.setValue(key, value);
+        }
+        save.endGroup();
 }
 
 
@@ -486,13 +469,12 @@ void MainWindow::loadData()
         }
         load.endGroup();
 
-        ui->assessmentSexCombo->setCurrentIndex(load.value("assessment/sex").toInt());
-        ui->assessmentSkillsCombo->setCurrentIndex(load.value("assessment/skills").toInt());
-        ui->assessmentCareCombo->setCurrentIndex(load.value("assessment/care").toInt());
-        ui->assessmentInterestCombo->setCurrentIndex(load.value("assessment/interest").toInt());
-        ui->assessmentTeamworkCombo->setCurrentIndex(load.value("assessment/teamwork").toInt());
-        ui->assessmentTotalCombo->setCurrentIndex(load.value("assessment/total").toInt());
-        ui->editTextEdit->setPlainText(load.value("assessment/text").toString());
+        load.beginGroup("assessment");
+        foreach (QComboBox *comboBox, ui->assessmentSelectionGroupBox->findChildren<QComboBox *>()) {
+                QString key = comboBox->objectName().remove("assessment").remove("Combo");
+                comboBox->setCurrentIndex(comboBox->findData(load.value(key)));
+        }
+        load.endGroup();
 }
 
 

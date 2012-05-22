@@ -61,19 +61,10 @@ private:
         QString mActiveLayoutY;
         bool mAssessmentTextLayoutActive;
 
-        QMap<QString, QString> domainNames;
-
         QString saveName;
         QString saveDir;
 
-        QString getText(QString domain, int grade);
-
-
 private slots:
-        void settingsGradeInit(void);
-        void settingsGradeRead(void);
-        void settingsGradeWrite(void);
-
         void updateLayoutTextRect (void);
         void updateLayoutXPos (int);
         void updateLayoutYPos (int);
@@ -82,6 +73,9 @@ private slots:
         void deactivateLayout (void);
         void activateLayoutGrade (QString, QString);
         void activateAssessmentTextLayout (void);
+
+        void readDomainText (void);
+        void writeDomainText (void);
 
         void print (void);
 
