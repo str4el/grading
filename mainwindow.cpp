@@ -79,20 +79,22 @@ MainWindow::MainWindow(QWidget *parrent) :
 
 
         // Gruppierung und Verbindung der Checks herstellen
-        foreach (QString domain, QString("Knowledge Skills Safety Reliability Activity ProperHandling Teamwork Responsibility").split(' ')) {
+        foreach (QString grades, Presets::instance().gradeSelectionYNames()) {
                 QRegExp rx;
                 rx.setPatternSyntax(QRegExp::Wildcard);
-                rx.setPattern(QString("assessment%1*CheckBox").arg(domain));
+                rx.setPattern(QString("assessment%1*CheckBox").arg(grades));
 
 
                 QButtonGroup * group = new QButtonGroup(this);
                 foreach (QCheckBox *checkBox, ui->gradeSelectionGroupBox->findChildren<QCheckBox *>(rx)) {
                         group->addButton(checkBox);
                 }
+        }
 
+        foreach (QString domain, QString("Skills Care Interest Teamwork Total").split(' ')) {
                 QComboBox * comboBox = ui->assessmentSelectionGroupBox->findChild<QComboBox *>(QString("assessment%1Combo").arg(domain));
                 if (comboBox) {
-                        foreach (QString grade, QString("NoText VeryGood Good Normal Bad VeryBad").split(' ')) {
+                        foreach (QString grade, QString("NoText VeryGood Good Normal Bad").split(' ')) {
                                 comboBox->addItem(Presets::instance().gradeCaption(grade), grade);
                         }
                 }
@@ -100,7 +102,7 @@ MainWindow::MainWindow(QWidget *parrent) :
                 ui->settingsGradeDomainComboBox->addItem(Presets::instance().domainCaption(domain), domain);
         }
 
-        foreach (QString grade, QString("VeryGood Good Normal Bad VeryBad").split(' ')) {
+        foreach (QString grade, QString("VeryGood Good Normal Bad").split(' ')) {
                 ui->settingsGradeComboBox->addItem(Presets::instance().gradeCaption(grade), grade);
         }
 
@@ -162,7 +164,7 @@ void MainWindow::stackText()
         QString text;
 
         config.beginGroup("text");
-        foreach (QString domain, QString("Knowledge Skills Safety Reliability Activity ProperHandling Teamwork Responsibility").split(' ')) {
+        foreach (QString domain, QString("Skills Care Interest Teamwork Total").split(' ')) {
                 QComboBox *comboBox = ui->assessmentSelectionGroupBox->findChild<QComboBox *>(QString("assessment%1Combo").arg(domain));
                 if (comboBox) {
                         QString grade = comboBox->itemData(comboBox->currentIndex()).toString();
@@ -172,7 +174,7 @@ void MainWindow::stackText()
         config.endGroup();
 
 
-        if (ui->assessmentSexCombo->currentIndex() == 0) {
+        if (ui->assessmentSexCombo->itemData(ui->assessmentSexCombo->currentIndex()).toString() == "Male") {
                 text.remove(QRegExp("/[\\w\\s]*\\]")).remove('[');
         } else {
                 text.remove(QRegExp("\\[[\\w\\s]*/")).remove(']');

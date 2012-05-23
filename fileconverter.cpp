@@ -84,20 +84,13 @@ void FileConverter::from3to4()
         grades[2] = "Good";
         grades[3] = "Normal";
         grades[4] = "Bad";
-        grades[5] = "VeryBad";
-
-        QMap<QString, QString> domains;
-        domains.insert("skills", "Skills");
-        domains.insert("teamwork", "Teamwork");
-        domains.insert("care", "ProperHandling");
-        domains.insert("interest", "Activity");
 
         file.beginGroup("assessment");
-        foreach (QString domain, domains.keys()) {
+        foreach (QString domain, QString("Skills Care Interest Teamwork Total").split(' ')) {
                 bool ok;
                 int val = file.value(domain, -1).toInt(&ok);
                 if (ok && val >= 0 && val < grades.size()) {
-                        file.setValue(domains[domain], grades[val]);
+                        file.setValue(domain, grades[val]);
                 }
         }
 
@@ -118,3 +111,4 @@ void FileConverter::from3to4()
 
         file.setValue("file/version", 4);
 }
+

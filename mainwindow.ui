@@ -671,19 +671,6 @@
             <widget class="QComboBox" name="assessmentSexCombo"/>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label14">
-             <property name="text">
-              <string>Fachkenntnisse</string>
-             </property>
-             <property name="buddy">
-              <cstring>assessmentKnowledgeCombo</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="assessmentKnowledgeCombo"/>
-           </item>
-           <item row="2" column="0">
             <widget class="QLabel" name="label22">
              <property name="text">
               <string>Fertigkeiten</string>
@@ -693,86 +680,57 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="1" column="1">
             <widget class="QComboBox" name="assessmentSkillsCombo"/>
            </item>
-           <item row="3" column="0">
+           <item row="2" column="0">
             <widget class="QLabel" name="label19">
              <property name="text">
-              <string>Arbeitssicheres Verhalten</string>
+              <string>Sorgfalt</string>
              </property>
              <property name="buddy">
-              <cstring>assessmentSafetyCombo</cstring>
+              <cstring>assessmentCareCombo</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="assessmentCareCombo"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label15">
+             <property name="text">
+              <string>Interesse</string>
+             </property>
+             <property name="buddy">
+              <cstring>assessmentInterestCombo</cstring>
              </property>
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QComboBox" name="assessmentSafetyCombo"/>
+            <widget class="QComboBox" name="assessmentInterestCombo"/>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label15">
+            <widget class="QLabel" name="label14_2">
              <property name="text">
-              <string>Zuverlässigkeit</string>
-             </property>
-             <property name="buddy">
-              <cstring>assessmentReliabilityCombo</cstring>
+              <string>Zusammenarbeit</string>
              </property>
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QComboBox" name="assessmentReliabilityCombo"/>
+            <widget class="QComboBox" name="assessmentTeamworkCombo"/>
            </item>
            <item row="5" column="0">
-            <widget class="QLabel" name="label14_2">
-             <property name="text">
-              <string>Lern- und Arbeitsbereitschaft</string>
-             </property>
-             <property name="buddy">
-              <cstring>assessmentKnowledgeCombo</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QComboBox" name="assessmentActivityCombo"/>
-           </item>
-           <item row="6" column="0">
             <widget class="QLabel" name="label22_2">
              <property name="text">
-              <string>Umgang mit Einrichtungen / Arbeitsmitteln</string>
+              <string>Gesamtnote</string>
              </property>
              <property name="buddy">
               <cstring>assessmentSkillsCombo</cstring>
              </property>
             </widget>
            </item>
-           <item row="6" column="1">
-            <widget class="QComboBox" name="assessmentProperHandlingCombo"/>
-           </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="label19_2">
-             <property name="text">
-              <string>Teamfähigkeit</string>
-             </property>
-             <property name="buddy">
-              <cstring>assessmentSafetyCombo</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="1">
-            <widget class="QComboBox" name="assessmentTeamworkCombo"/>
-           </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="label15_2">
-             <property name="text">
-              <string>Verantwortungsbewustsein</string>
-             </property>
-             <property name="buddy">
-              <cstring>assessmentReliabilityCombo</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="1">
-            <widget class="QComboBox" name="assessmentResponsibilityCombo"/>
+           <item row="5" column="1">
+            <widget class="QComboBox" name="assessmentTotalCombo"/>
            </item>
           </layout>
          </widget>
@@ -1491,10 +1449,9 @@
   <tabstop>assessmentResponsibilityBadCheckBox</tabstop>
   <tabstop>assessmentResponsibilityVeryBadCheckBox</tabstop>
   <tabstop>assessmentSexCombo</tabstop>
-  <tabstop>assessmentKnowledgeCombo</tabstop>
   <tabstop>assessmentSkillsCombo</tabstop>
-  <tabstop>assessmentSafetyCombo</tabstop>
-  <tabstop>assessmentReliabilityCombo</tabstop>
+  <tabstop>assessmentCareCombo</tabstop>
+  <tabstop>assessmentInterestCombo</tabstop>
   <tabstop>editTextEdit</tabstop>
   <tabstop>saveApprenticeNameEdit</tabstop>
   <tabstop>saveInstructorNameEdit</tabstop>
