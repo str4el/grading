@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>536</width>
-    <height>617</height>
+    <width>429</width>
+    <height>527</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1469,7 +1469,20 @@
   <tabstop>assessmentSkillsCombo</tabstop>
   <tabstop>assessmentCareCombo</tabstop>
   <tabstop>assessmentInterestCombo</tabstop>
+  <tabstop>assessmentTeamworkCombo</tabstop>
+  <tabstop>assessmentTotalCombo</tabstop>
   <tabstop>editAssessmentEdit</tabstop>
+  <tabstop>editMeasuresEdit</tabstop>
+  <tabstop>layoutXOffsetSpinBox</tabstop>
+  <tabstop>layoutYOffsetSpinBox</tabstop>
+  <tabstop>layoutPosXSpinBox</tabstop>
+  <tabstop>layoutPosYSpinBox</tabstop>
+  <tabstop>layoutWidthSpinBox</tabstop>
+  <tabstop>layoutHeightSpinBox</tabstop>
+  <tabstop>layoutFontButton</tabstop>
+  <tabstop>layoutDefaultsButton</tabstop>
+  <tabstop>layoutLoadButton</tabstop>
+  <tabstop>layoutSaveButton</tabstop>
   <tabstop>saveApprenticeNameEdit</tabstop>
   <tabstop>saveInstructorNameEdit</tabstop>
   <tabstop>saveYearEdit</tabstop>
@@ -1478,16 +1491,14 @@
   <tabstop>saveCommentEdit</tabstop>
   <tabstop>saveSaveButton</tabstop>
   <tabstop>saveLoadButton</tabstop>
-  <tabstop>infoBrowser</tabstop>
-  <tabstop>stackButton</tabstop>
-  <tabstop>printButton</tabstop>
-  <tabstop>closeButton</tabstop>
-  <tabstop>layoutLoadButton</tabstop>
-  <tabstop>layoutSaveButton</tabstop>
   <tabstop>settingsGradeDomainComboBox</tabstop>
   <tabstop>settingsGradeComboBox</tabstop>
   <tabstop>settingsGradeTextSaveButton</tabstop>
   <tabstop>settingsGradeEdit</tabstop>
+  <tabstop>infoBrowser</tabstop>
+  <tabstop>stackButton</tabstop>
+  <tabstop>printButton</tabstop>
+  <tabstop>closeButton</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -1498,8 +1509,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>447</x>
-     <y>606</y>
+     <x>709</x>
+     <y>644</y>
     </hint>
     <hint type="destinationlabel">
      <x>296</x>
