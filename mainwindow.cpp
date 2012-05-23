@@ -390,9 +390,23 @@ void MainWindow::saveData()
                 filename.append(".grd");
         }
 
+
         QSettings save(filename, QSettings::IniFormat, this);
+
         save.setValue("file/type", Presets::instance().programName());
         save.setValue("file/version", Presets::instance().fileVersion());
+        save.sync();
+
+        if (save.status() == QSettings::AccessError) {
+                QMessageBox message(this);
+                message.setWindowTitle(Presets::instance().programName());
+                message.setIcon(QMessageBox::Critical);
+                message.setText(QString::fromUtf8("Auf diese Datei kann nicht Schreibend zugegriffen werden!"));
+                message.setStandardButtons(QMessageBox::Ok);
+                message.exec();
+                return;
+        }
+
 
         save.setValue("info/apprentice", ui->saveApprenticeNameEdit->text());
         save.setValue("info/instructor", ui->saveInstructorNameEdit->text());
