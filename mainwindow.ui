@@ -754,19 +754,36 @@
        <attribute name="title">
         <string>Texteditor</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout2">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <widget class="QLabel" name="label26">
           <property name="text">
            <string>Beurteilungstext</string>
           </property>
           <property name="buddy">
-           <cstring>editTextEdit</cstring>
+           <cstring>editAssessmentEdit</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="editTextEdit">
+         <widget class="QPlainTextEdit" name="editAssessmentEdit">
+          <property name="tabChangesFocus">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label26_2">
+          <property name="text">
+           <string>Weiterführende Maßnahmen</string>
+          </property>
+          <property name="buddy">
+           <cstring>editAssessmentEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="editMeasuresEdit">
           <property name="tabChangesFocus">
            <bool>true</bool>
           </property>
@@ -1452,7 +1469,7 @@
   <tabstop>assessmentSkillsCombo</tabstop>
   <tabstop>assessmentCareCombo</tabstop>
   <tabstop>assessmentInterestCombo</tabstop>
-  <tabstop>editTextEdit</tabstop>
+  <tabstop>editAssessmentEdit</tabstop>
   <tabstop>saveApprenticeNameEdit</tabstop>
   <tabstop>saveInstructorNameEdit</tabstop>
   <tabstop>saveYearEdit</tabstop>

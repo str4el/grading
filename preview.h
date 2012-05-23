@@ -45,6 +45,7 @@ private:
         QString mActiveX;
         QString mActiveY;
         bool mAssessmentTextActive;
+        bool mMeasuresTextActive;
 
         QPointer <Layout> mLayout;
 
@@ -60,6 +61,7 @@ public:
         inline void unmark (void)
         {
                 mAssessmentTextActive = false;
+                mMeasuresTextActive = false;
                 mActiveX.clear();
                 mActiveY.clear();
                 update();
@@ -69,6 +71,7 @@ public:
 signals:
         void deactivated (void);
         void assessmentTextActivated (void);
+        void measuresTextActivated (void);
         void gradeActivated(QString, QString);
 
 

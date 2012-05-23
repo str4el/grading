@@ -31,7 +31,8 @@ Preview::Preview(QWidget *parent) :
         QWidget(parent),
         mWindow(0,0, 794, 1123),
         mDpm(1.0),
-        mAssessmentTextActive(false)
+        mAssessmentTextActive(false),
+        mMeasuresTextActive(false)
 
 {
 
@@ -68,6 +69,11 @@ void Preview::paintEvent(QPaintEvent *event)
                         p.drawRect(QRectF(rect.topLeft() * mDpm, rect.bottomRight() * mDpm));
                 }
 
+                if (mMeasuresTextActive) {
+                        QRectF rect = mLayout->measuresTextRect();
+                        p.drawRect(QRectF(rect.topLeft() * mDpm, rect.bottomRight() * mDpm));
+                }
+
                 if (!mActiveX.isEmpty()) {
                         qreal x = mLayout->gradeSelectionXPos(mActiveX);
                         x *= mDpm;
@@ -90,6 +96,7 @@ void Preview::paintEvent(QPaintEvent *event)
 
                 p.setFont(mLayout->font());
                 ph.drawBlockText(p, mLayout->assessmentText(), mLayout->assessmentTextRect());
+                ph.drawBlockText(p, mLayout->measuresText(), mLayout->measuresTextRect());
         }
 }
 
@@ -107,6 +114,7 @@ void Preview::mousePressEvent(QMouseEvent *event)
         if (event->button() == Qt::RightButton) {
                 emit deactivated();
                 mAssessmentTextActive = false;
+                mMeasuresTextActive = false;
                 mActiveX.clear();
                 mActiveY.clear();
                 update();
@@ -119,10 +127,18 @@ void Preview::mousePressEvent(QMouseEvent *event)
                 mActiveX.clear();
                 mActiveY.clear();
                 mAssessmentTextActive = false;
+                mMeasuresTextActive = false;
 
                 if (mLayout->assessmentTextRect().contains(mousePos)) {
                         mAssessmentTextActive = true;
                         emit assessmentTextActivated();
+                        update();
+                        return;
+                }
+
+                if (mLayout->measuresTextRect().contains(mousePos)) {
+                        mMeasuresTextActive = true;
+                        emit measuresTextActivated();
                         update();
                         return;
                 }

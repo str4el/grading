@@ -40,6 +40,7 @@ Layout::Layout(QObject *parent) :
 void Layout::setDefaults()
 {
         mAssessmentTextRect = Presets::instance().assessmentTextRect();
+        mMeasuresTextRect = Presets::instance().measuresTextRect();
         mGradeSelectionXPos.clear();
         mGradeSelectionYPos.clear();
         mFont = Presets::instance().font();
@@ -62,6 +63,18 @@ void Layout::load(QSettings &settings)
 
         if (!(ok1 && ok2 && ok3 && ok4)) {
                 mAssessmentTextRect = Presets::instance().assessmentTextRect();
+        }
+
+
+        str = settings.value("measures_text_position").toString();
+
+        mMeasuresTextRect.setLeft   (str.section(',', 0, 0).toInt(&ok1));
+        mMeasuresTextRect.setTop    (str.section(',', 1, 1).toInt(&ok2));
+        mMeasuresTextRect.setWidth  (str.section(',', 2, 2).toInt(&ok3));
+        mMeasuresTextRect.setHeight (str.section(',', 3, 3).toInt(&ok3));
+
+        if (!(ok1 && ok2 && ok3 && ok4)) {
+                mMeasuresTextRect = Presets::instance().measuresTextRect();
         }
 
 
@@ -110,6 +123,14 @@ void Layout::save(QSettings &settings)
                           .arg(mAssessmentTextRect.top())
                           .arg(mAssessmentTextRect.width())
                           .arg(mAssessmentTextRect.height())
+                          );
+
+        settings.setValue("measures_text_position",
+                          QString("%1, %2, %3, %4")
+                          .arg(mMeasuresTextRect.left())
+                          .arg(mMeasuresTextRect.top())
+                          .arg(mMeasuresTextRect.width())
+                          .arg(mMeasuresTextRect.height())
                           );
 
 

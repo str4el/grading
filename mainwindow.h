@@ -60,6 +60,7 @@ private:
         QString mActiveLayoutX;
         QString mActiveLayoutY;
         bool mAssessmentTextLayoutActive;
+        bool mMeasuresTextLayoutActive;
 
         QString saveName;
         QString saveDir;
@@ -73,6 +74,7 @@ private slots:
         void deactivateLayout (void);
         void activateLayoutGrade (QString, QString);
         void activateAssessmentTextLayout (void);
+        void activateMeasuresTextLayout (void);
 
         void readDomainText (void);
         void writeDomainText (void);

@@ -47,6 +47,8 @@ private:
         QFont mFont;
         QRectF mAssessmentTextRect;
         QString mAssessmentText;
+        QRectF mMeasuresTextRect;
+        QString mMeasuresText;
 
 
 
@@ -67,6 +69,8 @@ public:
         inline QFont font (void) const { return mFont; }
         inline QString assessmentText (void) const { return mAssessmentText; }
         inline QRectF assessmentTextRect(void) const { return mAssessmentTextRect.translated(mXOffset, mYOffset); }
+        inline QString measuresText (void) const { return mMeasuresText; }
+        inline QRectF measuresTextRect(void) const { return mMeasuresTextRect.translated(mXOffset, mYOffset); }
 
 public slots:
         void setXOffset (const int offset) { mXOffset = offset; emit changed(); }
@@ -77,6 +81,8 @@ public slots:
         void setFont (const QFont & font) { mFont = font; emit changed(); }
         void setAssessmentText (const QString & text) { mAssessmentText = text; emit changed(); }
         void setAssessmentTextRect(const QRectF & rect) { mAssessmentTextRect = rect; emit changed(); }
+        void setMeasuresText (const QString & text) { mMeasuresText = text; emit changed(); }
+        void setMeasuresTextRect(const QRectF & rect) { mMeasuresTextRect = rect; emit changed(); }
 
         void setDefaults (void);
 

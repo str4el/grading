@@ -31,6 +31,7 @@ Presets::Presets () :
         mProgramVersion("0.6.1"),
         mFileVersion(4),
         mAssessmentTextRect(20, 160, 175, 35),
+        mMeasuresTextRect(mAssessmentTextRect.left(), 210, mAssessmentTextRect.width(), 35),
         mFont("Sans Serif" ,12)
 {
         // Standardpositionen

@@ -35,7 +35,8 @@ MainWindow::MainWindow(QWidget *parrent) :
         QMainWindow(parrent),
         ui(new Ui::MainWindow),
         config("grading.ini", QSettings::IniFormat, this),
-        mAssessmentTextLayoutActive(false)
+        mAssessmentTextLayoutActive(false),
+        mMeasuresTextLayoutActive(false)
 {
         ui->setupUi(this);
 
@@ -69,6 +70,7 @@ MainWindow::MainWindow(QWidget *parrent) :
         connect(ui->layoutHeightSpinBox, SIGNAL(valueChanged(int)), this, SLOT(updateLayoutTextRect()));
         connect(ui->previewWidget, SIGNAL(deactivated()), this, SLOT(deactivateLayout()));
         connect(ui->previewWidget, SIGNAL(assessmentTextActivated()), this, SLOT(activateAssessmentTextLayout()));
+        connect(ui->previewWidget, SIGNAL(measuresTextActivated()), this, SLOT(activateMeasuresTextLayout()));
         connect(ui->previewWidget, SIGNAL(gradeActivated(QString,QString)), this, SLOT(activateLayoutGrade(QString,QString)));
         connect(mLayout, SIGNAL(changed()), ui->previewWidget, SLOT(update()));
         connect(ui->layoutFontButton, SIGNAL(clicked()), this, SLOT(getFont()));
@@ -150,7 +152,8 @@ void MainWindow::updateLayout()
                 }
         }
 
-        mLayout->setAssessmentText(ui->editTextEdit->toPlainText());
+        mLayout->setAssessmentText(ui->editAssessmentEdit->toPlainText());
+        mLayout->setMeasuresText(ui->editMeasuresEdit->toPlainText());
 }
 
 
@@ -180,7 +183,7 @@ void MainWindow::stackText()
                 text.remove(QRegExp("\\[[\\w\\s]*/")).remove(']');
         }
 
-        ui->editTextEdit->setPlainText(text.simplified());
+        ui->editAssessmentEdit->setPlainText(text.simplified());
         ui->tab->setCurrentWidget(ui->editTab);
 }
 
@@ -197,6 +200,8 @@ void MainWindow::updateLayoutTextRect()
 
         if (mAssessmentTextLayoutActive) {
                 mLayout->setAssessmentTextRect(rect);
+        } else if (mMeasuresTextLayoutActive) {
+                mLayout->setMeasuresTextRect(rect);
         }
 }
 
@@ -206,7 +211,7 @@ void MainWindow::updateLayoutTextRect()
 
 void MainWindow::updateLayoutXPos(int pos)
 {
-        if (mAssessmentTextLayoutActive) {
+        if (mAssessmentTextLayoutActive || mMeasuresTextLayoutActive) {
                 updateLayoutTextRect();
         } else if (!mActiveLayoutX.isEmpty()) {
                 mLayout->setGradeSelectionXPos(mActiveLayoutX, pos);
@@ -219,7 +224,7 @@ void MainWindow::updateLayoutXPos(int pos)
 
 void MainWindow::updateLayoutYPos(int pos)
 {
-        if (mAssessmentTextLayoutActive) {
+        if (mAssessmentTextLayoutActive || mMeasuresTextLayoutActive) {
                 updateLayoutTextRect();
         } else if (!mActiveLayoutY.isEmpty()) {
                 mLayout->setGradeSelectionYPos(mActiveLayoutY, pos);
@@ -241,6 +246,7 @@ void MainWindow::getFont()
 void MainWindow::deactivateLayout()
 {
         mAssessmentTextLayoutActive = false;
+        mMeasuresTextLayoutActive = false;
         mActiveLayoutX.clear();
         mActiveLayoutY.clear();
 
@@ -255,9 +261,7 @@ void MainWindow::deactivateLayout()
 
 void MainWindow::activateAssessmentTextLayout()
 {
-        mAssessmentTextLayoutActive = false;
-        mActiveLayoutX.clear();
-        mActiveLayoutY.clear();
+        deactivateLayout();
 
         QRectF rect = mLayout->assessmentTextRect().translated(- ui->layoutXOffsetSpinBox->value(), - ui->layoutYOffsetSpinBox->value());
         ui->layoutPosXSpinBox->setValue(rect.left());
@@ -275,18 +279,35 @@ void MainWindow::activateAssessmentTextLayout()
 
 
 
+
+void MainWindow::activateMeasuresTextLayout()
+{
+        deactivateLayout();
+
+        QRectF rect = mLayout->measuresTextRect().translated(- ui->layoutXOffsetSpinBox->value(), - ui->layoutYOffsetSpinBox->value());
+        ui->layoutPosXSpinBox->setValue(rect.left());
+        ui->layoutPosYSpinBox->setValue(rect.top());
+        ui->layoutWidthSpinBox->setValue(rect.width());
+        ui->layoutHeightSpinBox->setValue(rect.height());
+        ui->layoutPosXSpinBox->setEnabled(true);
+        ui->layoutPosYSpinBox->setEnabled(true);
+        ui->layoutWidthSpinBox->setEnabled(true);
+        ui->layoutHeightSpinBox->setEnabled(true);
+
+        mMeasuresTextLayoutActive = true;
+}
+
+
+
+
 void MainWindow::activateLayoutGrade(QString y, QString x)
 {
-        mAssessmentTextLayoutActive = false;
-        mActiveLayoutX.clear();
-        mActiveLayoutY.clear();
+        deactivateLayout();
 
         ui->layoutPosXSpinBox->setValue(mLayout->gradeSelectionXPos(x) - ui->layoutXOffsetSpinBox->value());
         ui->layoutPosYSpinBox->setValue(mLayout->gradeSelectionYPos(y) - ui->layoutYOffsetSpinBox->value());
         ui->layoutPosXSpinBox->setEnabled(true);
         ui->layoutPosYSpinBox->setEnabled(true);
-        ui->layoutWidthSpinBox->setEnabled(false);
-        ui->layoutHeightSpinBox->setEnabled(false);
 
         mActiveLayoutX = x;
         mActiveLayoutY = y;
@@ -338,6 +359,7 @@ void MainWindow::print()
 
                         p.setFont(mLayout->font());
                         ph.drawBlockText(p, mLayout->assessmentText(), mLayout->assessmentTextRect());
+                        ph.drawBlockText(p, mLayout->measuresText(), mLayout->measuresTextRect());
 
                         p.end();
                 }
@@ -402,8 +424,10 @@ void MainWindow::saveData()
                 save.setValue(key, value);
         }
 
-        save.setValue("text", ui->editTextEdit->toPlainText());
+        save.setValue("text", ui->editAssessmentEdit->toPlainText());
         save.endGroup();
+
+        save.setValue("measures/text", ui->editMeasuresEdit->toPlainText());
 }
 
 
@@ -484,8 +508,10 @@ void MainWindow::loadData()
                 comboBox->setCurrentIndex(comboBox->findData(load.value(key)));
         }
 
-        ui->editTextEdit->setPlainText(load.value("text").toString());
+        ui->editAssessmentEdit->setPlainText(load.value("text").toString());
         load.endGroup();
+
+        ui->editMeasuresEdit->setPlainText(load.value("measures/text").toString());
 }
 
 

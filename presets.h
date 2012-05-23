@@ -51,6 +51,7 @@ private:
         QHash <QString, int> mGradeSelectionYPos;
         QHash <QString, QString> mAssessmentTextBlock;
         const QRect mAssessmentTextRect;
+        const QRect mMeasuresTextRect;
         const QFont mFont;
 
 
@@ -81,6 +82,7 @@ public:
         int gradeSelectionYPos(const QString & name) const;
         QString assessmentTextBlock(const QString & name) const;
         inline const QRect & assessmentTextRect(void) const { return mAssessmentTextRect; }
+        inline const QRect & measuresTextRect (void) const { return mMeasuresTextRect; }
         inline const QFont & font (void) const { return mFont; }
 
 };
