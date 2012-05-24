@@ -757,6 +757,11 @@
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <widget class="QLabel" name="label26">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Beurteilungstext</string>
           </property>
@@ -774,6 +779,11 @@
         </item>
         <item>
          <widget class="QLabel" name="label26_2">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Weiterführende Maßnahmen</string>
           </property>
