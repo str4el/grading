@@ -28,7 +28,7 @@
 
 Presets::Presets () :
         mProgramName("Grading"),
-        mProgramVersion("0.7.0"),
+        mProgramVersion("0.7.1"),
         mFileVersion(4),
         mAssessmentTextRect(20, 160, 175, 35),
         mMeasuresTextRect(mAssessmentTextRect.left(), 210, mAssessmentTextRect.width(), 30),
